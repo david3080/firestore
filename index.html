@@ -62,15 +62,47 @@
 <p>また、NoSQL型データベースにはSQL文がありません。例えばコレクションとドキュメントのツリー構造からなるドキュメント型データベースでは、ドキュメントの階層をたどって検索を行うことで目的のドキュメントにたどりつきます。そのため、一つの検索で目的の情報にたどり着くため、リレーショナルデータベースでは正規化のため別のテーブルに分離したデータ項目を、あえてドキュメント間で重複して持つといった非正規化を行うことも場合によっては推奨されます。例えば、レストランのレビューをリスト表示する場合で考えると、レビュー・ドキュメントにレビューを行った顧客の名前をのせておくと、アプリがレビュー・ドキュメントだけを検索するだけでことたります。ただしデータの重複保存は表示の際の検索回数を削減できますが、データの一貫性を担保できなくなるため、更新や削除の際、重複して保存された箇所も含めて更新や削除を行うことを忘れないよう注意が必要です。これらの設計は、参照の頻度と更新や削除の頻度のトレードオフなどを考慮して行います。</p>
 <p>以上のとおり、リレーショナルデータベースとNoSQL型データベースにはそれぞれ利点と欠点がありますが、NoSQL型データベースの大きな利点として水平スケーリングが可能ということが挙げられます。この特徴により、アプリが人気になって、データアクセス数やデータ量が大きく増加した場合、NoSQLだとサーバを増強するだけで対応できるため、自動スケールが可能になり、運用保守の人件費やシステムの停止リスクが削減できます。</p>
 <p>Cloud Firestoreは、NoSQL型データベースの中でもドキュメント型データベースを採用しており、コレクションとドキュメントのツリー構造で構成され、JSONの配列とオブジェクトで表現することが可能です。コレクションとドキュメントの説明は、<a href="https://cloud.google.com/firestore/docs/data-model?hl=ja" target="_blank">Firebaseのデータモデル</a>を参照してください。</p>
-<h2 is-upgraded>2. インデックスと検索</h2>
+<h2 is-upgraded>2. クエリによる検索</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1<p>Ofux_4c94FI</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>あああ</p>
+<p>データベースから検索を行ってデータを取得する操作のことをクエリと呼びます。NoSQLデータベースでは、基本的には一回のクエリで取得できるデータの対象は特定のコレクションかサブコレクション下のドキュメントのみであり、例えばレストランのレビューのケースでは、レストランを特定せず、すべてのレビューを対象に星の数を指定（例えば、星4以上、とか）して一回のクエリで該当するレビューと対象のレストランの情報まで取得することはできません。しかし、Firestoreではコレクショングループという機能を有しており、サブコレクションにおいて検索キーとして機能させたいフィールド（レストランレビューのケースではレビュー・コレクションの星の数フィールド）を指定することでこれが可能になります。ただし、このコレクショングループが指定できるのは200個までという制限があることに注意してください。また、Firestoreデータベースツリー内に同じ名前のコレクションが複数あると、それら全てを含めてインデックス化してしまうことに注意が必要です。そのため、一つのFirestoreデータベースで利用するコレクション名は重複しないよう設計しましょう。</p>
+<p>Firestoreはドキュメント内のすべてのフィールドが（マップ内のフィールドも含めて）自動的にインデックス化されるので、値の全文一致や上方一致、数値の大小で検索することは非常に高速で行えます。一方、SQL文の&#34;LIKE %(値)%&#34;のような部分一致を行う機能を持っていないので、下記のような工夫が必要です。</p>
+<p><a href="https://qiita.com/oukayuka/items/d3cee72501a55e8be44a" target="_blank">https://qiita.com/oukayuka/items/d3cee72501a55e8be44a</a></p>
+<p>またFirestoreの別の制限として&#34;!=&#34;が含まれるクエリや論理ORのクエリを行うことができません。例えば、星の数が満点5だけど書き込み数が少ないとあやしいのでそれを除外するために星の数が4以上5より少ない、もしくは星の数が5でレビュー数が3以上を検索したいとしてもFirestoreではそれができず、星の数4以上と星の数5でレビュー数が2以下のレストランを検索してクライアント側で引き算をしなければなりません。もしくはこの検索条件を見越して新しいフィールド「満点疑惑」といったものを追加して、レビュー書き込み時に星の数5でレビュー数2以下の場合falseに設定します。検索時には、星の数が4以上かつ「満点疑惑」がtrueを検索するよう設計します。</p>
+<p>Firestoreのクエリで注意が必要なケースとして複合クエリが挙げられます。複合クエリとはwhere文を複数つないでAND検索を行うことをあらわしますが、このとき複数種類のフィールドで範囲比較（&#34;&lt;&#34;, &#34;&lt;=&#34;, &#34;&gt;&#34;, &#34;&gt;=&#34;）またはarray-contains句を適用する場合は、それら複数フィールドの組み合わせでインデックスを作成しておく（これを複数インデックスと呼ぶ）必要があります。あらかじめオブジェクトのすべてのフィールドの組み合わせで複合インデックスを作っておくという案も考えられるが、これらの組み合わせは莫大な量になりうるため、検索の要件にあわせて複合インデックスを行うことにします。もし、この複合インデックスの設定を怠っていた場合はクライアントSDKから複合クエリが実行された際、エラーメッセージがFirestore上の複合インデックス作成画面へのURIを返してくれるので、そのリンクをたどって設定を行うことができます。また、範囲比較またはarray-contains句で行う複合クエリの対象フィールドが3種類以上の場合も、これらをまとめて複合インデックスの設定を行います。</p>
+<p>またFirestoreのクエリについてのオフィシャルドキュメントは以下のとおりです。</p>
+<p><a href="https://firebase.google.com/docs/firestore/query-data/queries" target="_blank">https://firebase.google.com/docs/firestore/query-data/queries</a></p>
 <h2 is-upgraded>3. コストの考え方</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1<p>6NegFl9p_sE</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>あああ</p>
+<p>Firestoreではread(10万回あたり0.06ドル)/write(10万回あたり0.18ドル)/delete(10万回あたり0.02ドル)の処理数に従って課金されます。Firestoreではインデックスを元に操作するので、条件にあった読み込みは対象のドキュメントのみになされるため、このような回数による課金が可能になっています（書き込みや削除も読み込みによって対象を特定してなされるため、考え方は同じ）。</p>
+<p>処理数による課金はリクエストレスポンス型のアクセスを行うと、Firestore上のデータ更新が一部であっても画面更新を行うと表示対象の全データをもう一度読み込むことになるので大変コスト的にも効率が悪くなります。このあとペジネーションのところで説明しますが、Firestoreへのアクセスはリアルタイムデータベースとのストリームとして扱い、更新が発生したデータのみをやりとりするよう実装することが推奨されます。これによって差分の読み書き分だけが課金され、コストが適切に削減されます。</p>
+<p>Google Cloud ConsoleのApp EngineでFirestoreの利用量と時間ごとの課金料金を確認することができ、利用料金の閾値を設けてそれを超えたらアラートメールを送ってくれるような設定を行うことができます。</p>
 <h2 is-upgraded>4. マップと配列とサブコレクション</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<p>o7d5Zeic63s</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>あああ</p>
+<h3 is-upgraded>Firestoreにおけるルール</h3>
+<p>ルール1: ドキュメントの制限</p>
+<ol type="1" start="1">
+<li>1ドキュメントあたり1MB制限あり。画像ファイルはFirebase firestorageに置きファイルパスをドキュメントに保存することで回避します。</li>
+<li>1ドキュメントあたり2万フィールドまでの制限あり。普通そんなに大量のフィールド数は必要ないので問題はない。レストラン・ドキュメントにレビューデータも含めるといった設計をすると、レビューデータが膨れ上がってこの制限を超えてしまうといったことがありうるが、通常ドキュメントは分けるので問題ない。</li>
+<li>1ドキュメントあたり書き込み回数は1秒間に1回の制限あり。</li>
+</ol>
+<p>ルール2: 検索結果はドキュメント全体が出力される</p>
+<p>アプリ表示のときタイトルだけ欲しいケースがあるが全部が送られてくる。これを回避したければドキュメントを分割すること。同じことはセキュリティルールにも言える。</p>
+<p>ルール3: 検索対象は浅い</p>
+<ul>
+<li>データベース全体でなくコレクション内のドキュメントだけ検索対象ということ。</li>
+<li>2019年からコレクショングループの機能が追加され、「collectionGroud(&#34;コレクション名&#34;).where(...).getDocument)」といったクエリを使って子の情報から親を検索できるようになった。</li>
+</ul>
+<p>ルール4: ドキュメントの読み込みと書き込みそれぞれの回数で課金される。</p>
+<ul>
+<li>ルール3のため、データベース全体を検索する場合複数回の読み込みが発生して課金が発生する</li>
+<li>課金にこだわるあまりむやみにドキュメントの統合に走るのは工数のコストを考えると無駄なことだったりすることも念頭に実装すること</li>
+</ul>
+<p>ルール5: 配列は使いにくい</p>
+<ul>
+<li>例えば、arr: [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]という配列は要素arr[1]を削除すると[&#39;a&#39;,&#39;c&#39;]に変わるが&#39;c&#39;に注目して考えるとarr[2]だったものがarr[1]に変わってしまう。</li>
+<li>配列要素に追加や削除があると、複数人でデータを扱う際一元的にデータ参照できないという問題がある。</li>
+<li>解決策としては、オブジェクトはコレクションIDを使って更新・削除を行う。<br>参考）<a href="https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html" target="_blank">https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html</a></li>
+</ul>
 <h2 is-upgraded>5. データ構造</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
@@ -99,16 +131,86 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="準備" duration="0">
+      <google-codelab-step label="Firebaseプロジェクトの作成とセットアップ" duration="0">
         <p>あああ。</p>
-<h2 is-upgraded>ハンズオンで何を実装するか？</h2>
+<h2 is-upgraded>Firebaseプロジェクトの作成</h2>
+<p>あああ</p>
+<h2 is-upgraded>匿名認証の有効化</h2>
+<p>あああ</p>
+<h2 is-upgraded>Cloud Firestoreの有効化</h2>
+<p>あああ</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="準備" duration="0">
+      <google-codelab-step label="サンプルコードの入手" duration="0">
         <p>あああ。</p>
-<h2 is-upgraded>ハンズオンで何を実装するか？</h2>
+<h2 is-upgraded>VS Codeへの読み込み</h2>
+<p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Firebase CLIのインストール" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ローカルサーバの実行" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cloud Firestoreへのデータ登録" duration="0">
+        <p>あああ。</p>
+<h2 is-upgraded>データモデル</h2>
+<p>あああ</p>
+<h2 is-upgraded>レストランデータの追加</h2>
+<p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cloud Firestoreから読み込んだデータ表示" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="get()関数によるデータ読み込み" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="データのソートとフィルタ" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="インデックスのデプロイ" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="トランザクションを使ったデータ更新" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="セキュリティ・ルールのデプロイ" duration="0">
+        <p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="最後に" duration="0">
+        <p>あああ</p>
 
 
       </google-codelab-step>
