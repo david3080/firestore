@@ -53,45 +53,47 @@
       <google-codelab-step label="NoSQLとFirestoreについて" duration="0">
         <p>NoSQLデータベースの説明からFirestoreの説明までしてくれる12コマの動画シリーズをベースにFirestoreについて説明します。</p>
 <h2 is-upgraded>動画の全体像</h2>
-<p>本動画シリーズは、GoogleのTodd Kerpelmanによる「<a href="https://www.youtube.com/playlist?list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ" target="_blank">Get to know Cloud Firestore</a>」というFirestoreを使い始めるにあたって知っておくべきことを12回にわたって解説しているものです。各動画の概要は以下の通りです。下記動画は字幕を自動表示しますが、英語が苦手な人はYoutube画面の右下の設定から字幕から自動翻訳を選び、日本語を選択して日本語字幕を表示して動画を参照するとよいでしょう。</p>
+<p>本動画シリーズは、GoogleのTodd Kerpelmanによる「<a href="https://www.youtube.com/playlist?list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ" target="_blank">Get to know Cloud Firestore</a>」というFirestoreを使い始めるにあたって知っておくべきことを12回にわたって解説しているものです。各動画の概要は以下の通りです。下記動画は字幕を自動表示しますが、英語が苦手な人はYoutube画面の右下の字幕をONにして、さらに設定から字幕の自動翻訳を選び、日本語を選択して日本語字幕を表示して動画を参照するとよいでしょう。</p>
 <h2 is-upgraded>1. NoSQLの特徴</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p>従来型のリレーショナルデータベースでは、テーブルのスキーマが厳格に決められていて正規化という手法でテーブルはデータの重複が発生しないよう分割されています。分割されたテーブルが互いに関係を持つ場合、一方のプライマリキーを他方が外部キーとして持つことで1対多の関係を構成します。例えば、「レストラン」と「顧客」と「顧客によるレストランのレビュー(以下、レビュー)」のテーブルがあるとして、「レビュー」は「レストラン」と「顧客」を外部キーとして持ち、「レストラン」と「顧客」の間の中間テーブルとして機能します。一方、NoSQL型データベースは様々なタイプがあるものの「スキーマレス」という特徴を持ち、テーブル定義のような厳格なスキーマをあらかじめ要求しません。実際に利用する場合はリレーショナルデータベースのときと同じようにテーブルのリレーションを設計してからアプリケーションのモデル部分を開発する必要がありますが、「スキーマレス」の特徴のため、アプリケーションのリリース後にテーブルに新たなデータ項目を追加したくなった場合にスキーマ定義を更新するといった作業が必要なくなります。</p>
-<p>また、NoSQL型データベースにはSQL文がなく、例えばコレクションとドキュメントのツリー構造からなるドキュメント型データベースでは、ドキュメントの階層をたどって検索を行うことで目的のドキュメントにたどりつきます。そのため、簡単に目的の情報にたどり着くため、リレーショナルデータベースでは正規化のため別のテーブルに分離したデータ項目をあえてドキュメント間で重複して持つといった非正規化を行うことが推奨されます。例えば、レストランのレビューのケースで考えると、レビュー・ドキュメントにレビューを行った顧客の名前をのせておくと、アプリにあるレストランのレビュー・リストを簡易表示する際、レビュー・ドキュメントだけを検索するだけですみます。ただし、データの重複保存はデータの一貫性を担保できなくなりうるため、更新や削除の際、重複して保存された箇所の更新や削除を忘れずに行うことが必要になります。これらの設計は、参照の頻度と更新や削除の頻度のトレードオフなどを考慮して行います。</p>
-<p>以上のとおり、リレーショナルデータベースとNoSQL型データベースにはそれぞれ利点と欠点がありますが、NoSQL型データベースの大きな利点として水平スケーリングが可能ということです。この特徴により、アプリケーションが人気を博し、データアクセスやデータ量が大きく増加した場合、サーバを増強するだけで対応でき、自動スケールが可能になり、運用保守の人件費とシステムの停止リスクを大きく削減できます。</p>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<p>v_hR4K4auoQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>従来型のリレーショナルデータベースでは、テーブルの<strong>スキーマが厳格に決められ</strong>ており、<strong>正規化という手法でデータの重複が発生しないようテーブル分割</strong>されています。分割されたテーブルが互いに関係を持つ場合、<strong>一方のプライマリキーを他方が外部キーとして持つことで1対多の関係を構成</strong>します。例えば「レストラン」と「顧客」と「顧客によるレストランのレビュー(以下、レビュー)」の3つテーブルがあるとして、「レビュー」は「レストラン」と「顧客」を外部キーとして持つことで、「レビュー」テーブルが「レストラン」と「顧客」の間の中間テーブルとして機能します。</p>
+<p class="image-container"><img style="width: 549.00px" src="img/2a96ff527bc001a2.png"></p>
+<p>一方、NoSQL型データベースは様々なタイプがあるものの「スキーマレス」という特徴を持ち、テーブル定義のような厳格なスキーマをあらかじめ要求しません。実際に利用する場合はリレーショナルデータベースのときと同じようにテーブルのリレーションを設計してからアプリケーションのモデル部分を開発する必要がありますが、「スキーマレス」の特徴のため、アプリケーションのリリース後にテーブルに新たなデータ項目を追加したくなった場合に、データの移行を考慮しながらデータベースに対してスキーマ定義を更新するといった作業が必要なくなります。</p>
+<p>また、NoSQL型データベースにはSQL文がありません。例えばコレクションとドキュメントのツリー構造からなるドキュメント型データベースでは、ドキュメントの階層をたどって検索を行うことで目的のドキュメントにたどりつきます。そのため、一つの検索で目的の情報にたどり着くため、リレーショナルデータベースでは正規化のため別のテーブルに分離したデータ項目を、あえてドキュメント間で重複して持つといった非正規化を行うことも場合によっては推奨されます。例えば、レストランのレビューをリスト表示する場合で考えると、レビュー・ドキュメントにレビューを行った顧客の名前をのせておくと、アプリがレビュー・ドキュメントだけを検索するだけでことたります。ただしデータの重複保存は表示の際の検索回数を削減できますが、データの一貫性を担保できなくなるため、更新や削除の際、重複して保存された箇所も含めて更新や削除を行うことを忘れないよう注意が必要です。これらの設計は、参照の頻度と更新や削除の頻度のトレードオフなどを考慮して行います。</p>
+<p>以上のとおり、リレーショナルデータベースとNoSQL型データベースにはそれぞれ利点と欠点がありますが、NoSQL型データベースの大きな利点として水平スケーリングが可能ということが挙げられます。この特徴により、アプリが人気になって、データアクセス数やデータ量が大きく増加した場合、NoSQLだとサーバを増強するだけで対応できるため、自動スケールが可能になり、運用保守の人件費やシステムの停止リスクが削減できます。</p>
 <p>Cloud Firestoreは、NoSQL型データベースの中でもドキュメント型データベースを採用しており、コレクションとドキュメントのツリー構造で構成され、JSONの配列とオブジェクトで表現することが可能です。コレクションとドキュメントの説明は、<a href="https://cloud.google.com/firestore/docs/data-model?hl=ja" target="_blank">Firebaseのデータモデル</a>を参照してください。</p>
 <h2 is-upgraded>2. インデックスと検索</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1<p>Ofux_4c94FI</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>3. コストの考え方</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1<p>6NegFl9p_sE</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>4. マップと配列とサブコレクション</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<p>o7d5Zeic63s</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>5. データ構造</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>6. セキュリティルール</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1<p>eW5MdE3ZcAw</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>7. データのペジネーション</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1<p>poqTHxtDXwU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>8. トランザクション処理</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1<p>dOVSr0OsAoU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>9. オフラインサポート</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1<p>oDvdAFP6OhQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>10. リアルタイムか一括フェッチか？</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1<p>3aoxOtMM2rc</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>11. サーバレスの概要（Cloud Functions）</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1<p>rERRuBjxJ80</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 <h2 is-upgraded>12. Cloud Functionsの5つの利用パターン</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1<p>77XmRDtOL7c</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>あああ</p>
 
 
