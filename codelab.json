@@ -1,0 +1,20 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-08-09T08:30:05Z",
+  "id": "cloud-firestore",
+  "duration": 0,
+  "title": "Cloud Firestore",
+  "summary": "Cloud Firestore",
+  "source": "19Kafi4lkyqyEA709SqovG83GUtvc0XWFXQ9eLHQrJ3Q",
+  "theme": "firebase",
+  "status": null,
+  "category": [
+    "firebase",
+    "firestore"
+  ],
+  "tags": [],
+  "url": "cloud-firestore"
+}
