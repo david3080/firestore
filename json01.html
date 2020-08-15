@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/jsoneditor@9.0.3/dist/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/jsoneditor@9.0.3/dist/jsoneditor.min.js"></script>
+    <script src="./json01.js"></script>
+</head>
+<body>
+    <div id="jsoneditor" style="width:800px; height:200px;"></div>
+    <script>
+      // 初期表示するJSONはこちらにセット
+      const initialJson = 
+	    {
+		"_id": 0,
+		"name": "ガスト東岡崎店",
+		"type": "洋食",
+		"address": "愛知県岡崎市大西１丁目１−１０",
+		"logo": "https://www.skylark.co.jp/site_resource/gusto/images/logo.svg",
+		"star": 3.2
+	    }
+    </script>
+    <script>
+      const container = document.getElementById("jsoneditor")
+      const options = {
+	  mode: 'code',
+	  modes: ['tree','code'], 
+      }
+      const editor = new JSONEditor(container, options)
+      editor.set(initialJson)
+      const updatedJson = editor.get()
+    </script>
+</body>
+</html>

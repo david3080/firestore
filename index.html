@@ -28,30 +28,374 @@
                   feedback-link="">
     
       <google-codelab-step label="はじめに" duration="0">
-        <h2 is-upgraded>本書の目標</h2>
-<p>ここでは、<a href="https://firebase.google.com/docs/firestore/" target="_blank">Cloud Firestore</a>の概要を学び、レストランにレビューを追加するアプリを開発するハンズオンを行います。</p>
-<p class="image-container"><img style="width: 460.50px" src="img/a3f2c1f577cb3f76.png"></p>
-<h2 is-upgraded>学ぶこと</h2>
+        <h2 is-upgraded>本書の内容</h2>
+<p>本書では、データモデル設計とNoSQLデータベースとFirestoreについて学んだのち、レストランにレビューを追加するアプリを例にFirebaseとFlutterを使ったスマホアプリ開発する一連の流れをハンズオンします。</p>
+<h2 is-upgraded>本書のコンセプト</h2>
+<p>最近コロナの影響もあり、在宅勤務が推奨され、学校の授業がオンライン化され、買い物はeコマースの利用が増加し、食事の際も出前アプリを使った配達が流行っています。いままでもIT化の必要性がさけばれてきましたが、コロナ対策で必要にせまられていることもあり、使いやすいオンラインサービスの開発と活用が日本社会でも必要度が増しています。一方、IT業界では、いままで使いづらいの代表であった行政や金融のオンラインサービスを、ユーザ中心設計を採用し、使いやすくセキュリティ上も安全なオンラインサービスに作り替えようとするとりくみが進められています。また、IT化が遅れていた中小企業においてもDX（デジタルトランスフォーメーション）を促進しようとする動きがあったりしており、各業界や各社の要望に沿った使いやすいオンラインサービスを安価に構築することが求められています。一方、これらの要望を担うIT人材の育成という意味では、子供から成人までプログラミング教育がはやっており、文科省は小学校でのプログラミング授業を必須化したりしています。</p>
+<p>このような状況の中アプリ開発やIT人材育成において下記のような課題があると感じています。</p>
 <ul>
-<li>NoSQLデータベースとCloud Firestoreの概要</li>
-<li>ユースケースを元にしたデータモデリングの方法</li>
-<li>Cloud Firestoreへのデータ書き込みと読み込み</li>
-<li>Cloud Firestore上のデータ更新に対するクライアント側のリアルタイム処理</li>
-<li>Firebase認証とCloud Firestoreのセキュルティ・ルール</li>
-<li>Cloud Firestoreのインデックス化と複雑なCloud Firestoreクエリ</li>
+<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走り、データ構造やロジックの設計がおろそかになり、エンジニアが開発をはじめらずプロジェクトが炎上する、といった状況に陥りがちです。筆者は20年近くIT企業でアプリ開発を実施してきましたが、昔も最近もこのようなプロジェクトをたくさん見ています。</li>
+<li>この原因としては、プロジェクト前半で行うシステムデザインについての手法（ドメイン駆動設計やシステムアーキテクチャなど）やその説明が高尚で難しすぎるという問題があります。そのため、本来必要なシステムデザインが難しく現実的でないと無意識に解釈されおざなりになり、プロジェクトにはスケジュールがあるためとりあえず簡易な画面設計に走ることにつながるのではとも感じています。</li>
+<li>昨今ではユーザ中心設計の啓蒙の影響もあってか、顧客接点である画面のデザインが重要視され、発注側の顧客やデザイナーを含めたプロジェクトメンバーが、本来画面設計を導くはずのデータモデルについて理解が乏しいことに原因があるのだろうとも感じています。</li>
+<li>例えば、某お客様の依頼で業務で扱うデータが整理できておらず、各業務ステップでその担当者が手動で処理しているので、担当者の残業が減らないためシステム化したい、といった要件がありました。ご多分にもれず受託業者のプロマネやデザイナーが画面設計に走り、プロジェクトの半年後やりなおしになりましたが、このようにシステム化とは業務とデータの整理整頓であり、データモデルの整理が最初に必要になるわけです。</li>
+<li>ITエンジニア育成という観点からは従来のプログラミングの学習コンテンツは、プログラミング言語の言語ルールを学ぶことが目標となっており、出来上がったプログラムが端末に&#34;Hello World&#34;と表示するといった実用に絶えない面白みにかける学習内容になっており、初心者の時点からやる気をなくす作りになっている。</li>
+<li>最近の子供向けプログラミング授業用ソフトは、使いやすい見た目をもち、マウス操作でプログラミングの論理的思考が学べるといったよい面がある一方、汎用的なアプリケーションを開発するため使えない。</li>
 </ul>
-<h2 is-upgraded>必要なこと</h2>
-<p>ハンズオンを始める前に下記のものをインストールしておくこと</p>
+<p>そのため、本来エンジニアだけでなく、IT業者に発注する顧客企業側の担当者やプロジェクトマネージャも、ユースケースからデータモデルに落とす考え方やデータモデルから画面設計を行うための考え方、さらにはこれらのパターンを知っていることが望まれます。そこで本書の前半ではデータモデリングの具体的な方法と考え方を説明しています。また、ITエンジニア育成という観点では、アイデアが浮かんだらすぐに完成品までもっていけるような汎用的なツールを本書では選び、それらを使ったハンズオンを構成しています。選定理由は以下の通りです。</p>
 <ul>
-<li><a href="https://nodejs.org/ja/" target="_blank">Node.js</a> の <a href="https://www.npmjs.com/" target="_blank">npm</a> インストール</li>
-<li><a href="https://code.visualstudio.com/" target="_blank">VS Code</a>エディタのインストール</li>
+<li>開発対象のアプリは利用者の利便性を考えスマホアプリを想定</li>
+<li>サーバ構築には、スマホアプリに一般的に必要となるサーバ機能をボタン一つで提供するGoogle Cloud Firebaseを採用</li>
+<li>認証のしくみには、スマホアプリに即組み込めて、様々なタイプの認証機能を提供し、外部のOIDCサーバとも連携できるFirebase Authを採用</li>
+<li>データベースには、リアルタイムデータベースとスマホアプリから安全に直接アクセスできるSDKが提供されているFirestoreを採用。本来ならデータベース構築以外にもそれにつながるAPIの開発も必要になりますが、この工数を削減しています。</li>
+<li>スマホ開発には、ワンコードでiPhoneネイティブアプリもAndroidネイティブアプリもWebアプリも構築できるFlutterを採用。本来ならiPhoneアプリ、Androidアプリ、Webアプリそれぞれについて、異なる開発環境、プログラミング言語、開発フレームワークを使った開発が必要ですが、これらを一つの環境で同一のプログラミング言語で一回コーディングすることで可能にしています。これにより開発工数が1/3以上に削減されます。</li>
+</ul>
+<p>さらには、様々な立場の人が本書を読んでハンズオンを試すことで、非エンジニアとしてものづくりをさけてきた人たちも、「こんなに簡単に作れるんだ」とプログラミングによるものづくりに興味をもってもらい、自分たちが実現したいシステムを自分たちで構築するための素養と好奇心を身につけるための一助になればと思っています。</p>
+<p>※著者は2020年2月に第33回「２１世紀交流サロン・葵丘」にてこれらの考え方について講演しました。<a href="http://21cmikawa.jp/activity/activity.php" target="_blank">http://21cmikawa.jp/activity/activity.php</a></p>
+<h2 is-upgraded>本書で学ぶこと</h2>
+<ul>
+<li>ユースケースを元にしたデータモデリング概要とパターン</li>
+<li>NoSQLデータベースとCloud Firestoreの概要</li>
+<li>Firebase AuthとFirestore、Cloud Functionsの使い方</li>
+<li>Flutterを使ったアプリの開発</li>
 </ul>
 
 
       </google-codelab-step>
     
+      <google-codelab-step label="データモデル設計" duration="0">
+        <p>データモデルの設計は、通常ユースケースからデータモデル候補を抜き出すことからはじめます。これによってデータの大きな単位とそこに含まれる属性が整理できます。また、ここで抽出されたデータ単位ごとにテーブルを作って、具体的なデータサンプルをまとめておくと次ステップのデータ間の関係を考える際に役に立ちます。</p>
+<p>データ候補が抽出できたらデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用しているため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、次ページを参考にしてください）。前ステップで行ったデータ候補の抽出は比較的容易ですが、ここで行うデータ間の関係整理は初心者には難しい作業です。前ページの「はじめに」で挙げた課題である要件定義や設計フェーズで画面設計に走ってしまう理由も、この難しさにあるものと考えられます。そのため、次ページによくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
+<p>ざっくりコレクションとドキュメントの分離方針がきまったら、サンプルデータを使って、JSONの形式でまとめます。JSONスキーマにそった正しいJSON形式にまとめることでドキュメント型データベースで扱えるサンプルデータが作成されたことになります。ここで初めてJSONを扱う人は正しいJSON形式とは何かわからないと思いますが、本書では本文中にJSONエディタというツールを使ってデータを表現し、JSON形式でのサンプルデータの作り方をステップバイステップで解説します。</p>
+<h2 is-upgraded>1. ユースケースからデータの候補を抽出する</h2>
+<p>顧客がレストランに星の数とコメントでレビューを行うアプリを例に、ユースケースを以下にまとめます。</p>
+<ol type="1" start="1">
+<li>顧客がアプリにログインする</li>
+<li>レストランのリストが表示され、料理の種類や住所、星の数の平均でソートや検索ができる</li>
+<li>レストランのリストから一つを選ぶとレストランの詳細が表示できる</li>
+<li>レストランのリストから一つを選ぶとレストランの詳細が表示できる</li>
+<li>レストランの詳細には店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示され、星の数やコメントの内容でソートや検索ができる</li>
+<li>またレストランの詳細ではそのレストランのレビューが登録できる</li>
+<li>レビューでは星の数とコメントが登録でき、登録更新時にレストランの星の数の平均が更新される</li>
+<li>レストランのレビューは顧客自身が登録したレビューについては編集と削除ができる</li>
+</ol>
+<p>ここから得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
+<ul>
+<li>レストラン（店名、料理の種類、住所、星の数の平均）</li>
+<li>レビュー（レビュー者、レストラン、星の数、コメント）</li>
+<li>顧客（メールアドレス、名前、アイコン）</li>
+</ul>
+<p>具体的なサンプルデータを表形式にまとめておくとイメージがつきやすく、開発メンバーへの説明もしやすいでしょう。</p>
+<h3 is-upgraded>表1. レストラン</h3>
+<table>
+<tr><td colspan="1" rowspan="1"><p>ID</p>
+</td><td colspan="1" rowspan="1"><p>名前</p>
+</td><td colspan="1" rowspan="1"><p>種類</p>
+</td><td colspan="1" rowspan="1"><p>住所</p>
+</td><td colspan="1" rowspan="1"><p>星</p>
+</td><td colspan="1" rowspan="1"><p>ロゴ</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>ガスト東岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>洋食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１−１０</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.skylark.co.jp/site_resource/gusto/images/logo.svg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1</p>
+</td><td colspan="1" rowspan="1"><p>デニーズ東岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>洋食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市美合町 字五反田２５－１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/dennys.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>2</p>
+</td><td colspan="1" rowspan="1"><p>大戸屋ごはん処岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>和食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市井田西町１−１１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/ootoya.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>3</p>
+</td><td colspan="1" rowspan="1"><p>和食さと岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>和食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市上里２丁目１−１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sato-res.com/assets/tile/sato.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>4</p>
+</td><td colspan="1" rowspan="1"><p>カレーハウスCoCo壱番屋岡崎上地店</p>
+</td><td colspan="1" rowspan="1"><p>カレー</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市上地３丁目５１−６</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.ichibanya.co.jp/assets/images/common/ogp.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>5</p>
+</td><td colspan="1" rowspan="1"><p>スシロー岡崎上和田店</p>
+</td><td colspan="1" rowspan="1"><p>寿司</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市天白町東池１５−１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.akindo-sushiro.co.jp/shared/images/ogp.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>6</p>
+</td><td colspan="1" rowspan="1"><p>くら寿司北岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>寿司</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市錦町２−１２</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.watch.impress.co.jp/img/ipw/docs/1230/499/kura1_s.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>7</p>
+</td><td colspan="1" rowspan="1"><p>モスバーガー岡崎大西店</p>
+</td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１６−７</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>http://www.wing-net.ne.jp/image/kamiooka/store/storage/w250/mos.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>8</p>
+</td><td colspan="1" rowspan="1"><p>マクドナルド岡崎インター店</p>
+</td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大平町石丸６０−１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/mcdonalds.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>9</p>
+</td><td colspan="1" rowspan="1"><p>かつや愛知岡崎インター店</p>
+</td><td colspan="1" rowspan="1"><p>とんかつ</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大平町新寺25</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.arclandservice.co.jp/katsuya/wp-content/themes/arclandservice-group/assets/img/katsuya/common/logo.svg</p>
+</td></tr>
+</table>
+<h3 is-upgraded>表2. レビュー</h3>
+<p>レストラン「ガスト東岡崎店」に対するレビュー</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>ID</p>
+</td><td colspan="1" rowspan="1"><p>顧客名</p>
+</td><td colspan="1" rowspan="1"><p>星</p>
+</td><td colspan="1" rowspan="1"><p>コメント</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>鈴木一郎</p>
+</td><td colspan="1" rowspan="1"><p>2</p>
+</td><td colspan="1" rowspan="1"><p>値段の割に合わない気がする。</p>
+<p>チーズハンバーグを頼んだが、レトルトな感じでした。</p>
+<p>さらに、スープセットにしたが、スープは一種類。</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1</p>
+</td><td colspan="1" rowspan="1"><p>佐藤二郎</p>
+</td><td colspan="1" rowspan="1"><p>3</p>
+</td><td colspan="1" rowspan="1"><p>タブレットによる注文に変わったが、慣れが必要。</p>
+<p>メニューを広げて、料理を比べたい。</p>
+<p>この方式で価格が下がればよいが、，，</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>2</p>
+</td><td colspan="1" rowspan="1"><p>北島三郎</p>
+</td><td colspan="1" rowspan="1"><p>5</p>
+</td><td colspan="1" rowspan="1"><p>ドリンクバーが99円(単品で注文してもOK)。</p>
+<p>パソコンの持ち込みOK。</p>
+<p>コンセントで充電できる。持ち帰り容器は無料。</p>
+<p>食べきれない料理の持ち帰りOK。</p>
+<p>トイレは新しくてキレイ</p>
+</td></tr>
+</table>
+<h3 is-upgraded>表3. 顧客</h3>
+<table>
+<tr><td colspan="1" rowspan="1"><p>ID</p>
+</td><td colspan="1" rowspan="1"><p>メールアドレス</p>
+</td><td colspan="1" rowspan="1"><p>名前</p>
+</td><td colspan="1" rowspan="1"><p>アイコン</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>ichiro@test.com</p>
+</td><td colspan="1" rowspan="1"><p>鈴木一郎</p>
+</td><td colspan="1" rowspan="1"><p>https://meikyu-kai.org/wp-content/uploads/2020/01/51_Ichiro.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1</p>
+</td><td colspan="1" rowspan="1"><p>jiro@test.com</p>
+</td><td colspan="1" rowspan="1"><p>佐藤二郎</p>
+</td><td colspan="1" rowspan="1"><p>http://www.from1-pro.jp/images/t_10/img_l.jpg?1597426029</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>2</p>
+</td><td colspan="1" rowspan="1"><p>saburo@test.com</p>
+</td><td colspan="1" rowspan="1"><p>北島三郎</p>
+</td><td colspan="1" rowspan="1"><p>https://cdn.asagei.com/asagei/uploads/2016/08/20160810kitajima.jpg</p>
+</td></tr>
+</table>
+<h2 is-upgraded>2. データをドキュメントとコレクションのツリー構造にする</h2>
+<p>1で抽出したデータをドキュメントとコレクションのツリー構造にします。</p>
+<ol type="1" start="1">
+<li>レストランドキュメントと顧客ドキュメントはルートレベルコレクションに納める</li>
+<li>レビュードキュメントはレストラン・ドキュメントのサブコレクションに納める</li>
+<li>レビュードキュメントに顧客フィールドの一部をマップとして納める</li>
+</ol>
+<p class="image-container"><img style="width: 591.38px" src="img/fb7ffc451c5daf74.png"></p>
+<h2 is-upgraded>3. サンプルデータをJSON形式で表現する</h2>
+<p>ドキュメントとそのフィールド、コレクションとそれらの関係について方針が決まったら、より具体化するために1のサンプルデータを作ってJSON形式で表現していきます。ここではJSONエディタを使い、ステップバイステップでサンプルデータを作成していきます。</p>
+<aside class="warning"><p><strong>ノート: </strong>JSONエディタを使うと直感的にJSON形式のデータを作成、編集することができます。</p>
+<ol type="1" start="1">
+<li>a</li>
+</ol>
+<p class="image-container"><img style="width: 198.00px" src="img/64ed01991230c401.png"></p>
+<ol type="1" start="2">
+<li>a</li>
+<li>b</li>
+</ol>
+<p>下記の説明で</p>
+</aside>
+<h4 is-upgraded><strong>3-1. レストラン・ドキュメントの作成</strong></h4>
+<p>上記表1のIDが0のレコードを参考にレストラン・ドキュメントを作成します。</p>
+<iframe width="820" height="220" src="./json01.html" frameborder="1"></iframe>
+<p>JSONではデータのひとつの塊であるドキュメントを { } で囲み、その中に &#34;属性名&#34;: &#34;属性値&#34; をカンマ（ , ）で区切ってリストします。</p>
+<h4 is-upgraded><strong>3-2. レストラン・コレクションの作成</strong></h4>
+<p>上記表1の通りレストランは10個存在するため、配列をあらわすコレクションとして表現します。</p>
+<iframe width="820" height="420" src="./json02.html" frameborder="1"></iframe>
+<p>JSONではこのコレクションを { &#34;配列名&#34;: [(ドキュメントをカンマ( , )で区切ってリスト)] } で表現します。</p>
+<h4 is-upgraded><strong>3-3. 顧客コレクションの追加</strong></h4>
+<p>レストランと同じく顧客コレクションもルートレベルに追加します。</p>
+<iframe width="820" height="420" src="./json03.html" frameborder="1"></iframe>
+<p> JSONでは二つのコレクションを { &#34;restaurants&#34;: [(...)], &#34;users&#34;: [(...)] } と表現します。 </p>
+<h4 is-upgraded><strong>3-4. レビュー・ドキュメントをレストラン・ドキュメント配下のサブコレクションとして追加</strong></h4>
+<p>レビュー・ドキュメントの配列であるコレクションをレストラン・ドキュメント配下に追加します。この時、レビュー・ドキュメントには書き込みを行った顧客がわかるように顧客IDを追加します（レビュー・ドキュメントはレストラン・ドキュメント配下のサブコレクションに含まれるため、レストランIDは必要ありません）。また、レビュー・ドキュメントから書き込みを行った顧客名とレビュー対象のレストラン名がわかるようそれらの項目も追加します。これらの作業の必要性は「NoSQLとFirestoreについて」を参照してください。</p>
+<iframe width="820" height="620" src="./json04.html" frameborder="1"></iframe>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ユースケースとデータモデルのパターン" duration="0">
+        <p>世にあるアプリのユースケースをいくつか例に挙げ、それらのデータモデルと画面設計のパターンを紹介します。これらを理解し参考にすることで、経験の少ない方でもみずからのユースケースを整理して、正しくアプリの設計を行うことが可能になるでしょう。</p>
+<h2 is-upgraded>1. メモアプリ</h2>
+<p>TODO</p>
+<h3 is-upgraded>1-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>1-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>1-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>2. 学生名簿</h2>
+<p>TODO</p>
+<h3 is-upgraded>2-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>2-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>2-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>3. 観光地紹介</h2>
+<p>TODO</p>
+<h3 is-upgraded>3-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>3-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>3-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>4. カレンダー</h2>
+<p>TODO</p>
+<h3 is-upgraded>4-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>4-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>4-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>5. 会議室予約</h2>
+<p>TODO</p>
+<h3 is-upgraded>5-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>5-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>5-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>6. 商品購入</h2>
+<p>TODO</p>
+<h3 is-upgraded>6-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>6-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>6-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>7. 出前</h2>
+<p>TODO</p>
+<h3 is-upgraded>7-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>7-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>7-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>8. ホテル予約</h2>
+<p>TODO</p>
+<h3 is-upgraded>8-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>8-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>8-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>9. 高速バス予約</h2>
+<p>TODO</p>
+<h3 is-upgraded>9-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>9-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>9-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>10. 営業支援</h2>
+<p>TODO</p>
+<h3 is-upgraded>10-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>10-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>10-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>11. 保険契約管理</h2>
+<p>TODO</p>
+<h3 is-upgraded>11-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>11-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>11-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>12. 物品管理</h2>
+<p>TODO</p>
+<h3 is-upgraded>12-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>12-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>12-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>13. ホームページ管理</h2>
+<p>TODO</p>
+<h3 is-upgraded>13-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>13-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>13-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>14. 出張申請・精算</h2>
+<p>TODO</p>
+<h3 is-upgraded>14-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>14-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>14-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>15. グループチャット</h2>
+<p>TODO</p>
+<h3 is-upgraded>15-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>15-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>15-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>16. ポイント管理</h2>
+<p>TODO</p>
+<h3 is-upgraded>16-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>16-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>16-3. 画面設計</h3>
+<p>TODO</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="NoSQLとFirestoreについて" duration="0">
-        <p>ここではGoogleが公開している12コマの動画シリーズをベースにNoSQLデータベースの説明とFirestoreの説明を行います。</p>
+        <p>Googleが公開している12コマの動画シリーズをベースにNoSQLデータベースとFirestoreを解説します。</p>
 <h2 is-upgraded>動画の全体像</h2>
 <p>ここで紹介する動画シリーズは、GoogleのTodd Kerpelman氏による「<a href="https://www.youtube.com/playlist?list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ" target="_blank">Get to know Cloud Firestore</a>」という動画シリーズで、Firestoreを使い始めるにあたって知っておくべきことを12回にわたって解説しているものです。本書に添付された動画は全画面表示が可能ですし、英語の字幕を自動表示する設定になっていますが、英語が苦手な人はYoutube画面の右下の設定で字幕をONにし、さらに字幕の自動翻訳を選び日本語を選択して日本語字幕を表示することも可能です。</p>
 <h2 is-upgraded>1. NoSQLの特徴</h2>
@@ -126,19 +470,19 @@
 <h2 is-upgraded>5. データ構造</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>ドキュメント型データベースにおいて、ユースケースに適したデータ構造を設計するとき主に以下の3種類の構造から適切なものを選びます。</p>
-<h3 is-upgraded><strong>タイプ</strong><strong>1. ドキュメントの一部として配列もしくはマップとして含める</strong></h3>
+<h3 is-upgraded><strong>タイプ1. ドキュメントの一部として配列もしくはマップとして含める</strong></h3>
 <ul>
 <li>例えば、レストラン・ドキュメントに最も星の数が多い5つのレビュー内容や最新の5つのレビュー内容をマップか配列として含めることも可能です。</li>
 <li>利点としては、ドキュメントの一度の検索で表示すべき情報を取得することができることが挙げられます。</li>
 <li>一方欠点としては、時間経過とともにフィールド数が増大し、更新時のインデックス処理に時間がかかるようになり、最終的には1ドキュメントあたり1MB制限や2万フィールド制限に到達してしまうことがあります。</li>
 </ul>
-<h3 is-upgraded><strong>タイプ</strong><strong>2. オブジェクトをサブコレクションにおさめる</strong></h3>
+<h3 is-upgraded><strong>タイプ2. オブジェクトをサブコレクションにおさめる</strong></h3>
 <ul>
 <li>例えば、レストランのレビューは大量の書き込みが行われる可能性もあるためレストラン・ドキュメントのサブコレクションに含めるとよいでしょう。</li>
 <li>利点としては、リストが大きくなっても親ドキュメントのサイズが変わらず、複数のサブコレクションにまたがる検索をする場合は、<a href="https://cloud.google.com/firestore/docs/query-data/queries?hl=ja" target="_blank">コレクション グループ </a>を設定するとよいでしょう。</li>
 <li>一方、欠点としては、ドキュメントをまたがって検索することが常である場合にも読み込み回数がドキュメント数分発生してしまうことが挙げられます。</li>
 </ul>
-<h3 is-upgraded><strong>タイプ</strong><strong>3. オブジェクトをルートレベルのコレクションにおさめる</strong></h3>
+<h3 is-upgraded><strong>タイプ3. オブジェクトをルートレベルのコレクションにおさめる</strong></h3>
 <ul>
 <li>例えば、レビューを書き込む顧客はこのアプリケーションのユーザであり、例えばアプリに出前機能が追加された際にも再利用する必要があるかもしれません。そういう意味でもルートレベルのコレクションとして整理するとよいでしょう。</li>
 <li>利点としては、ルートレベルのコレクションはリレーショナルデータベースにおける正規化の考え方と同じく再利用しやすく、アプリの作り方によらずデータの一貫性が保たれ安心できます。</li>
@@ -235,213 +579,79 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Firestoreでのデータモデル設計" duration="0">
-        <p>通常データモデルの設計方法として、ユースケースからデータモデル候補を抜き出しデータモデル設計を行います。Firestoreを使う場合も同じく、まずはユースケースからデータの候補を抜き出し、ドキュメントの単位とドキュメント内のフィールドを決めていきます。また、ドキュメントとコレクションの関係を整理します。ざっくり方針がきまったら、具体的なデータを想像し、JSONの形式でまとめます。最後にユースケースから検索条件とデータ作成・更新・削除時の条件、セキュリティ・ルール（ここには必須フィールドを含む）を整理し、このデータモデルでうまく実現できるかをチェックしてデータモデルの完成です。Firestoreのデータモデルはスキーマ定義が必要ありませんので、データモデルの設計書はこの程度にとどめて、クライアント側の実装、複合クエリとコレクショングループの設定、セキュリティルールの実装、Cloud FunctionsのTypeScriptの実装をそのまま詳細設計資料として扱うとよいでしょう。</p>
-<h3 is-upgraded><strong>1. ユースケースからデータの候補を抽出する</strong></h3>
-<p>顧客がレストランに星の数とコメントでレビューを行うアプリを例に、ユースケースを以下にまとめます。データの候補は青字にしています。</p>
-<table>
-<tr><td colspan="1" rowspan="1"><p>1. 顧客がアプリにログインする</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>2. レストランのリストが表示され、料理の種類や住所、星の数の平均でソートや検索ができる</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>3. レストランのリストから一つを選ぶとレストランの詳細が表示できる</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>4. レストランのリストから一つを選ぶとレストランの詳細が表示できる</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>5. レストランの詳細には店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示され、星の数やコメントの内容でソートや検索ができる</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>6. またレストランの詳細ではそのレストランのレビューが登録できる</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>7. レビューでは星の数とコメントが登録でき、登録更新時にレストランの星の数の平均が更新される</p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>8. レストランのレビューは顧客自身が登録したレビューについては編集と削除ができる</p>
-</td></tr>
-</table>
-<p>以上のユースケースからデータの候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
-<ul>
-<li>顧客（メールアドレス、名前、アイコン）</li>
-<li>レストラン（店名、料理の種類、住所、星の数の平均）</li>
-<li>レビュー（星の数、コメント）<br></li>
-</ul>
-<h3 is-upgraded><strong>2. データをドキュメントとコレクションのツリー構造にする</strong></h3>
-<p>前章「NoSQLとFirestoreについて」の「5. データ構造」を参考に、1で抽出したデータをドキュメントとコレクションのツリー構造にします。</p>
-<ol type="1" start="1">
-<li>レストランドキュメントと顧客ドキュメントはルートレベルコレクションに納める</li>
-<li>レビュードキュメントはレストラン・ドキュメントのサブコレクションに納める</li>
-<li>レビュードキュメントに顧客フィールドの一部をマップとして納める</li>
-</ol>
-<p class="image-container"><img style="width: 591.38px" src="img/fb7ffc451c5daf74.png"></p>
-<h3 is-upgraded><strong>3. データのサンプルをJSON形式で表現する</strong></h3>
-<p>ドキュメントとそのフィールド、コレクションとそれらの関係について方針が決まったら、より具体化するためにサンプルデータを作ってJSON形式で表現します。</p>
-<p>2で作成したツリー構造をJSON形式であらわすとき、コレクションは配列（[]）に名前をつけて表現し、ドキュメントはマップ（{}）にIDをつけて表現します。</p>
-<pre>{
-  &#34;restaurants&#34;: [
-    {
-      &#34;name&#34;: &#34;ガスト東岡崎店&#34;,
-      &#34;type&#34;: &#34;洋食&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市大西１丁目１−１０&#34;,
-      &#34;logo&#34;: &#34;https://www.skylark.co.jp/site_resource/gusto/images/logo.svg&#34;,
-      &#34;star&#34;: 3.2
-    },
-    {
-      &#34;name&#34;: &#34;デニーズ東岡崎店&#34;,
-      &#34;type&#34;: &#34;洋食&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市美合町 字五反田２５－１&#34;,
-      &#34;logo&#34;: &#34;https://sozainavi.com/wp-content/uploads/2019/10/dennys.jpg&#34;,
-      &#34;star&#34;: 3.5
-    },
-    {
-      &#34;name&#34;: &#34;大戸屋ごはん処岡崎店&#34;,
-      &#34;type&#34;: &#34;和食&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市井田西町１−１１&#34;,
-      &#34;logo&#34;: &#34;https://sozainavi.com/wp-content/uploads/2019/10/ootoya.jpg&#34;,
-      &#34;star&#34;: 3.5
-    },
-    {
-      &#34;name&#34;: &#34;和食さと岡崎店&#34;,
-      &#34;type&#34;: &#34;和食&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市上里２丁目１−１&#34;,
-      &#34;logo&#34;: &#34;https://sato-res.com/assets/tile/sato.png&#34;,
-      &#34;star&#34;: 3.5
-    },
-    {
-      &#34;name&#34;: &#34;カレーハウスCoCo壱番屋岡崎上地店&#34;,
-      &#34;type&#34;: &#34;カレー&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市上地３丁目５１−６&#34;,
-      &#34;logo&#34;: &#34;https://www.ichibanya.co.jp/assets/images/common/ogp.png&#34;,
-      &#34;star&#34;: 3.6
-    },
-    {
-      &#34;name&#34;: &#34;スシロー岡崎上和田店&#34;,
-      &#34;type&#34;: &#34;寿司&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市天白町東池１５−１&#34;,
-      &#34;logo&#34;: &#34;https://www.akindo-sushiro.co.jp/shared/images/ogp.png&#34;,
-      &#34;star&#34;: 3.5
-    },
-    {
-      &#34;name&#34;: &#34;くら寿司北岡崎店&#34;,
-      &#34;type&#34;: &#34;寿司&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市錦町２−１２&#34;,
-      &#34;logo&#34;: &#34;https://www.watch.impress.co.jp/img/ipw/docs/1230/499/kura1_s.jpg&#34;,
-      &#34;star&#34;: 3.5
-    },
-    {
-      &#34;name&#34;: &#34;モスバーガー岡崎大西店&#34;,
-      &#34;type&#34;: &#34;ハンバーガー&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市大西１丁目１６−７&#34;,
-      &#34;logo&#34;: &#34;http://www.wing-net.ne.jp/image/kamiooka/store/storage/w250/mos.png&#34;,
-      &#34;star&#34;: 3.9
-    },
-    {
-      &#34;name&#34;: &#34;マクドナルド岡崎インター店&#34;,
-      &#34;type&#34;: &#34;ハンバーガー&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市大平町石丸６０−１&#34;,
-      &#34;logo&#34;: &#34;https://sozainavi.com/wp-content/uploads/2019/10/mcdonalds.png&#34;,
-      &#34;star&#34;: 3.3
-    },
-    {
-      &#34;name&#34;: &#34;かつや愛知岡崎インター店&#34;,
-      &#34;type&#34;: &#34;とんかつ&#34;,
-      &#34;address&#34;: &#34;愛知県岡崎市大平町新寺25&#34;,
-      &#34;logo&#34;: &#34;https://www.arclandservice.co.jp/katsuya/wp-content/themes/arclandservice-group/assets/img/katsuya/common/logo.svg&#34;,
-      &#34;star&#34;: 3.6
-    }
-  ],
-  &#34;users&#34;: [
-    {
-      &#34;name&#34;: &#34;鈴木一郎&#34;,
-      &#34;email&#34;: &#34;ichiro@test.com&#34;,
-      &#34;url&#34;: &#34;https://meikyu-kai.org/wp-content/uploads/2020/01/51_Ichiro.jpg&#34;
-    },
-    {
-      &#34;name&#34;: &#34;佐藤二郎&#34;,
-      &#34;email&#34;: &#34;jiro@test.com&#34;,
-      &#34;url&#34;: &#34;http://www.from1-pro.jp/images/t_10/img_l.jpg?1597426029&#34;
-    },
-    {
-      &#34;name&#34;: &#34;北島三郎&#34;,
-      &#34;email&#34;: &#34;saburo@test.com&#34;,
-      &#34;url&#34;: &#34;https://cdn.asagei.com/asagei/uploads/2016/08/20160810kitajima.jpg&#34;
-    }
-  ]
-}</pre>
-<h3 is-upgraded><strong>3. 検索条件を確認する</strong></h3>
-<p>ユースケースを確認しながら、上で設計したコレクションとドキュメントのデータ構造で必要な検索が実行できるかを確認します。実行できない場合はデータ構造を修正します。Firestoreでは下記の考慮点があることを忘れないようにしてください。</p>
-<p>検索1. レストランをリストする</p>
-<p>検索2. 料理の種類や住所、星の数の平均でソートや検索ができる</p>
-<h3 is-upgraded><strong>4. データの作成・更新・削除処理と条件をまとめる</strong></h3>
-<p>検索条件</p>
-<h3 is-upgraded><strong>5. セキュリティ・ルールをまとめる</strong></h3>
-<p>検索条件</p>
+      <google-codelab-step label="Flutterによるアプリ開発の開始" duration="0">
+        <p>あああ。</p>
+<h2 is-upgraded>初期設定</h2>
+<p>あああ</p>
+<h3 is-upgraded>Flutterのインストール</h3>
+<p><a href="https://flutter.dev/docs/get-started/install" target="_blank">https://flutter.dev/docs/get-started/install</a></p>
+<h3 is-upgraded>VS Codeのインストール</h3>
+<p><a href="https://flutter.dev/docs/get-started/editor?tab=vscode" target="_blank">https://flutter.dev/docs/get-started/editor?tab=vscode</a></p>
+<h2 is-upgraded>Flutterプロジェクトの作成</h2>
+<p>あああ</p>
+<h3 is-upgraded>Flutter Webの設定</h3>
+<h3 is-upgraded>Flutterプロジェクトの作成と実行</h3>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Firebaseプロジェクトの作成とセットアップ" duration="0">
+      <google-codelab-step label="Firebaseのセットアップ" duration="0">
         <p>あああ。</p>
 <h2 is-upgraded>Firebaseプロジェクトの作成</h2>
 <p>あああ</p>
-<h2 is-upgraded>匿名認証の有効化</h2>
+<h2 is-upgraded>メール/パスワード認証の有効化</h2>
 <p>あああ</p>
-<h2 is-upgraded>Cloud Firestoreの有効化</h2>
+<h2 is-upgraded>Firestoreデータベースの作成</h2>
 <p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Firebase CLIのインストール" duration="0">
-        <p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="ローカルサーバの実行" duration="0">
-        <p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Cloud Firestoreへのデータ登録" duration="0">
-        <p>あああ。</p>
-<h2 is-upgraded>データモデル</h2>
-<p>あああ</p>
-<h2 is-upgraded>レストランデータの追加</h2>
+<h2 is-upgraded>Firebase CLIのインストールと設定</h2>
 <p>あああ</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Cloud Firestoreから読み込んだデータ表示" duration="0">
+      <google-codelab-step label="Firebase Authを使ったFlutterアプリ開発" duration="0">
+        <p>あああ</p>
+<h2 is-upgraded>FlutterプロジェクトでのFirebaseの初期化</h2>
+<p>あああ</p>
+<h2 is-upgraded>FirebaseのWebアプリ登録とFlutter Webでの初期設定</h2>
+<p>あああ</p>
+<h2 is-upgraded>Firebase Authを使ったログイン開発</h2>
+<p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Firestoreを使ったFlutterアプリ開発" duration="0">
+        <p>あああ</p>
+<h2 is-upgraded>Flutterアプリ起動時の初期データ登録の開発</h2>
+<p>あああ</p>
+<h2 is-upgraded>ログインユーザのプロフィール画面の開発</h2>
+<p>あああ</p>
+<h2 is-upgraded>レストランリスト表示画面の開発</h2>
+<p>あああ</p>
+<h2 is-upgraded>レストラン詳細画面とレビューリスト画面の開発</h2>
+<p>あああ</p>
+<h2 is-upgraded>レビュー登録画面と編集画面の開発</h2>
+<p>あああ</p>
+<h2 is-upgraded>レストラン平均星数登録のトランザクション処理</h2>
+<p>あああ</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="セキュリティルールの作成とデプロイ" duration="0">
         <p>あああ</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="get()関数によるデータ読み込み" duration="0">
+      <google-codelab-step label="UnitテストとWidgetテスト" duration="0">
         <p>あああ</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="データのソートとフィルタ" duration="0">
-        <p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="インデックスのデプロイ" duration="0">
-        <p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="トランザクションを使ったデータ更新" duration="0">
-        <p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="セキュリティ・ルールのデプロイ" duration="0">
+      <google-codelab-step label="Firebaseによる運用保守" duration="0">
         <p>あああ</p>
 
 
