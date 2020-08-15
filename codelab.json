@@ -3,18 +3,20 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-08-15T22:36:14Z",
-  "id": "cloud-firestore",
+  "updated": "2020-08-15T23:39:36Z",
+  "id": "",
   "duration": 0,
-  "title": "Cloud Firestore",
-  "summary": "Cloud Firestore",
+  "title": "スマホアプリの設計と開発",
+  "summary": "データモデル設計とNoSQLデータベースとFirestoreについて学んだのち、レストランにレビューを追加するアプリを例にFirebaseとFlutterを使ったスマホアプリ開発する一連の流れをハンズオンします。",
   "source": "19Kafi4lkyqyEA709SqovG83GUtvc0XWFXQ9eLHQrJ3Q",
-  "theme": "firebase",
+  "theme": "",
   "status": null,
   "category": [
+    "データモデル",
     "firebase",
-    "firestore"
+    "firestore",
+    "flutter"
   ],
   "tags": [],
-  "url": "cloud-firestore"
+  "url": ""
 }
