@@ -28,7 +28,7 @@ mv index.html.1 index.html
 cat index.html | sed 's#<p>77XmRDtOL7c</p>#<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
-# JSONエディタを追加する
+# JSONエディタの追加
 cat index.html | sed 's#<p>json01</p>#<iframe width="820" height="220" src="./json01.html" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 cat index.html | sed 's#<p>json02</p>#<iframe width="820" height="420" src="./json02.html" frameborder="1"></iframe>#g' > index.html.1
@@ -38,7 +38,8 @@ mv index.html.1 index.html
 cat index.html | sed 's#<p>json04</p>#<iframe width="820" height="620" src="./json04.html" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
-cat index.html | sed 's#<p>flutter01</p>#<iframe width="500" height="800" src="https://david3080.github.io/auth/build/web/index.html" frameborder="1"></iframe>#g' > index.html.1
+# Flutter Webアプリの追加
+cat index.html | sed 's#<p>flutter01</p>#<br><iframe width="300" height="600" src="https://david3080.github.io/auth/build/web/index.html" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
 
