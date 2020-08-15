@@ -38,4 +38,8 @@ mv index.html.1 index.html
 cat index.html | sed 's#<p>json04</p>#<iframe width="820" height="620" src="./json04.html" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
+cat index.html | sed 's#<p>flutter01</p>#<iframe width="500" height="800" src="https://david3080.github.io/auth/build/web/index.html" frameborder="1"></iframe>#g' > index.html.1
+mv index.html.1 index.html
+
+
 exit 0

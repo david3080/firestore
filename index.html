@@ -402,7 +402,7 @@
 <h2 is-upgraded>動画の全体像</h2>
 <p>ここで紹介する動画シリーズは、GoogleのTodd Kerpelman氏による「<a href="https://www.youtube.com/playlist?list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ" target="_blank">Get to know Cloud Firestore</a>」という動画シリーズで、Firestoreを使い始めるにあたって知っておくべきことを12回にわたって解説しているものです。本書に添付された動画は全画面表示が可能ですし、英語の字幕を自動表示する設定になっていますが、英語が苦手な人はYoutube画面の右下の設定で字幕をONにし、さらに字幕の自動翻訳を選び日本語を選択して日本語字幕を表示することも可能です。</p>
 <h2 is-upgraded>1. NoSQLの特徴</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<p>v_hR4K4auoQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<p>v_hR4K4auoQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>従来型のリレーショナルデータベースではテーブルのスキーマが厳格に定義され、正規化という手法でデータの重複が発生しないようテーブル分割します。分割されたテーブルが互いに関係を持つ場合、一方のプライマリキーを他方が外部キーとして持つことで1対多の関係を構成します。例えば「レストラン」と「顧客」と「顧客によるレストランのレビュー（以下「レビュー」）」の3テーブルあるとして「レビュー」は「レストラン」と「顧客」を外部キーとして持つことで「レビュー」テーブルが「レストラン」と「顧客」の間の中間テーブルとして機能します。こうすることで、「レストラン」は「顧客」から0個以上の複数「レビュー」を受け、「顧客」は0個以上の複数「レストラン」に対して「レビュー」を行える、といった多対多の関係を表現することができるわけです。</li>
 </ul>
@@ -416,7 +416,7 @@
 <li>Cloud Firestoreでは、NoSQL型データベースの中でもドキュメント型データベースを採用しています。ドキュメント型データベースでは、コレクションとドキュメントのツリー構造で構成され、JSONの配列とオブジェクトで表現することができます。これらコレクションとドキュメントの説明は、<a href="https://cloud.google.com/firestore/docs/data-model?hl=ja" target="_blank">Firebaseのデータモデル</a>を参照してください。</li>
 </ul>
 <h2 is-upgraded>2. クエリによる検索</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1<p>Ofux_4c94FI</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1<p>Ofux_4c94FI</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>データベースに検索を行ってデータを取得する操作のことをクエリと呼びます。一般的なドキュメント型データベースでは、一回のクエリの検索対象となるデータの範囲は検索対象ドキュメントが所属するコレクション内のみになります。以前に説明したコレクションとドキュメントの関係を思い出してもらいたいのですが、コレクションはドキュメントを含みますが、ドキュメントに直接ドキュメントを紐づけることはできず、必ずコレクションを挟みます。例えばレストランのレビューのケースのレストランとレビューの関係は下図のようになります。</li>
 </ul>
@@ -431,14 +431,14 @@
 <li>以上をふまえた上でFirestoreのクエリについてさらに確認したい場合は下記のオフィシャルドキュメントを参照してください。<a href="https://firebase.google.com/docs/firestore/query-data/queries" target="_blank">https://firebase.google.com/docs/firestore/query-data/queries</a></li>
 </ul>
 <h2 is-upgraded>3. コストの考え方</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1<p>6NegFl9p_sE</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1<p>6NegFl9p_sE</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreでは、ドキュメントの読み込み数(10万回あたり0.06ドル)、ドキュメントの書き込み数(10万回あたり0.18ドル)、ドキュメントの削除数(10万回あたり0.02ドル)といったドキュメントの処理数単位で課金がなされます。</li>
 <li>このような課金システムの場合、リスト画面の更新を行う際、リクエストレスポンス型のアクセスを行うと、データベース上のデータ更新部分が一部であったとして、更新されてないものも含め表示対象の全データをまとめて読み込むことになるのでコスト的に大変効率が悪くなります。このあとペジネーションのところで説明しますが、Firestoreでは、データアクセスをリアルタイムデータベースとのストリームとして扱い、クライアント側のキャッシュを有効利用して更新が発生したデータのみをやりとりします。これによって差分の読み書き分だけが課金され、全データ取得型より大幅にコストを削減することができます。</li>
 <li>さらに、Google Cloud ConsoleのApp Engine画面にて、Firestoreの利用量と時間ごとの課金料金を確認することができます。また、利用料金の閾値を設けてそれを超えたらアラートメールを送ってくれるような設定を行うこともできるので、うまく運用保守で利用するとよいでしょう。</li>
 </ul>
 <h2 is-upgraded>4. マップと配列とサブコレクション</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<p>o7d5Zeic63s</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<p>o7d5Zeic63s</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h3 is-upgraded>Firestoreにおけるルール</h3>
 <p>Firestoreでは、JSONの構造における配列（[]で表す）とマップ（{}で表す）をドキュメント型リアルタイム・データベースとしてうまく操作できるようコレクション（JSON内の配列に相当）とドキュメント（JSON内のマップに相当）にうまく分離して保存管理するよう設計します。この設計をうまく行うためにはFirestoreにおけるいくつかのルールを理解しておく必要があります。</p>
 <h3 is-upgraded><strong>ルール1: ドキュメントには制約がある</strong></h3>
@@ -471,7 +471,7 @@
 </ul>
 <p>参考）<a href="https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html" target="_blank">https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html</a></p>
 <h2 is-upgraded>5. データ構造</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>ドキュメント型データベースにおいて、ユースケースに適したデータ構造を設計するとき主に以下の3種類の構造から適切なものを選びます。</p>
 <h3 is-upgraded><strong>タイプ1. ドキュメントの一部として配列もしくはマップとして含める</strong></h3>
 <ul>
@@ -494,7 +494,7 @@
 </ul>
 <p><a href="https://cloud.google.com/firestore/docs/concepts/structure-data?hl=ja" target="_blank">https://cloud.google.com/firestore/docs/concepts/structure-data?hl=ja</a></p>
 <h2 is-upgraded>6. セキュリティルール</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1<p>eW5MdE3ZcAw</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1<p>eW5MdE3ZcAw</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreでは、データベースのツリー構造のドキュメント位置を指定して誰がCRUD（Create:作成、Read:読み込み、Update:更新、Delete:削除）できるかを指定します。これらのアクセス権の指定はセキュリティルールといい、拡張子&#34;.rules&#34;のファイルに設計してFirestoreにデプロイして適用します。</li>
 <li>データベース内で、フィールドレベルのアクセス権をIF文を使った複雑な条件文と共に直感的にルール化できるのは、リレーショナルデータベースにはない機能です。APIの開発をしなくてもクライアントから共通化されたSDKを使ってリアルタイムデータベースとしてアクセスできる、といったことを含めて、Firestoreはモバイル開発に最適なデータベースのひとつであると言えるでしょう。</li>
@@ -507,7 +507,7 @@
 <p><a href="https://cloud.google.com/firestore/docs/security/get-started" target="_blank">https://cloud.google.com/firestore/docs/security/get-started</a></p>
 <p><a href="https://firebase.google.com/docs/reference/security/database" target="_blank">https://firebase.google.com/docs/reference/security/database</a></p>
 <h2 is-upgraded>7. データのペジネーション</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1<p>poqTHxtDXwU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1<p>poqTHxtDXwU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>一般的に、アプリケーションが表示に必要なレコード以上のデータを取得すると無駄な読み込みに課金が発生し、ネットワークを流れるデータ量も増えるため、サーバ側でペジネーションを行うことが推奨されます。</li>
 <li>Firestoreではストリーミング・データベースとして機能し、高度なペジネーション機能を提供します。というのも、クライアントとストリーミングとしてコネクションを維持している場合、常にクライアント側のキャッシュとの差分をチェックして更新分だけをやりとりしてくれる機能を持っています。また、リストを表示する画面があったとして、画面に表示されていない表の下部や上部をスクロール操作で表示したいとき、リアルタイムデータベースはスクロール操作にあわせて必要なデータをストリーム取得してくれます。</li>
@@ -515,7 +515,7 @@
 <li>例えばFlutterでは、「Firestore.instance.collection(&#39;コレクション名&#39;).snapshots()」といった関数でストリーム型でデータを取得し、ListViewやGridViewで表示させることでペジネーションの実装が可能です。</li>
 </ul>
 <h2 is-upgraded>8. トランザクション処理</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1<p>dOVSr0OsAoU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1<p>dOVSr0OsAoU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreはトランザクション処理を実現します。例えば、顧客ドキュメントの名前フィールドを更新する際、レビュードキュメント上においたレビューを追加した顧客名も同時に更新しなければならないことがあります。このような場合、一連の更新作業はひとつのトランザクションとし、すべてが成功した場合にのみ更新を確定（コミット）するといった機能が必要です。そうしなければ、途中の更新に失敗した場合データに不整合が発生してしまいます。</li>
 <li>Firestoreにおけるトランザクションの考え方には以下の2種類があります。</li>
@@ -534,13 +534,13 @@
 <li>FieldValue.increment()による高速トランザクション：<a href="https://qiita.com/1amageek/items/665df5a6d9921319e300" target="_blank">https://qiita.com/1amageek/items/665df5a6d9921319e300</a></li>
 </ul>
 <h2 is-upgraded>9. オフラインサポート</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1<p>oDvdAFP6OhQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1<p>oDvdAFP6OhQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreはオフラインをサポートしており、クライアント側にFirestore SDKを使うとオフライン時の読み込みはキャッシュが使われ、書き込みもローカルに保存されオンラインになったら順番にFirestoreに反映されるといったことが実現可能です。</li>
 <li>これらの機能は大変高度なものであり、実装するには大変な工数がかかり考慮点も多数ありますが、Firestoreではデフォルトでこれらの機能が利用できますです。</li>
 </ul>
 <h2 is-upgraded>10. リアルタイムか一括フェッチか？</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1<p>3aoxOtMM2rc</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1<p>3aoxOtMM2rc</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>リアルタイムデータベースの操作について下記の迷信がありますが、Firestoreはこれらの迷信を覆します。そのためFirestoreにおいてはデフォルトでリアルタイム機能を使うよう設計し開発をすすめることをおすすめします。</li>
 </ul>
@@ -557,7 +557,7 @@
 </ol>
 <p>いいえ。リスナーを常駐させることは電力消費を増やしません。</p>
 <h2 is-upgraded>11. サーバレスの概要（Cloud Functions）</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1<p>rERRuBjxJ80</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1<p>rERRuBjxJ80</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firesoteは、Firebase上のドキュメント型リアルタイムデータベースを提供するサービスであり、リレーショナルデータベースをモバイルアプリから利用する際に通常必要となるAPIの開発を必要としません。しかし、異なるドキュメントに重複して所有されるフィールドの更新時に一貫性を持たせるための更新処理を実行したい場合や古いデータをまとめて削除するといった運用バッチを実行したい場合など、バックエンドでまとめて処理を行いたいといった要望があります。</li>
 <li>Firebaseでは、そのような場合に利用できる機能としてFirebase Functionsというサービスを提供しています。また、Firebase Functionsは一過性のバッチ処理を実行するものであるため、コンピュータ上にプロセスが常駐しないサーバレス型で実装されています。そのため、使った分だけの課金であるのはもちろん、プロセスの常駐に必要なCPUやメモリ、ストレージへの課金がまるまる削減されます。</li>
@@ -567,7 +567,7 @@
 </ul>
 <p><a href="https://www.youtube.com/watch?v=DYfP-UIKxH0" target="_blank">https://www.youtube.com/watch?v=DYfP-UIKxH0</a></p>
 <h2 is-upgraded>12. Cloud Functionsの5つの利用パターン</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1<p>77XmRDtOL7c</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1<p>77XmRDtOL7c</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Cloud Functionsをどのような場合に利用すればよいか、5つのパターンにまとめると以下の通りです。ただし繰り返しになりますがリアルタイムデータベースのメリットが享受できなくなる欠点があることは考慮すべきでしょう。</li>
 </ul>
@@ -584,6 +584,7 @@
     
       <google-codelab-step label="Flutterによるアプリ開発の開始" duration="0">
         <p>あああ。</p>
+<iframe width="500" height="100%" src="https://david3080.github.io/auth/build/web/index.html" frameborder="1"></iframe>
 <h2 is-upgraded>初期設定</h2>
 <p>あああ</p>
 <h3 is-upgraded>Flutterのインストール</h3>
