@@ -1,4 +1,5 @@
 #!/bin/sh
+LANG=C
 
 # Youtube動画を追加する
 cat index.html | sed 's#<link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">#<link rel="stylesheet" href="./codelab-elements.css">#g' > index.html.1

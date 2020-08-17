@@ -31,7 +31,7 @@
         <h2 is-upgraded>本書の内容</h2>
 <p>本書では、データモデル設計とNoSQLデータベースとFirestoreについて学んだのち、レストランにレビューを追加するアプリを例にFirebaseとFlutterを使ったスマホアプリ開発する一連の流れをハンズオンします。</p>
 <h2 is-upgraded>本書のコンセプト</h2>
-<p>最近はコロナの影響もあり、在宅勤務が推奨され、学校の授業がオンライン化され、買い物はeコマースの利用が増加し、食事の際も出前アプリを使った配達が流行っています。コロナ以前も社会へのオンライン化の必要性が謳われていましたが、コロナ渦ではあらゆる生活の場面で半強制的にオンライン利用が義務化されたため、ますます使いやすいオンラインサービスに対する需要が増しています。</p>
+<p>最近はコロナの影響もあり、在宅勤務が推奨され、学校の授業がオンライン化され、買い物はeコマースの利用が増加し、食事の際は出前アプリを使った配達が流行っています。コロナ以前も社会へのオンライン化の必要性が謳われていましたが、コロナ渦ではあらゆる生活シーンでオンライン利用が半強制化されているため、スマホやパソコンの所有率やITリテラシーは向上せざるを得ず、ますます使いやすいオンラインサービスに対する需要が増しています。</p>
 <p>最近のシステム開発の動きを見ると、いままで使いづらいサービスの代名詞であった行政や金融のオンラインサービスをユーザ中心設計を採用し、使いやすくセキュリティ上も安全なサービスに作り替えようとする取組が進められています。またIT化が比較的遅れていた中小企業においてもDX（デジタルトランスフォーメーション）を促進しようとする動きがあります。</p>
 <p>あらゆる業界・組織において、あらゆる生活シーンでそれぞれの要件にあった使いやすいオンラインサービスが安価に構築・提供されることが求められています。</p>
 <p>一方これらの要望を担う人材育成の観点では、子供から大人までプログラミング教育がはやっており、文科省は小学校でのプログラミング授業を必須化しています。</p>
@@ -53,7 +53,7 @@
 <li>データベースには、リアルタイムデータベースとスマホアプリから安全に直接アクセスできるSDKが提供されているFirestoreを採用しました。本来ならデータベース構築以外にもアプリをデータベースにつなげるためのAPI開発やセキュリティ対策も必要になりますが、Firestoreの採用によりこれらの工数が劇的に削減されます。</li>
 <li>スマホアプリ開発には、一つのプログラミングコードでiPhoneアプリもAndroidアプリもWebアプリも構築できるクロスプラットフォームの一つであるFlutterを採用しました。本来ならiPhoneアプリ、Androidアプリ、Webアプリそれぞれについて、異なる開発環境、プログラミング言語、開発フレームワークを使った開発が必要ですが、これらを一つの環境で同一のプログラミング言語で一回コーディングすることで可能にしています。これにより開発工数が大幅に削減されます。</li>
 </ul>
-<p>さらには様々な立場の人が本書を読みハンズオンを試してもらうことで「こんなに簡単に作れるんだ」とものづくりに興味をもってもらい、自分たちが実現したいシステムを自らが構築するマインドをもっていただく一助になればと思っています。</p>
+<p>様々な立場の人が本書を読みハンズオンを試してもらうことで「こんなに簡単に作れるんだ」とものづくりに興味をもってもらい、自分たちが実現したいシステムを自らが構築するマインドをもっていただく一助になればと思っています。また、本書をとおしてツールとしてのIT技術の活用の幅や裾野や人材が広がり民主化されることで、自らの会社や組織、業界においてより価値を産むサービスのアイデア考察とそれを実現する組織の構造やマインドを含んだ改革の実現により多くの時間を専念できるようなればと願っています。</p>
 <p>※ 著者は2020年2月に第33回「21世紀交流サロン・葵丘」にてこれらの考え方を「テクノロジーの民主化」と題して話しました。<a href="http://21cmikawa.jp/activity/activity.php" target="_blank">http://21cmikawa.jp/activity/activity.php</a></p>
 <h2 is-upgraded>本書で学ぶこと</h2>
 <ul>
@@ -70,21 +70,21 @@
     
       <google-codelab-step label="データモデル設計" duration="0">
         <p>データモデルの設計はユースケースからデータモデル候補を抜き出すことからはじめます。これによってデータの大きな単位とそこに含まれるフィールドを整理できます。また、ここで抽出されたデータ単位ごとにテーブルを作り、具体的なデータサンプルを作っておくと次ステップのデータ間の関係を考察する際に役立ちます。</p>
-<p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で挙げた課題である画面設計に走りがちな理由もこの難しさにあるものと考えられます。次ページ「ユースケースとデータモデルのパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
+<p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で挙げた課題である画面設計に走りがちな理由もこの難しさにあるものと考えられます。次ページ「ユースケース、データモデルと画面設計のパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
 <p>コレクションとドキュメントの分離方針がきまったら、サンプルデータをJSONの形式にまとめます。JSONスキーマにそった正しいJSON形式にまとめることでドキュメント型データベースで扱えるサンプルデータが作成されます。JSONとはWebアプリケーションやREST APIで扱われるプログラムが処理しやすく人も見やすいデータ形式ですが、初めてJSONを扱う人は正しいJSON形式とは何かわからないと思います。そのため本書では本文中にJSONエディタというツールを組み込んでJSONデータを表示し、JSON形式でのサンプルデータの作り方をステップバイステップで解説します。</p>
 <h2 is-upgraded>1. ユースケースからデータの候補を抽出する</h2>
-<p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例にしたユースケースを以下にまとめます。</p>
+<p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例にしたユースケース記述を以下にまとめます。</p>
 <ol type="1" start="1">
 <li>顧客はアプリにログインする</li>
-<li>レストランのリストが表示され、料理の種類や住所、星の数の平均でソートや検索する</li>
+<li>レストランのリストが表示され、料理の種類や住所、星の数の平均で検索する</li>
 <li>レストランのリストから一つを選ぶとレストランの詳細が表示する</li>
 <li>レストランのリストから一つを選ぶとレストランの詳細が表示する</li>
 <li>レストランの詳細には店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示され、星の数やコメントの内容でソートや検索をする</li>
 <li>レストランの詳細ではそのレストランのレビューがリストされ、登録ができる</li>
 <li>レビューでは星の数とコメントが登録でき、登録更新時にレストランの星の数の平均が更新される</li>
-<li>レストランのレビューは顧客自身が登録したレビューについては編集と削除ができる</li>
+<li>顧客自身が登録したレビューについては編集と削除ができる</li>
 </ol>
-<p>ここから得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
+<p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
 <ul>
 <li>レストラン（店名、料理の種類、住所、星の数の平均）</li>
 <li>レビュー（レビューした顧客名、星の数、コメント）</li>
@@ -268,16 +268,33 @@
       </google-codelab-step>
     
       <google-codelab-step label="画面設計" duration="0">
-        <p>TODO データモデルができあがったら画面設計を行いますが、下記内容を紹介します</p>
+        <p>TODO データモデルができあがったら画面設計を行いますが、下記の内容を紹介します</p>
 <ul>
-<li>画面設計は、画面と画面遷移からなります。</li>
-<li>画面はマテリアルデザインを紹介する。</li>
-<li>主なアプリの機能は、ログイン、複数データの整理整頓、フォームとウィザード、カレンダー、地図、チャット、決済・ポイント処理、イラスト、写真加工、OCR、物体認識、などでこれらが組み合わさって複雑なアプリを構成します（ゲームアプリやAR、スマートスピーカといった特殊なUIのアプリは対象外）。</li>
-<li>画面遷移のパターンは、単一機能内では状態遷移とウィザード、機能を切り替えるメニューがあります。</li>
-<li>複数データの整理整頓の機能は、状態遷移パターンで表現でき、リストやグリッド形式でコレクションを表示する画面とリストやグリッドから一つを選ぶと選択されたドキュメントの詳細を表示する画面、新規ドキュメントを登録する画面と既存ドキュメントを編集する画面、リストやグリッドから選択したドキュメントを削除する操作からなりたっています。</li>
-<li>ウィザードパターンは多くのデータを順番に入力していく場合に利用。枝の分岐は極力さけて、どうしてもの場合は例外処理をつかうとよい。</li>
-<li>メニューパターンはナビゲーションバーとページビューを使って実装する。</li>
+<li>画面設計は、画面と画面遷移からなる。</li>
+<li>画面の構築にはマテリアルデザインを利用する。</li>
+<li>世の中の主要なアプリは下記の機能の組み合わせからなりたっている。</li>
+<li>ユーザ登録、ユーザ削除、ログイン、ログアウト、</li>
+<li>複数データの整理整頓（リスト画面と詳細画面からなる）</li>
+<li>フォームとウィザード（申請、アンケート、テストのイメージ）</li>
+<li>スケジュールとカレンダー</li>
+<li>地図</li>
+<li>チャット</li>
+<li>決済・ポイント処理</li>
+<li>イラスト、写真加工</li>
+<li>OCR、物体認識</li>
+<li>など</li>
+<li>ゲームやAR、スマートスピーカといった特殊なUIのアプリ以外は、複雑なアプリでもこれらの組み合わせ。</li>
+<li>画面遷移のパターンは、単一機能内では状態遷移とウィザード、機能を切り替えるメニューがある。</li>
+<li>複数データの整理整頓の機能は、状態遷移パターンで表現でき、リストやグリッド形式でコレクションを表示する画面とリストやグリッドから一つを選ぶと選択されたドキュメントの詳細を表示する画面、新規ドキュメントを登録する画面と既存ドキュメントを編集する画面、リストやグリッドから選択したドキュメントを削除する操作からなりたつ。</li>
+<li>ウィザードパターンは多くのデータを順番に入力していく場合に利用。ウィザードは前後一本線で画面がつらなるのが一般的ですが、枝の分岐が入ると複雑になるので極力そのような実装はさけて、どうしても必要な場合は例外処理をつかうと見通しがよくなる。</li>
+<li>メニューパターンは機能の切替であり、ナビゲーションバーとページビューを使って実装する。</li>
 </ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="（参考）マテリアルデザイン" duration="0">
+        <p>TODO 画面デザインのガイドラインであるマテリアルデザインの紹介とマテリアルデザインが提供する主要な画面部品を紹介します。</p>
 
 
       </google-codelab-step>
@@ -404,7 +421,7 @@
 <p>TODO</p>
 <h3 is-upgraded>15-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>15. 授業管理</h2>
+<h2 is-upgraded>15. 講義・授業管理</h2>
 <p>TODO</p>
 <h3 is-upgraded>15-1. ユースケース</h3>
 <p>TODO</p>
@@ -428,7 +445,7 @@
 <p>TODO</p>
 <h3 is-upgraded>17-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>18. キャッシュレス決済</h2>
+<h2 is-upgraded>18. Web会議</h2>
 <p>TODO</p>
 <h3 is-upgraded>18-1. ユースケース</h3>
 <p>TODO</p>
@@ -436,7 +453,7 @@
 <p>TODO</p>
 <h3 is-upgraded>18-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>19. ポイント管理</h2>
+<h2 is-upgraded>19. 恋人マッチング</h2>
 <p>TODO</p>
 <h3 is-upgraded>19-1. ユースケース</h3>
 <p>TODO</p>
@@ -444,7 +461,7 @@
 <p>TODO</p>
 <h3 is-upgraded>19-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>20. 画像認識レジ</h2>
+<h2 is-upgraded>20. キャッシュレス決済</h2>
 <p>TODO</p>
 <h3 is-upgraded>20-1. ユースケース</h3>
 <p>TODO</p>
@@ -452,13 +469,29 @@
 <p>TODO</p>
 <h3 is-upgraded>20-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>21. 名刺OCR</h2>
+<h2 is-upgraded>21. ポイント管理</h2>
 <p>TODO</p>
 <h3 is-upgraded>21-1. ユースケース</h3>
 <p>TODO</p>
 <h3 is-upgraded>21-2. データモデル</h3>
 <p>TODO</p>
 <h3 is-upgraded>21-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>22. 画像認識レジ</h2>
+<p>TODO</p>
+<h3 is-upgraded>22-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>22-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>22-3. 画面設計</h3>
+<p>TODO</p>
+<h2 is-upgraded>23. 名刺OCR</h2>
+<p>TODO</p>
+<h3 is-upgraded>23-1. ユースケース</h3>
+<p>TODO</p>
+<h3 is-upgraded>23-2. データモデル</h3>
+<p>TODO</p>
+<h3 is-upgraded>23-3. 画面設計</h3>
 <p>TODO</p>
 
 
@@ -656,39 +689,368 @@
       </google-codelab-step>
     
       <google-codelab-step label="Flutterによるアプリ開発" duration="0">
-        <p>ユースケースとデータモデルと画面設計ができたらアプリケーションの開発をはじめます。本書では一つのソースコードでiPhoneアプリとAndroidアプリ、Webアプリを開発できるクロスプラットフォームフレームワークの一つであるFlutterを使って開発を行いますが、下記の理由からここではFlutter Webを有効にしてWebアプリを開発することとします。</p>
+        <p>ユースケースとデータモデルと画面設計ができたらアプリケーションの開発をはじめます。</p>
+<p>本書では、一つのソースコードでiPhoneアプリとAndroidアプリ、Webアプリ、パソコン用ネイティブアプリ、スマートデバイスようアプリ等々を開発できるクロスプラットフォームフレームワークであるFlutterを使って開発を行います。</p>
+<p>ここでは、下記の理由からFlutter Webを有効にしてWebアプリを開発します。これによって普通のWindowsパソコンでも比較的ストレスなく開発を行うことができます。</p>
 <ul>
-<li>iPhoneアプリに対応するためにはMacパソコンが必要</li>
+<li>iPhoneアプリに対応するためにはMacが必要でありWindows PCの人が開発できない</li>
 <li>Androidアプリに対応するためにAndroid SDKやAndroid Studioのインストールが必要で準備に時間がかかる</li>
-<li>iPhoneアプリとAndroidアプリ開発には十分なスペックのPCが必要で、インストールだけでもディスクスペースを大量に消費し、開発環境の起動やコンパイルに時間がかかる</li>
-<li>Flutter Webでも</li>
+<li>iPhoneアプリとAndroidアプリ開発には十分なスペックのPCが必要でインストールだけでもディスクスペースを大量に消費し開発環境の起動やコンパイルに時間がかかる</li>
+<li>Flutter Webを開発すればiPhoneアプリとAndroidアプリにもほぼそのまま転用できる</li>
+<li>Flutter Webではファイル保存を担うFirebase Firestorageとデバイスから写真ファイルを簡単に選択できるImagePickerパッケージが対応していないが、コードの追加は簡単にできる</li>
 </ul>
 <h2 is-upgraded>開発するアプリケーション</h2>
+<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行い、レストランを参照し、レビューを書き込むことができます。</p>
 <br><iframe width="400" height="600" src="https://david3080.github.io/auth/build/web/index.html" frameborder="1"></iframe>
+<p>本書のハンズオンではこのアプリの作り方を学びます。</p>
 <h2 is-upgraded>初期設定</h2>
-<p>あああ</p>
+<p>まずはじめに開発に必要なFlutterとエディタであるVS Codeのインストールを行います。</p>
 <h3 is-upgraded>Flutterのインストール</h3>
+<p>下記リンクから自らの開発PCのOSを選択してFlutter SDKをインストールします。</p>
 <p><a href="https://flutter.dev/docs/get-started/install" target="_blank">https://flutter.dev/docs/get-started/install</a></p>
+<p>本書ではFlutter Webのみを利用しますので、Andrlid SetupやiOS Setup（Macの場合）の作業は必要ありません。</p>
 <h3 is-upgraded>VS Codeのインストール</h3>
+<p>下記リンクに従ってVS Codeをインストールします。</p>
 <p><a href="https://flutter.dev/docs/get-started/editor?tab=vscode" target="_blank">https://flutter.dev/docs/get-started/editor?tab=vscode</a></p>
+<h3 is-upgraded>Chromeのインストール</h3>
+<p>開発したWebアプリをデバッグするためにブラウザが必要ですが、Flutterで推奨されているChromeをインストールします。</p>
+<p><a href="https://www.google.com/intl/ja_jp/chrome/" target="_blank">https://www.google.com/intl/ja_jp/chrome/</a></p>
+<h3 is-upgraded>インストールの確認</h3>
+<p>上記のインストールが完了しているかを確認するため「flutter doctor」コマンドを実行します。下記の通り、FlutterとVS CodeとChromeにチェック <code>[�</code>�] が入っていますが、AndroidとXcodeにはインストールがされていないことを表すバツ <code>[�</code>�] が表示されます。</p>
+<pre>$ flutter doctor
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel beta, 1.20.0, on Mac OS X 10.15.6 19G2021, locale ja-JP)
+[✗] Android toolchain - develop for Android devices
+    ✗ Unable to locate Android SDK.
+      Install Android Studio from: https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK components.
+      (or visit https://flutter.dev/docs/get-started/install/macos#android-setup for detailed instructions).
+      If the Android SDK has been installed to a custom location, set ANDROID_SDK_ROOT to that location.
+      You may also want to add it to your PATH environment variable.
+
+[✗] Xcode - develop for iOS and macOS
+    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
+      Download at: https://developer.apple.com/xcode/download/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        sudo xcodebuild -runFirstLaunch
+    ✗ CocoaPods not installed.
+        CocoaPods is used to retrieve the iOS and macOS platform side&#39;s plugin code that responds to your plugin usage on the Dart side.
+        Without CocoaPods, plugins will not work on iOS or macOS.
+        For more info, see https://flutter.dev/platform-plugins
+      To install:
+        sudo gem install cocoapods
+[✓] Chrome - develop for the web
+[!] Android Studio (not installed)
+[✓] VS Code (version 1.45.1)
+[✓] Connected device (2 available)
+
+! Doctor found issues in 3 categories.</pre>
 <h2 is-upgraded>Flutterプロジェクトの作成</h2>
-<p>あああ</p>
+<p>Flutterで開発を始めるにあたってflutterコマンドを使ってFlutter Webプロジェクトの初期フォルダを作成します。</p>
 <h3 is-upgraded>Flutter Webの設定</h3>
+<p>FlutterによるWebアプリ開発のためには、Flutterコマンド「flutter config --enable-web」を実行してWebアプリ開発を有効化します。</p>
+<pre>$ flutter --version
+Flutter 1.21.0-10.0.pre.114 • channel master • https://github.com/flutter/flutter.git
+Framework • revision b2c0970aa7 (8 hours ago) • 2020-08-16 06:11:02 -0400
+Engine • revision b300be3df3
+Tools • Dart 2.10.0 (build 2.10.0-34.0.dev)
+
+$ flutter config --enable-web
+Setting &#34;enable-web&#34; value to &#34;true&#34;.
+
+You may need to restart any open editors for them to read new settings.</pre>
 <h3 is-upgraded>Flutterプロジェクトの作成と実行</h3>
+<p>Flutterで開発を始めるには&#34;flutter create [プロジェクト名]&#34;というコマンドを使ってFlutterプロジェクトの初期フォルダを作成します。また、コマンドオプション「--org [パッケージ名]」を追加すると、Dartコードから生成されるiOS用SwiftコードやAndroid用Kotlinコードのパッケージ名を指定できます。パッケージ名はドメイン名を反対にした形式をとるので、例えば弊社ドメイン名&#34;sonrisa.co.jp&#34;にアプリのグループ名&#34;samples&#34;を追加した&#34;samples.sonrisa.co.jp&#34;を反対にした&#34;jp.co.sonrisa.samples&#34;を指定します。このパッケージ名はアプリをAppStoreやGoogle Playに登録する際やFirestoreプロジェクトにアクセスできるアプリを登録する際に使われる重要なものなので、あらかじめルールを決めて指定するように心がけましょう。また、ここでのプロジェクト名は、レストランレビューを登録するアプリであるため「RestoReview」にしてFlutter Webプロジェクトを作成します。</p>
+<pre>$ flutter create --org jp.co.sonrisa.samples RestoReview
+Creating project RestoReview...
+  RestoReview/ios/Runner.xcworkspace/contents.xcworkspacedata (created)
+  ...
+Running &#34;flutter pub get&#34; in RestoReview...                         2.5s
+Wrote 76 files.
+
+All done!
+[✓] Flutter: is fully installed. (Channel master, 1.21.0-10.0.pre.114, on Mac OS X 10.15.6 19G2021, locale ja-JP)
+[✗] Android toolchain - develop for Android devices: is not installed.
+[✗] Xcode - develop for iOS and macOS: is not installed.
+[✓] Chrome - develop for the web: is fully installed.
+[!] Android Studio: is not available. (not installed)
+[✓] VS Code: is fully installed. (version 1.45.1)
+[✓] Connected device: is fully installed. (2 available)
+
+Run &#34;flutter doctor&#34; for information about installing additional components.
+
+In order to run your application, type:
+
+  $ cd RestoReview
+  $ flutter run
+
+Your application code is in RestoReview/lib/main.dart.</pre>
+<p>プロジェクトを作成するとプロジェクト名のフォルダが作成されます。その中身は下記のとおり、プロジェクトの設定を行う&#34;pubspec.yaml&#34;ファイル、Dart言語で書かれたソースコードを置く&#34;lib&#34;フォルダ、プラットフォームごとに自動生成されたソースコードを置く&#34;ios&#34;、&#34;android&#34;、&#34;web&#34;フォルダなどから構成されます。</p>
+<pre>RestoReview $ tree .
+.
+├── pubspec.yaml
+├── lib
+│   └── main.dart
+├── ios
+ ...
+├── android
+ ...
+└── web
+    ├── favicon.png
+    ├── icons
+    │   ├── Icon-192.png
+    │   └── Icon-512.png
+    ├── index.html
+    └── manifest.json
+
+50 directories, 80 files</pre>
+<p>また、初期状態としてカウンターアプリが生成されますので、それを実行します。</p>
+<pre>$ cd RestoReview
+$ flutter run -d chrome</pre>
+<p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
+<p class="image-container"><img style="width: 325.22px" src="img/191dee9c0dacdadc.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="（参考）Dart言語の基礎" duration="0">
+        <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えると思いますが、ここではDart言語の文法と特にFirebaseとのストリーム処理に必要な非同期処理とストリーム処理、FirestoreとのJSONデータのやりとりに必要な配列やマップについて解説します。</p>
+<h2 is-upgraded>Dart言語の文法①</h2>
+<p>TODO</p>
+<h2 is-upgraded>Dart言語の文法②</h2>
+<p>TODO</p>
+<h2 is-upgraded>オブジェクトと配列、マップ</h2>
+<p>TODO</p>
+<h2 is-upgraded>非同期処理とストリーミング処理</h2>
+<p>TODO</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="（参考）マテリアルデザイン開発の基礎" duration="0">
+        <p>TODO Dart言語が理解できたらFlutterを使って画面と画面遷移を実装します。そのうち画面はマテリアルデザインを実装したさまざまなWidgetを使って開発します。また画面遷移はNavigator（フローを実装）もしくはStreamBuilder（状態遷移を実装）を使って実装します。ここでは、基本的なWidgetの紹介と使い方、また画面遷移の実装方法を解説します。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Firebaseのセットアップ" duration="0">
-        <p>あああ。</p>
-<h2 is-upgraded>Firebaseプロジェクトの作成</h2>
-<p>あああ</p>
-<h2 is-upgraded>メール/パスワード認証の有効化</h2>
-<p>あああ</p>
-<h2 is-upgraded>Firestoreデータベースの作成</h2>
-<p>あああ</p>
+        <p>Flutter開発の初期設定が完了したのでインフラ部分を担うFirebaseの設定を行います。</p>
+<h2 is-upgraded>1. Firebaseプロジェクトの作成</h2>
+<p><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインして「プロジェクトを追加」をクリックし、名前を「RestoReview」と命名し、「続行」ボタンをクリック、Google Analyticsの設定後、「プロジェクトを作成」ボタンをクリックしてFirebaseプロジェクトを作成します。</p>
+<p class="image-container"><img style="width: 213.20px" src="img/7ec06f011a4782ef.png"></p>
+<h2 is-upgraded>2. メール/パスワード認証の有効化</h2>
+<p>Firebaseには様々な認証をサポートする機能としてFirebase Authenticationがあります。画面左メニューから「Authentication」を選択し、「Sign-in method」タブを選択します。</p>
+<p class="image-container"><img style="width: 402.80px" src="img/c23c9a8dc6acdcc7.png"></p>
+<p>「メール/パスワード」を有効化するため、「Authentication」画面のログインプロバイダのリストの最上部「メール/パスワード」行右端の鉛筆アイコンを選択し表示される下記ダイアログで「有効にする」を選択し、保存ボタンをクリックします。</p>
+<p class="image-container"><img style="width: 315.60px" src="img/23569565b84e855f.png"></p>
+<h2 is-upgraded>3. Firestoreデータベースの有効化</h2>
+<p>アプリケーションが利用するデータベースとしてCloud Firestoreを有効化します。</p>
+<ol type="1" start="1">
+<li>Firebase consoleの画面左メニューから「Database」を選択し、「データベースの作成」ボタンをクリックします。</li>
+</ol>
+<p class="image-container"><img style="width: 304.40px" src="img/488a58b182df0f17.png"></p>
+<ol type="1" start="2">
+<li>「本番環境で開始」を選択し「次へ」ボタンをクリックします。これによってセキュリティ・ルールが有効になります。</li>
+</ol>
+<p class="image-container"><img style="width: 306.00px" src="img/ccbb24d72e3ab3.png"></p>
+<ol type="1" start="3">
+<li>「Cloud Firestoreのロケーション」で東京を表す「asia-northeast2」を選択して「完了」ボタンをクリックします。ロケーションは好みの場所を選択してもかまいません。</li>
+</ol>
+<p class="image-container"><img style="width: 379.00px" src="img/cca014cd5b96b98e.png"></p>
+<p>以上によりRestoReviewプロジェクトでCloud Firestoreが使えるようになります。</p>
 <h2 is-upgraded>Firebase CLIのインストールと設定</h2>
-<p>あああ</p>
+<p>Firebaseのコマンドラインインタフェース(CLI)を使うと、開発したWebアプリや設定ファイルをFirebaseに直接デプロイすることができます。</p>
+<aside class="warning"><p><strong>ノート: </strong>Firebase CLIをインストールするには <a href="https://nodejs.org/ja/" target="_blank">NodeJS</a> のインストールが必要です。</p>
+</aside>
+<ol type="1" start="1">
+<li>次のnpmコマンドを実行jしてFirebase CLIをインストールします。</li>
+</ol>
+<pre>$ npm -g install firebase-tools</pre>
+<ol type="1" start="2">
+<li>Firebase CLIが正常にインストールされたか確認します。バージョンは7.4以降である必要があります。</li>
+</ol>
+<pre>$ firebase --version</pre>
+<ol type="1" start="3">
+<li>「firebase login」を実行してFirebaseへのログインを試みます。「Allow Firebase to collect CLI usage and error reporting information? (FirebaseがCLIのログ収集することを許可しますか)」と聞かれるので、YかNを入力します。</li>
+</ol>
+<pre>$ $ firebase login
+i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google&#39;s privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+
+? Allow Firebase to collect CLI usage and error reporting information? Yes</pre>
+<p>ChromeブラウザがオープンしてFirebaseにログインするアカウントの選択を促してくるので、該当アカウントを選択してログインします。</p>
+<p class="image-container"><img style="width: 259.58px" src="img/24d656c6bd5e4183.png"></p>
+<p>ログインが成功するとFirebase CLIに許可を求められるので「許可」ボタンをクリックして許可すると...</p>
+<p class="image-container"><img style="width: 255.60px" src="img/b77a50c9667d67ec.png"></p>
+<p>ログインが成功します。</p>
+<p class="image-container"><img style="width: 277.89px" src="img/6d39015ea11d142f.png"></p>
+<ol type="1" start="4">
+<li>「Flutterプロジェクトの作成」で作ったプロジェクトフォルダ（ここでは「RestoReview」）に移動し、「firebase init」を実行し、Firebaseプロジェクトに紐付けます。</li>
+</ol>
+<pre>$ firebase init</pre>
+<ol type="1" start="5">
+<li>コマンド実行すると下記画面が表示されるので、Firebase CLIから利用するFirebase機能を選択します。「↑」「↓」キーで機能を選択し、「スペース」キーで「○（非選択）」と「◉（選択）」を切り替えます。ここでは「Firestore」「Functions」「Hosting」「Storage」を選択して「Enter」を押します。</li>
+</ol>
+<pre>     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You&#39;re about to initialize a Firebase project in this directory:
+
+  /Users/david/Desktop/firebase&amp;flutter/RestoReview
+
+? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. 
+
+ ◯ Database: Deploy Firebase Realtime Database Rules
+ ◉ Firestore: Deploy rules and create indexes for Firestore
+ ◉ Functions: Configure and deploy Cloud Functions
+ ◉ Hosting: Configure and deploy Firebase Hosting sites
+❯◉ Storage: Deploy Cloud Storage security rules
+ ◯ Emulators: Set up local emulators for Firebase features
+</pre>
+<ol type="1" start="6">
+<li>次にデフォルトのFirebaseプロジェクトの設定を促されるので、「Use an existing project」を選んで「Enter」を押します。</li>
+</ol>
+<pre>=== Project Setup
+
+First, let&#39;s associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+but for now we&#39;ll just set up a default project.
+
+? Please select an option: 
+❯ Use an existing project 
+  Create a new project 
+  Add Firebase to an existing Google Cloud Platform project 
+  Don&#39;t set up a default project </pre>
+<ol type="1" start="7">
+<li>先ほど作成したFirebaseプロジェクト（ここでは「RestoReview」）を選択して「Enter」を押します。</li>
+</ol>
+<pre>=== Project Setup
+
+First, let&#39;s associate this project directory with a Firebase project.
+You can create multiple project aliases by running firebase use --add, 
+but for now we&#39;ll just set up a default project.
+
+? Please select an option: Use an existing project
+? Select a default Firebase project for this directory: 
+  firestore-xxxxx (firestore) 
+❯ restoreview-xxxxx (RestoReview) </pre>
+<ol type="1" start="8">
+<li>次にセキュリティ・ルールを定義しFirebaseにデプロイするファイル名を指定します。デフォルトのままで「Enter」を押します。</li>
+</ol>
+<pre>=== Firestore Setup
+
+Firestore Security Rules allow you to define how and when to allow
+requests. You can keep these rules in your project directory
+and publish them with firebase deploy.
+
+? What file should be used for Firestore Rules? (firestore.rules) </pre>
+<ol type="1" start="9">
+<li>次にFirestoreのインデックス定義をFirebaseにデプロイするファイル名を指定します。デフォルトのままで「Enter」を押します。</li>
+</ol>
+<pre>Firestore indexes allow you to perform complex queries while
+maintaining performance that scales with the size of the result
+set. You can keep index definitions in your project directory
+and publish them with firebase deploy.
+
+? What file should be used for Firestore indexes? (firestore.indexes.json) </pre>
+<ol type="1" start="10">
+<li>次にFunctionsの設定を行います。Functionsで利用するプログラミング言語「TypeScript」を指定し、TSLintを有効にして、生成されるフォルダとファイルを確認して「Enter」を押します。</li>
+</ol>
+<pre>=== Functions Setup
+
+A functions directory will be created in your project with a Node.js
+package pre-configured. Functions can be deployed with firebase deploy.
+
+? What language would you like to use to write Cloud Functions? TypeScript
+? Do you want to use TSLint to catch probable bugs and enforce style? Yes
+✔  Wrote functions/package.json
+✔  Wrote functions/tslint.json
+✔  Wrote functions/tsconfig.json
+✔  Wrote functions/src/index.ts
+✔  Wrote functions/.gitignore
+? Do you want to install dependencies with npm now? (Y/n)</pre>
+<ol type="1" start="11">
+<li>次にHostingの設定を行います。これはFirebaseのホスティング環境にデプロイするFlutter Webの静的コンテンツを指定します。Flutter Webではプロジェクトフォルダ下の「build/web」フォルダにコンパイルされて生成されたWebアプリが配置されるので、そちらを指定します。またindex.htmlファイルをrewriteはNoにして「Enter」を押します。</li>
+</ol>
+<pre>=== Hosting Setup
+
+Your public directory is the folder (relative to your project directory) that
+will contain Hosting assets to be uploaded with firebase deploy. If you
+have a build process for your assets, use your build&#39;s output directory.
+
+? What do you want to use as your public directory? build/web
+? Configure as a single-page app (rewrite all urls to /index.html)? No
+✔  Wrote build/web/404.html
+✔  Wrote build/web/index.html</pre>
+<ol type="1" start="12">
+<li>最後にStorageの設定を行います。セキュリティ・ルールの設定ファイル名をデフォルトのままで「Enter」を押します。これでパソコン上でのFirestoreの初期化が完了です。</li>
+</ol>
+<pre>=== Storage Setup
+
+Firebase Storage Security Rules allow you to define how and when to allow
+uploads and downloads. You can keep these rules in your project directory
+and publish them with firebase deploy.
+
+? What file should be used for Storage Rules? storage.rules
+
+i  Writing configuration info to firebase.json...
+i  Writing project information to .firebaserc...
+
+✔  Firebase initialization complete!</pre>
+<h2 is-upgraded>FlutterプロジェクトのFirebase Hostingへのデプロイ</h2>
+<p>Flutterプロジェクト「RestoReview」のカウンターアプリをFirebase Hostingにデプロイします。</p>
+<ol type="1" start="1">
+<li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインし「RestoReview」プロジェクトを選択します。</li>
+<li>アイコン「&lt;/&gt;」をクリックしてWebアプリを追加します。</li>
+</ol>
+<p class="image-container"><img style="width: 291.50px" src="img/933d2735cf3074a5.png"></p>
+<ol type="1" start="3">
+<li>アプリのニックネームを「RestoReview」にして「このアプリのFirebase Hostingを設定します」にチェックを入れて「アプリを登録」をクリック</li>
+</ol>
+<p class="image-container"><img style="width: 291.50px" src="img/7e66fe3f4fb0728b.png"></p>
+<ol type="1" start="4">
+<li>「Firebase SDKの追加」画面の灰色部分をコピーして、「RestoReview」Flutterプロジェクトの「web/index.html」ファイルの「&lt;meta name=&#34;description&#34; content=&#34;A new Flutter project.&#34;&gt;」と「&lt;!-- iOS meta tags &amp; icons --&gt;」の間に貼り付けます。</li>
+</ol>
+<p class="image-container"><img style="width: 438.99px" src="img/ecaced4ba2104077.png"></p>
+<ol type="1" start="5">
+<li>次ページの「Firebase CLIのインストール」はすでに完了しているので「次へ」ボタンをクリックします。</li>
+</ol>
+<p class="image-container"><img style="width: 444.50px" src="img/a395d49aadd9e73.png"></p>
+<ol type="1" start="6">
+<li>次のページの「Firebase Hostingへのデプロイ」ではFirebaseへのログインとローカルプロジェクトとFirebaseプロジェクトとの紐付け、Firebase Hostingへのデプロイのコマンドが紹介されていますが、ログインと紐付けはすでに行っており、Hostingへのデプロイは後ほど行うので「コンソールに進む」ボタンをクリックして、FirebaseプロジェクトでのWebアプリの追加を終了します。</li>
+</ol>
+<p class="image-container"><img style="width: 450.32px" src="img/52506531a99326e5.png"></p>
+<ol type="1" start="7">
+<li>Flutter Webをビルドします。実は以前Chromeを開いてFlutter Webをデバッグ実行した「flutter run -d chrome」コマンドを実行した際に、Flutter Webのビルドも同時に実行されており、「build/web」フォルダに必要なファイルは生成されていたのですが、Firebase Hostingでの実行に必要な上記4の設定が「index.html」ファイルに追加されたので再度ビルドします。これによってDart言語によって書かれたプログラムがコンパイルされて生成されたJavaScriptとそれを呼び出すindex.htmlが「web/index.html」からコピーされて「build/web」に保存されます。</li>
+</ol>
+<pre>$ flutter build web</pre>
+<ol type="1" start="8">
+<li>Flutter Webの静的ファイルをFirebase Hostingにデプロイします。</li>
+</ol>
+<pre>$ firebase deploy --only hosting
+
+=== Deploying to &#39;restoreview-824b4&#39;...
+
+i  deploying hosting
+i  hosting[restoreview-824b4]: beginning deploy...
+i  hosting[restoreview-824b4]: found 15 files in build/web
+✔  hosting[restoreview-824b4]: file upload complete
+i  hosting[restoreview-824b4]: finalizing version...
+✔  hosting[restoreview-824b4]: version finalized
+i  hosting[restoreview-824b4]: releasing new version...
+✔  hosting[restoreview-824b4]: release complete
+
+✔  Deploy complete!
+
+Project Console: https://console.firebase.google.com/project/restoreview-824b4/overview
+Hosting URL: https://restoreview-824b4.web.app</pre>
+<ol type="1" start="9">
+<li>「Hosting URL」として出力されたURLにアクセスするとカウンターアプリが表示されます。</li>
+</ol>
 
 
       </google-codelab-step>
