@@ -36,7 +36,7 @@ cat index.html | sed 's#<p>json02</p>#<iframe width="820" height="420" src="./js
 mv index.html.1 index.html
 cat index.html | sed 's#<p>json03</p>#<iframe width="820" height="420" src="./json03.html" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
-cat index.html | sed 's#<p>json04</p>#<iframe width="820" height="620" src="./json04.html" frameborder="1"></iframe>#g' > index.html.1
+cat index.html | sed 's#<p>json04</p>#<iframe width="820" height="820" src="./json04.html" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
 # Flutter Webアプリの追加
