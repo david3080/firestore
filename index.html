@@ -700,7 +700,8 @@
 <li>Flutter Webではファイル保存を担うFirebase Firestorageとデバイスから写真ファイルを簡単に選択できるImagePickerパッケージが対応していないが、コードの追加は簡単にできる</li>
 </ul>
 <h2 is-upgraded>開発するアプリケーション</h2>
-<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行い、レストランを参照し、レビューを書き込むことができます（下記Webアプリに Email: ichiro@test.com, Password: password でログインしてみてください）。</p>
+<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
+<p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください（おかしな動作をする場合はブラウザのキャッシュをクリアして再度試してください）。</p>
 <br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
 <p>本書のハンズオンではこのアプリの作り方を学びます。</p>
 <h2 is-upgraded>初期設定</h2>
@@ -831,6 +832,12 @@ $ flutter run -d chrome</pre>
     
       <google-codelab-step label="(参考)マテリアルデザイン開発" duration="0">
         <p>TODO Dart言語が理解できたらFlutterを使って画面と画面遷移を実装します。そのうち画面はマテリアルデザインを実装したさまざまなWidgetを使って開発します。また画面遷移はNavigator（フローを実装）もしくはStreamBuilder（状態遷移を実装）を使って実装します。ここでは、基本的なWidgetの紹介と使い方、また画面遷移の実装方法を解説します。</p>
+<p>1. StatelessWidget（ステートを持たない） と StatefulWidget（画面にステートを紐付けコントロールできる。画面のボタンを押すなど画面からのアクションをもって画面の再表示できる）の違い。</p>
+<p>2. 画面の部品を構成するWidgetについて</p>
+<p>3. StatelessWidgetを使った画面例（Formによるログイン画面、StreamBuilderを使ったListView、GridView、チャットなど）</p>
+<p>4. StatefulWidgetを使った画面例（ユーザ登録とログインを切り替える画面、PageViewを使ったボトムナビゲーションバー画面、など）</p>
+<p>5. Navigatorを使った画面遷移</p>
+<p>6. ProviderとLandingページ</p>
 
 
       </google-codelab-step>
