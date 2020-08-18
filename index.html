@@ -497,7 +497,7 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="インフラおよび開発環境の選定について" duration="0">
+      <google-codelab-step label="(参考)インフラと開発環境選定" duration="0">
         <p>TODO 本書でインフラ環境にFirebase、開発環境にFlutterを選定している根拠を記載します。また要件の追加の可能性と対応方法について記載します。</p>
 
 
@@ -700,8 +700,8 @@
 <li>Flutter Webではファイル保存を担うFirebase Firestorageとデバイスから写真ファイルを簡単に選択できるImagePickerパッケージが対応していないが、コードの追加は簡単にできる</li>
 </ul>
 <h2 is-upgraded>開発するアプリケーション</h2>
-<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行い、レストランを参照し、レビューを書き込むことができます。</p>
-<br><iframe width="400" height="600" src="https://david3080.github.io/auth/build/web/index.html" frameborder="1"></iframe>
+<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行い、レストランを参照し、レビューを書き込むことができます（下記Webアプリに Email: ichiro@test.com, Password: password でログインしてみてください）。</p>
+<br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
 <p>本書のハンズオンではこのアプリの作り方を学びます。</p>
 <h2 is-upgraded>初期設定</h2>
 <p>まずはじめに開発に必要なFlutterとエディタであるVS Codeのインストールを行います。</p>
@@ -815,7 +815,7 @@ $ flutter run -d chrome</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="(参考)Dart言語の基礎" duration="0">
+      <google-codelab-step label="(参考) Dart言語の基礎" duration="0">
         <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えると思いますが、ここではDart言語の文法と特にFirebaseとのストリーム処理に必要な非同期処理とストリーム処理、FirestoreとのJSONデータのやりとりに必要な配列やマップについて解説します。</p>
 <h2 is-upgraded>Dart言語の文法①</h2>
 <p>TODO</p>
@@ -865,7 +865,7 @@ $ flutter run -d chrome</pre>
 <aside class="warning"><p><strong>ノート: </strong>Firebase CLIをインストールするには <a href="https://nodejs.org/ja/" target="_blank">NodeJS</a> のインストールが必要です。</p>
 </aside>
 <ol type="1" start="1">
-<li>次のnpmコマンドを実行jしてFirebase CLIをインストールします。</li>
+<li>次のnpmコマンドを実行してFirebase CLIをインストールします。</li>
 </ol>
 <pre>$ npm -g install firebase-tools</pre>
 <ol type="1" start="2">
@@ -1056,7 +1056,11 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="Firebase Authを使ったFlutterアプリ開発" duration="0">
-        <p>あああ</p>
+        <p>以下のステップでFirebase Authのユーザ/パスワードを使ったユーザ登録・ログイン・ログアウトを実装します。</p>
+<p>1. ログイン画面の実装（FormとFirebaseAuthの使い方）</p>
+<p>2. LandigPageの実装(FirebaseAuthとStreamBuilderの使い方)</p>
+<p>3. ホーム画面の実装（BottomNavigationBarの使い方）</p>
+<p>4. Auth Blocの作成</p>
 <p>あああ</p>
 <h2 is-upgraded>Firebase Authを使ったログイン開発</h2>
 <p>あああ</p>
