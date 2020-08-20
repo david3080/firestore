@@ -1,9 +1,11 @@
 #!/bin/sh
 LANG=C
 
-# Youtube動画を追加する
+# ローカルのCSSを読み込む
 cat index.html | sed 's#<link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">#<link rel="stylesheet" href="./codelab-elements.css">#g' > index.html.1
 mv index.html.1 index.html
+
+# Youtube動画を追加する
 cat index.html | sed 's#<p>v_hR4K4auoQ</p>#<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#g' > index.html.1
 mv index.html.1 index.html
 cat index.html | sed 's#<p>Ofux_4c94FI</p>#<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#g' > index.html.1
