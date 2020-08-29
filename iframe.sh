@@ -56,5 +56,9 @@ cat index.html | sed 's#<p>dartpad04</p>#<iframe width="850" height="500" src="h
 mv index.html.1 index.html
 cat index.html | sed 's#<p>dartpad05</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=b1f2329101137e1ab19cc77b80df47c6" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
+cat index.html | sed 's#<p>dartpad06</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=6e70cd1af860045844c79e6adbdec04b" frameborder="1"></iframe>#g' > index.html.1
+mv index.html.1 index.html
+cat index.html | sed 's#<p>dartpad07</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=" frameborder="1"></iframe>#g' > index.html.1
+mv index.html.1 index.html
 
 exit 0
