@@ -73,7 +73,7 @@
 <p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で挙げた課題である画面設計に走りがちな理由もこの難しさにあるものと考えられます。次ページ「ユースケース、データモデルと画面設計のパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
 <p>コレクションとドキュメントの分離方針がきまったら、サンプルデータをJSONの形式にまとめます。JSONスキーマにそった正しいJSON形式にまとめることでドキュメント型データベースで扱えるサンプルデータが作成されます。JSONとはWebアプリケーションやREST APIで扱われるプログラムが処理しやすく人も見やすいデータ形式ですが、初めてJSONを扱う人は正しいJSON形式とは何かわからないと思います。そのため本書では本文中にJSONエディタというツールを組み込んでJSONデータを表示し、JSON形式でのサンプルデータの作り方をステップバイステップで解説します。</p>
 <h2 is-upgraded>1. ユースケースからデータの候補を抽出する</h2>
-<p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例にしたユースケース記述を以下にまとめます。</p>
+<p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例にしたユースケース記述を以下にまとめます。アプリ名は「レストランレビューアプリ」とします。</p>
 <ol type="1" start="1">
 <li>顧客はアプリにログインする</li>
 <li>レストランのリストが表示され、料理の種類や住所、星の数の平均で検索する</li>
@@ -268,27 +268,44 @@
       </google-codelab-step>
     
       <google-codelab-step label="画面設計" duration="0">
-        <p>TODO データモデルができあがったら画面設計を行いますが、下記の内容を紹介します</p>
-<ul>
-<li>画面設計は、画面と画面遷移からなる。</li>
-<li>画面の構築にはマテリアルデザインを利用する。</li>
-<li>世の中の主要なアプリは下記の機能の組み合わせからなりたっている。</li>
-<li>ユーザ登録、ユーザ削除、ログイン、ログアウト、</li>
-<li>複数データの整理整頓（リスト画面と詳細画面からなる）</li>
-<li>フォームとウィザード（申請、アンケート、テストのイメージ）</li>
-<li>スケジュールとカレンダー</li>
-<li>地図</li>
-<li>チャット</li>
-<li>決済・ポイント処理</li>
-<li>イラスト、写真加工</li>
-<li>OCR、物体認識</li>
-<li>など</li>
-<li>ゲームやAR、スマートスピーカといった特殊なUIのアプリ以外は、複雑なアプリでもこれらの組み合わせ。</li>
-<li>画面遷移のパターンは、単一機能内では状態遷移とウィザード、機能を切り替えるメニューがある。</li>
-<li>複数データの整理整頓の機能は、状態遷移パターンで表現でき、リストやグリッド形式でコレクションを表示する画面とリストやグリッドから一つを選ぶと選択されたドキュメントの詳細を表示する画面、新規ドキュメントを登録する画面と既存ドキュメントを編集する画面、リストやグリッドから選択したドキュメントを削除する操作からなりたつ。</li>
-<li>ウィザードパターンは多くのデータを順番に入力していく場合に利用。ウィザードは前後一本線で画面がつらなるのが一般的ですが、枝の分岐が入ると複雑になるので極力そのような実装はさけて、どうしても必要な場合は例外処理をつかうと見通しがよくなる。</li>
-<li>メニューパターンは機能の切替であり、ナビゲーションバーとページビューを使って実装する。</li>
-</ul>
+        <p>データモデルとその実体としてのサンプルができあがったので画面設計を考えます。</p>
+<h2 is-upgraded>1. 画面設計の基本的な考え方</h2>
+<p>画面設計とは「画面」と「画面遷移」をデザインすることを意味します。</p>
+<p class="image-container"><img style="width: 422.00px" src="img/eb6196052fed342d.png"></p>
+<p>「画面」は、テキストフィールドやボタンなどのコンポーネントを組み合わせて作成されますが、詳細はユースケースごとに異なります。一方、画面遷移はパターン化が可能で、ここでは4パターンにまとめます。</p>
+<h3 is-upgraded><strong>① メニュー遷移</strong></h3>
+<p>アプリケーションは複数の機能から成り立つので、ホーム画面にメニューやナビゲーションバーを表示して、そこからメニューを選択することで機能を切り替えるといった操作が必要です。下図は時計アプリを例に挙げて「時計」表示と「アラーム」設定、時計「設定」の3機能をボトムナビゲーションバーを使って切り替える画面遷移を表しています。</p>
+<p class="image-container"><img style="width: 533.00px" src="img/d5476a8c62ab283.png"></p>
+<p>このパターンの画面遷移では機能が切り替わるため、機能間でデータの引き継ぎは必要なく、機能内でのデータ保存のみを考えればよいと言えます。</p>
+<h3 is-upgraded><strong>② ウィザード遷移</strong></h3>
+<p>スマートフォンは画面が小さいため、多くの入力を必要とするアンケートや申請書は下図のとおり画面を複数にわけてウィザード形式で入力を促し、最後に確認後Submitするといった画面遷移になります。</p>
+<p class="image-container"><img style="width: 421.00px" src="img/6f62b102d1eaad18.png"></p>
+<p>このパターンは途中で枝分かれすることなく一本線でゴールに向かう場合にのみ利用し、分岐が発生する複雑な場合は状態遷移を考えるとよいでしょう。</p>
+<h3 is-upgraded><strong>③ 状態遷移</strong></h3>
+<p>状態によって表示する画面が変化する画面遷移のパターンです。ログイン・ログアウトの画面遷移が代表的な例で、ログインとログアウトのどちらかをあらわす状態変数の値に従って、表示される画面を切り替えるしくみになっています。</p>
+<p class="image-container"><img style="width: 333.00px" src="img/816de381550c54c5.png"></p>
+<h3 is-upgraded><strong>④ リストのCRUD </strong></h3>
+<p>ビジネスアプリケーションの多くは、複数データを表示・追加・編集・削除しながら整理整頓するものです。そのため、データの概要をリスト表示して、そのうち一つをクリックすると詳細を表示し、編集・削除する、といった機能を持ちます。画面遷移は大概下記のようなフローになります。</p>
+<p class="image-container"><img style="width: 507.00px" src="img/d38dd34cf41d7b63.png"></p>
+<p>上図の時計アプリの例では、リスト表示をする対象がアラーム設定した時刻といったシンプルなデータでしたが、「レストランレビューアプリ」のようにレストランデータが複数あり、さらにそのレストランのレビューデータが複数あるといった構造を持つ場合、レストランの詳細画面の下にレビューリストを表示するといった構造を持ちます。このように、複数データを整理整頓する形式のアプリ画面はリスト画面を中心にCRUDを担う機能に画面が分かれることをパターンとして覚えておくとよいでしょう。</p>
+<h2 is-upgraded>2. その他</h2>
+<p>上で紹介したとおり世の中の主要なアプリケーション、特にビジネス用途のアプリケーションはログインしたユーザの権限で複数データを整理整頓を行うことを目的としていますので、1で紹介した画面遷移パターンの組み合わせで事足ります。ただし、下記に挙げる機能が便利な機能としてよく利用されます。</p>
+<h3 is-upgraded><strong>① スケジュールとカレンダー</strong></h3>
+<p>TODO</p>
+<h3 is-upgraded><strong>② 地図</strong></h3>
+<p>TODO</p>
+<h3 is-upgraded><strong>③ チャット・グループチャット</strong></h3>
+<p>TODO</p>
+<h3 is-upgraded><strong>④ 決済・ポイント支払</strong></h3>
+<p>TODO</p>
+<h3 is-upgraded><strong>⑤ イラスト・写真加工</strong></h3>
+<p>TODO</p>
+<h3 is-upgraded><strong>⑥ OCR・物体認識</strong></h3>
+<p>TODO</p>
+<h3 is-upgraded><strong>⑦ その他</strong></h3>
+<p>ゲームやAR、スマートスピーカーといったアプリケーションは複雑なUIからなりたっていたり、音声によるUIからなりたつため一般化は難しく、本書の対象外とします。</p>
+<h2 is-upgraded>3. 「レストランレビューアプリ」の画面設計</h2>
+<p>TODO</p>
 
 
       </google-codelab-step>
@@ -319,7 +336,7 @@
 <p>TODO</p>
 <h3 is-upgraded>3-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>4. カレンダー</h2>
+<h2 is-upgraded>4. 会議室予約</h2>
 <p>TODO</p>
 <h3 is-upgraded>4-1. ユースケース</h3>
 <p>TODO</p>
@@ -327,7 +344,7 @@
 <p>TODO</p>
 <h3 is-upgraded>4-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>5. 会議室予約</h2>
+<h2 is-upgraded>5. 商品購入</h2>
 <p>TODO</p>
 <h3 is-upgraded>5-1. ユースケース</h3>
 <p>TODO</p>
@@ -335,7 +352,7 @@
 <p>TODO</p>
 <h3 is-upgraded>5-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>6. 商品購入</h2>
+<h2 is-upgraded>6. 出前</h2>
 <p>TODO</p>
 <h3 is-upgraded>6-1. ユースケース</h3>
 <p>TODO</p>
@@ -343,7 +360,7 @@
 <p>TODO</p>
 <h3 is-upgraded>6-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>7. 出前</h2>
+<h2 is-upgraded>7. ホテル予約</h2>
 <p>TODO</p>
 <h3 is-upgraded>7-1. ユースケース</h3>
 <p>TODO</p>
@@ -351,7 +368,7 @@
 <p>TODO</p>
 <h3 is-upgraded>7-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>8. ホテル予約</h2>
+<h2 is-upgraded>8. 高速バス予約</h2>
 <p>TODO</p>
 <h3 is-upgraded>8-1. ユースケース</h3>
 <p>TODO</p>
@@ -359,7 +376,7 @@
 <p>TODO</p>
 <h3 is-upgraded>8-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>9. 高速バス予約</h2>
+<h2 is-upgraded>9. 営業支援</h2>
 <p>TODO</p>
 <h3 is-upgraded>9-1. ユースケース</h3>
 <p>TODO</p>
@@ -367,7 +384,7 @@
 <p>TODO</p>
 <h3 is-upgraded>9-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>10. 営業支援</h2>
+<h2 is-upgraded>10. 保険契約管理</h2>
 <p>TODO</p>
 <h3 is-upgraded>10-1. ユースケース</h3>
 <p>TODO</p>
@@ -375,7 +392,7 @@
 <p>TODO</p>
 <h3 is-upgraded>10-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>11. 保険契約管理</h2>
+<h2 is-upgraded>11. 物品管理</h2>
 <p>TODO</p>
 <h3 is-upgraded>11-1. ユースケース</h3>
 <p>TODO</p>
@@ -383,7 +400,7 @@
 <p>TODO</p>
 <h3 is-upgraded>11-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>12. 物品管理</h2>
+<h2 is-upgraded>12. ホームページ管理</h2>
 <p>TODO</p>
 <h3 is-upgraded>12-1. ユースケース</h3>
 <p>TODO</p>
@@ -391,7 +408,7 @@
 <p>TODO</p>
 <h3 is-upgraded>12-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>13. ホームページ管理</h2>
+<h2 is-upgraded>13. 出張申請・精算</h2>
 <p>TODO</p>
 <h3 is-upgraded>13-1. ユースケース</h3>
 <p>TODO</p>
@@ -399,21 +416,13 @@
 <p>TODO</p>
 <h3 is-upgraded>13-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>14. 出張申請・精算</h2>
+<h2 is-upgraded>14. アンケート</h2>
 <p>TODO</p>
 <h3 is-upgraded>14-1. ユースケース</h3>
 <p>TODO</p>
 <h3 is-upgraded>14-2. データモデル</h3>
 <p>TODO</p>
 <h3 is-upgraded>14-3. 画面設計</h3>
-<p>TODO</p>
-<h2 is-upgraded>15. アンケート</h2>
-<p>TODO</p>
-<h3 is-upgraded>15-1. ユースケース</h3>
-<p>TODO</p>
-<h3 is-upgraded>15-2. データモデル</h3>
-<p>TODO</p>
-<h3 is-upgraded>15-3. 画面設計</h3>
 <p>TODO</p>
 <h2 is-upgraded>15. 講義・授業管理</h2>
 <p>TODO</p>
@@ -431,7 +440,7 @@
 <p>TODO</p>
 <h3 is-upgraded>16-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>17. グループチャット</h2>
+<h2 is-upgraded>17. Web会議</h2>
 <p>TODO</p>
 <h3 is-upgraded>17-1. ユースケース</h3>
 <p>TODO</p>
@@ -439,7 +448,7 @@
 <p>TODO</p>
 <h3 is-upgraded>17-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>18. Web会議</h2>
+<h2 is-upgraded>18. 恋人マッチング</h2>
 <p>TODO</p>
 <h3 is-upgraded>18-1. ユースケース</h3>
 <p>TODO</p>
@@ -447,7 +456,7 @@
 <p>TODO</p>
 <h3 is-upgraded>18-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>19. 恋人マッチング</h2>
+<h2 is-upgraded>19. 画像認識レジ</h2>
 <p>TODO</p>
 <h3 is-upgraded>19-1. ユースケース</h3>
 <p>TODO</p>
@@ -455,37 +464,13 @@
 <p>TODO</p>
 <h3 is-upgraded>19-3. 画面設計</h3>
 <p>TODO</p>
-<h2 is-upgraded>20. キャッシュレス決済</h2>
+<h2 is-upgraded>20. 名刺OCR</h2>
 <p>TODO</p>
 <h3 is-upgraded>20-1. ユースケース</h3>
 <p>TODO</p>
 <h3 is-upgraded>20-2. データモデル</h3>
 <p>TODO</p>
 <h3 is-upgraded>20-3. 画面設計</h3>
-<p>TODO</p>
-<h2 is-upgraded>21. ポイント管理</h2>
-<p>TODO</p>
-<h3 is-upgraded>21-1. ユースケース</h3>
-<p>TODO</p>
-<h3 is-upgraded>21-2. データモデル</h3>
-<p>TODO</p>
-<h3 is-upgraded>21-3. 画面設計</h3>
-<p>TODO</p>
-<h2 is-upgraded>22. 画像認識レジ</h2>
-<p>TODO</p>
-<h3 is-upgraded>22-1. ユースケース</h3>
-<p>TODO</p>
-<h3 is-upgraded>22-2. データモデル</h3>
-<p>TODO</p>
-<h3 is-upgraded>22-3. 画面設計</h3>
-<p>TODO</p>
-<h2 is-upgraded>23. 名刺OCR</h2>
-<p>TODO</p>
-<h3 is-upgraded>23-1. ユースケース</h3>
-<p>TODO</p>
-<h3 is-upgraded>23-2. データモデル</h3>
-<p>TODO</p>
-<h3 is-upgraded>23-3. 画面設計</h3>
 <p>TODO</p>
 
 
@@ -624,7 +609,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="開発環境とインフラ選定根拠" duration="0">
-        <p>本書では開発環境にFlutter、インフラ環境にFirebaseを選定している根拠を記載します。</p>
+        <p>本書では開発環境にFlutter、インフラ環境にFirebaseを選定している根拠を記載し、ベンダーロックインを排除するための方針をまとめます。</p>
 <h2 is-upgraded>1. Flutterの選択根拠</h2>
 <p>昨今スマホアプリ開発には二つの選択肢があると言われており「あらゆるデバイス向けにネイティブアプリを開発しメンテナンスをする」か「特定のクロスプラットフォームフレームワークを選択して一つのコードをメンテナンスする」かを選択する必要がありました。</p>
 <p>「あらゆるデバイス向けにネイティブアプリを開発しメンテナンスをする」は現在80%の企業が選択しており、ネイティブアプリ開発により得られる操作性のよさと引き換えに、iPhoneとAndroid用に2つのソースコードで開発し、両方の卓越したプログラマーを雇い、コストをかけて運用しています。一方「特定のクロスプラットフォームフレームワークを選択して一つのコードをメンテナンスする」を選択した場合、開発されるアプリケーションはネイティブアプリより操作性や機能は劣りますが、両方をネイティブ開発するより半分程度のコストですむことになります。</p>
@@ -1036,7 +1021,7 @@ $ flutter run -d chrome</pre>
       </google-codelab-step>
     
       <google-codelab-step label="マテリアルデザイン開発" duration="0">
-        <p>Dart言語が理解できたらFlutterを使ってさまざまな画面と画面遷移を実装します。ここではFirebaseを使わず、</p>
+        <p>Dart言語が理解できたらFlutterを使ってさまざまな画面と画面遷移を実装します。ここではFirebaseを使わず、JSONの静的データから画面と画面遷移のみを実装します。</p>
 <p>1. シンプルなログイン画面の実装</p>
 <p>StatelessWidgetを使ってシンプルなログイン画面を作成します。</p>
 <p>dartpad08</p>
@@ -1357,15 +1342,15 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
         <p>TODO 本書での構成はフロントのネイティブアプリ開発はFlutterにまかせ、バックエンドもFirebaseにまかせるので、APIやWebアプリの開発は発生せず、それらの脆弱性は考える必要がない。そのため、Flutterで構築するネイティブアプリの脆弱性回避とFirebaseの主要機能であるFirestoreとFirestorageとCloud Functionsで妥当なセキュリティルールの設定をすることに注力するだけでよい。あとは脆弱性診断など第三者によるチェックの仕方を考えることくらい。</p>
 <p>参考）Flutterアプリ開発七つの大罪：<a href="https://qiita.com/__naoya__/items/98ac66157a1578be2798" target="_blank">https://qiita.com/__naoya__/items/98ac66157a1578be2798</a></p>
 <p>参考）Flutter Security：<a href="https://flutter.dev/security" target="_blank">https://flutter.dev/security</a></p>
-<p>参考）How to make a flutter app with high security? <a href="https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da" target="_blank">https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da</a></p>
-<p>参考）Mobile App Security: <a href="https://www.linkedin.com/pulse/mobile-app-security-native-vs-flutter-rick-wu" target="_blank">https://www.linkedin.com/pulse/mobile-app-security-native-vs-flutter-rick-wu</a></p>
-<p>参考）Storing your secret keys in Flutter</p>
+<p>参考）How to make a flutter app with high security? ：<a href="https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da" target="_blank">https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da</a></p>
+<p>参考）Mobile App Security：<a href="https://www.linkedin.com/pulse/mobile-app-security-native-vs-flutter-rick-wu" target="_blank">https://www.linkedin.com/pulse/mobile-app-security-native-vs-flutter-rick-wu</a></p>
+<p>参考）Storing your secret keys in Flutter：</p>
 <p><a href="https://medium.com/@sokrato/storing-your-secret-keys-in-flutter-c0b9af1c0f69" target="_blank">https://medium.com/@sokrato/storing-your-secret-keys-in-flutter-c0b9af1c0f69</a></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="FlutterおよびFirebaseの運用保守" duration="0">
+      <google-codelab-step label="Firebaseの運用保守" duration="0">
         <p>TODO Firebase参考：<a href="https://www.youtube.com/watch?v=iWEgpdVSZyg" target="_blank">https://www.youtube.com/watch?v=iWEgpdVSZyg</a></p>
 
 
