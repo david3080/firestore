@@ -294,27 +294,27 @@
       </google-codelab-step>
     
       <google-codelab-step label="(参考)マテリアルデザイン" duration="0">
-        <p>ここではGoogleが2014年に発表したUIデザインのガイドラインであるマテリアルデザインを紹介します。ここでは特にスマートフォンのアプリケーションのUIデザインにフォーカスし、スマホアプリ特有の問題からデザインの歴史の説明をへながらマテリアルデザインが出現してきた背景やその業界におけるインパクトについて説明します。</p>
+        <p>ここではGoogleが2014年に発表したUIデザインのガイドラインであるマテリアルデザインを紹介します。特にスマートフォンのアプリケーションのUIデザインにフォーカスし、スマホアプリ特有の問題からデザインの歴史の説明をへながらマテリアルデザインが出現してきた背景やその業界におけるインパクトについて説明します。</p>
 <h2 is-upgraded>1. スマートフォンの特徴</h2>
 <p>スマートフォンはパソコンと違い下記の特徴が挙げられます。</p>
 <h4 is-upgraded><strong>画面が小さく操作手段が限定的</strong></h4>
 <p>スマホにはマウスやキーボードがなく操作手段が限られるため、画面レイアウトや操作性をどのようにデザインするかでユーザの満足度が大きく変化します。</p>
 <h4 is-upgraded><strong>画面サイズがばらばら</strong></h4>
-<p>AndroidとiPhoneというOSの違いだけでなく、画面サイズもさまざまであり、アプリの<br>レイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
+<p>AndroidとiPhoneというOSの違いだけでなく、画面サイズもさまざまであり、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
 <p class="image-container"><img style="width: 577.00px" src="img/886625a7f19811a7.png"></p>
 <h2 is-upgraded>2. スマホアプリで発生しやすい問題点</h2>
-<p>上記のスマートフォンの特徴のため、その上で起動するアプリに対する４大悪評判をGoogle PlayやApp Storeに登録されたアプリの評判からまとめると以下のようにまとめられます。</p>
+<p>スマホアプリに対する悪評をGoogle PlayやApp Storeに登録されたアプリの評判から4つにまとめると以下のとおりになります。</p>
 <ol type="1" start="1">
 <li>操作途中でクラッシュしてしまう</li>
 <li>元の画面に戻れない、探している機能に行き着かない、といったナビゲーション機能が不十分</li>
 <li>デザインが必要以上に凝っていて意味不明</li>
 <li>大量の情報がそのまま表示され、検索したりフィルタリングする機能がない</li>
 </ol>
-<p>これらの悪評のうち、2から4まではUIデザインの問題であり、小さな画面に情報を埋め込みがちなスマホアプリにありがちなデザインに起因する問題でもあります。</p>
+<p>これらの悪評のうち、2から4まではUIデザインの問題です。</p>
 <h2 is-upgraded>3. スマホデザインの歴史</h2>
-<p>それではこのような特徴をもつスマートフォンにおけるデザインはどのような歴史を歩んできたのでしょうか。</p>
+<p>それではスマホにおけるデザインはどのような歴史を歩んできたのでしょうか。</p>
 <p>まず、2000年前半のWebやアプリケーションのUIはそれまでのWindowsパソコンが機械的で使いづらく利用者のことを考えて作られていないという反省から、コテコテに現実世界を模して装飾したコンポーネントからなるUIを取り入れるようになりました。この考え方によるデザインをスキューモーフィズムと呼びます。ただし、この装飾に凝ったデザインでは、デザイナーの主張が先行し見た目や操作性に統一感がないといった弊害を生むことになりました。</p>
-<p>そのため、20世紀初頭のモダニズムが建築や工業製品のデザインに取り入れられたように、パソコンやWebやモバイルのデザインにも極力装飾を廃したフラットデザインが採用されることになりました。ただし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットがあります。</p>
+<p>そのため、20世紀初頭のモダニズムが建築や工業製品のデザインに取り入れられたように、パソコンやWebやモバイルのデザインにも極力装飾を廃したフラットデザインが採用されることになりました。ただし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットが挙げられます。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>iPhone6のスキューモフィズムデザイン</p>
 <p class="image-container"><img style="width: 211.50px" src="img/13bf84e545185e44.png"></p>
@@ -344,23 +344,67 @@
 <p>ユーザになんらかの意味を伝えるためにはアニメーションが効果的な場合がありますが、コンポーネントにアニメーション表示を簡単にほどこせるようなしくみを実装しています。</p>
 <p>④アダプティブデザイン</p>
 <p>パソコン、Androidスマホ、iPhone、タブレットなどデバイスが異なっていても画面サイズが異なっていても形を崩さず表示するしくみを実装しています。レスポンシブデザインも同じコンセプトですが、アダプティブデザインは横幅の伸び縮みだけでなく、メニューの表示非表示などよりアダプティブにデザインを変化させるしくみをそなえています。</p>
-<h2 is-upgraded>6. マテリアルデザインの詳細</h2>
+<h2 is-upgraded>6. Flutterにおけるマテリアルデザイン</h2>
 <p>マテリアルデザインを使うと下記のようなリッチなUI画面を実装することができます。下の例はFlutterを使って実装したUI画面のサンプルギャラリーです。</p>
 <iframe width="800" height="600" src="https://gallery.flutter.dev/" frameborder="1"></iframe>
-<p>Flutterにおけるマテリアルデザインは下記に挙げた部品を提供しています。詳細は<a href="https://material.io/components" target="_blank">こちら</a>を参照してください。</p>
+<p>Flutterにおけるマテリアルデザインは下記のような部品を提供しています。詳細は<a href="https://material.io/components" target="_blank">こちら</a>を参照してください。</p>
 <table>
-<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/components/app-bars-bottom/" target="_blank">ボトムアップバー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/182f3739a6919bf6.png"></p>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/app-bars-top" target="_blank">アップバー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/9f8c7a7e86f0e2ba.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/bottom-navigation" target="_blank">ボトムナビゲーション</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/81fe954aa822d209.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/buttons" target="_blank">ボタン</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/60bd27a78a2f4f83.png"></p>
 </td></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
-<tr></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/floating-action-buttons" target="_blank">ﾌﾛｰﾃｨﾝｸﾞｱｸｼｮﾝﾎﾞﾀﾝ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/79662543c7dc120.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/cards" target="_blank">カード</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/33ffbff0fc0b1d40.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Chip-class.html" target="_blank">チップ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/2e2dbbb7b1dbcb68.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/data-tables" target="_blank">データテーブル</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/99dfada4e9abfe21.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/showDatePicker.html" target="_blank">デートピッカー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/67678ecdac488dc6.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Dialog-class.html" target="_blank">ダイアログ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/9662a1231d940d78.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Divider-class.html" target="_blank">デバイダー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/c550524ab09dbc1.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/lists" target="_blank">リスト</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/2ef873b21a35bb74.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/PopupMenuButton-class.html" target="_blank">メニュー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/cd811abecd73e932.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Drawer-class.html" target="_blank">ナビゲーションドローア</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/a2d750da533c49a3.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html" target="_blank">プログレスインジケータ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/7d4589c2fb0ba017.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/checkboxes" target="_blank">チェックボックス</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/9029b190e700eeda.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/radio-buttons" target="_blank">ラジオボタン</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/fe7958d42940ca60.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Switch-class.html" target="_blank">スイッチ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/5719dca14fb3795f.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/BottomSheet-class.html" target="_blank">ボトムシーツ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/4315c2c7b9a6b5a.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Slider-class.html" target="_blank">スライダー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/bec8763b12438b5.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/snackbars" target="_blank">スナックバー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/7e43ef72f745cc9a.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/tabs" target="_blank">タブ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/f15069b833333a5a.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/text-fields/" target="_blank">テキストフィールド</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/63339ba6218f3565.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Tooltip-class.html" target="_blank">ツールチップ</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/1241e00c4dc72b3.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/showTimePicker.html" target="_blank">タイムピッカー</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/d614d4cc32dbb848.png"></p>
+</td></tr>
 </table>
 <aside class="warning"><p><strong>ノート:</strong> Flutterにおけるマテリアルデザインについては下記URLも参考にしてください。</p>
 <p><a href="https://material.io/develop/flutter" target="_blank">https://material.io/develop/flutter</a></p>
