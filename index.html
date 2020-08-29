@@ -9,7 +9,7 @@
   <title>スマホアプリの設計と開発</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="./codelab-elements.css">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
   <style>
     .success {
       color: #1e8e3e;
@@ -250,19 +250,19 @@
 </aside>
 <h4 is-upgraded><strong>3-1. レストラン・ドキュメントの作成</strong></h4>
 <p>上記表1のIDが0のレコードを参考にレストラン・ドキュメントを作成します。</p>
-<iframe width="820" height="220" src="./json01.html" frameborder="1"></iframe>
+<p>json01</p>
 <p>JSONではデータのひとつの塊であるドキュメントを { } で囲み、その中に &#34;属性名&#34;: &#34;属性値&#34; をカンマ（ , ）で区切ってリストします。</p>
 <h4 is-upgraded><strong>3-2. レストラン・コレクションの作成</strong></h4>
 <p>上記表1の通りレストランは10個存在するため、配列をあらわすコレクションとして表現します。</p>
-<iframe width="820" height="420" src="./json02.html" frameborder="1"></iframe>
+<p>json02</p>
 <p>JSONではこのコレクションを { &#34;配列名&#34;: [(ドキュメントをカンマ( , )で区切ってリスト)] } で表現します。</p>
 <h4 is-upgraded><strong>3-3. 顧客コレクションの追加</strong></h4>
 <p>レストランと同じく顧客コレクションもルートレベルに追加します。</p>
-<iframe width="820" height="420" src="./json03.html" frameborder="1"></iframe>
+<p>json03</p>
 <p> JSONでは二つのコレクションを { &#34;users&#34;: [(...)], &#34;restaurants&#34;: [(...)] } と表現します。 </p>
 <h4 is-upgraded><strong>3-4. レビュー・ドキュメントをレストラン・ドキュメント配下のサブコレクションとして追加</strong></h4>
 <p>レビュー・ドキュメントの配列であるコレクションをレストラン・ドキュメント配下に追加します。この時、レビュー・ドキュメントには書き込みを行った顧客がわかるように顧客IDを追加します。一方、レビュー・ドキュメントはレストラン・ドキュメント配下のサブコレクションに含まれ、レストランとレビューの関係が表現されているので、レビュー・ドキュメントにレストランIDは必要ありません。また、レビュー・ドキュメントを参照するだけで書き込みを行った顧客名とレビュー対象のレストラン名がわかるよう、それらの項目も追加します。以上の作業の必要性については「NoSQLとFirestoreについて」を参照してください。</p>
-<iframe width="820" height="820" src="./json04.html" frameborder="1"></iframe>
+<p>json04</p>
 
 
       </google-codelab-step>
@@ -508,7 +508,7 @@
 <h2 is-upgraded>動画の全体像</h2>
 <p>ここで紹介する動画シリーズは、GoogleのTodd Kerpelman氏による「<a href="https://www.youtube.com/playlist?list=PLl-K7zZEsYLluG5MCVEzXAQ7ACZBCuZgZ" target="_blank">Get to know Cloud Firestore</a>」という動画シリーズで、Firestoreを使い始めるにあたって知っておくべきことを12回にわたって解説しているものです。本書に添付された動画は全画面表示が可能ですし、英語の字幕を自動表示する設定になっていますが、英語が苦手な人はYoutube画面の右下の設定で字幕をONにし、さらに字幕の自動翻訳を選び日本語を選択して日本語字幕を表示することも可能です。</p>
 <h2 is-upgraded>1. NoSQLの特徴</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1<p>v_hR4K4auoQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>v_hR4K4auoQ</p>
 <ul>
 <li>従来型のリレーショナルデータベースではテーブルのスキーマが厳格に定義され、正規化という手法でデータの重複が発生しないようテーブル分割します。分割されたテーブルが互いに関係を持つ場合、一方のプライマリキーを他方が外部キーとして持つことで1対多の関係を構成します。例えば「レストラン」と「顧客」と「顧客によるレストランのレビュー（以下「レビュー」）」の3テーブルあるとして「レビュー」は「レストラン」と「顧客」を外部キーとして持つことで「レビュー」テーブルが「レストラン」と「顧客」の間の中間テーブルとして機能します。こうすることで、「レストラン」は「顧客」から0個以上の複数「レビュー」を受け、「顧客」は0個以上の複数「レストラン」に対して「レビュー」を行える、といった多対多の関係を表現することができるわけです。</li>
 </ul>
@@ -522,7 +522,7 @@
 <li>Cloud Firestoreでは、NoSQL型データベースの中でもドキュメント型データベースを採用しています。ドキュメント型データベースでは、コレクションとドキュメントのツリー構造で構成され、JSONの配列とオブジェクトで表現することができます。これらコレクションとドキュメントの説明は、<a href="https://cloud.google.com/firestore/docs/data-model?hl=ja" target="_blank">Firebaseのデータモデル</a>を参照してください。</li>
 </ul>
 <h2 is-upgraded>2. クエリによる検索</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/Ofux_4c94FI?cc_load_policy=1<p>Ofux_4c94FI</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>Ofux_4c94FI</p>
 <ul>
 <li>データベースに検索を行ってデータを取得する操作のことをクエリと呼びます。一般的なドキュメント型データベースでは、一回のクエリの検索対象となるデータの範囲は検索対象ドキュメントが所属するコレクション内のみになります。以前に説明したコレクションとドキュメントの関係を思い出してもらいたいのですが、コレクションはドキュメントを含みますが、ドキュメントに直接ドキュメントを紐づけることはできず、必ずコレクションを挟みます。例えばレストランのレビューのケースのレストランとレビューの関係は下図のようになります。</li>
 </ul>
@@ -537,14 +537,14 @@
 <li>以上をふまえた上でFirestoreのクエリについてさらに確認したい場合は下記のオフィシャルドキュメントを参照してください。<a href="https://firebase.google.com/docs/firestore/query-data/queries" target="_blank">https://firebase.google.com/docs/firestore/query-data/queries</a></li>
 </ul>
 <h2 is-upgraded>3. コストの考え方</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/6NegFl9p_sE?cc_load_policy=1<p>6NegFl9p_sE</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>6NegFl9p_sE</p>
 <ul>
 <li>Firestoreでは、ドキュメントの読み込み数(10万回あたり0.06ドル)、ドキュメントの書き込み数(10万回あたり0.18ドル)、ドキュメントの削除数(10万回あたり0.02ドル)といったドキュメントの処理数単位で課金がなされます。</li>
 <li>このような課金システムの場合、リスト画面の更新を行う際、リクエストレスポンス型のアクセスを行うと、データベース上のデータ更新部分が一部であったとして、更新されてないものも含め表示対象の全データをまとめて読み込むことになるのでコスト的に大変効率が悪くなります。このあとペジネーションのところで説明しますが、Firestoreでは、データアクセスをリアルタイムデータベースとのストリームとして扱い、クライアント側のキャッシュを有効利用して更新が発生したデータのみをやりとりします。これによって差分の読み書き分だけが課金され、全データ取得型より大幅にコストを削減することができます。</li>
 <li>さらに、Google Cloud ConsoleのApp Engine画面にて、Firestoreの利用量と時間ごとの課金料金を確認することができます。また、利用料金の閾値を設けてそれを超えたらアラートメールを送ってくれるような設定を行うこともできるので、うまく運用保守で利用するとよいでしょう。</li>
 </ul>
 <h2 is-upgraded>4. マップと配列とサブコレクション</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<p>o7d5Zeic63s</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>o7d5Zeic63s</p>
 <h3 is-upgraded>Firestoreにおけるルール</h3>
 <p>Firestoreでは、JSONの構造における配列（[]で表す）とマップ（{}で表す）をドキュメント型リアルタイム・データベースとしてうまく操作できるようコレクション（JSON内の配列に相当）とドキュメント（JSON内のマップに相当）にうまく分離して保存管理するよう設計します。この設計をうまく行うためにはFirestoreにおけるいくつかのルールを理解しておく必要があります。</p>
 <h3 is-upgraded><strong>ルール1: ドキュメントには制約がある</strong></h3>
@@ -577,7 +577,7 @@
 </ul>
 <p>参考）<a href="https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html" target="_blank">https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html</a></p>
 <h2 is-upgraded>5. データ構造</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>haMOUb3KVSo</p>
 <p>ドキュメント型データベースにおいて、ユースケースに適したデータ構造を設計するとき主に以下の3種類の構造から適切なものを選びます。</p>
 <h3 is-upgraded><strong>タイプ1. ドキュメントの一部として配列もしくはマップとして含める</strong></h3>
 <ul>
@@ -600,7 +600,7 @@
 </ul>
 <p><a href="https://cloud.google.com/firestore/docs/concepts/structure-data?hl=ja" target="_blank">https://cloud.google.com/firestore/docs/concepts/structure-data?hl=ja</a></p>
 <h2 is-upgraded>6. セキュリティルール</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1<p>eW5MdE3ZcAw</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>eW5MdE3ZcAw</p>
 <ul>
 <li>Firestoreでは、データベースのツリー構造のドキュメント位置を指定して誰がCRUD（Create:作成、Read:読み込み、Update:更新、Delete:削除）できるかを指定します。これらのアクセス権の指定はセキュリティルールといい、拡張子&#34;.rules&#34;のファイルに設計してFirestoreにデプロイして適用します。</li>
 <li>データベース内で、フィールドレベルのアクセス権をIF文を使った複雑な条件文と共に直感的にルール化できるのは、リレーショナルデータベースにはない機能です。APIの開発をしなくてもクライアントから共通化されたSDKを使ってリアルタイムデータベースとしてアクセスできる、といったことを含めて、Firestoreはモバイル開発に最適なデータベースのひとつであると言えるでしょう。</li>
@@ -613,7 +613,7 @@
 <p><a href="https://cloud.google.com/firestore/docs/security/get-started" target="_blank">https://cloud.google.com/firestore/docs/security/get-started</a></p>
 <p><a href="https://firebase.google.com/docs/reference/security/database" target="_blank">https://firebase.google.com/docs/reference/security/database</a></p>
 <h2 is-upgraded>7. データのペジネーション</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1<p>poqTHxtDXwU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>poqTHxtDXwU</p>
 <ul>
 <li>一般的に、アプリケーションが表示に必要なレコード以上のデータを取得すると無駄な読み込みに課金が発生し、ネットワークを流れるデータ量も増えるため、サーバ側でペジネーションを行うことが推奨されます。</li>
 <li>Firestoreではストリーミング・データベースとして機能し、高度なペジネーション機能を提供します。というのも、クライアントとストリーミングとしてコネクションを維持している場合、常にクライアント側のキャッシュとの差分をチェックして更新分だけをやりとりしてくれる機能を持っています。また、リストを表示する画面があったとして、画面に表示されていない表の下部や上部をスクロール操作で表示したいとき、リアルタイムデータベースはスクロール操作にあわせて必要なデータをストリーム取得してくれます。</li>
@@ -621,7 +621,7 @@
 <li>例えばFlutterでは、「Firestore.instance.collection(&#39;コレクション名&#39;).snapshots()」といった関数でストリーム型でデータを取得し、ListViewやGridViewで表示させることでペジネーションの実装が可能です。</li>
 </ul>
 <h2 is-upgraded>8. トランザクション処理</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1<p>dOVSr0OsAoU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>dOVSr0OsAoU</p>
 <ul>
 <li>Firestoreはトランザクション処理を実現します。例えば、顧客ドキュメントの名前フィールドを更新する際、レビュードキュメント上においたレビューを追加した顧客名も同時に更新しなければならないことがあります。このような場合、一連の更新作業はひとつのトランザクションとし、すべてが成功した場合にのみ更新を確定（コミット）するといった機能が必要です。そうしなければ、途中の更新に失敗した場合データに不整合が発生してしまいます。</li>
 <li>Firestoreにおけるトランザクションの考え方には以下の2種類があります。</li>
@@ -640,13 +640,13 @@
 <li>FieldValue.increment()による高速トランザクション：<a href="https://qiita.com/1amageek/items/665df5a6d9921319e300" target="_blank">https://qiita.com/1amageek/items/665df5a6d9921319e300</a></li>
 </ul>
 <h2 is-upgraded>9. オフラインサポート</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1<p>oDvdAFP6OhQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>oDvdAFP6OhQ</p>
 <ul>
 <li>Firestoreはオフラインをサポートしており、クライアント側にFirestore SDKを使うとオフライン時の読み込みはキャッシュが使われ、書き込みもローカルに保存されオンラインになったら順番にFirestoreに反映されるといったことが実現可能です。</li>
 <li>これらの機能は大変高度なものであり、実装するには大変な工数がかかり考慮点も多数ありますが、Firestoreではデフォルトでこれらの機能が利用できますです。</li>
 </ul>
 <h2 is-upgraded>10. リアルタイムか一括フェッチか？</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1<p>3aoxOtMM2rc</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>3aoxOtMM2rc</p>
 <ul>
 <li>リアルタイムデータベースの操作について下記の迷信がありますが、Firestoreはこれらの迷信を覆します。そのためFirestoreにおいてはデフォルトでリアルタイム機能を使うよう設計し開発をすすめることをおすすめします。</li>
 </ul>
@@ -663,7 +663,7 @@
 </ol>
 <p>いいえ。リスナーを常駐させることは電力消費を増やしません。</p>
 <h2 is-upgraded>11. サーバレスの概要（Cloud Functions）</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1<p>rERRuBjxJ80</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>rERRuBjxJ80</p>
 <ul>
 <li>Firesoteは、Firebase上のドキュメント型リアルタイムデータベースを提供するサービスであり、リレーショナルデータベースをモバイルアプリから利用する際に通常必要となるAPIの開発を必要としません。しかし、異なるドキュメントに重複して所有されるフィールドの更新時に一貫性を持たせるための更新処理を実行したい場合や古いデータをまとめて削除するといった運用バッチを実行したい場合など、バックエンドでまとめて処理を行いたいといった要望があります。</li>
 <li>Firebaseでは、そのような場合に利用できる機能としてFirebase Functionsというサービスを提供しています。また、Firebase Functionsは一過性のバッチ処理を実行するものであるため、コンピュータ上にプロセスが常駐しないサーバレス型で実装されています。そのため、使った分だけの課金であるのはもちろん、プロセスの常駐に必要なCPUやメモリ、ストレージへの課金がまるまる削減されます。</li>
@@ -673,7 +673,7 @@
 </ul>
 <p><a href="https://www.youtube.com/watch?v=DYfP-UIKxH0" target="_blank">https://www.youtube.com/watch?v=DYfP-UIKxH0</a></p>
 <h2 is-upgraded>12. Cloud Functionsの5つの利用パターン</h2>
-<br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1<p>77XmRDtOL7c</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>77XmRDtOL7c</p>
 <ul>
 <li>Cloud Functionsをどのような場合に利用すればよいか、5つのパターンにまとめると以下の通りです。ただし繰り返しになりますがリアルタイムデータベースのメリットが享受できなくなる欠点があることは考慮すべきでしょう。</li>
 </ul>
@@ -702,7 +702,7 @@
 <h2 is-upgraded>開発するアプリケーション</h2>
 <p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
 <p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください（おかしな動作をする場合はブラウザのキャッシュをクリアして再度試してください）。</p>
-<br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
+<p>flutter01</p>
 <p>本書のハンズオンではこのアプリの作り方を学びます。</p>
 <aside class="warning"><p><strong>ノート: </strong>上記Webアプリをスマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
 <p class="image-container"><img style="width: 123.00px" src="img/f5a6c4ab61f6cb9e.png"></p>
@@ -723,7 +723,7 @@
 <p>Windows環境の場合ターミナルが使いやすくなるように下記リンクからPowerShellをインストールしておくと良いです。</p>
 <p><a href="https://github.com/PowerShell/PowerShell" target="_blank">https://github.com/PowerShell/PowerShell</a></p>
 <h3 is-upgraded>インストールの確認</h3>
-<p>上記のインストールが完了しているかを確認するため「flutter doctor」コマンドを実行します。下記の通り、FlutterとVS CodeとChromeにチェック <code>[�</code>�] が入っていますが、AndroidとXcodeにはインストールがされていないことを表すバツ <code>[�</code>�] が表示されます。</p>
+<p>上記のインストールが完了しているかを確認するため「flutter doctor」コマンドを実行します。下記の通り、FlutterとVS CodeとChromeにチェック「✔︎」が入っていますが、AndroidとXcodeにはインストールがされていないことを表すバツ「✖︎」が表示されます。</p>
 <pre>$ flutter doctor
 Doctor summary (to see all details, run flutter doctor -v):
 [✓] Flutter (Channel beta, 1.20.0, on Mac OS X 10.15.6 19G2021, locale ja-JP)
@@ -822,28 +822,89 @@ $ flutter run -d chrome</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="(参考) Dart言語の基礎" duration="0">
-        <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えると思いますが、ここではDart言語の文法と特にFirebaseとのストリーム処理に必要な非同期処理とストリーム処理、FirestoreとのJSONデータのやりとりに必要な配列やマップについて解説します。</p>
-<h2 is-upgraded>Dart言語の文法①</h2>
-<p>TODO</p>
-<h2 is-upgraded>Dart言語の文法②</h2>
-<p>TODO</p>
-<h2 is-upgraded>オブジェクトと配列、マップ</h2>
-<p>TODO</p>
-<h2 is-upgraded>非同期処理とストリーミング処理</h2>
-<p>TODO</p>
+      <google-codelab-step label="Dart言語の基礎" duration="0">
+        <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えると思います。</p>
+<aside class="warning"><p><strong>ノート: </strong>Dart言語の基礎については「<a href="https://codelabs.developers.google.com/codelabs/from-java-to-dart" target="_blank">Intro to Dart for Java Developers</a>」というCodelabを一通りみてください。また「<a href="https://dart.dev/samples" target="_blank">Language samples</a>」もみておくとよいです。Dart言語でのクラスの実装やインタフェース、関数プログラミングについて学べます。</p>
+</aside>
+<p>ここまでの説明から、アプリケーションの基本はデータモデルとアプリ画面のマッピングであることは理解してもらえていると思います。そのため、Flutter開発において重要なしくみは「1.認証サービスやデータベースからネットワークごしに非同期に得られるデータを処理すること」と「2.得られたデータ（特にリスト型）を画面表示用に変換すること」といえます。そのため本書では、2のリスト型のデータ変換理解のため「コレクション型」と1の非同期で流れてくるストリームの瞬間をとらえるスナップショット理解のため「非同期処理」をピックアップして解説します。</p>
+<h2 is-upgraded>Dart言語の文法: コレクション型</h2>
+<p>Dartで定義できるコレクション型（同じ型やクラスであるエレメントをまとめてあつかう集合型）には以下の4種類があります。</p>
+<ol type="1" start="1">
+<li>List型 ... インデックスでエレメントにアクセスするコレクション(例：list[0],list[1],...）</li>
+<li>Map型 ... キー・バリュー型のコレクション（例：map[&#34;first&#34;],map[&#34;second&#34;],...）</li>
+<li>Set型 ... エレメントの重複を許さないコレクション。</li>
+<li>Queue型 ... 先入先出し型のコレクション</li>
+</ol>
+<p>Flutterでのデータモデルとアプリ画面間の変換には、ListとMapをよく使うので、それぞれの使い方と変換方法を説明します。</p>
+<p>1. レストランクラスの実装</p>
+<p>ID、名前、タイプ、住所、ロゴ画像URL、星の数といった属性をもつクラスを実装します。</p>
+<p>dartpad01</p>
+<p>2. JSONからのレストランクラスのインスタンス化</p>
+<p>jsonEncodeメソッドを使うと「{ }」から始まるJSON文字列からはマップを作成することができるので、このマップからレストランクラスを作成します。</p>
+<p>dartpad02</p>
+<p>上の実装のうちマップからレストランクラスを作成する部分をレストランクラスの関数「fromMap(String id, Map&lt;String, dynamic&gt; data)」を作成して実装する。</p>
+<p>dartpad03</p>
+<p>3. JSONからのレストランクラスの配列</p>
+<p>jsonEncodeメソッドを使うと「[ ]」から始まるJSON文字列からはリストを作成することができるので、このマップからレストランクラスの配列を作成します。</p>
+<p>dartpad04</p>
+<p>JSON文字列から得られたマップのリストを「.map((val)=&gt;function(val)).toList()」という関数を使って、Restoインスタンスのリストに変換します。このしくみをつかうことでJSONの場合と同じくドキュメントデータをマップとして取得するFirestoreの場合でも画面表示に利用しやすいRestoクラスに変換されたリストを簡単に取得することができます。</p>
+<p>dartpad05</p>
+<aside class="warning"><p><strong>ノート: </strong>コレクション型については<a href="https://dart.dev/codelabs/iterables" target="_blank">こちら</a>も参照してください。</p>
+</aside>
+<h2 is-upgraded>Dart言語の文法: 非同期処理</h2>
+<p>Dartでは非同期で取得する値が一つの値やオブジェクトか、コレクションかによってそれを扱うクラスが異なります。</p>
+<ol type="1" start="1">
+<li>Future: 一つの値やオブジェクトを扱う非同期処理用クラス</li>
+<li>Stream: コレクションを扱う非同期処理用クラス</li>
+</ol>
+<p>JSON文字列からレストランオブジェクトを5秒遅れて取得してprint表示するFutureの例です。</p>
+<p>dartpad06</p>
+<p>JSON文字列からレストランオブジェクトのリストを1秒おきに取得してprint表示するStreamの例です。</p>
+<p>dartpad07</p>
+<aside class="warning"><p><strong>ノート: </strong>非同期処理については<a href="https://dart.dev/codelabs/async-await" target="_blank">こちら</a>も参照してください。また詳細については以下の動画が日本語字幕もついており参考になります。</p>
+<p>Dartによる非同期処理の動画シリーズ</p>
+<p>1. <a href="https://www.youtube.com/watch?v=vl_AaCgudcY" target="_blank">アイソレートとエベントループ</a>: Dart言語がシングルスレッドなのに非同期を実現しているしくみを解説します。</p>
+<p>2. <a href="https://www.youtube.com/watch?v=OTS-ap9_aXc" target="_blank">Futureの説明</a>: 一つの値を扱う非同期処理を実現するFutureを解説します。</p>
+<p>3. <a href="https://www.youtube.com/watch?v=nQBpOIHE4eE" target="_blank">Streamの説明</a>: 複数の連続した値を扱う非同期処理を実現するStreamを解説します。</p>
+<p>4. <a href="https://www.youtube.com/watch?v=SmTCmDMi4BY" target="_blank">Async/Awaitの説明</a>: 関数で複数の非同期処理を順番に実行する場合やFutureやStreamを引数にもつ関数の実装方法を解説します。</p>
+<p>5. <a href="https://www.youtube.com/watch?v=TF-TBsgIErY" target="_blank">非同期ジェネレータの説明</a></p>
+</aside>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="(参考)マテリアルデザイン開発" duration="0">
-        <p>TODO Dart言語が理解できたらFlutterを使って画面と画面遷移を実装します。そのうち画面はマテリアルデザインを実装したさまざまなWidgetを使って開発します。また画面遷移はNavigator（フローを実装）もしくはStreamBuilder（状態遷移を実装）を使って実装します。ここでは、基本的なWidgetの紹介と使い方、また画面遷移の実装方法を解説します。</p>
-<p>1. StatelessWidget（ステートを持たない） と StatefulWidget（画面にステートを紐付けコントロールできる。画面のボタンを押すなど画面からのアクションをもって画面の再表示できる）の違い。</p>
-<p>2. 画面の部品を構成するWidgetについて</p>
-<p>3. StatelessWidgetを使った画面例（Formによるログイン画面、StreamBuilderを使ったListView、GridView、チャットなど）</p>
-<p>4. StatefulWidgetを使った画面例（ユーザ登録とログインを切り替える画面、PageViewを使ったボトムナビゲーションバー画面、など）</p>
-<p>5. Navigatorを使った画面遷移</p>
-<p>6. ProviderとLandingページ</p>
+      <google-codelab-step label="マテリアルデザイン開発" duration="0">
+        <p>Dart言語が理解できたらFlutterを使ってさまざまな画面と画面遷移を実装します。ここではFirebaseを使わず、</p>
+<p>1. シンプルなログイン画面の実装</p>
+<p>StatelessWidgetを使ってシンプルなログイン画面を作成します。</p>
+<p>dartpad08</p>
+<p>2. ボタンを押すとバリデータを実行するログイン画面の実装</p>
+<p>ログインボタンを押すとメールアドレスやパスワードが入力されているか？ルールにのっとって入力されているかをチェックして、条件を満たさない場合エラーメッセージを表示してくれるよう実装します。</p>
+<p>dartpad09</p>
+<p>3. キー入力でフォーカスが移動するログイン画面の実装</p>
+<p>FocusNodeクラスを使いフィールド値が完了したら次のフィールドにキー操作が移動するようログイン画面を修正します。</p>
+<p>dartpad10</p>
+<p>4. ログインボタンをクリックするとホーム画面に遷移するログイン画面の実装</p>
+<p>ログインボタンをクリックするとNavigator.pushを使ってホーム画面に遷移するよう実装します。ただ、ホーム画面のAppBar左上に戻るボタンが表示されてしまうので、この実装ではログインを意味しておらず別の方法が必要です。</p>
+<p>dartpad10</p>
+<p>5. ログイン/ログアウト状態を管理するランディング画面の実装</p>
+<p>ログイン画面とホーム画面をログイン/ログアウト状態を管理するステートを持つランディング画面でつなげるよう実装します。この実装はのちに利用するProviderを実装していることになります。</p>
+<p>dartpad11</p>
+<p>6. ログイン画面を登録画面に切り替えられるよう実装</p>
+<p>ログインボタンと登録ボタンをクリックすることでログイン画面と登録画面を切り替えられるようログイン画面を修正します。一つのWidgetで切り替えを行うにはStatelessWidgetから状態（State）を持つStatefulWidgetに変更が必要なのでリファクタリングを行います。</p>
+<p>dartpad12</p>
+<p>7. ホーム画面にボトムナビゲーションバーを追加</p>
+<p>ホーム画面にボトムナビゲーションバーを追加して、3画面切り替えられるように実装します。そのために、StatefulWidgetにリファクタリングして、PageViewを使った実装を行います。</p>
+<p>dartpad13</p>
+<p>8. ホーム画面の一つにGridViewを実装</p>
+<p>ホーム画面のPageViewで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
+<p>dartpad14</p>
+<p>9. Streamからデータを取得するGridViewを実装</p>
+<p>ホーム画面のPageViewで切り替える画面の一つにJSON文字列からStreamで取得したレストランのリストをGridViewで表示する画面を実装します。</p>
+<p>dartpad15</p>
+<p>10. ダイアログの表示</p>
+<p>ログアウトするときにダイアログを表示するよう実装します。</p>
+<p>dartpad16</p>
 
 
       </google-codelab-step>
@@ -913,7 +974,7 @@ i  Firebase optionally collects CLI usage and error reporting information to hel
 
 You&#39;re about to initialize a Firebase project in this directory:
 
-  /Users/david/Desktop/firebase&amp;flutter/RestoReview
+  /.../RestoReview
 
 ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. ? Which Firebase CLI features do you want to set up for this folder? Press Space to select features, then Enter to confirm your choices. 
 
