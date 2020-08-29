@@ -65,4 +65,8 @@ mv index.html.1 index.html
 cat index.html | sed 's#<p>dartpad07</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=57ffc4b5437bd5e24b58315c9494dea0" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
+# flutterの追加
+cat index.html | sed 's#<p>login01.dart</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" frameborder="1"></iframe>#g' > index.html.1
+mv index.html.1 index.html
+
 exit 0
