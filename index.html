@@ -836,20 +836,21 @@ $ flutter run -d chrome</pre>
 <li>Queue型 ... 先入先出し型のコレクション</li>
 </ol>
 <p>Flutterでのデータモデルとアプリ画面間の変換にはListとMapをよく使うので、それらの使い方と変換方法をステップバイステップで説明します。</p>
-<p>1. レストランクラスの実装</p>
+<p>1. レストランクラスの作成</p>
 <p>ID、名前、タイプ、住所、ロゴ画像URL、星の数といった属性をもつクラスを実装します。</p>
 <iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=6d1696f7c00719ddaf92b482a5c4396a" frameborder="1"></iframe>
-<p>2. JSONからのレストランクラスのインスタンス化</p>
-<p>jsonEncodeメソッドを使うと「{ }」から始まるJSON文字列からはマップを作成することができるので、このマップからレストランクラスを作成します。</p>
+<p>2. JSONからのレストランクラスの作成</p>
+<p>jsonDecodeメソッドを使うと「{ }」から始まるJSON文字列からはマップを作成することができるので、このマップからレストランクラスを作成します。</p>
 <iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=945bed99f9f3c5718972af3d652c2db7" frameborder="1"></iframe>
 <p>3. マップからレストランクラスを生成するファクトリ</p>
 <p>マップからレストランクラスを作成する部分をレストランクラスの関数「fromMap(String id, Map&lt;String, dynamic&gt; data)」を作成して実装します。</p>
 <iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=15c1b361894b2462d4e118b1c96e54a8" frameborder="1"></iframe>
-<p>3. JSONからのレストランクラスの配列</p>
-<p>jsonEncodeメソッドを使うと「[ ]」から始まるJSON文字列からはリストを作成することができるので、このマップからレストランクラスの配列を作成します。</p>
-<p>dartpad04</p>
+<p>4. JSONからのレストランクラスの配列作成</p>
+<p>jsonDecodeメソッドを使うと「[ ]」から始まるJSON文字列からはリストを作成することができるので、このマップからレストランクラスの配列を作成します。</p>
+<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=6a0336662fa73c384c4b8d7352e5bca3" frameborder="1"></iframe>
+<p>5. リストからレストランクラスの配列作成</p>
 <p>JSON文字列から得られたマップのリストを「.map((val)=&gt;function(val)).toList()」という関数を使って、Restoインスタンスのリストに変換します。このしくみをつかうことでJSONの場合と同じくドキュメントデータをマップとして取得するFirestoreの場合でも画面表示に利用しやすいRestoクラスに変換されたリストを簡単に取得することができます。</p>
-<p>dartpad05</p>
+<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=b1f2329101137e1ab19cc77b80df47c6" frameborder="1"></iframe>
 <aside class="warning"><p><strong>ノート: </strong>コレクション型については<a href="https://dart.dev/codelabs/iterables" target="_blank">こちら</a>も参照してください。</p>
 </aside>
 <h2 is-upgraded>Dart言語の文法: 非同期処理</h2>
