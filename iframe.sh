@@ -6,7 +6,7 @@ cat index.html | sed 's#<link rel="stylesheet" href="https://storage.googleapis.
 mv index.html.1 index.html
 
 # Flutter Galleryを追加する
-cat index.html | sed 's#<p>material01</p>#<br><iframe width="800" height="600" src="https://gallery.flutter.dev" frameborder="1"/>#g' > index.html.1
+cat index.html | sed 's#<p>material01</p>#<iframe width="800" height="600" src="https://gallery.flutter.dev/" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
 # Youtube動画を追加する
