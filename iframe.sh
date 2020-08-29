@@ -5,6 +5,10 @@ LANG=C
 cat index.html | sed 's#<link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">#<link rel="stylesheet" href="./codelab-elements.css">#g' > index.html.1
 mv index.html.1 index.html
 
+# Flutter Galleryを追加する
+cat index.html | sed 's#<p>material01</p>#<br><iframe width="800" height="600" src="https://gallery.flutter.dev" frameborder="1"/>#g' > index.html.1
+mv index.html.1 index.html
+
 # Youtube動画を追加する
 cat index.html | sed 's#<p>v_hR4K4auoQ</p>#<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#g' > index.html.1
 mv index.html.1 index.html

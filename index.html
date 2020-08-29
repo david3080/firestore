@@ -294,7 +294,90 @@
       </google-codelab-step>
     
       <google-codelab-step label="(参考)マテリアルデザイン" duration="0">
-        <p>TODO 画面デザインのガイドラインであるマテリアルデザインの紹介とマテリアルデザインが提供する主要な画面部品を紹介します。</p>
+        <p>ここではGoogleが2014年に発表したUIデザインのガイドラインであるマテリアルデザインを紹介します。ここでは特にスマートフォンのアプリケーションのUIデザインにフォーカスし、スマホアプリ特有の問題からデザインの歴史の説明をへながらマテリアルデザインが出現してきた背景やその業界におけるインパクトについて説明します。</p>
+<h2 is-upgraded>1. スマートフォンの特徴</h2>
+<p>スマートフォンはパソコンと違い下記の特徴が挙げられます。</p>
+<h4 is-upgraded><strong>画面が小さく操作手段が限定的</strong></h4>
+<p>スマホにはマウスやキーボードがなく操作手段が限られるため、画面レイアウトや操作性をどのようにデザインするかでユーザの満足度が大きく変化します。</p>
+<h4 is-upgraded><strong>画面サイズがばらばら</strong></h4>
+<p>AndroidとiPhoneというOSの違いだけでなく、画面サイズもさまざまであり、アプリの<br>レイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
+<p class="image-container"><img style="width: 577.00px" src="img/886625a7f19811a7.png"></p>
+<h2 is-upgraded>2. スマホアプリで発生しやすい問題点</h2>
+<p>上記のスマートフォンの特徴のため、その上で起動するアプリに対する４大悪評判をGoogle PlayやApp Storeに登録されたアプリの評判からまとめると以下のようにまとめられます。</p>
+<ol type="1" start="1">
+<li>操作途中でクラッシュしてしまう</li>
+<li>元の画面に戻れない、探している機能に行き着かない、といったナビゲーション機能が不十分</li>
+<li>デザインが必要以上に凝っていて意味不明</li>
+<li>大量の情報がそのまま表示され、検索したりフィルタリングする機能がない</li>
+</ol>
+<p>これらの悪評のうち、2から4まではUIデザインの問題であり、小さな画面に情報を埋め込みがちなスマホアプリにありがちなデザインに起因する問題でもあります。</p>
+<h2 is-upgraded>3. スマホデザインの歴史</h2>
+<p>それではこのような特徴をもつスマートフォンにおけるデザインはどのような歴史を歩んできたのでしょうか。</p>
+<p>まず、2000年前半のWebやアプリケーションのUIはそれまでのWindowsパソコンが機械的で使いづらく利用者のことを考えて作られていないという反省から、コテコテに現実世界を模して装飾したコンポーネントからなるUIを取り入れるようになりました。この考え方によるデザインをスキューモーフィズムと呼びます。ただし、この装飾に凝ったデザインでは、デザイナーの主張が先行し見た目や操作性に統一感がないといった弊害を生むことになりました。</p>
+<p>そのため、20世紀初頭のモダニズムが建築や工業製品のデザインに取り入れられたように、パソコンやWebやモバイルのデザインにも極力装飾を廃したフラットデザインが採用されることになりました。ただし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットがあります。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>iPhone6のスキューモフィズムデザイン</p>
+<p class="image-container"><img style="width: 211.50px" src="img/13bf84e545185e44.png"></p>
+</td><td colspan="1" rowspan="1"><p>iPhone7のフラットデザイン</p>
+<p class="image-container"><img style="width: 208.79px" src="img/bd026add4995ef9e.png"></p>
+</td></tr>
+</table>
+<p>そこで、Googleはフラットデザインとスキューモフィズムの中間をとり「マテリアルデザイン」というものを定義し、2014年にだれでもオープンソースガイドラインとして発表しました。</p>
+<h2 is-upgraded>4. マテリアルデザインとは？</h2>
+<p>マテリアルデザインとは、Googleが2014年に発表したUIのデザインガイドラインです。Googleは、Gmailなどの数多くのアプリを発表してきましたが、それらがパソコン、Android、iPhone、タブレットなど異なるデバイスで利用されるとき、画面サイズもOSも異なるため、異なった見た目と操作性を持ってしまったことを問題視していました。そのため、さまざまなデバイスでもデバイスの特徴を踏まえながら統一したデザインで操作できるようなUIデザインのガイドラインを作ろうということで開発されたのがマテリアルデザインです。例えば、スマホのようなデバイスでは、手のひらで操作することを想定して、直感的で意味のある物理的な概念をデザインに取り入れてガイドラインが策定されています。</p>
+<p>マテリアルデザインは、あくまでもガイドラインなので、必ず準拠すべきものではありませんが、デザインの部品がどのような形でどのように動くかが細かく規定されており、Java、Kotlin、Swift、JavaScript、Flutterといったさまざまな言語に対応した無料で利用できるプログラムとともに提供されているので、まるまる採用することで一定基準以上のUIデザインを実現したアプリを開発するための設計や実装の工数を大幅に削減できるといったメリットがあるものです。そのため、多くのプロジェクトで広く採用されています。</p>
+<h2 is-upgraded>5. マテリアルデザインの4つの考え方</h2>
+<p>マテリアルデザインは以下の4つのコンセプトを持ちます。</p>
+<p>①形をもった面</p>
+<p>形をもったうすい紙のような面が重なって画面を表示するしくみを採用しています。この考え方によって、一枚の紙を切って分割して記事を表示したり、メニューやフッターを表示するための紙と中心のコンテンツをのせるための紙が重なって表示されることを影を使って表現することができます。これによって実際は奥行きがなくフラットなスマホの画面を立体的に表現することによって、表示されているものの種類が区別しやすくなったり、高さを使うことで手前にあるものほど重要といったユーザが3次元の世界で感じるのと同じようにどこに注意をむけるべきかを直感的に知ることができるようになります。</p>
+<aside class="warning"><p><strong>ノート: </strong>指によるタッチや文字入力など人による操作は物理的なルールに従い影響を及ぼすことや面は厚さを持つので同じ奥行きに存在することはなく透過することもないといった実際の物理的な世界の常識を反映し、面・奥行き・光と影に関して下記のルールにのっとって実装されます。</p>
+<p>面：現実世界の物理世界をスマホ画面のデザインに反映し、画面に表示される部品は厚さ1dp(ドットポイント)の面で構成されます。</p>
+<p><a href="https://material.io/design/environment/surfaces.html" target="_blank">https://material.io/design/environment/surfaces.html</a></p>
+<p>奥行き：概念的には面が何層にも重なっていて奥行きをもった構造を持っています。</p>
+<p><a href="https://material.io/design/environment/elevation.html" target="_blank">https://material.io/design/environment/elevation.html</a></p>
+<p>光と影：面と面との奥行きの違いは後ろの面にうつった影によって表現され、手前の面が手前に浮き上がれば影は大きくなります。</p>
+<p><a href="https://material.io/design/environment/light-shadows.html" target="_blank">https://material.io/design/environment/light-shadows.html</a></p>
+</aside>
+<p>②印刷物のようなデザイン</p>
+<p>文字や絵が紙に載っているという概念からなり、ベースラインやキーラインといった印刷物のコンセプトを踏襲しています。ベースラインを決めることでコンテンツが収まる範囲を決めたり、本文やタイトルなどはキーラインを基準に配置するなど、印刷用にワードなどに設定する値を応用することで見た目に統一感を持たせて画面を美しくみせることができるようになります。また、見やすいフォントを提供しています。</p>
+<p>③意味のあるアニメーション</p>
+<p>ユーザになんらかの意味を伝えるためにはアニメーションが効果的な場合がありますが、コンポーネントにアニメーション表示を簡単にほどこせるようなしくみを実装しています。</p>
+<p>④アダプティブデザイン</p>
+<p>パソコン、Androidスマホ、iPhone、タブレットなどデバイスが異なっていても画面サイズが異なっていても形を崩さず表示するしくみを実装しています。レスポンシブデザインも同じコンセプトですが、アダプティブデザインは横幅の伸び縮みだけでなく、メニューの表示非表示などよりアダプティブにデザインを変化させるしくみをそなえています。</p>
+<h2 is-upgraded>6. マテリアルデザインの詳細</h2>
+<p>マテリアルデザインを使うと下記のようなリッチなUI画面を実装することができます。下の例はFlutterを使って実装したUI画面のサンプルギャラリーです。</p>
+<br><iframe width="800" height="600" src="https://gallery.flutter.dev" frameborder="1"/>
+<p>Flutterにおけるマテリアルデザインは下記に挙げた部品を提供しています。</p>
+<p><a href="https://material.io/components" target="_blank">https://material.io/components</a></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>ボトムアップバー</p>
+<p class="image-container"><img style="width: 186.00px" src="img/182f3739a6919bf6.png"></p>
+</td></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+<tr></tr>
+</table>
+<aside class="warning"><p><strong>ノート:</strong> Flutterにおけるマテリアルデザインについては下記URLも参考にしてください。</p>
+<p><a href="https://material.io/develop/flutter" target="_blank">https://material.io/develop/flutter</a></p>
+</aside>
+<h2 is-upgraded>7. カラーテーマ</h2>
+<p>マテリアルデザインはアプリのブランディングを統一的に進めるためにカラーテーマという概念を採用し、アプリケーション全体で部品の色やフォントカラーを統一させることが可能です。逆に言うと、同じアプリでもカラーテーマを変えてイメージの異なるアプリとして仕上げることも可能です。</p>
+<p>カラーテーマの話</p>
+<p><a href="https://material.io/design/color/the-color-system.html" target="_blank">https://material.io/design/color/the-color-system.html</a></p>
+<p>カラーツール</p>
+<p><a href="https://material.io/resources/color/" target="_blank">https://material.io/resources/color/</a></p>
+<h2 is-upgraded>8. マテリアルデザインの発展</h2>
+<p>マテリアルデザインは単なる画面と画面遷移にとどまらず、音声や機械学習に関するUIについても拡張し、ガイドラインを提供しています。</p>
+<p>機械学習機能に関するマテリアルデザイン</p>
+<p><a href="https://material.io/design/machine-learning/understanding-ml-patterns.html" target="_blank">https://material.io/design/machine-learning/understanding-ml-patterns.html</a></p>
+<p>音声に関するマテリアルデザイン</p>
+<p><a href="https://material.io/design/sound/about-sound.html" target="_blank">https://material.io/design/sound/about-sound.html</a></p>
 
 
       </google-codelab-step>
@@ -497,7 +580,7 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="(参考)インフラと開発環境選定" duration="0">
+      <google-codelab-step label="インフラと開発環境選定" duration="0">
         <p>TODO 本書でインフラ環境にFirebase、開発環境にFlutterを選定している根拠を記載します。また要件の追加の可能性と対応方法について記載します。</p>
 
 
