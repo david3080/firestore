@@ -837,7 +837,8 @@
 <p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください（おかしな動作をする場合はブラウザのキャッシュをクリアして再度試してください）。</p>
 <br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
 <p>本書のハンズオンではこのアプリの作り方を学びます。</p>
-<aside class="warning"><p><strong>ノート: </strong>上記Webアプリをスマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
+<aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://firestore-5643d.web.app" target="_blank">https://firestore-5643d.web.app</a> です。</p>
+<p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
 <p class="image-container"><img style="width: 123.00px" src="img/f5a6c4ab61f6cb9e.png"></p>
 </aside>
 <h2 is-upgraded>初期設定</h2>
@@ -960,6 +961,8 @@ $ flutter run -d chrome</pre>
 <aside class="warning"><p><strong>ノート: </strong>Dart言語の基礎については「<a href="https://codelabs.developers.google.com/codelabs/from-java-to-dart" target="_blank">Intro to Dart for Java Developers</a>」というCodelabを一通りみてください。また「<a href="https://dart.dev/samples" target="_blank">Language samples</a>」もみておくとよいです。Dart言語でのクラスの実装やインタフェース、関数プログラミングについて学べます。</p>
 </aside>
 <p>ここまでの説明から、アプリケーションの基本はデータモデルとアプリ画面のマッピングであることは理解してもらえていると思います。そのため、Flutter開発において重要なしくみは「1.認証サービスやデータベースからネットワークごしに非同期に得られるデータを処理すること」と「2.得られたデータ（特にリスト型）を画面表示用に変換すること」といえます。そのため本書では、2のリスト型のデータ変換理解のため「コレクション型」と1の非同期で流れてくるストリームの瞬間をとらえるスナップショット理解のため「非同期処理」をピックアップして解説します。</p>
+<aside class="warning"><p><strong>ノート:  </strong>本章ではブラウザ上でDart言語をプログラミングし、実行できるDartpadを使って説明しています。画面が小さくて見にくい場合は、iFrameエリア右上の最大化ボタンをクリックして別タブを開いて試してください。上部のプログラムを実行したい場合は右上のRUNボタンをクリックすると下部のコンソールに実行結果が表示されます。ソースコードが表示されない場合は、ブラウザをリロードしてください。</p>
+</aside>
 <h2 is-upgraded>Dart言語の文法: コレクション型</h2>
 <p>Dartで定義できるコレクション型（同じ型やクラスであるエレメントをまとめてあつかう集合型）には以下の4種類があります。</p>
 <ol type="1" start="1">
@@ -1012,6 +1015,8 @@ $ flutter run -d chrome</pre>
     
       <google-codelab-step label="マテリアルデザイン開発" duration="0">
         <p>Dart言語が理解できたらFlutterを使ってさまざまな画面と画面遷移を実装します。ここではFirebaseを使わず、JSONの静的データから画面と画面遷移のみを実装します。</p>
+<aside class="warning"><p><strong>ノート:  </strong>本章ではブラウザ上でFlutterをプログラミングし実行できるDartpadを使って説明しています。画面が小さくて見にくい場合は、iFrameエリア右上の最大化ボタンをクリックして別タブを開いて試してください。左側のプログラムを実行したい場合は右上のRUNボタンをクリックすると右側の画面にアプリが表示されます。ソースコードが表示されない場合は、ブラウザをリロードしてください。</p>
+</aside>
 <p>1. シンプルなログイン画面</p>
 <p>StatelessWidgetを使ってシンプルなログイン画面を実装します。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" frameborder="1"></iframe>
