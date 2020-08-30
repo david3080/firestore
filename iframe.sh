@@ -74,5 +74,7 @@ cat index.html | sed 's#<p>login03.dart</p>#<iframe width="900" height="500" src
 mv index.html.1 index.html
 cat index.html | sed 's#<p>login04.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c46188cd4e6fe122914d317c33f8c8a4" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
+cat index.html | sed 's#<p>login05.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=5376a8be440a38b5fa982d93fea6893d" frameborder="1"></iframe>#g' > index.html.1
+mv index.html.1 index.html
 
 exit 0
