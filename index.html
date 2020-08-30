@@ -1012,26 +1012,26 @@ $ flutter run -d chrome</pre>
     
       <google-codelab-step label="マテリアルデザイン開発" duration="0">
         <p>Dart言語が理解できたらFlutterを使ってさまざまな画面と画面遷移を実装します。ここではFirebaseを使わず、JSONの静的データから画面と画面遷移のみを実装します。</p>
-<p>1. シンプルなログイン画面の実装</p>
-<p>StatelessWidgetを使ってシンプルなログイン画面を作成します。</p>
+<p>1. シンプルなログイン画面</p>
+<p>StatelessWidgetを使ってシンプルなログイン画面を実装します。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" frameborder="1"></iframe>
-<p>2. ボタンを押すとバリデータを実行するログイン画面の実装</p>
+<p>2. ボタンを押すとバリデータを実行するログイン画面</p>
 <p>ログインボタンを押すとメールアドレスやパスワードが入力されているか？ルールにのっとって入力されているかをチェックして、条件を満たさない場合エラーメッセージを表示してくれるよう実装します。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=fcd7a92fb86a50604398c3f8c3b014d2" frameborder="1"></iframe>
-<p>3. キー入力でフォーカスが移動しホーム画面に遷移するログイン画面の実装</p>
+<p>3. キー入力でフォーカスが移動しホーム画面に遷移するログイン画面</p>
 <p>FocusNodeクラスを使いフィールド値が完了したら次のフィールドにキー操作が移動し、ログインボタンをクリックするとNavigator.pushを使ってホーム画面に遷移するよう実装します。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c01622bd27e91e952e62d2f73cc7e131" frameborder="1"></iframe>
-<p>4. ログイン/ログアウト状態を管理するランディング画面の実装</p>
-<p>ログイン画面とホーム画面をログイン/ログアウト状態を管理するステートを持つランディング画面でつなげるよう実装します。この実装はのちに利用するProviderを実装していることになります。</p>
+<p>4. ログイン/ログアウト状態を管理するランディング画面</p>
+<p>ログイン画面とホーム画面をログイン/ログアウト状態を管理するステートを持つランディング画面でつなげるよう実装します。この実装はのちに利用するProviderの簡易実装です。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c46188cd4e6fe122914d317c33f8c8a4" frameborder="1"></iframe>
-<p>5. ログイン画面を登録画面に切り替えられるよう実装</p>
+<p>5. 登録画面に切り替えられるログイン画面</p>
 <p>ログインボタンと登録ボタンをクリックすることでログイン画面と登録画面を切り替えられるようログイン画面を修正します。一つのWidgetで切り替えを行うにはStatelessWidgetから状態（State）を持つStatefulWidgetに変更が必要なのでリファクタリングを行います。</p>
 <p>login05.dart</p>
 <p>6. ホーム画面にボトムナビゲーションバーを追加</p>
 <p>ホーム画面にボトムナビゲーションバーを追加して、3画面切り替えられるように実装します。そのために、StatefulWidgetにリファクタリングして、PageViewを使った実装を行います。</p>
 <p>login06.dart</p>
 <p>7. ホーム画面の一つにGridViewを実装</p>
-<p>ホーム画面のPageViewで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
+<p>ホーム画面のボトムナビゲーションバーで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
 <p>login07.dart</p>
 <p>8. Streamからデータを取得するGridViewを実装</p>
 <p>ホーム画面のPageViewで切り替える画面の一つにJSON文字列からStreamで取得したレストランのリストをGridViewで表示する画面を実装します。</p>
