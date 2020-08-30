@@ -1025,20 +1025,17 @@ $ flutter run -d chrome</pre>
 <p>ログイン画面とホーム画面をログイン/ログアウト状態を管理するステートを持つランディング画面でつなげるよう実装します。この実装はのちに利用するProviderの簡易実装です。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c46188cd4e6fe122914d317c33f8c8a4" frameborder="1"></iframe>
 <p>5. 登録画面に切り替えられるログイン画面</p>
-<p>ログインボタンと登録ボタンをクリックすることでログイン画面と登録画面を切り替えられるようログイン画面を修正します。一つのWidgetで切り替えを行うにはStatelessWidgetから状態（State）を持つStatefulWidgetに変更が必要なのでリファクタリングを行います。</p>
+<p>ログインボタンと登録ボタンをクリックすることでログイン画面と登録画面を切り替えられるようログイン画面を修正します。一つのWidgetで切り替えを行うにはStatelessWidgetから状態（State）を持つStatefulWidgetに変更が必要なのでLoginクラスにリファクタリングを行います。</p>
 <iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=5376a8be440a38b5fa982d93fea6893d" frameborder="1"></iframe>
 <p>6. ホーム画面にボトムナビゲーションバーを追加</p>
 <p>ホーム画面にボトムナビゲーションバーを追加して、3画面切り替えられるように実装します。そのために、StatefulWidgetにリファクタリングして、PageViewを使った実装を行います。</p>
-<p>login06.dart</p>
-<p>7. ホーム画面の一つにGridViewを実装</p>
+<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=e38a4cbc44cb0606c86aebe93b301681" frameborder="1"></iframe>
+<p>7. ホーム画面の一つであるRestoPageにGridViewを実装</p>
 <p>ホーム画面のボトムナビゲーションバーで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
 <p>login07.dart</p>
-<p>8. Streamからデータを取得するGridViewを実装</p>
+<p>8. RestoPageにStreamからデータを取得するGridViewを実装</p>
 <p>ホーム画面のPageViewで切り替える画面の一つにJSON文字列からStreamで取得したレストランのリストをGridViewで表示する画面を実装します。</p>
 <p>login08.dart</p>
-<p>9. ダイアログの表示</p>
-<p>ログアウトするときにダイアログを表示するよう実装します。</p>
-<p>login09.dart</p>
 
 
       </google-codelab-step>
