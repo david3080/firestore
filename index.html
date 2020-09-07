@@ -31,30 +31,23 @@
         <h2 is-upgraded>本書の内容</h2>
 <p>本書では、データモデル設計とNoSQLデータベースとFirestoreについて学んだのち、レストランにレビューを追加するアプリを例にFirebaseとFlutterを使ったスマホアプリ開発する一連の流れをハンズオンします。</p>
 <h2 is-upgraded>本書のコンセプト</h2>
-<p>最近はコロナの影響もあり、在宅勤務が推奨され、学校の授業がオンライン化され、買い物はeコマースの利用が増加し、食事の際は出前アプリを使った配達が流行っています。コロナ以前も社会へのオンライン化の必要性が謳われていましたが、コロナ渦ではあらゆる生活シーンでオンライン利用が半強制化されているため、スマホやパソコンの所有率やITリテラシーは向上せざるを得ず、ますます使いやすいオンラインサービスに対する需要が増しています。</p>
-<p>また最近のシステム開発の動きを見ると、いままで使いづらいサービスの代名詞であった行政や金融のオンラインサービスをユーザ中心設計を採用し、使いやすくセキュリティ上も安全なサービスに作り替えようとする取組が進められています。またIT化が比較的遅れていた中小企業においてもDX（デジタルトランスフォーメーション）を促進しようとする動きがあります。</p>
-<p>あらゆる業界・組織において、あらゆる生活シーンでそれぞれの要件にあった使いやすいオンラインサービスが安価に構築・提供されることが求められています。</p>
-<p>一方これらの要望を担う人材育成の観点では、子供から大人までプログラミング教育がはやっており、文科省は小学校でのプログラミング授業を必須化しています。</p>
-<p>ただし、システム開発や人材育成において下記のような課題があると感じています。</p>
+<p>最近はコロナの影響もあり、在宅勤務が推奨され、学校の授業がオンライン化され、買い物はeコマースの利用が増加し、食事の際は出前アプリの利用が流行っています。コロナ以前から社会生活におけるデジタル化の必要性がうたわれていましたが、コロナ渦となり、あらゆる生活シーンでオンライン利用が半強制化され、便利で使いやすいオンラインサービスに対する需要が増しています。</p>
+<p>また最近のシステム開発の動きを見ると、いままで「使いづらい」の代名詞であった行政や金融のオンラインサービスに「<a href="https://ja.wikipedia.org/wiki/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%AD%E5%BF%83%E8%A8%AD%E8%A8%88" target="_blank">ユーザ中心設計</a>」を採用し、使いやすくセキュリティ上も安全なサービスに作り替えようとする取組が進められています。またIT化が比較的遅れていた中小企業においてもDX（<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B9%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3" target="_blank">デジタルトランスフォーメーション</a>）を促進しようとする動きがあります。</p>
+<p>このように、あらゆる業界や組織において、あらゆる生活シーンでそれぞれの立場の要望にあった使いやすいオンラインサービスが安価に構築・提供されることが求められています。</p>
+<p>一方これらの要望を担う人材育成の観点では、子供から大人までプログラミング教育がはやっており、例えば文科省は小学校でのプログラミング授業を必須化しています。しかしシステム開発や人材育成においては下記のような課題があると感じています。</p>
 <ul>
-<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走りがちで、データ構造やロジックの設計がおろそかになり、プログラマーが開発をはじめらずプロジェクトが遅延するといった状況に陥りがちです。20年近くIT企業でアプリ開発を実施してきましたが、昔も今もこのようなプロジェクトをいくつか見ています。</li>
-<li>この原因としては、システムデザインについての手法（ドメイン駆動設計やシステムアーキテクチャなど）やその説明が高尚で難しいという問題があります。そのため、本来必要なシステムデザインがスルーされ、スケジュールのプレッシャーもあり、とりあえず簡易な画面設計に走ることにつながるのではと感じています。</li>
-<li>昨今のユーザ中心設計の誤った解釈から、システムの顧客接点である画面のデザインがフォーカスされ、発注側の要件定義担当者やデザイナーを含めたプロジェクトメンバーが、本来画面設計の元になるはずのデータモデリングについて理解が乏しいことに原因があるのではとも感じています。</li>
-<li>例えば、業務で扱うデータが整理できておらず各業務ステップで担当者が手動で作業をしているため、残業が減らないのでシステム化で改善したい、といった要望がありました。ここではアーキテクト不在で要件定義が進められ、プロジェクトマネージャやデザイナが画面設計に走り、プロジェクトの半年後はじめからやりなおしになりました。システム化とは業務とデータの整理整頓でありデータモデリングがはじめから必要であることを意識しておくべきです。</li>
-<li>エンジニア育成という観点からは、従来のプログラミングの学習コンテンツはプログラミング言語の文法を学ぶことが目標となっており、出来上がったプログラムが端末に&#34;Hello World&#34;と表示するといった面白みにかけ作りたいものからかけ離れた学習内容になっていることが多いです。そのため初心者の時点からやる気をなくしてしまいます。</li>
-<li>最近の子供向けプログラミング授業用ソフトは使いやすい見た目がよく、マウス操作でプログラミングの論理的思考が学べるといったすぐれた面がある一方、汎用的なアプリケーションを開発するため使えないといった欠点も見受けられます。</li>
+<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走りがちで、データ構造やロジックの設計がおろそかになり、プログラマーが開発をはじめらずプロジェクトが遅延するといった状況に陥りがちです。20年近くIT企業でアプリ開発を実施してきましたが、昔も今もこのような破綻したプロジェクトをいくつか見ています。</li>
+<li>この原因としては、システムデザインについての手法（<a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88" target="_blank">ドメイン駆動設計</a>や<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3" target="_blank">システムアーキテクチャ</a>など）やその説明が高尚で難しいという問題があります。そのため、本来必要なシステムデザインがスルーされ、スケジュールのプレッシャーもあり、とりあえず簡易な画面設計に走ることにつながるのではと感じています。</li>
+<li>昨今の<a href="https://ja.wikipedia.org/wiki/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%AD%E5%BF%83%E8%A8%AD%E8%A8%88" target="_blank">ユーザ中心設計</a>の誤った解釈から、システムの顧客接点である画面のデザインがフォーカスされ、発注側の要件定義担当者やデザイナーを含めたプロジェクトメンバーが、本来画面設計の元になるはずの<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0" target="_blank">データモデリング</a>について理解が乏しいことに原因があるのではとも感じています。</li>
+<li>例えば、業務で扱う情報が整理できておらず各業務ステップで担当者が手動で作業をしているため、残業が減らないのでシステム化して改善したい、といった要望がありました。ここではアーキテクト不在で要件定義が進められ、プロジェクトマネージャやデザイナが画面設計に走り、プロジェクトの半年後はじめからやりなおしになりました。システム化とは業務と情報の整理整頓であり、仕事が複雑になり残業が発生するのもその整理整頓ができていないのがそもそもの原因です。そのあtめ、まずはデータモデリングが必要であることを意識しておくべきです。</li>
+<li>エンジニア育成という観点からは、従来のプログラミングの学習コンテンツはプログラミング言語の文法を学ぶことが目標となっており、出来上がったプログラムが端末に&#34;Hello World&#34;と表示するといった面白みにかけ作りたいものからかけ離れた学習内容になっていることが多いです。そのため学習自体に面白味がなく、初心者の時点からやる気をなくしてしまいます。</li>
+<li>最近の子供向けプログラミング授業用ソフトは使いやすく、見た目がよく、マウス操作でプログラミングの論理的思考が学べるといったすぐれた面がある一方、汎用的なアプリケーションを開発するため使えないといった欠点もあります。</li>
 </ul>
 <p>以上のことから、エンジニアだけでなく発注側顧客企業の担当者やプロジェクトマネージャもユースケースからデータモデルに落とす考え方やデータモデルから画面設計を行うための考え方、さらにはこれらのパターンを知っていることが望まれます。</p>
-<p>そこで本書ではデータモデリングの具体的な方法と考え方についても詳しく説明するよう心がけました。またエンジニア育成という観点では、アイデアが浮かんだらすぐに完成品までもっていけるよう効率的で汎用的なツールを選び、それらのハンズオンを掲載しています。具体的な選定理由は以下の通りです。</p>
-<ul>
-<li>開発対象のアプリは昨今の利用シーンを考えスマホアプリを対象としました</li>
-<li>サーバ構築には、スマホアプリに一般的に必要となるサーバ機能をボタン一つで提供するGoogle Cloud Firebaseを採用しました</li>
-<li>認証のしくみには、スマホアプリに即組み込めて、様々なタイプの認証機能を提供し、外部のOIDCサーバとも連携できるFirebase Authを採用しました</li>
-<li>データベースには、リアルタイムデータベースとスマホアプリから安全に直接アクセスできるSDKが提供されているFirestoreを採用しました。本来ならデータベース構築以外にもアプリをデータベースにつなげるためのAPI開発やセキュリティ対策も必要になりますが、Firestoreの採用によりこれらの工数が劇的に削減されます。</li>
-<li>スマホアプリ開発には、一つのプログラミングコードでiPhoneアプリもAndroidアプリもWebアプリも構築できるクロスプラットフォームの一つであるFlutterを採用しました。本来ならiPhoneアプリ、Androidアプリ、Webアプリそれぞれについて、異なる開発環境、プログラミング言語、開発フレームワークを使った開発が必要ですが、これらを一つの環境で同一のプログラミング言語で一回コーディングすることで可能にしています。これにより開発工数が大幅に削減されます。</li>
-</ul>
-<p>様々な立場の人が本書を読みハンズオンを試してもらうことで「こんなに簡単に作れるんだ」とものづくりに興味をもってもらい、自分たちが実現したいシステムを自らが構築するマインドをもっていただく一助になればと思っています。また本書をとおしてIT技術の活用が民主化されることで、自らの会社や組織、業界においてより価値を産むアイデア考察に積極的になり、多くの時間をついやすようになっていただければと願っています。</p>
-<p>※ 著者は2020年2月に第33回「21世紀交流サロン・葵丘」にてこれらの考え方を「テクノロジーの民主化」と題して話しました。<a href="http://21cmikawa.jp/activity/activity.php" target="_blank">http://21cmikawa.jp/activity/activity.php</a></p>
+<p>そこで本書の前半部分ではデータモデリングの具体的な方法と考え方についても詳しく説明するよう心がけました。またエンジニア育成という観点では、アイデアが浮かんだらすぐに完成品までもっていけるよう効率的で汎用的なツールを選び、それらのハンズオンを掲載しています。</p>
+<p>様々な立場の人が本書を読みハンズオンを試してもらうことで「こんなに簡単に作れるんだ」とものづくりに興味をもってもらい、自分たちが実現したいシステムを自らが構築するマインドをもっていただく一助になればと思っています。また本書をとおしてIT技術の活用が民主化されることで、自らの会社や組織、業界においてより価値を産むアイデア考察に積極的になり、それらを自ら実現した便利で使いやすいオンラインサービスが世に増えることを願っています。</p>
+<aside class="warning"><p><strong>ノート: </strong>著者は2020年2月に第33回「21世紀交流サロン・葵丘」にてこれらの考え方を「テクノロジーの民主化」と題して話しました。<a href="http://21cmikawa.jp/activity/activity.php" target="_blank">http://21cmikawa.jp/activity/activity.php</a></p>
+</aside>
 <h2 is-upgraded>本書で学ぶこと</h2>
 <ul>
 <li>ユースケースからのデータモデリング方法</li>
@@ -62,7 +55,7 @@
 <li>ユースケース、データモデル、画面設計のパターン</li>
 <li>NoSQLデータベースとCloud Firestoreの概要</li>
 <li>Firebase AuthとFirestore、Cloud Functionsの使い方</li>
-<li>Flutterを使ったアプリの開発</li>
+<li>Flutterを使ったマテリアルデザインのアプリの開発</li>
 </ul>
 
 
@@ -70,7 +63,7 @@
     
       <google-codelab-step label="データモデル設計" duration="0">
         <p>データモデルの設計はユースケースからデータモデル候補を抜き出すことからはじめます。これによってデータの大きな単位とそこに含まれるフィールドを整理できます。また、ここで抽出されたデータ単位ごとにテーブルを作り、具体的なデータサンプルを作っておくと次ステップのデータ間の関係を考察する際に役立ちます。</p>
-<p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で挙げた課題である画面設計に走りがちな理由もこの難しさにあるものと考えられます。次ページ「ユースケース、データモデルと画面設計のパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
+<p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で挙げた課題である画面設計に走りがちな理由もこの作業の難しさにあると考えられます。次ページ「ユースケース、データモデルと画面設計のパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
 <p>コレクションとドキュメントの分離方針がきまったら、サンプルデータをJSONの形式にまとめます。JSONスキーマにそった正しいJSON形式にまとめることでドキュメント型データベースで扱えるサンプルデータが作成されます。JSONとはWebアプリケーションやREST APIで扱われるプログラムが処理しやすく人も見やすいデータ形式ですが、初めてJSONを扱う人は正しいJSON形式とは何かわからないと思います。そのため本書では本文中にJSONエディタというツールを組み込んでJSONデータを表示し、JSON形式でのサンプルデータの作り方をステップバイステップで解説します。</p>
 <h2 is-upgraded>1. ユースケースからデータの候補を抽出する</h2>
 <p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例にしたユースケース記述を以下にまとめます。アプリ名は「レストランレビューアプリ」とします。</p>
@@ -235,7 +228,10 @@
 <p class="image-container"><img style="width: 591.38px" src="img/392308f2014e0d18.png"></p>
 <h2 is-upgraded>3. サンプルデータをJSON形式で表現する</h2>
 <p>ドキュメントとコレクションの関係について方針が決まったら、1のサンプルデータをJSON形式であらわすことでより具体化します。</p>
-<p>ここではJSONエディタを使い、段階的にサンプルのJSONデータを作成します。</p>
+<aside class="warning"><p><strong>ノート: </strong>上記のサンプルデータは項目名を日本語にして表現していますが、JSON形式における項目名やプログラムで使う変数名は適切な英単語を使うことが求められます。下記の「codic」というサービスはユースケースで記述した自然言語から変数名や関数名として利用できる項目名の候補を出力してくれるので便利です。</p>
+<p><a href="https://codic.jp/engine" target="_blank">https://codic.jp/engine</a></p>
+</aside>
+<p>また、ここではJSONエディタを使い、段階的にサンプルのJSONデータを作成します。</p>
 <aside class="warning"><p><strong>ノート: </strong>JSONエディタを使うと直感的にJSON形式のデータを作成、編集することができます。操作方法は下記の通りです。</p>
 <p>1. 表示形式を下記の通り変更できます。</p>
 <p>「Code」を選ぶとJSONの生データの形式で表示されます。</p>
@@ -270,40 +266,40 @@
 <h2 is-upgraded>1. 画面設計の基本的な考え方</h2>
 <p>画面設計では、「画面」と「画面遷移」をデザインします。</p>
 <p class="image-container"><img style="width: 422.00px" src="img/eb6196052fed342d.png"></p>
-<p>「画面」はユーザが一時点で対面する一画面のことで、テキストフィールドやボタンなどのコンポーネントを組み合わせて作成されます。一方、「画面遷移」は複数の「画面」が違いに移動していく振る舞いのことを表します。「画面」はユースケースごとに様々な特徴がありますので、次章でいくつか紹介しますが、「画面遷移」はパターン化が可能ですので、ここでは以下の４パターンにまとめます。</p>
+<p>「画面」はユーザが一時点で対面する一画面のことで、テキストフィールドやボタンなどのコンポーネントを組み合わせて作成されます。一方、「画面遷移」は複数の「画面」が違いに移動していく振る舞いのことを表します。「画面」はユースケースごとに様々な種類が考えられ、単純なパターン化は難しいです。一方、「画面遷移」は以下の４パターンにまとめることが可能です。</p>
 <h3 is-upgraded><strong>① メニュー遷移</strong></h3>
 <p>アプリケーションは複数の機能から成り立つので、ホーム画面にメニューやナビゲーションバーを用意して、そこからユーザがメニューを選択することで機能を切り替えます。下図は時計アプリを例に挙げて「時計」表示と「アラーム」設定、時計「設定」の3機能をボトムナビゲーションバーを使って切り替える画面遷移を表しています。</p>
 <p class="image-container"><img style="width: 533.00px" src="img/d5476a8c62ab283.png"></p>
-<p>このパターンの画面遷移では機能が切り替わるため、機能間でデータの引き継ぎが必要なケースは少なく、機能内でのデータ保存のみを考えればよいです。</p>
+<p>このパターンの画面遷移では機能が切り替わるため、機能間でデータの引き継ぎが必要なケースは少なく、機能内でのデータ保存のみを考えればよいでしょう。</p>
 <h3 is-upgraded><strong>② ウィザード遷移</strong></h3>
 <p>スマートフォンは画面が小さいため、多くの入力を必要とするアンケートや申請書は下図のとおり画面を複数にわけてウィザード形式で入力を促し、最後に確認してSubmitするといった画面遷移になります。</p>
 <p class="image-container"><img style="width: 421.00px" src="img/6f62b102d1eaad18.png"></p>
-<p>このパターンは途中で枝分かれすることなく一本線でゴールに向かう場合に利用し、分岐が発生する複雑な場合は次の状態遷移を考えるとよいでしょう。</p>
+<p>このパターンは途中で枝分かれすることなく一本線でゴールに向かう場合に利用し、分岐が発生する複雑な場合は次の「③状態遷移」パターンを考えるとよいでしょう。</p>
 <h3 is-upgraded><strong>③ 状態遷移</strong></h3>
-<p>状態によって表示する画面が変化する画面遷移のパターンです。ログイン・ログアウトの画面遷移が代表的な例で、ログインとログアウトのどちらかをあらわす状態変数の値に従って、表示される画面を切り替えるしくみになっています。</p>
+<p>状態によって表示する画面が変化する画面遷移のパターンです。下図はログイン・ログアウトの画面遷移の例で、ログインとログアウトのどちらかをあらわす状態変数の値に従って、表示される画面を切り替えるしくみになっています。</p>
 <p class="image-container"><img style="width: 333.00px" src="img/816de381550c54c5.png"></p>
-<p>スマホアプリの開発では、この状態の保持という概念がとても重要です。ユーザがアプリを通して何かデータの入力や変更を行うときのデータだけでなく、ログインしているかログアウトしたか、どの画面に遷移したかなど、画面を動かすために機能する状態もあります。この状態遷移としてよく現れる画面遷移のパターンは次の「④リストのCRUD」です。</p>
+<p>スマホアプリの開発では、この状態の保持という概念がとても重要です。ユーザがアプリを通して何かデータの入力や変更を行うときのデータだけでなく、ログインしているかログアウトしたか、どの画面に遷移したかなど、画面を動かすために必要な「状態」というデータもあります。この状態遷移としてよく現れる画面遷移のパターンは次の「④リストのCRUD」です。</p>
 <h3 is-upgraded><strong>④ リストのCRUD </strong></h3>
-<p>ビジネスアプリケーションの多くは、複数データを表示・追加・編集・削除しながら整理整頓するものです。そのため、データの概要をリスト表示して、そのうち一つをクリックすると詳細を表示し、編集・削除する、といった機能を持ちます。このタイプのアプリケーションの画面遷移は大概下記のようなフローになります。各画面の説明カッコ内の「Create」「Read」「Update」「Delete」はあわせてCRUD（クラッド）と呼び、データ操作の基本になります。ここでは複数データを扱っていますので、「Read」にはリストの読み込み表示と一つのデータの詳細な読み込み表示の二種類があるので、画面が二つになっています。</p>
+<p>ビジネスアプリケーションの多くは、複数データを表示・追加・編集・削除しながら整理整頓するものです。そのため、データの概要をリスト表示して、そのうち一つをクリックすると詳細を表示し、編集・削除する、といった機能を持ちます。このタイプのアプリケーションの画面遷移は大概下記のようなフローになります。各画面の説明カッコ内の「Create」「Read」「Update」「Delete」はあわせてCRUD（クラッド）と呼び、データ操作の基本になります。ここでは複数データを扱っていますので、「Read」には複数データのリスト表示と一つのデータの詳細表示の二種類があるので、画面が二つ存在します。</p>
 <p class="image-container"><img style="width: 507.00px" src="img/d38dd34cf41d7b63.png"></p>
-<p>上図の時計アプリの例では、リスト表示をする対象がアラーム設定した時刻といったシンプルなデータでしたが、本書で開発する「レストランレビューアプリ」のようにレストランデータが複数あり、さらにそのレストランのレビューデータが複数あるといった構造を持つ場合、レストランの詳細画面の下にレビューリストを表示するといった構造を持ちます。このように、複数データを整理整頓する形式のアプリ画面はリスト画面を中心にCRUDを担う機能に画面が分かれることをパターンとして覚えておくとよいでしょう。</p>
+<p>上図の時計アプリの例では、リスト表示をする対象がアラーム設定した時刻といったシンプルなデータですが、本書で開発する「レストランレビューアプリ」のようにレストランデータが複数あり、さらにそのレストランのレビューデータが複数あるといった構造を持つ場合、レストランの詳細画面の下にレビューリストを表示するといった構造を持ちます。このように、複数データを整理整頓する形式のアプリ画面はリスト画面を中心にCRUDを担う機能に画面が分かれることをパターンとして覚えておくとよいでしょう。</p>
 <h2 is-upgraded>2. 「レストランレビューアプリ」の画面設計</h2>
 <p>本書で開発する「レストランレビューアプリ」の画面設計を「①ログイン、メニュー選択、ログアウト」と「②レストランリストとレビュー表示」、「③全レビューリストとレビュー表示」、「④アカウント表示と自分が投稿したレビューの管理」の4種類にわけて説明します。</p>
 <p>①ログイン、メニュー選択、ログアウト</p>
-<p>ログイン・ログアウトとメニュー遷移の画面と画面遷移を下図に示します。「アカウント画面」からのみログアウトできるよう設計していますが、どこからでもログアウトできるように設計してもよいでしょう。またログイン画面はユーザ登録画面と同一画面上で切り替えられるように設計しています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/aa8613f8d8da27f9.png"></p>
+<p>ログイン・ログアウトとメニュー表示する画面とそれらの画面遷移を下図に示します。ここでは「アカウント画面」からのみログアウトできるよう設計していますが、どこからでもログアウトできるように設計してもよいでしょう。またログイン画面はユーザ登録画面と同一画面上で切り替えられるように設計しています。</p>
+<p class="image-container"><img style="width: 601.70px" src="img/1b5b2cc5b4e3137b.png"></p>
 <p>本設計は「1. 画面設計の基本的な考え方」で述べた「③状態遷移」のログイン・ログアウトと「①メニュー遷移」のパターンを利用しています。</p>
 <p>②レストランリストとレストラン詳細、レビュー表示とレビュー追加</p>
 <p>レストランをリスト表示し、そこから一つを選択するとレストラン詳細が表示されるとともに選択したレストランに関するレビューがリストされます。さらに、そこからレビューを一つ選択するとレビューの詳細が表示されます。また、レストラン詳細画面からはレビューを追加することができますが、リストされるレビューは自分以外のものも含まれるので、編集や削除はできないよう設計しています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/657713c9f4970561.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/93c54662485e1e09.png"></p>
 <p>本設計は「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しています。</p>
 <p>③全レビューリストとレビュー表示</p>
 <p>レビュー画面では、全レストランを対象に全ユーザのレビューの一覧をリストします。また、星数で検索することが可能です。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/7b7e3bcc509176b7.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/7bc2218ac1e60de8.png"></p>
 <p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用していますが、ここではレビューの一覧が目的で、参照（Read）のみで追加（Create）、更新（Update）、削除（Delete）の機能は有していません。</p>
 <p>④アカウント表示と自分が投稿したレビューの管理</p>
 <p>アカウント画面では、自分の名前を直接編集できるように設計しました。また自分が投稿したレビューをリストし、編集と削除が可能です。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/492584221832d155.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/e3610de2eb2b1056.png"></p>
 <p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しており、自分が投稿したレビューを対象に更新（Update）と削除（Delete）ができるよう設計しています。</p>
 
 
@@ -329,155 +325,40 @@
 <p>ゲームやAR、スマートスピーカーといったアプリケーションは複雑なUIからなりたっていたり、音声によるUIからなりたつため一般化は難しく、本書の対象外とします。</p>
 <h2 is-upgraded>2. メモアプリ</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>3. 学生名簿</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>4. 観光地紹介</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>5. 会議室予約</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>6. 商品購入</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>7. 出前</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>8. ホテル予約</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>9. 高速バス予約</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>10. 営業支援</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>11. 保険契約管理</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>12. 物品管理</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>13. ホームページ管理</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>14. 出張申請・精算</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>15. アンケート</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>16. 講義・授業管理</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>17. テスト・試験</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>18. Web会議</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 <h2 is-upgraded>19. 恋人マッチング</h2>
 <p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
-<p>TODO</p>
 <h2 is-upgraded>20. 画像認識レジ</h2>
-<p>TODO</p>
-<h3 is-upgraded><strong>① ユースケース</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>② データモデル</strong></h3>
-<p>TODO</p>
-<h3 is-upgraded><strong>③ 画面設計</strong></h3>
 <p>TODO</p>
 
 
@@ -486,25 +367,25 @@
       <google-codelab-step label="マテリアルデザイン" duration="0">
         <p>ここでは画面設計に関連して、Googleが2014年に発表したUIデザインのガイドラインであるマテリアルデザインを紹介します。特にスマホアプリのUIデザインにフォーカスし、スマホアプリ特有の問題からデザインの歴史を説明してから、マテリアルデザインが出現してきた背景について紹介します。</p>
 <h2 is-upgraded>1. スマートフォンの特徴</h2>
-<p>スマートフォンには、パソコンとは異なる下記の特徴があります。</p>
+<p>スマートフォンには、パソコンとは異なる2つの特徴があります。</p>
 <h4 is-upgraded><strong>画面が小さく操作手段が限定的</strong></h4>
 <p>スマホは画面が小さくさらにマウスやキーボードがないため操作手段が限定されるため、画面レイアウトや操作方法をどのようにデザインするかでユーザ満足度が大きく変化します。</p>
 <h4 is-upgraded><strong>画面サイズがばらばら</strong></h4>
 <p>AndroidとiPhoneという違いだけでなく、同種のスマホでも画面サイズがさまざまで、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
 <p class="image-container"><img style="width: 577.00px" src="img/886625a7f19811a7.png"></p>
 <h2 is-upgraded>2. スマホアプリで発生しやすい問題</h2>
-<p>Google PlayやApp Storeに登録された実際のアプリの評判からまとめたスマホアプリに対するよくある悪評は主に以下の4つです。</p>
+<p>Google PlayやApp Storeに登録された実際のアプリの評判からまとめたスマホアプリに対するよくある悪評は主に以下の4つに集約されます。</p>
 <ol type="1" start="1">
 <li>操作途中でクラッシュしてしまう</li>
-<li>元の画面に戻れない、探している機能に行き着かない、といったナビゲーション機能が不十分</li>
+<li>元の画面に戻れない、探している機能に行き着かない、といったナビ機能が不十分</li>
 <li>デザインが必要以上に凝っていて意味不明</li>
 <li>大量の情報がそのまま表示され、検索したりフィルタリングする機能がない</li>
 </ol>
-<p>これらの悪評のうち、2から4まではUIデザインの問題といえます。</p>
+<p>これらの悪評のうち、1以外の2から4まではUIデザインの問題といえます。</p>
 <h2 is-upgraded>3. スマホデザインの歴史</h2>
 <p>それではスマホにおけるデザインはどのような歴史を歩んできたのでしょうか。</p>
-<p>まず、2000年前半のWebやアプリケーションのUIはそれまでのWindowsパソコンが機械的で使いづらく利用者のことを考えて作られていないという反省から、現実世界を模した装飾的なデザインからなるUIを取り入れるようになりました。この考え方によるデザインをスキューモーフィズムと呼びます。ただし、この装飾に凝ったデザインでは、デザイナーの主張が先行し、見た目や操作性に統一感がないといった弊害を生むことになりました。</p>
-<p>そのため、20世紀初頭のモダニズムが建築や工業製品のデザインに取り入れられたように、パソコンやWebやスマホのデザインにも極力装飾を廃したフラットデザインが採用されることになりました。ただし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットが挙げられます。</p>
+<p>まず、2000年前半のWebやアプリケーションのUIはそれまでのWindowsパソコンが機械的で使いづらく利用者のことを考えて作られていないという反省から、現実世界を模した装飾的なデザインからなるUIを取り入れるようになりました。この考え方によるデザインを<a href="https://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%AD%E3%83%A5%E3%83%BC%E3%83%A2%E3%83%BC%E3%83%95%E3%82%A3%E3%82%BA%E3%83%A0" target="_blank">スキューモーフィズム</a>と呼びます。ただし、この装飾に凝ったデザインでは、デザイナーの主張が先行し、見た目や操作性に統一感がないといった弊害を生むことになりました。</p>
+<p>そのため、20世紀初頭に<a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%80%E3%83%8B%E3%82%BA%E3%83%A0" target="_blank">モダニズム</a>が建築や工業製品のデザインに取り入れられたように、パソコンやWebやスマホのデザインにも極力装飾を廃した<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%83%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3" target="_blank">フラットデザイン</a>が採用されることになりました。ただし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットが挙げられます。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>iPhone6のスキューモーフィズム</p>
 <p class="image-container"><img style="width: 259.50px" src="img/13bf84e545185e44.png"></p>
@@ -514,13 +395,13 @@
 </table>
 <p>そこで、Googleはフラットデザインとスキューモフィズムの中間をとり、さらに発展させた「マテリアルデザイン」を定義し、2014年にだれもが参照して利用できるオープンソースな形でデザインガイドラインを発表しました。</p>
 <h2 is-upgraded>4. マテリアルデザインとは？</h2>
-<p>マテリアルデザインとは、Googleが2014年に発表したUIのデザインガイドラインです。Googleは、Gmailなどの数多くのアプリを世に出していましたが、それらがパソコン、Android、iPhone、タブレットなど異なるデバイスで利用されるとき、画面サイズもOSも異なるため、異なった見た目と操作性を持ってしまったことを問題視していました。そのため、デバイスが異なっていても、各自の特徴を踏まえながら統一したデザインで操作できるようなUIデザインのガイドラインを作ろうという目的で開発されたのがマテリアルデザインです。例えば、スマホのようなデバイス用には、手のひらで操作することを想定し、直感的で意味のある物理的（マテリアル）な概念をデザインに取り入れてガイドラインが策定されています。</p>
-<p>マテリアルデザインは、あくまでもガイドラインであるため、必ず準拠すべきものではありませんが、デザインの部品がどのような形でどのように動くかが細かく規定されており、Java、Kotlin、Swift、JavaScript、Flutterといったさまざまな言語に対応した無料で利用できるプログラムとともに提供されているため、まるまる採用することで一定レベル以上のUIデザインを実現したアプリを少ないコストで開発することができます。そのため、多くのプロジェクトで広く採用されるに至っています。</p>
+<p>マテリアルデザインとは、Googleが2014年に発表したUIのデザインガイドラインです。Googleは、Gmailなどの数多くのアプリを世に出していましたが、それらがパソコン、Android、iPhone、タブレットなど異なるデバイスで利用されるとき、画面サイズもOSも異なるため、異なった見た目と操作性を持ってしまったことを問題視していました。そこで、デバイスが異なっていても、統一したデザインで操作できるようなUIデザインのガイドラインを作る目的で開発されたのがマテリアルデザインです。例えば、スマホのようなデバイス用には、片手で操作することを想定し、直感的で意味のある物理的（マテリアル）な概念をデザインに取り入れてガイドラインが策定されています。</p>
+<p>マテリアルデザインは、あくまでもガイドラインであるため、必ず準拠すべきものではありませんが、デザインの部品がどのような形でどのように動くかが細かく規定されており、Java、Kotlin、Swift、JavaScript、Flutterといったさまざまな言語に対応した無料で利用できるプログラムライブラリとともに提供されているため、まるまる採用することで一定レベル以上のUIデザインのアプリを最小のコストで開発することができます。そのため、多くのプロジェクトで採用されるに至っています。</p>
 <h2 is-upgraded>5. マテリアルデザインの4つの考え方</h2>
 <p>マテリアルデザインは以下の4つのコンセプトからなりたっています。</p>
 <p>①形をもった面</p>
 <p>形をもったうすい紙のような面が重なって画面を表示するしくみを採用しています。この考え方によって、一枚の紙を切って分割して記事を表示したり、メニューやフッターを表示するための紙と中心のコンテンツをのせるための紙が重なって表示されることを影を使って表現することができます。これによって実際は奥行きがなくフラットなスマホの画面を立体的に表現することによって、表示されているものの種類が区別しやすくなったり、高さを使うことで手前にあるものほど重要といったユーザが3次元の世界で感じるのと同じくどこに注意をむけるべきかを直感的に知らせることができるようになっています。</p>
-<aside class="warning"><p><strong>ノート: </strong>指によるタッチや文字入力など人による操作は物理的なルールに従い画面表示に影響を及ぼします。また面は厚さを持つので同じ奥行きに存在することはなく透過することもないといった実際の物理的な世界の常識を反映します。このように、面・奥行き・光と影に関しては下記のルールにのっとって実装されています。</p>
+<aside class="warning"><p><strong>ノート: </strong>指によるタッチや文字入力など人による操作は物理的なルールに従い画面表示に影響を及ぼします。また面は厚さを持つので、同じ奥行きに存在することはなく透過することもない、といった実際の物理的な世界の常識を反映します。このように、マテリアルデザインにおいて面・奥行き・光と影に関しては、下記のルールにのっとって実装されています。</p>
 <p>面：現実世界の物理世界をスマホ画面のデザインに反映し、画面に表示される部品は厚さ1dp(ドットポイント)の面で構成されます。</p>
 <p><a href="https://material.io/design/environment/surfaces.html" target="_blank">https://material.io/design/environment/surfaces.html</a></p>
 <p>奥行き：概念的には面が何層にも重なっていて奥行きをもった構造を持っています。</p>
@@ -533,46 +414,47 @@
 <p>③意味のあるアニメーション</p>
 <p>ユーザになんらかの意味を伝えるためにはアニメーションが効果的な場合がありますが、コンポーネントにアニメーション表示を簡単にほどこせるようなしくみを実装しています。</p>
 <p>④アダプティブデザイン</p>
-<p>パソコン、Androidスマホ、iPhone、タブレットなどデバイスが異なり画面サイズが異なっていても形を崩さず表示するしくみを実装しています。レスポンシブデザインも同じコンセプトですが、アダプティブデザインは横幅の伸び縮みだけでなく、メニューの表示非表示などより画面サイズに応じた（アダプティブな）形でデザインを変化させるしくみをそなえています。</p>
+<p>パソコン、Androidスマホ、iPhone、タブレットなどデバイスが異なり画面サイズが異なっていても形を崩さず表示するしくみを実装しています。レスポンシブデザインも同じコンセプトですが、アダプティブデザインは横幅の伸び縮みだけでなく、メニューの表示非表示などを含む、より画面サイズに応じた（アダプティブな）形でデザインを変化させるしくみをそなえています。</p>
 <h2 is-upgraded>6. Flutterにおけるマテリアルデザイン</h2>
-<p>マテリアルデザインを使うと下記のようなリッチなUI画面を実装することができます。下の例はFlutterを使って実装したUI画面のサンプルギャラリーです。</p>
-<iframe width="800" height="600" src="https://gallery.flutter.dev/" frameborder="1"></iframe>
+<p>マテリアルデザインを使うと下記のようなリッチなUI画面を実装することができます。下記リンクを開くとFlutterを使って実装したUI画面のサンプルギャラリーが参照できます。</p>
+<p><a href="https://gallery.flutter.dev/" target="_blank">Flutterを使って実装したUI画面のサンプルギャラリー</a></p>
 <aside class="warning"><p><strong>ノート: </strong>Flutterチームは、改変可能で商用利用可能なオープンソースライセンスであるBSDライセンスで豊富なデモサンプルをソースコードと一緒に提供しています。</p>
 <p><a href="https://flutter.github.io/samples/#?platform=web" target="_blank">https://flutter.github.io/samples/#?platform=web</a></p>
 </aside>
-<p>Flutterにおけるマテリアルデザインは下記のような部品を提供しています。詳細は<a href="https://material.io/components" target="_blank">こちら</a>を参照してください。</p>
+<p>またFlutterでは、下記のようなマテリアルデザインの部品が提供されています。このように画面にのせる部品はたくさん存在しているので、それぞれ何ができるかだけ覚えておいて、画面パターンに従って使う部品を選別してから詳細の実装方法を調べるのがよいでしょう。</p>
+<p>※「レストランレビューアプリ」で利用している部品には「◯」印をつけています。</p>
 <table>
-<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/app-bars-top" target="_blank">アップバー</a></p>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/app-bars-top" target="_blank">アップバー</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/9f8c7a7e86f0e2ba.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/bottom-navigation" target="_blank">ボトムナビゲーション</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/bottom-navigation" target="_blank">ボトムナビゲーション</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/81fe954aa822d209.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/buttons" target="_blank">ボタン</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/buttons" target="_blank">ボタン</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/60bd27a78a2f4f83.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/floating-action-buttons" target="_blank">ﾌﾛｰﾃｨﾝｸﾞｱｸｼｮﾝﾎﾞﾀﾝ</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/79662543c7dc120.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/cards" target="_blank">カード</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/cards" target="_blank">カード</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/33ffbff0fc0b1d40.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Chip-class.html" target="_blank">チップ</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Chip-class.html" target="_blank">チップ</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/2e2dbbb7b1dbcb68.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/data-tables" target="_blank">データテーブル</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/99dfada4e9abfe21.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/showDatePicker.html" target="_blank">デートピッカー</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/67678ecdac488dc6.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Dialog-class.html" target="_blank">ダイアログ</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Dialog-class.html" target="_blank">ダイアログ</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/9662a1231d940d78.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Divider-class.html" target="_blank">デバイダー</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/c550524ab09dbc1.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/lists" target="_blank">リスト</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/lists" target="_blank">リスト</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/2ef873b21a35bb74.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/PopupMenuButton-class.html" target="_blank">メニュー</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/cd811abecd73e932.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Drawer-class.html" target="_blank">ナビゲーションドローア</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/a2d750da533c49a3.png"></p>
-</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html" target="_blank">プログレスインジケータ</a></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html" target="_blank">プログレスインジケータ</a> ◯（<a href="https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html" target="_blank">こちら</a>を使用）</p>
 <p class="image-container"><img style="width: 186.00px" src="img/7d4589c2fb0ba017.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/checkboxes" target="_blank">チェックボックス</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/9029b190e700eeda.png"></p>
@@ -591,17 +473,35 @@
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/tabs" target="_blank">タブ</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/f15069b833333a5a.png"></p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/text-fields/" target="_blank">テキストフィールド</a></p>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/text-fields/" target="_blank">テキストフィールド</a> ◯</p>
 <p class="image-container"><img style="width: 186.00px" src="img/63339ba6218f3565.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Tooltip-class.html" target="_blank">ツールチップ</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/1241e00c4dc72b3.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/showTimePicker.html" target="_blank">タイムピッカー</a></p>
 <p class="image-container"><img style="width: 186.00px" src="img/d614d4cc32dbb848.png"></p>
 </td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://material.io/design/layout/responsive-layout-grid.html" target="_blank">グリッド</a> ◯</p>
+<p class="image-container"><img style="width: 186.00px" src="img/e4be10f1987bce04.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/resources/icons/" target="_blank">アイコン</a> ◯</p>
+<p class="image-container"><img style="width: 186.00px" src="img/73a16a857531f948.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://material.io/design/communication/imagery.html#informational-imagery" target="_blank">アバター</a> ◯</p>
+<p class="image-container"><img style="width: 186.00px" src="img/dd4063c772531861.png"></p>
+</td></tr>
 </table>
-<aside class="warning"><p><strong>ノート:</strong> Flutterにおけるマテリアルデザインについては下記URLも参考にしてください。</p>
+<aside class="warning"><p><strong>ノート: </strong></p>
+<p>- マテリアルデザインのコンポーネント詳細については下記URLを参照してください。</p>
+<p><a href="https://material.io/components" target="_blank">https://material.io/components</a></p>
+<p>- Flutterにおけるマテリアルデザインについては下記URLを参照してください。</p>
 <p><a href="https://material.io/develop/flutter" target="_blank">https://material.io/develop/flutter</a></p>
 </aside>
+<p>マテリアルデザインではありませんが、「レストランレビューアプリ」で使っている部品を紹介します。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><a href="https://pub.dev/packages/smooth_star_rating" target="_blank">スターレーティング</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/5b9d9ab8f03941e1.png"></p>
+</td><td colspan="1" rowspan="1"><p><a href="https://www.youtube.com/watch?v=Be9UH1kXFDw" target="_blank">ヒーローアニメーション</a></p>
+<p class="image-container"><img style="width: 186.00px" src="img/bb2742d416ecb5ec.png"></p>
+</td></tr>
+</table>
 <h2 is-upgraded>7. カラーテーマ</h2>
 <p>マテリアルデザインはアプリのブランディングを統一的に進めるためにカラーテーマというしくみを採用し、アプリケーション全体で部品の色やフォントカラーを統一させることが可能です。逆に言うと、同じアプリでもカラーテーマを変えてイメージの異なるアプリとして仕上げることが可能ですので、アプリケーションのテンプレートを先に作っておいて様々なプロジェクトに応用する場合にもこのようなしくみは役に立つでしょう。</p>
 <p>カラーテーマ：<a href="https://material.io/design/color/the-color-system.html" target="_blank">https://material.io/design/color/the-color-system.html</a></p>
@@ -858,7 +758,7 @@
       <google-codelab-step label="Flutterによるアプリ開発" duration="0">
         <p>ユースケースの整理からデータモデルと画面設計ができたらアプリケーションの開発をはじめます。</p>
 <p>本書では、一つのソースコードでiPhoneアプリとAndroidアプリ、Webアプリ、パソコン用ネイティブアプリ、スマートデバイスようアプリ等々を開発できるクロスプラットフォームフレームワークであるFlutterを使って開発を行います。</p>
-<p>ここでは、下記の理由からFlutter Webを有効にしてWebアプリを開発します。これによって普通のWindowsパソコンでも比較的ストレスなく開発を行うことができます。</p>
+<p>ここでは、下記の理由からFlutter Webを有効にしてWebアプリを開発します。これにより普通のWindowsパソコンでも比較的ストレスなく開発を行うことができるようになります。</p>
 <ul>
 <li>iPhoneアプリに対応するためにはMacが必要でありWindows PCの人が開発できない</li>
 <li>Androidアプリに対応するためにAndroid SDKやAndroid Studioのインストールが必要で準備に時間がかかる</li>
@@ -868,13 +768,13 @@
 </ul>
 <h2 is-upgraded>開発するアプリケーション</h2>
 <p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
-<p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください（おかしな動作をする場合はブラウザのキャッシュをクリアして再度試してください）。</p>
+<p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください。</p>
 <br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
-<p>本書のハンズオンではこのアプリの作り方を学びます。</p>
 <aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://firestore-5643d.web.app" target="_blank">https://firestore-5643d.web.app</a> です。</p>
 <p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
 <p class="image-container"><img style="width: 123.00px" src="img/f5a6c4ab61f6cb9e.png"></p>
 </aside>
+<p>本書のハンズオンではこのアプリの作り方を学びます。</p>
 <h2 is-upgraded>初期設定</h2>
 <p>まずはじめに開発に必要なFlutterとエディタであるVS Codeのインストールを行います。</p>
 <h3 is-upgraded>Flutterのインストール</h3>
@@ -1053,34 +953,33 @@ $ flutter run -d chrome</pre>
       <google-codelab-step label="マテリアルデザイン開発" duration="0">
         <p>Dart言語が理解できたらFlutterを使ってさまざまな画面と画面遷移を実装します。ここではFirebaseを使わず、JSONの静的データから画面と画面遷移のみを実装します。</p>
 <p>Flutterの開発を行うには主に画面の部品を構成するWidget（ウィジット）の理解が必要です。「3. 画面設計」でも述べたとおり、画面と画面遷移を構成するにはその裏で状態（ステート）の管理が必要です。例えば、ウィザード遷移を行いアンケートに答える場合には画面間を入力済みのアンケート回答情報をステートに保存し、確認画面表示に利用するとともにデータベースへの送信情報として利用します。FlutterにおけるWidgetにはStatefulWidget（ステートフル・ウィジット）とStatelessWidget（ステートレス・ウィジット）の2種類のWidgetが提供されており、用途によって下記のような使い分けをします。</p>
-<p>StatefulWidget ... 一画面の中で状態変化を</p>
-<p>StatelessWidget ... 一画面の中で状態変化を</p>
+<p>StatefulWidget ... 一画面の中で状態変数を保持し、変数に変更があったら画面をリロードして変更された変数にあわせて画面表示の変更が必要な画面を実装する際に利用します。「レストランレビューアプリ」では、一画面の中でログインとユーザ登録を切り替える「ログイン画面」とボトムナビゲーションバーを制御する「ホーム画面」、アニメーションで検索用のスライドアップを表示する「レビュー画面」、レビューの編集後に画面リロードが必要な「レビュー詳細画面」、レビューの編集・削除後に画面リロードが必要な「アカウント画面」、レビュー追加後に画面リロードが必要な「レストラン詳細画面」と「レストラン画面」をStatefulWidgetで実装します。（※（著者メモ）「レビュー詳細画面」「アカウント画面」「レストラン詳細画面」「レストラン画面」はChangeNotifierProviderを使えばStatelessWidgetで実装できるかもしれない）</p>
+<p>StatelessWidget ... 静的な画面。ChangeNotifierとConsumerを使ってウィジット部品を管理することで、状態変化のたびリロードされる箇所をウィジット部品に限定することができます。</p>
 <aside class="warning"><p><strong>ノート: </strong>Widgetの理解のために下記を一読しておいてください。</p>
 <p><a href="https://flutter.dev/docs/development/ui/widgets-intro" target="_blank">https://flutter.dev/docs/development/ui/widgets-intro</a></p>
 </aside>
-<aside class="warning"><p><strong>ノート:  </strong>本章ではブラウザ上でFlutterをプログラミングし実行できるDartpadを使って説明しています。画面が小さくて見にくい場合は、iFrameエリア右上の最大化ボタンをクリックして別タブを開いて試してください。左側のプログラムを実行したい場合は右上のRUNボタンをクリックすると右側の画面にアプリが表示されます。ソースコードが表示されない場合は、ブラウザをリロードしてください。</p>
-</aside>
+<p>ここではこの両Widgetを理解するために、ブラウザ上でFlutterをプログラミングし実行できるDartpadを使って説明しています。各説明文の下に記載されたリンクをクリックするとDartpadがソースコードと一緒に開きますので、プログラムを実行したい場合は右上のRUNボタンをクリックすると右側の画面にアプリが表示されます。</p>
 <p>1. シンプルなログイン画面</p>
 <p>StatelessWidgetを使ってシンプルなログイン画面を実装します。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" frameborder="1"></iframe>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=7d838fc9cf5e52bc860a82166cd90434" target="_blank">シンプルなログイン画面のDartpad</a></p>
 <p>2. ボタンを押すとバリデータを実行するログイン画面</p>
 <p>ログインボタンを押すとメールアドレスやパスワードが入力されているか？ルールにのっとって入力されているかをチェックして、条件を満たさない場合エラーメッセージを表示してくれるよう実装します。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=fcd7a92fb86a50604398c3f8c3b014d2" frameborder="1"></iframe>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=fcd7a92fb86a50604398c3f8c3b014d2" target="_blank">ボタンを押すとバリデータを実行するログイン画面</a></p>
 <p>3. キー入力でフォーカスが移動しホーム画面に遷移するログイン画面</p>
 <p>FocusNodeクラスを使いフィールド値が完了したら次のフィールドにキー操作が移動し、ログインボタンをクリックするとNavigator.pushを使ってホーム画面に遷移するよう実装します。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c01622bd27e91e952e62d2f73cc7e131" frameborder="1"></iframe>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=c01622bd27e91e952e62d2f73cc7e131" target="_blank">キー入力でフォーカスが移動しホーム画面に遷移するログイン画面</a></p>
 <p>4. ログイン/ログアウト状態を管理するランディング画面</p>
 <p>ログイン画面とホーム画面をログイン/ログアウト状態を管理するステートを持つランディング画面でつなげるよう実装します。この実装はのちに利用するProviderの簡易実装です。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c46188cd4e6fe122914d317c33f8c8a4" frameborder="1"></iframe>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=c46188cd4e6fe122914d317c33f8c8a4" target="_blank">ログイン/ログアウト状態を管理するランディング画面</a></p>
 <p>5. 登録画面に切り替えられるログイン画面</p>
 <p>ログインボタンと登録ボタンをクリックすることでログイン画面と登録画面を切り替えられるようログイン画面を修正します。一つのWidgetで切り替えを行うにはStatelessWidgetから状態（State）を持つStatefulWidgetに変更が必要なのでLoginクラスにリファクタリングを行います。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=5376a8be440a38b5fa982d93fea6893d" frameborder="1"></iframe>
-<p>6. ホーム画面にボトムナビゲーションバーを追加</p>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=5376a8be440a38b5fa982d93fea6893d" target="_blank">登録画面に切り替えられるログイン画面</a></p>
+<p>6. ボトムナビゲーションバーを追加したホーム画面</p>
 <p>ホーム画面にボトムナビゲーションバーを追加して、3画面切り替えられるように実装します。そのために、StatefulWidgetにリファクタリングして、PageViewを使った実装を行います。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=e38a4cbc44cb0606c86aebe93b301681" frameborder="1"></iframe>
-<p>7. ホーム画面の一つであるRestoPageにGridViewを実装</p>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=e38a4cbc44cb0606c86aebe93b301681" target="_blank">ボトムナビゲーションバーを追加したホーム画面</a></p>
+<p>7. RestoPageのGridViewページを追加したホーム画面</p>
 <p>ホーム画面のボトムナビゲーションバーで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
-<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=25c545bff92528e287ccc18290b52462" frameborder="1"></iframe>
+<p><a href="https://dartpad.dev/embed-flu%5C%20tter.html?id=25c545bff92528e287ccc18290b52462" target="_blank">RestoPageのGridViewページを追加したホーム画面</a></p>
 
 
       </google-codelab-step>

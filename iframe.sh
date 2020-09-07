@@ -5,10 +5,6 @@ LANG=C
 cat index.html | sed 's#<link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">#<link rel="stylesheet" href="./codelab-elements.css">#g' > index.html.1
 mv index.html.1 index.html
 
-# Flutter Galleryを追加する
-cat index.html | sed 's#<p>material01</p>#<iframe width="800" height="600" src="https://gallery.flutter.dev/" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-
 # Youtube動画を追加する
 cat index.html | sed 's#<p>v_hR4K4auoQ</p>#<br><iframe width="560" height="315" src="https://www.youtube.com/embed/v_hR4K4auoQ?cc_load_policy=1&amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>#g' > index.html.1
 mv index.html.1 index.html
@@ -63,22 +59,6 @@ mv index.html.1 index.html
 cat index.html | sed 's#<p>dartpad06</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=6e70cd1af860045844c79e6adbdec04b" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 cat index.html | sed 's#<p>dartpad07</p>#<iframe width="850" height="500" src="https://dartpad.dev/embed-inline.html?id=57ffc4b5437bd5e24b58315c9494dea0" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-
-# flutterの追加
-cat index.html | sed 's#<p>login01.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-cat index.html | sed 's#<p>login02.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=fcd7a92fb86a50604398c3f8c3b014d2" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-cat index.html | sed 's#<p>login03.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c01622bd27e91e952e62d2f73cc7e131" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-cat index.html | sed 's#<p>login04.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=c46188cd4e6fe122914d317c33f8c8a4" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-cat index.html | sed 's#<p>login05.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=5376a8be440a38b5fa982d93fea6893d" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-cat index.html | sed 's#<p>login06.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=e38a4cbc44cb0606c86aebe93b301681" frameborder="1"></iframe>#g' > index.html.1
-mv index.html.1 index.html
-cat index.html | sed 's#<p>login07.dart</p>#<iframe width="900" height="500" src="https://dartpad.dev/embed-flutter.html?id=25c545bff92528e287ccc18290b52462" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
 exit 0
