@@ -42,7 +42,7 @@ cat index.html | sed 's#<p>json04</p>#<iframe width="820" height="820" src="./js
 mv index.html.1 index.html
 
 # Flutter Webアプリの追加
-cat index.html | sed 's#<p>flutter01</p>#<br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>#g' > index.html.1
+cat index.html | sed 's#<p>flutter01</p>#<br><iframe width="400" height="600" src="https://restoreview-f8e28.web.app" frameborder="1"></iframe>#g' > index.html.1
 mv index.html.1 index.html
 
 # dartpadの追加
