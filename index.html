@@ -755,141 +755,6 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Flutterによるアプリ開発" duration="0">
-        <p>ユースケースの整理からデータモデルと画面設計ができたらアプリケーションの開発をはじめます。</p>
-<p>本書では、一つのソースコードでiPhoneアプリとAndroidアプリ、Webアプリ、パソコン用ネイティブアプリ、スマートデバイスようアプリ等々を開発できるクロスプラットフォームフレームワークであるFlutterを使って開発を行います。</p>
-<p>ここでは、下記の理由からFlutter Webを有効にしてWebアプリを開発します。これにより普通のWindowsパソコンでも比較的ストレスなく開発を行うことができるようになります。</p>
-<ul>
-<li>iPhoneアプリに対応するためにはMacが必要でありWindows PCの人が開発できない</li>
-<li>Androidアプリに対応するためにAndroid SDKやAndroid Studioのインストールが必要で準備に時間がかかる</li>
-<li>iPhoneアプリとAndroidアプリ開発には十分なスペックのPCが必要でインストールだけでもディスクスペースを大量に消費し開発環境の起動やコンパイルに時間がかかる</li>
-<li>Flutter Webを開発すればiPhoneアプリとAndroidアプリにもほぼそのまま転用できる</li>
-<li>Flutter Webではファイル保存を担うFirebase Firestorageとデバイスから写真ファイルを簡単に選択できるImagePickerパッケージが対応していないが、コードの追加は簡単にできる</li>
-</ul>
-<h2 is-upgraded>開発するアプリケーション</h2>
-<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
-<p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください。</p>
-<br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
-<aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://firestore-5643d.web.app" target="_blank">https://firestore-5643d.web.app</a> です。</p>
-<p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
-<p class="image-container"><img style="width: 123.00px" src="img/f5a6c4ab61f6cb9e.png"></p>
-</aside>
-<p>本書のハンズオンではこのアプリの作り方を学びます。</p>
-<h2 is-upgraded>初期設定</h2>
-<p>まずはじめに開発に必要なFlutterとエディタであるVS Codeのインストールを行います。</p>
-<h3 is-upgraded>Flutterのインストール</h3>
-<p>下記リンクから自らの開発PCのOSを選択してFlutter SDKをインストールします。</p>
-<p><a href="https://flutter.dev/docs/get-started/install" target="_blank">https://flutter.dev/docs/get-started/install</a></p>
-<p>本書ではFlutter Webのみを利用しますので、Andrlid SetupやiOS Setup（Macの場合）の作業は必要ありません。</p>
-<h3 is-upgraded>VS Codeのインストール</h3>
-<p>下記リンクに従ってVS Codeをインストールします。</p>
-<p><a href="https://flutter.dev/docs/get-started/editor?tab=vscode" target="_blank">https://flutter.dev/docs/get-started/editor?tab=vscode</a></p>
-<h3 is-upgraded>Chromeのインストール</h3>
-<p>開発したWebアプリをデバッグするためにブラウザが必要ですが、Flutterで推奨されているChromeをインストールします。</p>
-<p><a href="https://www.google.com/intl/ja_jp/chrome/" target="_blank">https://www.google.com/intl/ja_jp/chrome/</a></p>
-<h3 is-upgraded>(Windowsの場合) PowerShellのインストール</h3>
-<p>Windows環境の場合ターミナルが使いやすくなるように下記リンクからPowerShellをインストールしておくと良いです。</p>
-<p><a href="https://github.com/PowerShell/PowerShell" target="_blank">https://github.com/PowerShell/PowerShell</a></p>
-<h3 is-upgraded>インストールの確認</h3>
-<p>上記のインストールが完了しているかを確認するため「flutter doctor」コマンドを実行します。下記の通り、FlutterとVS CodeとChromeにチェック「✔︎」が入っていますが、AndroidとXcodeにはインストールがされていないことを表すバツ「✖︎」が表示されます。</p>
-<pre>$ flutter doctor
-Doctor summary (to see all details, run flutter doctor -v):
-[✓] Flutter (Channel beta, 1.20.0, on Mac OS X 10.15.6 19G2021, locale ja-JP)
-[✗] Android toolchain - develop for Android devices
-    ✗ Unable to locate Android SDK.
-      Install Android Studio from: https://developer.android.com/studio/index.html
-      On first launch it will assist you in installing the Android SDK components.
-      (or visit https://flutter.dev/docs/get-started/install/macos#android-setup for detailed instructions).
-      If the Android SDK has been installed to a custom location, set ANDROID_SDK_ROOT to that location.
-      You may also want to add it to your PATH environment variable.
-
-[✗] Xcode - develop for iOS and macOS
-    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
-      Download at: https://developer.apple.com/xcode/download/
-      Or install Xcode via the App Store.
-      Once installed, run:
-        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-        sudo xcodebuild -runFirstLaunch
-    ✗ CocoaPods not installed.
-        CocoaPods is used to retrieve the iOS and macOS platform side&#39;s plugin code that responds to your plugin usage on the Dart side.
-        Without CocoaPods, plugins will not work on iOS or macOS.
-        For more info, see https://flutter.dev/platform-plugins
-      To install:
-        sudo gem install cocoapods
-[✓] Chrome - develop for the web
-[!] Android Studio (not installed)
-[✓] VS Code (version 1.45.1)
-[✓] Connected device (2 available)
-
-! Doctor found issues in 3 categories.</pre>
-<h2 is-upgraded>Flutterプロジェクトの作成</h2>
-<p>Flutterで開発を始めるにあたってflutterコマンドを使ってFlutter Webプロジェクトの初期フォルダを作成します。</p>
-<h3 is-upgraded>Flutter Webの設定</h3>
-<p>FlutterによるWebアプリ開発のためには、Flutterコマンド「flutter config --enable-web」を実行してWebアプリ開発を有効化します。</p>
-<pre>$ flutter --version
-Flutter 1.21.0-10.0.pre.114 • channel master • https://github.com/flutter/flutter.git
-Framework • revision b2c0970aa7 (8 hours ago) • 2020-08-16 06:11:02 -0400
-Engine • revision b300be3df3
-Tools • Dart 2.10.0 (build 2.10.0-34.0.dev)
-
-$ flutter config --enable-web
-Setting &#34;enable-web&#34; value to &#34;true&#34;.
-
-You may need to restart any open editors for them to read new settings.</pre>
-<h3 is-upgraded>Flutterプロジェクトの作成と実行</h3>
-<p>Flutterで開発を始めるには&#34;flutter create [プロジェクト名]&#34;というコマンドを使ってFlutterプロジェクトの初期フォルダを作成します。また、コマンドオプション「--org [パッケージ名]」を追加すると、Dartコードから生成されるiOS用SwiftコードやAndroid用Kotlinコードのパッケージ名を指定できます。パッケージ名はドメイン名を反対にした形式をとるので、例えば弊社ドメイン名&#34;sonrisa.co.jp&#34;にアプリのグループ名&#34;samples&#34;を追加した&#34;samples.sonrisa.co.jp&#34;を反対にした&#34;jp.co.sonrisa.samples&#34;を指定します。このパッケージ名はアプリをAppStoreやGoogle Playに登録する際やFirestoreプロジェクトにアクセスできるアプリを登録する際に使われる重要なものなので、あらかじめルールを決めて指定するように心がけましょう。また、ここでのプロジェクト名は、レストランレビューを登録するアプリであるため「RestoReview」にしてFlutter Webプロジェクトを作成します。</p>
-<pre>$ flutter create --org jp.co.sonrisa.samples RestoReview
-Creating project RestoReview...
-  RestoReview/ios/Runner.xcworkspace/contents.xcworkspacedata (created)
-  ...
-Running &#34;flutter pub get&#34; in RestoReview...                         2.5s
-Wrote 76 files.
-
-All done!
-[✓] Flutter: is fully installed. (Channel master, 1.21.0-10.0.pre.114, on Mac OS X 10.15.6 19G2021, locale ja-JP)
-[✗] Android toolchain - develop for Android devices: is not installed.
-[✗] Xcode - develop for iOS and macOS: is not installed.
-[✓] Chrome - develop for the web: is fully installed.
-[!] Android Studio: is not available. (not installed)
-[✓] VS Code: is fully installed. (version 1.45.1)
-[✓] Connected device: is fully installed. (2 available)
-
-Run &#34;flutter doctor&#34; for information about installing additional components.
-
-In order to run your application, type:
-
-  $ cd RestoReview
-  $ flutter run
-
-Your application code is in RestoReview/lib/main.dart.</pre>
-<p>プロジェクトを作成するとプロジェクト名のフォルダが作成されます。その中身は下記のとおり、プロジェクトの設定を行う&#34;pubspec.yaml&#34;ファイル、Dart言語で書かれたソースコードを置く&#34;lib&#34;フォルダ、プラットフォームごとに自動生成されたソースコードを置く&#34;ios&#34;、&#34;android&#34;、&#34;web&#34;フォルダなどから構成されます。</p>
-<pre>RestoReview $ tree .
-.
-├── pubspec.yaml
-├── lib
-│   └── main.dart
-├── ios
- ...
-├── android
- ...
-└── web
-    ├── favicon.png
-    ├── icons
-    │   ├── Icon-192.png
-    │   └── Icon-512.png
-    ├── index.html
-    └── manifest.json
-
-50 directories, 80 files</pre>
-<p>また、初期状態としてカウンターアプリが生成されますので、それを実行します。</p>
-<pre>$ cd RestoReview
-$ flutter run -d chrome</pre>
-<p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
-<p class="image-container"><img style="width: 325.22px" src="img/191dee9c0dacdadc.png"></p>
-
-
-      </google-codelab-step>
-    
       <google-codelab-step label="Dart言語の基礎" duration="0">
         <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えると思います。</p>
 <aside class="warning"><p><strong>ノート: </strong>Dart言語の基礎については「<a href="https://codelabs.developers.google.com/codelabs/from-java-to-dart" target="_blank">Intro to Dart for Java Developers</a>」というCodelabを一通りみてください。また「<a href="https://dart.dev/samples" target="_blank">Language samples</a>」もみておくとよいです。Dart言語でのクラスの実装やインタフェース、関数プログラミングについて学べます。</p>
@@ -965,7 +830,7 @@ $ flutter run -d chrome</pre>
 <aside class="warning"><p><strong>ノート: </strong>Widgetの理解のために下記を一読するとよいでしょう。</p>
 <p><a href="https://flutter.dev/docs/development/ui/widgets-intro" target="_blank">https://flutter.dev/docs/development/ui/widgets-intro</a></p>
 </aside>
-<p>ここではこの両Widgetを理解するために、ブラウザ上でFlutterをプログラミングし実行できるDartpadを使って説明しています。各説明文の下に記載されたリンクをクリックするとDartpadがソースコードと一緒に開きますので、プログラムを実行したい場合は右上のRUNボタンをクリックすると右側の画面にアプリが表示されます。</p>
+<p>ここではこの両Widgetを理解するために、ブラウザ上でFlutterをプログラミングし実行できるDartpadを使って説明しています。各説明文の下に記載されたリンクをクリックするとDartpadがソースコードと一緒に開きますので、プログラムを実行したい場合は右上のRUNボタンをクリックすると右側の画面にアプリが表示されます。前章と同様にDartpadを本画面上に直接iframeで表示することができるのですが、ブラウザに大量の負荷をかけるため、ワンステップずつDartpad画面を別タブで開いて学習してもらう形式にしています。</p>
 <p>1. シンプルなログイン画面</p>
 <p>StatelessWidgetを使ってシンプルなログイン画面を実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" target="_blank">シンプルなログイン画面のDartpad</a></p>
@@ -991,6 +856,137 @@ $ flutter run -d chrome</pre>
 
       </google-codelab-step>
     
+      <google-codelab-step label="Flutterによるアプリ開発" duration="0">
+        <p>前の2つの章では、Dartpadを使ってブラウザ上でプログラムを試してもらいましたが、ここからはパソコン上のFlutterの開発環境とVSCodeエディタを使った開発を開始してもらいます。開発対象がスマホアプリなので、Android用の開発環境（Android Studio）やiPhone用の開発環境Xcodeが必要と思われがちなのですが、これらは大量のディスクスペースと実行時にハイスペックなCPUと大規模メモリを要求しますので、これを極力回避するためFlutter Webをつかって開発を行うこととします。</p>
+<p>Flutter WebというWebアプリを開発するとなるとスマホのネイティブアプリを開発する本書の目的とは違うと思われそうですが、これが真のクロスプラットフォームフレームワークであるFlutterのよいところで、Flutter Webを開発すればそのソースコードがiPhoneアプリとAndroidアプリ用にもほぼそのまま転用できるのです。いくつかスマホ用には対応していないFlutterプラグインがありますが、それらの機能はスマホアプリをコンパイルする際に追加することとして、ここではFlutter Webとしての「レストランレビューアプリ」を開発します。</p>
+<h2 is-upgraded>開発するアプリケーション</h2>
+<p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
+<p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください。</p>
+<br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
+<aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://restoreview-2f74e.web.app" target="_blank">https://restoreview-2f74e.web.app</a> です。</p>
+<p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
+<p class="image-container"><img style="width: 123.00px" src="img/c97ea9ee98332b59.png"></p>
+</aside>
+<p>本書のハンズオンではGithubからソースコードをダウンロードしてきて、Firebaseとの接続設定を行うことでこのアプリケーションをローカル環境で動かすことができるようにします。その後、ソースコードを眺めながら、実装方法について説明をしていきます。</p>
+<p>そのために、まずはお手持ちのパソコンにFlutterと開発用エディタであるVSCodeのインストールを行います。</p>
+<aside class="warning"><p><strong>ノート: </strong>開発用のパソコンは、GUIが起動しVSCodeが使えればWindows、Mac OS、LinuxとOSは限定されません。また、パソコンのスペックとしては、SSDのハードディスクで、4GB以上のメモリが必要です（Windowsは64bitで7以上が必要です）。</p>
+</aside>
+<h2 is-upgraded>初期設定</h2>
+<p>まずはじめに開発に必要なFlutterとエディタであるVS Codeのインストールを行います。</p>
+<h3 is-upgraded>Flutterのインストール</h3>
+<p>下記リンクから自らの開発PCのOSを選択してFlutter SDKをインストールします。</p>
+<p><a href="https://flutter.dev/docs/get-started/install" target="_blank">https://flutter.dev/docs/get-started/install</a></p>
+<p>本書ではFlutter Webのみを利用しますので、上記リンクに記載のあるAndrlid SetupやiOS Setupの作業は必要ありません。</p>
+<h3 is-upgraded>VS Codeのインストール</h3>
+<p>下記リンクに従ってVS Codeをインストールします。</p>
+<p><a href="https://flutter.dev/docs/get-started/editor?tab=vscode" target="_blank">https://flutter.dev/docs/get-started/editor?tab=vscode</a></p>
+<h3 is-upgraded>Chromeのインストール</h3>
+<p>開発したWebアプリをデバッグするためにブラウザが必要ですが、Flutterで推奨されているChromeをインストールします。</p>
+<p><a href="https://www.google.com/intl/ja_jp/chrome/" target="_blank">https://www.google.com/intl/ja_jp/chrome/</a></p>
+<h3 is-upgraded>(Windowsの場合) PowerShellのインストール</h3>
+<p>Windows環境の場合ターミナルが使いやすくなるように下記リンクからPowerShellをインストールしておくと良いです。</p>
+<p><a href="https://github.com/PowerShell/PowerShell" target="_blank">https://github.com/PowerShell/PowerShell</a></p>
+<h3 is-upgraded>インストールの確認</h3>
+<p>上記のインストールが完了しているかを確認するため「flutter doctor」コマンドを実行します。下記の通り、FlutterとVS CodeとChromeにチェック「✔︎」が入っていますが、AndroidとXcodeにはインストールがされていないことを表すバツ「✖︎」が表示されます。</p>
+<pre>$ flutter doctor
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel beta, 1.20.0, on Mac OS X 10.15.6 19G2021, locale ja-JP)
+[✗] Android toolchain - develop for Android devices
+    ✗ Unable to locate Android SDK.
+      Install Android Studio from: https://developer.android.com/studio/index.html
+      On first launch it will assist you in installing the Android SDK components.
+      (or visit https://flutter.dev/docs/get-started/install/macos#android-setup for detailed instructions).
+      If the Android SDK has been installed to a custom location, set ANDROID_SDK_ROOT to that location.
+      You may also want to add it to your PATH environment variable.
+
+[✗] Xcode - develop for iOS and macOS
+    ✗ Xcode installation is incomplete; a full installation is necessary for iOS development.
+      Download at: https://developer.apple.com/xcode/download/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        sudo xcodebuild -runFirstLaunch
+    ✗ CocoaPods not installed.
+        CocoaPods is used to retrieve the iOS and macOS platform side&#39;s plugin code that responds to your plugin usage on the Dart side.
+        Without CocoaPods, plugins will not work on iOS or macOS.
+        For more info, see https://flutter.dev/platform-plugins
+      To install:
+        sudo gem install cocoapods
+[✓] Chrome - develop for the web
+[!] Android Studio (not installed)
+[✓] VS Code (version 1.45.1)
+[✓] Connected device (2 available)
+
+! Doctor found issues in 3 categories.</pre>
+<h2 is-upgraded>Flutterプロジェクトの作成</h2>
+<p>Flutterで開発を始めるにあたってflutterコマンドを使ってFlutter Webプロジェクトの初期フォルダを作成します。</p>
+<h3 is-upgraded>Flutter Webの設定</h3>
+<p>FlutterによるWebアプリ開発のためには、Flutterコマンド「flutter config --enable-web」を実行してWebアプリ開発を有効化します。</p>
+<pre>$ flutter --version
+Flutter 1.21.0-10.0.pre.114 • channel master • https://github.com/flutter/flutter.git
+Framework • revision b2c0970aa7 (8 hours ago) • 2020-08-16 06:11:02 -0400
+Engine • revision b300be3df3
+Tools • Dart 2.10.0 (build 2.10.0-34.0.dev)
+
+$ flutter config --enable-web
+Setting &#34;enable-web&#34; value to &#34;true&#34;.
+
+You may need to restart any open editors for them to read new settings.</pre>
+<h3 is-upgraded>Flutterプロジェクトの作成と実行</h3>
+<p>Flutterで開発を始めるには&#34;flutter create [プロジェクト名]&#34;というコマンドを使ってFlutterプロジェクトの初期フォルダを作成します。また、コマンドオプション「--org [パッケージ名]」を追加すると、Dartコードから生成されるiOS用SwiftコードやAndroid用Kotlinコードのパッケージ名を指定できます。私はパッケージ名はドメイン名を反対にした形式をとるので、例えば弊社ドメイン名&#34;sonrisa.co.jp&#34;にアプリのグループ名&#34;samples&#34;を追加した&#34;samples.sonrisa.co.jp&#34;を反対にした&#34;jp.co.sonrisa.samples&#34;を指定しましたが、みなさんの環境では自分にあったパッケージ名を決めて実行してください。このパッケージ名はアプリをAppStoreやGoogle Playに登録する際やFirestoreプロジェクトにアクセスできるアプリを登録する際に使われる重要なものなので、あらかじめルールを決めて指定するように心がけましょう。また、ここでのプロジェクト名は、レストランレビューを登録するアプリであるため「RestoReview」にしてFlutter Webプロジェクトを作成します。</p>
+<pre>$ flutter create --org jp.co.sonrisa.samples RestoReview
+Creating project RestoReview...
+  RestoReview/ios/Runner.xcworkspace/contents.xcworkspacedata (created)
+  ...
+Running &#34;flutter pub get&#34; in RestoReview...                         2.5s
+Wrote 76 files.
+
+All done!
+[✓] Flutter: is fully installed. (Channel master, 1.21.0-10.0.pre.114, on Mac OS X 10.15.6 19G2021, locale ja-JP)
+[✗] Android toolchain - develop for Android devices: is not installed.
+[✗] Xcode - develop for iOS and macOS: is not installed.
+[✓] Chrome - develop for the web: is fully installed.
+[!] Android Studio: is not available. (not installed)
+[✓] VS Code: is fully installed. (version 1.45.1)
+[✓] Connected device: is fully installed. (2 available)
+
+Run &#34;flutter doctor&#34; for information about installing additional components.
+
+In order to run your application, type:
+
+  $ cd RestoReview
+  $ flutter run
+
+Your application code is in RestoReview/lib/main.dart.</pre>
+<p>プロジェクトを作成するとプロジェクト名のフォルダが作成されます。その中身は下記のとおり、プロジェクトの設定を行う&#34;pubspec.yaml&#34;ファイル、Dart言語で書かれたソースコードを置く&#34;lib&#34;フォルダ、プラットフォームごとに自動生成されたソースコードを置く&#34;ios&#34;、&#34;android&#34;、&#34;web&#34;フォルダなどから構成されます。</p>
+<pre>RestoReview $ tree .
+.
+├── pubspec.yaml
+├── lib
+│   └── main.dart
+├── ios
+ ...
+├── android
+ ...
+└── web
+    ├── favicon.png
+    ├── icons
+    │   ├── Icon-192.png
+    │   └── Icon-512.png
+    ├── index.html
+    └── manifest.json
+
+50 directories, 80 files</pre>
+<p>また、初期状態としてカウンターアプリが生成されますので、それを実行します。</p>
+<pre>$ cd RestoReview
+$ flutter run -d chrome</pre>
+<p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
+<p class="image-container"><img style="width: 325.22px" src="img/191dee9c0dacdadc.png"></p>
+<p>本Flutterプロジェクトフォルダは、Flutter Webとしてレストランレビューアプリを開発したあと、AndroidアプリとiOSアプリ化する際に使用します。しばらくは、別途、Github上のRestoReviewリポジトリからgit cloneしたプロジェクトを利用しますので、まるまる削除してのちほど再度作成するか、どこかにバックアップしておいてください。</p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="Firebaseのセットアップ" duration="0">
         <p>Flutter開発の初期設定が完了したのでインフラ部分を担うFirebaseの設定を行います。</p>
 <h2 is-upgraded>1. Firebaseプロジェクトの作成</h2>
@@ -1001,6 +997,12 @@ $ flutter run -d chrome</pre>
 <p class="image-container"><img style="width: 402.80px" src="img/c23c9a8dc6acdcc7.png"></p>
 <p>「メール/パスワード」を有効化するため、「Authentication」画面のログインプロバイダのリストの最上部「メール/パスワード」行右端の鉛筆アイコンを選択し表示される下記ダイアログで「有効にする」を選択し、保存ボタンをクリックします。</p>
 <p class="image-container"><img style="width: 315.60px" src="img/23569565b84e855f.png"></p>
+<p>さらに「Authentication」画面の「Users」タブを選んで、「ユーザ追加」から下記の3つのメールアドレスを追加しておいてください。パスワードは任意です。これらのユーザは「RestoReview」アプリから利用します。</p>
+<ul>
+<li>ichiro@test.com</li>
+<li>jiro@test.com</li>
+<li>saburo@test.com</li>
+</ul>
 <h2 is-upgraded>3. Firestoreデータベースの有効化</h2>
 <p>アプリケーションが利用するデータベースとしてCloud Firestoreを有効化します。</p>
 <ol type="1" start="1">
@@ -1008,7 +1010,7 @@ $ flutter run -d chrome</pre>
 </ol>
 <p class="image-container"><img style="width: 304.40px" src="img/488a58b182df0f17.png"></p>
 <ol type="1" start="2">
-<li>「本番環境で開始」を選択し「次へ」ボタンをクリックします。これによってセキュリティ・ルールが有効になります。</li>
+<li>「テストモードで開始」を選択し「次へ」ボタンをクリックします（本番では必ずセキュリティルールを有効にしてください）。</li>
 </ol>
 <p class="image-container"><img style="width: 306.00px" src="img/ccbb24d72e3ab3.png"></p>
 <ol type="1" start="3">
@@ -1016,6 +1018,11 @@ $ flutter run -d chrome</pre>
 </ol>
 <p class="image-container"><img style="width: 379.00px" src="img/cca014cd5b96b98e.png"></p>
 <p>以上によりRestoReviewプロジェクトでCloud Firestoreが使えるようになります。</p>
+<h2 is-upgraded>Flutterプロジェクト「RestoReview」のダウンロード</h2>
+<p>下記コマンドを実行して、GithubからFlutterプロジェクト「RestoReview」をダウンロードします。</p>
+<pre>$ git clone https://github.com/david3080/RestoReview.git
+...
+$ cd RestoReview/</pre>
 <h2 is-upgraded>Firebase CLIのインストールと設定</h2>
 <p>Firebaseのコマンドラインインタフェース(CLI)を使うと、開発したWebアプリや設定ファイルをFirebaseに直接デプロイすることができます。</p>
 <aside class="warning"><p><strong>ノート: </strong>Firebase CLIをインストールするには <a href="https://nodejs.org/ja/" target="_blank">NodeJS</a> のインストールが必要です。</p>
@@ -1042,10 +1049,18 @@ i  Firebase optionally collects CLI usage and error reporting information to hel
 <p>ログインが成功します。</p>
 <p class="image-container"><img style="width: 277.89px" src="img/6d39015ea11d142f.png"></p>
 <ol type="1" start="4">
+<li>「firebase projects:list」を実行し、ログインしたユーザが所有するFirebaseプロジェクトをリストします。</li>
+</ol>
+<pre>$ firebase projects:list</pre>
+<ol type="1" start="5">
+<li>リストされたFirebaseプロジェクトの中から先ほど作成した「RestoReview」プロジェクトを指定してCLIの対象プロジェクトに設定します。このとき、「RestoReview」というプロジェクト名ではなく、上でリストされた表の2列目の「restoreview-xxxxx」という形式のプロジェクトIDを指定します。</li>
+</ol>
+<pre>$ firebase use restoreview-xxxxx</pre>
+<ol type="1" start="6">
 <li>「Flutterプロジェクトの作成」で作ったプロジェクトフォルダ（ここでは「RestoReview」）に移動し、「firebase init」を実行し、Firebaseプロジェクトに紐付けます。</li>
 </ol>
 <pre>$ firebase init</pre>
-<ol type="1" start="5">
+<ol type="1" start="7">
 <li>コマンド実行すると下記画面が表示されるので、Firebase CLIから利用するFirebase機能を選択します。「↑」「↓」キーで機能を選択し、「スペース」キーで「○（非選択）」と「◉（選択）」を切り替えます。ここでは「Firestore」「Functions」「Hosting」「Storage」を選択して「Enter」を押します。</li>
 </ol>
 <pre>     ######## #### ########  ######## ########     ###     ######  ########
@@ -1067,33 +1082,6 @@ You&#39;re about to initialize a Firebase project in this directory:
 ❯◉ Storage: Deploy Cloud Storage security rules
  ◯ Emulators: Set up local emulators for Firebase features
 </pre>
-<ol type="1" start="6">
-<li>次にデフォルトのFirebaseプロジェクトの設定を促されるので、「Use an existing project」を選んで「Enter」を押します。</li>
-</ol>
-<pre>=== Project Setup
-
-First, let&#39;s associate this project directory with a Firebase project.
-You can create multiple project aliases by running firebase use --add, 
-but for now we&#39;ll just set up a default project.
-
-? Please select an option: 
-❯ Use an existing project 
-  Create a new project 
-  Add Firebase to an existing Google Cloud Platform project 
-  Don&#39;t set up a default project </pre>
-<ol type="1" start="7">
-<li>先ほど作成したFirebaseプロジェクト（ここでは「RestoReview」）を選択して「Enter」を押します。</li>
-</ol>
-<pre>=== Project Setup
-
-First, let&#39;s associate this project directory with a Firebase project.
-You can create multiple project aliases by running firebase use --add, 
-but for now we&#39;ll just set up a default project.
-
-? Please select an option: Use an existing project
-? Select a default Firebase project for this directory: 
-  firestore-xxxxx (firestore) 
-❯ restoreview-xxxxx (RestoReview) </pre>
 <ol type="1" start="8">
 <li>次にセキュリティ・ルールを定義しFirebaseにデプロイするファイル名を指定します。デフォルトのままで「Enter」を押します。</li>
 </ol>
@@ -1157,34 +1145,40 @@ i  Writing configuration info to firebase.json...
 i  Writing project information to .firebaserc...
 
 ✔  Firebase initialization complete!</pre>
-<h2 is-upgraded>FlutterプロジェクトのFirebase Hostingへのデプロイ</h2>
-<p>Flutterプロジェクト「RestoReview」のカウンターアプリをFirebase Hostingにデプロイします。</p>
+<h2 is-upgraded>FlutterアプリからFirebaseが使えるよう設定</h2>
 <ol type="1" start="1">
 <li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインし「RestoReview」プロジェクトを選択します。</li>
 <li>アイコン「&lt;/&gt;」をクリックしてWebアプリを追加します。</li>
 </ol>
 <p class="image-container"><img style="width: 291.50px" src="img/933d2735cf3074a5.png"></p>
 <ol type="1" start="3">
-<li>アプリのニックネームを「RestoReview」にして「このアプリのFirebase Hostingを設定します」にチェックを入れて「アプリを登録」をクリック</li>
+<li>アプリのニックネームを「RestoReview」にして「このアプリのFirebase Hostingを設定します」にチェックを入れて「アプリを登録」をクリックします。</li>
 </ol>
 <p class="image-container"><img style="width: 291.50px" src="img/7e66fe3f4fb0728b.png"></p>
 <ol type="1" start="4">
-<li>「Firebase SDKの追加」画面の灰色部分をコピーして、「RestoReview」Flutterプロジェクトの「web/index.html」ファイルの「&lt;meta name=&#34;description&#34; content=&#34;A new Flutter project.&#34;&gt;」と「&lt;!-- iOS meta tags &amp; icons --&gt;」の間に貼り付けます。</li>
+<li>次のページは、APIキーなどを含む設定ファイルの読み込み設定ですが、後ほど行いますので「次へ」ボタンをクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 438.99px" src="img/ecaced4ba2104077.png"></p>
+<p class="image-container"><img style="width: 396.50px" src="img/ecaced4ba2104077.png"></p>
 <ol type="1" start="5">
 <li>次ページの「Firebase CLIのインストール」はすでに完了しているので「次へ」ボタンをクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 444.50px" src="img/a395d49aadd9e73.png"></p>
+<p class="image-container"><img style="width: 399.91px" src="img/a395d49aadd9e73.png"></p>
 <ol type="1" start="6">
 <li>次のページの「Firebase Hostingへのデプロイ」ではFirebaseへのログインとローカルプロジェクトとFirebaseプロジェクトとの紐付け、Firebase Hostingへのデプロイのコマンドが紹介されていますが、ログインと紐付けはすでに行っており、Hostingへのデプロイは後ほど行うので「コンソールに進む」ボタンをクリックして、FirebaseプロジェクトでのWebアプリの追加を終了します。</li>
 </ol>
-<p class="image-container"><img style="width: 450.32px" src="img/52506531a99326e5.png"></p>
+<p class="image-container"><img style="width: 431.50px" src="img/52506531a99326e5.png"></p>
 <ol type="1" start="7">
-<li>Flutter Webをビルドします。実は以前Chromeを開いてFlutter Webをデバッグ実行した「flutter run -d chrome」コマンドを実行した際に、Flutter Webのビルドも同時に実行されており、「build/web」フォルダに必要なファイルは生成されていたのですが、Firebase Hostingでの実行に必要な上記4の設定が「index.html」ファイルに追加されたので再度ビルドします。これによってDart言語によって書かれたプログラムがコンパイルされて生成されたJavaScriptとそれを呼び出すindex.htmlが「web/index.html」からコピーされて「build/web」に保存されます。</li>
+<li>コンソールに戻るので、左メニューの「設定」から「プロジェクトの設定」を選択し、「全般」タブの「マイアプリ」＞「ウェブアプリ」を選択し、「Firebase SDK snippet」の「構成」ラジオボタンを選択します。</li>
 </ol>
-<pre>$ flutter build web</pre>
+<p class="image-container"><img style="width: 531.90px" src="img/b5829b9d15edbbbe.png"></p>
+<p>先ほどダウンロードした「RestoReview」フォルダ配下の「web」フォルダに新たに「init-firebase.js」ファイルを作成して、表示される灰色部分をコピーし、最終行に「<code>firebase.initializeApp(firebaseConfig);</code>」を追記して保存します（本ファイルは同フォルダにあるindex.htmlから読み込まれます）。</p>
 <ol type="1" start="8">
+<li>「RestReview」フォルダにいることを確認し、Flutter Webをビルドします。実は以前Chromeを開いてFlutter Webをデバッグ実行した「flutter run -d chrome」コマンドを実行した際に、Flutter Webのビルドも同時に実行されており、「build/web」フォルダに必要なファイルは生成されていたのですが、Firebase Hostingでの実行に必要な「init-firebase.js」ファイルが追加されたので再度ビルドします。これによってDart言語によって書かれたプログラムがコンパイルされて生成されたJavaScriptとそれを呼び出すindex.htmlが「web/index.html」からコピーされて「build/web」に保存されます。</li>
+</ol>
+<pre>$ pwd
+.../RestReview
+$ flutter build web</pre>
+<ol type="1" start="9">
 <li>Flutter Webの静的ファイルをFirebase Hostingにデプロイします。</li>
 </ol>
 <pre>$ firebase deploy --only hosting
@@ -1204,28 +1198,23 @@ i  hosting[restoreview-824b4]: releasing new version...
 
 Project Console: https://console.firebase.google.com/project/restoreview-824b4/overview
 Hosting URL: https://restoreview-824b4.web.app</pre>
-<ol type="1" start="9">
-<li>「Hosting URL」として出力されたURLにアクセスするとカウンターアプリが表示されます。</li>
+<ol type="1" start="10">
+<li>「Hosting URL」として出力されたURLにアクセスするとレストランレビューアプリが表示されます。</li>
 </ol>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Firebase Authを使ったFlutterアプリ開発" duration="0">
-        <p>以下のステップでFirebase Authのユーザ/パスワードを使ったユーザ登録・ログイン・ログアウトを実装します。</p>
-<p>1. ログイン画面の実装（FormとFirebaseAuthの使い方）</p>
-<p>2. LandigPageの実装(FirebaseAuthとStreamBuilderの使い方)</p>
-<p>3. ホーム画面の実装（BottomNavigationBarの使い方）</p>
-<p>4. Auth Blocの作成</p>
-<p>あああ</p>
-<h2 is-upgraded>Firebase Authを使ったログイン開発</h2>
-<p>あああ</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Flutterプロジェクトのリポジトリ管理" duration="0">
-        <p>あああ</p>
+      <google-codelab-step label="ログイン、メニュー選択、ログアウトの実装" duration="0">
+        <p>「レストランレビューアプリ」の画面設計で説明した「①ログイン、メニュー選択、ログアウト」の各画面は図のようなクラスで実装されています。</p>
+<p class="image-container"><img style="width: 601.70px" src="img/6ba691a0e16d3398.png"></p>
+<p>1. ログイン画面（LoginPage）の実装</p>
+<p>TODO</p>
+<p>2. LandigPageの実装</p>
+<p>ログイン状態を随時チェックしてログイン画面（LoginPage）とホーム画面（HomePage）を切り替えるためにLandingPageが配置されています。</p>
+<p>TODO</p>
+<p>3. ホーム画面（HomePage）の実装</p>
+<p>TODO</p>
 
 
       </google-codelab-step>
@@ -1249,13 +1238,13 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="セキュリティルールの作成とデプロイ" duration="0">
-        <p>あああ</p>
+        <p>TODO</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="UnitテストとWidgetテスト" duration="0">
-        <p>TODO あああ</p>
+        <p>TODO</p>
 
 
       </google-codelab-step>
@@ -1275,6 +1264,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
     
       <google-codelab-step label="FlutterおよびFirebaseのセキュリティ" duration="0">
         <p>TODO 本書での構成はフロントのネイティブアプリ開発はFlutterにまかせ、バックエンドもFirebaseにまかせるので、APIやWebアプリの開発は発生せず、それらの脆弱性は考える必要がない。そのため、Flutterで構築するネイティブアプリの脆弱性回避とFirebaseの主要機能であるFirestoreとFirestorageとCloud Functionsで妥当なセキュリティルールの設定をすることに注力するだけでよい。あとは脆弱性診断など第三者によるチェックの仕方を考えることくらい。</p>
+<p>APIキーについて</p>
 <p>参考）Flutterアプリ開発七つの大罪：<a href="https://qiita.com/__naoya__/items/98ac66157a1578be2798" target="_blank">https://qiita.com/__naoya__/items/98ac66157a1578be2798</a></p>
 <p>参考）Flutter Security：<a href="https://flutter.dev/security" target="_blank">https://flutter.dev/security</a></p>
 <p>参考）How to make a flutter app with high security? ：<a href="https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da" target="_blank">https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da</a></p>
