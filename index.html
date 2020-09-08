@@ -856,16 +856,16 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Flutterによるアプリ開発" duration="0">
+      <google-codelab-step label="Flutter Webによるアプリ開発" duration="0">
         <p>前の2つの章では、Dartpadを使ってブラウザ上でプログラムを試してもらいましたが、ここからはパソコン上のFlutterの開発環境とVSCodeエディタを使った開発を開始してもらいます。開発対象がスマホアプリなので、Android用の開発環境（Android Studio）やiPhone用の開発環境Xcodeが必要と思われがちなのですが、これらは大量のディスクスペースと実行時にハイスペックなCPUと大規模メモリを要求しますので、これを極力回避するためFlutter Webをつかって開発を行うこととします。</p>
 <p>Flutter WebというWebアプリを開発するとなるとスマホのネイティブアプリを開発する本書の目的とは違うと思われそうですが、これが真のクロスプラットフォームフレームワークであるFlutterのよいところで、Flutter Webを開発すればそのソースコードがiPhoneアプリとAndroidアプリ用にもほぼそのまま転用できるのです。いくつかスマホ用には対応していないFlutterプラグインがありますが、それらの機能はスマホアプリをコンパイルする際に追加することとして、ここではFlutter Webとしての「レストランレビューアプリ」を開発します。</p>
 <h2 is-upgraded>開発するアプリケーション</h2>
 <p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
 <p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください。</p>
 <br><iframe width="400" height="600" src="https://firestore-5643d.web.app" frameborder="1"></iframe>
-<aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://restoreview-2f74e.web.app" target="_blank">https://restoreview-2f74e.web.app</a> です。</p>
+<aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://restoreview-f8e28.web.app/" target="_blank">https://restoreview-f8e28.web.app/</a> です。</p>
 <p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
-<p class="image-container"><img style="width: 123.00px" src="img/c97ea9ee98332b59.png"></p>
+<p class="image-container"><img style="width: 123.00px" src="img/e30094ac90b164c3.png"></p>
 </aside>
 <p>本書のハンズオンではGithubからソースコードをダウンロードしてきて、Firebaseとの接続設定を行うことでこのアプリケーションをローカル環境で動かすことができるようにします。その後、ソースコードを眺めながら、実装方法について説明をしていきます。</p>
 <p>そのために、まずはお手持ちのパソコンにFlutterと開発用エディタであるVSCodeのインストールを行います。</p>
@@ -1018,6 +1018,11 @@ $ flutter run -d chrome</pre>
 </ol>
 <p class="image-container"><img style="width: 379.00px" src="img/cca014cd5b96b98e.png"></p>
 <p>以上によりRestoReviewプロジェクトでCloud Firestoreが使えるようになります。</p>
+<ol type="1" start="4">
+<li>レビューはレストランのサブコレクションですが、レビュー単独で横断的に検索できるようにするために、レビューの3フィールド「id（レビューのID）」、「uid（レビュー者のユーザID）」、「star（星数）」に昇順・降順インデックスをセットして、「reviews」をコレクショングループに追加します。コレクショングループの設定は、Cloud Firestore画面でインデックス・タブを選択し、さらに単一フィールド・タブを選択し、「除外を追加」ボタンをクリックして3フィールドを順番に設定していきます。下図のとおり「コレクションID」に「reviews」、フィールドのパスに3フィールドを順番にセットし、「コレクショングループ」にチェックを入れて「Next」ボタンをクリックし、次ダイアログでインデックスに昇順と降順にチェックを入れて「保存」ボタンをクリックします。</li>
+</ol>
+<p class="image-container"><img style="width: 373.50px" src="img/ab441d29e9c42589.png"></p>
+<p class="image-container"><img style="width: 374.50px" src="img/4f7b3a1cd89d0821.png"></p>
 <h2 is-upgraded>Flutterプロジェクト「RestoReview」のダウンロード</h2>
 <p>下記コマンドを実行して、GithubからFlutterプロジェクト「RestoReview」をダウンロードします。</p>
 <pre>$ git clone https://github.com/david3080/RestoReview.git
@@ -1171,7 +1176,19 @@ i  Writing project information to .firebaserc...
 <li>コンソールに戻るので、左メニューの「設定」から「プロジェクトの設定」を選択し、「全般」タブの「マイアプリ」＞「ウェブアプリ」を選択し、「Firebase SDK snippet」の「構成」ラジオボタンを選択します。</li>
 </ol>
 <p class="image-container"><img style="width: 531.90px" src="img/b5829b9d15edbbbe.png"></p>
-<p>先ほどダウンロードした「RestoReview」フォルダ配下の「web」フォルダに新たに「init-firebase.js」ファイルを作成して、表示される灰色部分をコピーし、最終行に「<code>firebase.initializeApp(firebaseConfig);</code>」を追記して保存します（本ファイルは同フォルダにあるindex.htmlから読み込まれます）。</p>
+<p>画面灰色部分を先ほどダウンロードした「RestoReview」フォルダ配下の「web/index.html」ファイル内の下記箇所に上書き保存します。</p>
+<pre>// ここを上書きする
+const firebaseConfig = {
+  apiKey: &#34;...&#34;,
+  authDomain: &#34;...&#34;,
+  databaseURL: &#34;...&#34;,
+  projectId: &#34;...&#34;,
+  storageBucket: &#34;...&#34;,
+  messagingSenderId: &#34;...&#34;,
+  appId: &#34;...&#34;,
+  measurementId: &#34;...&#34;
+};
+// ここまで</pre>
 <ol type="1" start="8">
 <li>「RestReview」フォルダにいることを確認し、Flutter Webをビルドします。実は以前Chromeを開いてFlutter Webをデバッグ実行した「flutter run -d chrome」コマンドを実行した際に、Flutter Webのビルドも同時に実行されており、「build/web」フォルダに必要なファイルは生成されていたのですが、Firebase Hostingでの実行に必要な「init-firebase.js」ファイルが追加されたので再度ビルドします。これによってDart言語によって書かれたプログラムがコンパイルされて生成されたJavaScriptとそれを呼び出すindex.htmlが「web/index.html」からコピーされて「build/web」に保存されます。</li>
 </ol>
@@ -1205,7 +1222,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="ログイン、メニュー選択、ログアウトの実装" duration="0">
+      <google-codelab-step label="「ログイン、メニュー選択、ログアウト」の実装" duration="0">
         <p>「レストランレビューアプリ」の画面設計で説明した「①ログイン、メニュー選択、ログアウト」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/6ba691a0e16d3398.png"></p>
 <p>1. ログイン画面（LoginPage）の実装</p>
@@ -1219,20 +1236,41 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="Firestoreを使ったFlutterアプリ開発" duration="0">
-        <p>あああ</p>
-<h2 is-upgraded>Flutterアプリ起動時の初期データ登録の開発</h2>
-<p>あああ</p>
-<h2 is-upgraded>ログインユーザのプロフィール画面の開発</h2>
-<p>あああ</p>
-<h2 is-upgraded>レストランリスト表示画面の開発</h2>
-<p>あああ</p>
-<h2 is-upgraded>レストラン詳細画面とレビューリスト画面の開発</h2>
-<p>あああ</p>
-<h2 is-upgraded>レビュー登録画面と編集画面の開発</h2>
-<p>あああ</p>
-<h2 is-upgraded>レストラン平均星数登録のトランザクション処理</h2>
-<p>あああ</p>
+      <google-codelab-step label="「レストランリストとレストラン詳細、レビュー表示とレビュー追加」の実装" duration="0">
+        <p>「レストランレビューアプリ」の画面設計で説明した「②レストランリストとレストラン詳細、レビュー表示とレビュー追加」の各画面は図のようなクラスで実装されています。</p>
+<p class="image-container"><img style="width: 601.70px" src="img/af07406616e31f12.png"></p>
+<p>1. レストラン画面（RestoPage）の実装</p>
+<p>TODO</p>
+<p>2. レストラン詳細画面（RestoDetail）の実装</p>
+<p>TODO</p>
+<p>3. レビュー詳細（ユーザ画面付）画面（UserReviewDetail）の実装</p>
+<p>TODO</p>
+<p>4. レビュー追加画面（ReviewEdit）の実装</p>
+<p>TODO</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="「全レビューリストとレビュー表示」の実装" duration="0">
+        <p>「レストランレビューアプリ」の画面設計で説明した「③全レビューリストとレビュー表示」の各画面は図のようなクラスで実装されています。</p>
+<p class="image-container"><img style="width: 601.70px" src="img/d7a97b147e8e5e87.png"></p>
+<p>1. レビュー画面（ReviewPage）の実装</p>
+<p>TODO</p>
+<p>2. レビュー詳細（ユーザ画面付）画面（UserReviewDetail）の実装</p>
+<p>TODO</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="「アカウント表示と自分が投稿したレビューの管理」の実装" duration="0">
+        <p>「レストランレビューアプリ」の画面設計で説明した「④アカウント表示と自分が投稿したレビューの管理」の各画面は図のようなクラスで実装されています。</p>
+<p class="image-container"><img style="width: 601.70px" src="img/8b9610af61d9781f.png"></p>
+<p>1. アカウント画面（AccountPage）の実装</p>
+<p>TODO</p>
+<p>2. レビュー詳細（ReviewDetail）の実装</p>
+<p>TODO</p>
+<p>3. レビュー編集（ReviewEdit）の実装</p>
+<p>TODO</p>
 
 
       </google-codelab-step>
