@@ -82,7 +82,7 @@
 <li>顧客（メールアドレス、氏名、アイコン）</li>
 </ul>
 <p>ここで具体的なサンプルデータを表形式にまとめておくとイメージしやすくなり今後の設計もしやすくなり、開発メンバーへの説明もしやすく開発やテスト等にも生かせます。</p>
-<h3 is-upgraded>表1. レストラン</h3>
+<p><strong>表1. レストラン</strong></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>ID</p>
 </td><td colspan="1" rowspan="1"><p>店名</p>
@@ -162,7 +162,7 @@
 </td><td colspan="1" rowspan="1"><p>https://www.arclandservice.co.jp/katsuya/wp-content/themes/arclandservice-group/assets/img/katsuya/common/logo.svg</p>
 </td></tr>
 </table>
-<h3 is-upgraded>表2. レビュー</h3>
+<p><strong>表2. レビュー</strong></p>
 <p>レストラン「ガスト東岡崎店」に対するレビュー</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>ID</p>
@@ -194,7 +194,7 @@
 <p>トイレは新しくてキレイ</p>
 </td></tr>
 </table>
-<h3 is-upgraded>表3. 顧客</h3>
+<p><strong>表3. 顧客</strong></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>ID</p>
 </td><td colspan="1" rowspan="1"><p>メールアドレス</p>
@@ -242,19 +242,19 @@
 <p class="image-container"><img style="width: 402.29px" src="img/4a990977802676bd.png"></p>
 <p>2. 編集する際は「Code」表示にして行います。JSON形式にエラーがあるとエディタの左部分に「✖️」が表示されるので指示に従って修正します。</p>
 </aside>
-<h4 is-upgraded><strong>3-1. レストラン・ドキュメントの作成</strong></h4>
+<h3 is-upgraded><strong>①</strong><strong>レストラン・ドキュメントの作成</strong></h3>
 <p>上記表1のIDが0のレコードを参考にレストラン・ドキュメントを作成します。</p>
 <iframe width="820" height="220" src="./json01.html" frameborder="1"></iframe>
 <p>JSONではデータのひとつの塊であるドキュメントを { } で囲み、その中に &#34;属性名&#34;: &#34;属性値&#34; をカンマ（ , ）で区切ってリストします。</p>
-<h4 is-upgraded><strong>3-2. レストラン・コレクションの作成</strong></h4>
+<h3 is-upgraded><strong>②</strong><strong>レストラン・コレクションの作成</strong></h3>
 <p>上記表1の通りレストランは10個存在するため、配列をあらわすコレクションとして表現します。</p>
 <iframe width="820" height="420" src="./json02.html" frameborder="1"></iframe>
 <p>JSONではこのコレクションを { &#34;配列名&#34;: [(ドキュメントをカンマ( , )で区切ってリスト)] } で表現します。</p>
-<h4 is-upgraded><strong>3-3. 顧客コレクションの追加</strong></h4>
+<h3 is-upgraded><strong>③</strong><strong>顧客コレクションの追加</strong></h3>
 <p>レストランと同じく顧客コレクションもルートレベルに追加します。</p>
 <iframe width="820" height="420" src="./json03.html" frameborder="1"></iframe>
 <p> JSONでは二つのコレクションを { &#34;users&#34;: [(...)], &#34;restaurants&#34;: [(...)] } と表現します。 </p>
-<h4 is-upgraded><strong>3-4. レビュー・ドキュメントをレストラン・ドキュメント配下のサブコレクションとして追加</strong></h4>
+<h3 is-upgraded><strong>④</strong><strong>レビューをレストラン配下のサブコレクションとして追加</strong></h3>
 <p>レビュー・ドキュメントの配列であるコレクションをレストラン・ドキュメント配下に追加します。この時、レビュー・ドキュメントには書き込みを行った顧客がわかるように顧客IDと顧客名と顧客写真を追加します。また、レビュー・ドキュメントを参照するだけで書き込みを行ったレビュー対象のレストランがわかるよう、レストランID、レストラン名、レストランロゴといった項目も追加します。以上の作業の必要性については「NoSQLとFirestoreについて」を参照してください。</p>
 <iframe width="820" height="820" src="./json04.html" frameborder="1"></iframe>
 
@@ -279,7 +279,7 @@
 <p>状態によって表示する画面が変化する画面遷移のパターンです。下図はログイン・ログアウトの画面遷移の例で、ログインとログアウトのどちらかをあらわす状態変数の値に従って、表示される画面を切り替えるしくみになっています。</p>
 <p class="image-container"><img style="width: 333.00px" src="img/816de381550c54c5.png"></p>
 <p>スマホアプリの開発では、この状態の保持という概念がとても重要です。ユーザがアプリを通して何かデータの入力や変更を行うときのデータだけでなく、ログインしているかログアウトしたか、どの画面に遷移したかなど、画面を動かすために必要な「状態」というデータもあります。この状態遷移としてよく現れる画面遷移のパターンは次の「④リストのCRUD」です。</p>
-<h3 is-upgraded><strong>④ リストのCRUD </strong></h3>
+<h3 is-upgraded><strong>④ リストと詳細のCRUD </strong></h3>
 <p>ビジネスアプリケーションの多くは、複数データを表示・追加・編集・削除しながら整理整頓するものです。そのため、データの概要をリスト表示して、そのうち一つをクリックすると詳細を表示し、編集・削除する、といった機能を持ちます。このタイプのアプリケーションの画面遷移は大概下記のようなフローになります。各画面の説明カッコ内の「Create」「Read」「Update」「Delete」はあわせてCRUD（クラッド）と呼び、データ操作の基本になります。ここでは複数データを扱っていますので、「Read」には複数データのリスト表示と一つのデータの詳細表示の二種類があるので、画面が二つ存在します。</p>
 <p class="image-container"><img style="width: 507.00px" src="img/d38dd34cf41d7b63.png"></p>
 <p>上図の時計アプリの例では、リスト表示をする対象がアラーム設定した時刻といったシンプルなデータですが、本書で開発する「レストランレビューアプリ」のようにレストランデータが複数あり、さらにそのレストランのレビューデータが複数あるといった構造を持つ場合、レストランの詳細画面の下にレビューリストを表示するといった構造を持ちます。このように、複数データを整理整頓する形式のアプリ画面はリスト画面を中心にCRUDを担う機能に画面が分かれることをパターンとして覚えておくとよいでしょう。</p>
@@ -368,11 +368,14 @@
         <p>ここでは画面設計に関連して、Googleが2014年に発表したUIデザインのガイドラインであるマテリアルデザインを紹介します。特にスマホアプリのUIデザインにフォーカスし、スマホアプリ特有の問題からデザインの歴史を説明してから、マテリアルデザインが出現してきた背景について紹介します。</p>
 <h2 is-upgraded>1. スマートフォンの特徴</h2>
 <p>スマートフォンには、パソコンとは異なる2つの特徴があります。</p>
-<h4 is-upgraded><strong>画面が小さく操作手段が限定的</strong></h4>
+<ul>
+<li><strong>画面が小さく操作手段が限定的</strong></li>
+</ul>
 <p>スマホは画面が小さくさらにマウスやキーボードがないため操作手段が限定されるため、画面レイアウトや操作方法をどのようにデザインするかでユーザ満足度が大きく変化します。</p>
-<h4 is-upgraded><strong>画面サイズがばらばら</strong></h4>
-<p>AndroidとiPhoneという違いだけでなく、同種のスマホでも画面サイズがさまざまで、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
-<p class="image-container"><img style="width: 577.00px" src="img/886625a7f19811a7.png"></p>
+<ul>
+<li><strong>画面サイズがばらばら</strong></li>
+</ul>
+<p>AndroidとiPhoneという違いだけでなく、同種のスマホでも画面サイズがさまざまで、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。<img style="width: 531.80px" src="img/886625a7f19811a7.png"></p>
 <h2 is-upgraded>2. スマホアプリで発生しやすい問題</h2>
 <p>Google PlayやApp Storeに登録された実際のアプリの評判からまとめたスマホアプリに対するよくある悪評は主に以下の4つに集約されます。</p>
 <ol type="1" start="1">
@@ -612,31 +615,31 @@
 </ul>
 <h2 is-upgraded>4. マップと配列とサブコレクション</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/o7d5Zeic63s?cc_load_policy=1<p>o7d5Zeic63s</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<h3 is-upgraded>Firestoreにおけるルール</h3>
+<p><strong>Firestoreにおけるルール</strong></p>
 <p>Firestoreでは、JSONの構造における配列（[]で表す）とマップ（{}で表す）をドキュメント型リアルタイム・データベースとしてうまく操作できるようコレクション（JSON内の配列に相当）とドキュメント（JSON内のマップに相当）にうまく分離して保存管理するよう設計します。この設計をうまく行うためにはFirestoreにおけるいくつかのルールを理解しておく必要があります。</p>
-<h3 is-upgraded><strong>ルール1: ドキュメントには制約がある</strong></h3>
+<p><strong>ルール1: ドキュメントには制約がある</strong></p>
 <ol type="1" start="1">
 <li>ドキュメント1つあたり1MB制限あります。そのため、画像ファイルなど大きなファイルはFirebase firestorageに置きファイルパスをドキュメントに保存することで回避します。</li>
 <li>ドキュメント1つあたり最大フィールド数は2万までの制限があります。普通1ドキュメントにそんなに大量のフィールドは必要ないでしょうが、例えばレストラン・ドキュメントにレビューデータも含めるといった設計にすると、有名なレストランではレビューデータが膨れ上がってこの制限を超えてしまうといったことがありえます。ドキュメント内のフィールドは書き込みや更新があるとその都度インデックス処理が走りますが、フィールド数が多すぎるとその処理にオーバーヘッドがかかってしまうという理由からもこの制約が設けられています。以上の理由からも、レビューのように1ドキュメントの配下に大量の配列がぶら下がるような構成の場合は、配列をコレクションとして分割するようにします。</li>
 <li>ドキュメント1つあたり書き込み回数は1秒間に1回のみという制限があります。異なるドキュメントへの書き込みは並列処理されますが、同一ドキュメントへの複数からの同時書き込みは並列処理され1秒間に1回のみであり、同時に行われた書き込み処理は失敗するのでクライアント側で再試行する必要があります。</li>
 </ol>
-<h3 is-upgraded><strong>ルール2: 検索結果はドキュメント全体が出力される</strong></h3>
+<p><strong>ルール2: 検索結果はドキュメント全体が出力される</strong></p>
 <ul>
 <li>アプリ表示のときタイトルだけ欲しいケースがありますが、ドキュメント内の一部のフィールドだけを取得することはできず、全フィールドデータが送られてきます。これを回避したければドキュメントを分割する必要があります。</li>
 <li>同じことはセキュリティルールにも言え、ドキュメント内の一部のフィールドだけ異なるアクセス権を付与するといった操作はできません。異なるセキュリティルールを設定したい場合、たとえドキュメント内で配列構造を持たない箇所でもコレクション配下の1ドキュメントとして分割して対応します。</li>
 </ul>
-<h3 is-upgraded><strong>ルール3: 検索対象は浅い</strong></h3>
+<p><strong>ルール3: 検索対象は浅い</strong></p>
 <ul>
 <li>一度のクエリでは、データベース全体でなくコレクション内のドキュメントだけが検索対象となります。そのためレビュー・リストに投稿した顧客名を表示したいような場合は、顧客ドキュメントの名前フィールドの情報をレビュー・ドキュメントにも用意する、といった非正規化が効果的となるでしょう。</li>
 <li>2019年からコレクショングループの機能が追加され、「collectionGroud(&#34;コレクション名&#34;).where(...).getDocument)」といったクエリを使って子の情報から親を検索できるようになりました。</li>
 </ul>
-<h3 is-upgraded><strong>ルール4: 課金はドキュメントの読み書き回数でカウントされる</strong></h3>
+<p><strong>ルール4: 課金はドキュメントの読み書き回数でカウントされる</strong></p>
 <ul>
 <li>Firestoreでは前述したとおりドキュメントの読み込みと書き込みの回数の合計で課金される金額が決まります。</li>
 <li>ルール3のため、一度に表示したい情報が複数ドキュメントに分割されていると、一つにまとまっているよりも数倍の回数の読み込みが発生して課金が発生するので注意が必要です。</li>
 <li>ただし、トランザクション数が少なく課金への影響が少額である部分の設計や実装にこだわるのは、設計者や開発者、運用者の人件費を考えると逆に無駄なことになりうることも念頭におき、ほどほどに設計するのがよいでしょう。</li>
 </ul>
-<h3 is-upgraded><strong>ルール5: 配列操作は奇妙である</strong></h3>
+<p><strong>ルール5: 配列操作は奇妙である</strong></p>
 <ul>
 <li>例えば、arr: [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]という配列は要素arr[1]を削除すると[&#39;a&#39;,&#39;c&#39;]に変わるが&#39;c&#39;に注目して考えるとarr[2]だったものがarr[1]に変わってしまいます。</li>
 <li>配列要素に追加や削除があると、複数人でデータを扱う際一元的にデータ参照できないという問題があります。</li>
@@ -646,19 +649,19 @@
 <h2 is-upgraded>5. データ構造</h2>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/haMOUb3KVSo?cc_load_policy=1<p>haMOUb3KVSo</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>ドキュメント型データベースにおいて、ユースケースに適したデータ構造を設計するとき主に以下の3種類の構造から適切なものを選びます。</p>
-<h3 is-upgraded><strong>タイプ1. ドキュメントの一部として配列もしくはマップとして含める</strong></h3>
+<p><strong>タイプ1. ドキュメントの一部として配列もしくはマップとして含める</strong></p>
 <ul>
 <li>例えば、レストラン・ドキュメントに最も星の数が多い5つのレビュー内容や最新の5つのレビュー内容をマップか配列として含めることも可能です。</li>
 <li>利点としては、ドキュメントの一度の検索で表示すべき情報を取得することができることが挙げられます。</li>
 <li>一方欠点としては、時間経過とともにフィールド数が増大し、更新時のインデックス処理に時間がかかるようになり、最終的には1ドキュメントあたり1MB制限や2万フィールド制限に到達してしまうことがあります。</li>
 </ul>
-<h3 is-upgraded><strong>タイプ2. オブジェクトをサブコレクションにおさめる</strong></h3>
+<p><strong>タイプ2. オブジェクトをサブコレクションにおさめる</strong></p>
 <ul>
 <li>例えば、レストランのレビューは大量の書き込みが行われる可能性もあるためレストラン・ドキュメントのサブコレクションに含めるとよいでしょう。</li>
 <li>利点としては、リストが大きくなっても親ドキュメントのサイズが変わらず、複数のサブコレクションにまたがる検索をする場合は、<a href="https://cloud.google.com/firestore/docs/query-data/queries?hl=ja" target="_blank">コレクション グループ </a>を設定するとよいでしょう。</li>
 <li>一方、欠点としては、ドキュメントをまたがって検索することが常である場合にも読み込み回数がドキュメント数分発生してしまうことが挙げられます。</li>
 </ul>
-<h3 is-upgraded><strong>タイプ3. オブジェクトをルートレベルのコレクションにおさめる</strong></h3>
+<p><strong>タイプ3. オブジェクトをルートレベルのコレクションにおさめる</strong></p>
 <ul>
 <li>例えば、レビューを書き込む顧客はこのアプリケーションのユーザであり、例えばアプリに出前機能が追加された際にも再利用する必要があるかもしれません。そういう意味でもルートレベルのコレクションとして整理するとよいでしょう。</li>
 <li>利点としては、ルートレベルのコレクションはリレーショナルデータベースにおける正規化の考え方と同じく再利用しやすく、アプリの作り方によらずデータの一貫性が保たれ安心できます。</li>
@@ -666,7 +669,7 @@
 <li>データ構造については、下記のオフィシャル・ドキュメントも参照するとよいでしょう。</li>
 </ul>
 <p><a href="https://cloud.google.com/firestore/docs/concepts/structure-data?hl=ja" target="_blank">https://cloud.google.com/firestore/docs/concepts/structure-data?hl=ja</a></p>
-<h2 is-upgraded>6. セキュリティルール</h2>
+<p><strong>6. セキュリティルール</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/eW5MdE3ZcAw?cc_load_policy=1<p>eW5MdE3ZcAw</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreでは、データベースのツリー構造のドキュメント位置を指定して誰がCRUD（Create:作成、Read:読み込み、Update:更新、Delete:削除）できるかを指定します。これらのアクセス権の指定はセキュリティルールといい、拡張子&#34;.rules&#34;のファイルに設計してFirestoreにデプロイして適用します。</li>
@@ -679,7 +682,7 @@
 </ul>
 <p><a href="https://cloud.google.com/firestore/docs/security/get-started" target="_blank">https://cloud.google.com/firestore/docs/security/get-started</a></p>
 <p><a href="https://firebase.google.com/docs/reference/security/database" target="_blank">https://firebase.google.com/docs/reference/security/database</a></p>
-<h2 is-upgraded>7. データのペジネーション</h2>
+<p><strong>7. データのペジネーション</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/poqTHxtDXwU?cc_load_policy=1<p>poqTHxtDXwU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>一般的に、アプリケーションが表示に必要なレコード以上のデータを取得すると無駄な読み込みに課金が発生し、ネットワークを流れるデータ量も増えるため、サーバ側でペジネーションを行うことが推奨されます。</li>
@@ -687,7 +690,7 @@
 <li>具体的には「Query.start(after:previousDoc)」といった関数が、いま表示されているドキュメントの続きををよしなに判断して取得します。このようにFirestoreのSDKを使うことで、他のクライアントがコレクションに新たなドキュメントを追加したり、既存のドキュメントを削除したりする場合にも、SDKがよしなに差分データだけを取得して画面に反映してくれるため、開発者は難しいことを考えることなくリアルタイムデータベースの効率的で高度な機能を実装できます。</li>
 <li>例えばFlutterでは、「Firestore.instance.collection(&#39;コレクション名&#39;).snapshots()」といった関数でストリーム型でデータを取得し、ListViewやGridViewで表示させることでペジネーションの実装が可能です。</li>
 </ul>
-<h2 is-upgraded>8. トランザクション処理</h2>
+<p><strong>8. トランザクション処理</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/dOVSr0OsAoU?cc_load_policy=1<p>dOVSr0OsAoU</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreはトランザクション処理を実現します。例えば、顧客ドキュメントの名前フィールドを更新する際、レビュードキュメント上においたレビューを追加した顧客名も同時に更新しなければならないことがあります。このような場合、一連の更新作業はひとつのトランザクションとし、すべてが成功した場合にのみ更新を確定（コミット）するといった機能が必要です。そうしなければ、途中の更新に失敗した場合データに不整合が発生してしまいます。</li>
@@ -706,13 +709,13 @@
 <li>Firestoreでのトランザクションの考え方、必要性：<a href="https://qiita.com/1amageek/items/2eff436fb69bea5875ea" target="_blank">https://qiita.com/1amageek/items/2eff436fb69bea5875ea</a></li>
 <li>FieldValue.increment()による高速トランザクション：<a href="https://qiita.com/1amageek/items/665df5a6d9921319e300" target="_blank">https://qiita.com/1amageek/items/665df5a6d9921319e300</a></li>
 </ul>
-<h2 is-upgraded>9. オフラインサポート</h2>
+<p><strong>9. オフラインサポート</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/oDvdAFP6OhQ?cc_load_policy=1<p>oDvdAFP6OhQ</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firestoreはオフラインをサポートしており、クライアント側にFirestore SDKを使うとオフライン時の読み込みはキャッシュが使われ、書き込みもローカルに保存されオンラインになったら順番にFirestoreに反映されるといったことが実現可能です。</li>
 <li>これらの機能は大変高度なものであり、実装するには大変な工数がかかり考慮点も多数ありますが、Firestoreではデフォルトでこれらの機能が利用できますです。</li>
 </ul>
-<h2 is-upgraded>10. リアルタイムか一括フェッチか？</h2>
+<p><strong>10. リアルタイムか一括フェッチか？</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/3aoxOtMM2rc?cc_load_policy=1<p>3aoxOtMM2rc</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>リアルタイムデータベースの操作について下記の迷信がありますが、Firestoreはこれらの迷信を覆します。そのためFirestoreにおいてはデフォルトでリアルタイム機能を使うよう設計し開発をすすめることをおすすめします。</li>
@@ -729,7 +732,7 @@
 <li>デバイスの電力消費が大きい</li>
 </ol>
 <p>いいえ。リスナーを常駐させることは電力消費を増やしません。</p>
-<h2 is-upgraded>11. サーバレスの概要（Cloud Functions）</h2>
+<p><strong>11. サーバレスの概要（Cloud Functions）</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/rERRuBjxJ80?cc_load_policy=1<p>rERRuBjxJ80</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Firesoteは、Firebase上のドキュメント型リアルタイムデータベースを提供するサービスであり、リレーショナルデータベースをモバイルアプリから利用する際に通常必要となるAPIの開発を必要としません。しかし、異なるドキュメントに重複して所有されるフィールドの更新時に一貫性を持たせるための更新処理を実行したい場合や古いデータをまとめて削除するといった運用バッチを実行したい場合など、バックエンドでまとめて処理を行いたいといった要望があります。</li>
@@ -739,7 +742,7 @@
 <li>Firebase Functionsの詳細については、下記の動画「TypeScriptを使ってCloud Functionsを始めよう」も参照するとよいでしょう。</li>
 </ul>
 <p><a href="https://www.youtube.com/watch?v=DYfP-UIKxH0" target="_blank">https://www.youtube.com/watch?v=DYfP-UIKxH0</a></p>
-<h2 is-upgraded>12. Cloud Functionsの5つの利用パターン</h2>
+<p><strong>12. Cloud Functionsの5つの利用パターン</strong></p>
 <br><iframe width="560" height="315" src="https://www.youtube.com/embed/77XmRDtOL7c?cc_load_policy=1<p>77XmRDtOL7c</p>amp;cc_lang_pref=ja" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <ul>
 <li>Cloud Functionsをどのような場合に利用すればよいか、5つのパターンにまとめると以下の通りです。ただし繰り返しになりますがリアルタイムデータベースのメリットが享受できなくなる欠点があることは考慮すべきでしょう。</li>
@@ -831,25 +834,25 @@
 <p><a href="https://flutter.dev/docs/development/ui/widgets-intro" target="_blank">https://flutter.dev/docs/development/ui/widgets-intro</a></p>
 </aside>
 <p>ここではこの両Widgetを理解するために、ブラウザ上でFlutterをプログラミングし実行できるDartpadを使って説明しています。各説明文の下に記載されたリンクをクリックするとDartpadがソースコードと一緒に開きますので、プログラムを実行したい場合は右上のRUNボタンをクリックすると右側の画面にアプリが表示されます。前章と同様にDartpadを本画面上に直接iframeで表示することができるのですが、ブラウザに大量の負荷をかけるため、ワンステップずつDartpad画面を別タブで開いて学習してもらう形式にしています。</p>
-<p>1. シンプルなログイン画面</p>
+<h2 is-upgraded>1. シンプルなログイン画面</h2>
 <p>StatelessWidgetを使ってシンプルなログイン画面を実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=7d838fc9cf5e52bc860a82166cd90434" target="_blank">シンプルなログイン画面のDartpad</a></p>
-<p>2. ボタンを押すとバリデータを実行するログイン画面</p>
+<h2 is-upgraded>2. ボタンを押すとバリデータを実行するログイン画面</h2>
 <p>ログインボタンを押すとメールアドレスやパスワードが入力されているか？ルールにのっとって入力されているかをチェックして、条件を満たさない場合エラーメッセージを表示してくれるよう実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=fcd7a92fb86a50604398c3f8c3b014d2" target="_blank">ボタンを押すとバリデータを実行するログイン画面</a></p>
-<p>3. キー入力でフォーカスが移動しホーム画面に遷移するログイン画面</p>
-<p>FocusNodeクラスを使いフィールド値が完了したら次のフィールドにキー操作が移動し、ログインボタンをクリックするとNavigator.pushを使ってホーム画面に遷移するよう実装します。</p>
+<h2 is-upgraded>3. キー入力でフォーカスが移動するログイン画面</h2>
+<p>FocusNodeクラスを使い、フィールド入力が完了し、エンターを押したら次のフィールドにキー操作が移動し、最後のフィールド入力後エンター押下でログインボタンをクリックしたこととなり、ホーム画面に遷移するよう実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=c01622bd27e91e952e62d2f73cc7e131" target="_blank">キー入力でフォーカスが移動しホーム画面に遷移するログイン画面</a></p>
-<p>4. ログイン/ログアウト状態を管理するランディング画面</p>
+<h2 is-upgraded>4. 状態を管理するランディング画面</h2>
 <p>ログイン画面とホーム画面をログイン/ログアウト状態を管理するステートを持つランディング画面でつなげるよう実装します。この実装はのちに利用するProviderの簡易実装です。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=c46188cd4e6fe122914d317c33f8c8a4" target="_blank">ログイン/ログアウト状態を管理するランディング画面</a></p>
-<p>5. 登録画面に切り替えられるログイン画面</p>
+<h2 is-upgraded>5. 登録画面に切り替えられるログイン画面</h2>
 <p>ログインボタンと登録ボタンをクリックすることでログイン画面と登録画面を切り替えられるようログイン画面を修正します。一つのWidgetで切り替えを行うにはStatelessWidgetから状態（State）を持つStatefulWidgetに変更が必要なのでLoginクラスにリファクタリングを行います。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=5376a8be440a38b5fa982d93fea6893d" target="_blank">登録画面に切り替えられるログイン画面</a></p>
-<p>6. ボトムナビゲーションバーを追加したホーム画面</p>
+<h2 is-upgraded>6. ボトムナビゲーションバーを追加したホーム画面</h2>
 <p>ホーム画面にボトムナビゲーションバーを追加して、3画面切り替えられるように実装します。そのために、StatefulWidgetにリファクタリングして、PageViewを使った実装を行います。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=e38a4cbc44cb0606c86aebe93b301681" target="_blank">ボトムナビゲーションバーを追加したホーム画面</a></p>
-<p>7. RestoPageのGridViewページを追加したホーム画面</p>
+<h2 is-upgraded>7. GridViewページを追加したホーム画面</h2>
 <p>ホーム画面のボトムナビゲーションバーで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=25c545bff92528e287ccc18290b52462" target="_blank">RestoPageのGridViewページを追加したホーム画面</a></p>
 
@@ -857,9 +860,9 @@
       </google-codelab-step>
     
       <google-codelab-step label="Flutter Webによるアプリ開発" duration="0">
-        <p>前の2つの章では、Dartpadを使ってブラウザ上でプログラムを試してもらいましたが、ここからはパソコン上のFlutterの開発環境とVSCodeエディタを使った開発を開始してもらいます。開発対象がスマホアプリなので、Android用の開発環境（Android Studio）やiPhone用の開発環境Xcodeが必要と思われがちなのですが、これらは大量のディスクスペースと実行時にハイスペックなCPUと大規模メモリを要求しますので、これを極力回避するためFlutter Webをつかって開発を行うこととします。</p>
+        <p>前の2つの章では、Dartpadを使ってブラウザ上でプログラムを試しましたが、ここからはパソコン上のFlutterの開発環境とVSCodeエディタを使った開発を開始してもらいます。開発対象がスマホアプリなので、Android用の開発環境（Android Studio）やiPhone用の開発環境Xcodeが必要と思われがちなのですが、これらは大量のディスクスペースと実行時にハイスペックなCPUと大規模メモリを要求しますので、これを極力回避するためFlutter Webをつかって開発を行うこととします。</p>
 <p>Flutter WebというWebアプリを開発するとなるとスマホのネイティブアプリを開発する本書の目的とは違うと思われそうですが、これが真のクロスプラットフォームフレームワークであるFlutterのよいところで、Flutter Webを開発すればそのソースコードがiPhoneアプリとAndroidアプリ用にもほぼそのまま転用できるのです。いくつかスマホ用には対応していないFlutterプラグインがありますが、それらの機能はスマホアプリをコンパイルする際に追加することとして、ここではFlutter Webとしての「レストランレビューアプリ」を開発します。</p>
-<h2 is-upgraded>開発するアプリケーション</h2>
+<h2 is-upgraded>1. 開発するアプリケーション</h2>
 <p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
 <p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください。</p>
 <br><iframe width="400" height="600" src="https://restoreview-f8e28.web.app" frameborder="1"></iframe>
@@ -867,26 +870,27 @@
 <p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
 <p class="image-container"><img style="width: 123.00px" src="img/e30094ac90b164c3.png"></p>
 </aside>
+<h2 is-upgraded>2. 開発環境の準備</h2>
 <p>本書のハンズオンではGithubからソースコードをダウンロードしてきて、Firebaseとの接続設定を行うことでこのアプリケーションをローカル環境で動かすことができるようにします。その後、ソースコードを眺めながら、実装方法について説明をしていきます。</p>
 <p>そのために、まずはお手持ちのパソコンにFlutterと開発用エディタであるVSCodeのインストールを行います。</p>
 <aside class="warning"><p><strong>ノート: </strong>開発用のパソコンは、GUIが起動しVSCodeが使えればWindows、Mac OS、LinuxとOSは限定されません。また、パソコンのスペックとしては、SSDのハードディスクで、4GB以上のメモリが必要です（Windowsは64bitで7以上が必要です）。</p>
 </aside>
-<h2 is-upgraded>初期設定</h2>
+<h3 is-upgraded><strong>①</strong><strong>初期設定</strong></h3>
 <p>まずはじめに開発に必要なFlutterとエディタであるVS Codeのインストールを行います。</p>
-<h3 is-upgraded>Flutterのインストール</h3>
+<p>- Flutterのインストール</p>
 <p>下記リンクから自らの開発PCのOSを選択してFlutter SDKをインストールします。</p>
 <p><a href="https://flutter.dev/docs/get-started/install" target="_blank">https://flutter.dev/docs/get-started/install</a></p>
 <p>本書ではFlutter Webのみを利用しますので、上記リンクに記載のあるAndrlid SetupやiOS Setupの作業は必要ありません。</p>
-<h3 is-upgraded>VS Codeのインストール</h3>
+<p>- VS Codeのインストール</p>
 <p>下記リンクに従ってVS Codeをインストールします。</p>
 <p><a href="https://flutter.dev/docs/get-started/editor?tab=vscode" target="_blank">https://flutter.dev/docs/get-started/editor?tab=vscode</a></p>
-<h3 is-upgraded>Chromeのインストール</h3>
+<p>- Chromeのインストール</p>
 <p>開発したWebアプリをデバッグするためにブラウザが必要ですが、Flutterで推奨されているChromeをインストールします。</p>
 <p><a href="https://www.google.com/intl/ja_jp/chrome/" target="_blank">https://www.google.com/intl/ja_jp/chrome/</a></p>
-<h3 is-upgraded>(Windowsの場合) PowerShellのインストール</h3>
+<p>- PowerShellのインストール(Windowsの場合) </p>
 <p>Windows環境の場合ターミナルが使いやすくなるように下記リンクからPowerShellをインストールしておくと良いです。</p>
 <p><a href="https://github.com/PowerShell/PowerShell" target="_blank">https://github.com/PowerShell/PowerShell</a></p>
-<h3 is-upgraded>インストールの確認</h3>
+<p>- インストールの確認</p>
 <p>上記のインストールが完了しているかを確認するため「flutter doctor」コマンドを実行します。下記の通り、FlutterとVS CodeとChromeにチェック「✔︎」が入っていますが、AndroidとXcodeにはインストールがされていないことを表すバツ「✖︎」が表示されます。</p>
 <pre>$ flutter doctor
 Doctor summary (to see all details, run flutter doctor -v):
@@ -918,9 +922,9 @@ Doctor summary (to see all details, run flutter doctor -v):
 [✓] Connected device (2 available)
 
 ! Doctor found issues in 3 categories.</pre>
-<h2 is-upgraded>Flutterプロジェクトの作成</h2>
+<h3 is-upgraded><strong>②</strong><strong>Flutterプロジェクトの作成</strong></h3>
 <p>Flutterで開発を始めるにあたってflutterコマンドを使ってFlutter Webプロジェクトの初期フォルダを作成します。</p>
-<h3 is-upgraded>Flutter Webの設定</h3>
+<p>- Flutter Webの設定</p>
 <p>FlutterによるWebアプリ開発のためには、Flutterコマンド「flutter config --enable-web」を実行してWebアプリ開発を有効化します。</p>
 <pre>$ flutter --version
 Flutter 1.21.0-10.0.pre.114 • channel master • https://github.com/flutter/flutter.git
@@ -932,7 +936,7 @@ $ flutter config --enable-web
 Setting &#34;enable-web&#34; value to &#34;true&#34;.
 
 You may need to restart any open editors for them to read new settings.</pre>
-<h3 is-upgraded>Flutterプロジェクトの作成と実行</h3>
+<p>- Flutterプロジェクトの作成と実行</p>
 <p>Flutterで開発を始めるには&#34;flutter create [プロジェクト名]&#34;というコマンドを使ってFlutterプロジェクトの初期フォルダを作成します。また、コマンドオプション「--org [パッケージ名]」を追加すると、Dartコードから生成されるiOS用SwiftコードやAndroid用Kotlinコードのパッケージ名を指定できます。私はパッケージ名はドメイン名を反対にした形式をとるので、例えば弊社ドメイン名&#34;sonrisa.co.jp&#34;にアプリのグループ名&#34;samples&#34;を追加した&#34;samples.sonrisa.co.jp&#34;を反対にした&#34;jp.co.sonrisa.samples&#34;を指定しましたが、みなさんの環境では自分にあったパッケージ名を決めて実行してください。このパッケージ名はアプリをAppStoreやGoogle Playに登録する際やFirestoreプロジェクトにアクセスできるアプリを登録する際に使われる重要なものなので、あらかじめルールを決めて指定するように心がけましょう。また、ここでのプロジェクト名は、レストランレビューを登録するアプリであるため「RestoReview」にしてFlutter Webプロジェクトを作成します。</p>
 <pre>$ flutter create --org jp.co.sonrisa.samples RestoReview
 Creating project RestoReview...
@@ -982,13 +986,13 @@ Your application code is in RestoReview/lib/main.dart.</pre>
 $ flutter run -d chrome</pre>
 <p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
 <p class="image-container"><img style="width: 325.22px" src="img/191dee9c0dacdadc.png"></p>
-<p>本Flutterプロジェクトフォルダは、Flutter Webとしてレストランレビューアプリを開発したあと、AndroidアプリとiOSアプリ化する際に使用します。しばらくは、別途、Github上のRestoReviewリポジトリからgit cloneしたプロジェクトを利用しますので、まるまる削除してのちほど再度作成するか、どこかにバックアップしておいてください。</p>
+<p>本Flutterプロジェクトは、インストール確認テスト用に作成したものなのでまるまる削除してください。</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Firebaseのセットアップ" duration="0">
-        <p>Flutter開発の初期設定が完了したのでインフラ部分を担うFirebaseの設定を行います。</p>
+        <p>Flutter開発の初期設定が完了したのでインフラ部分を担うFirebaseの設定を行います。また途中でGithubリポジトリから「RestoReview」プロジェクトをダウンロードして、Firebaseから利用できるよう設定を行います。</p>
 <h2 is-upgraded>1. Firebaseプロジェクトの作成</h2>
 <p><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインして「プロジェクトを追加」をクリックし、名前を「RestoReview」と命名し、「続行」ボタンをクリック、Google Analyticsの設定後、「プロジェクトを作成」ボタンをクリックしてFirebaseプロジェクトを作成します。</p>
 <p class="image-container"><img style="width: 213.20px" src="img/7ec06f011a4782ef.png"></p>
@@ -1023,13 +1027,13 @@ $ flutter run -d chrome</pre>
 </ol>
 <p class="image-container"><img style="width: 373.50px" src="img/ab441d29e9c42589.png"></p>
 <p class="image-container"><img style="width: 374.50px" src="img/4f7b3a1cd89d0821.png"></p>
-<h2 is-upgraded>Flutterプロジェクト「RestoReview」のダウンロード</h2>
+<h2 is-upgraded>4. 「RestoReview」のダウンロード</h2>
 <p>下記コマンドを実行して、GithubからFlutterプロジェクト「RestoReview」をダウンロードします。</p>
 <pre>$ git clone https://github.com/david3080/RestoReview.git
 ...
 $ cd RestoReview/</pre>
-<h2 is-upgraded>Firebase CLIのインストールと設定</h2>
-<p>Firebaseのコマンドラインインタフェース(CLI)を使うと、開発したWebアプリや設定ファイルをFirebaseに直接デプロイすることができます。</p>
+<h2 is-upgraded>5. Firebase CLIのインストールと設定</h2>
+<p>Firebaseのコマンドラインインタフェース(CLI)を使うと、開発したWebアプリや設定ファイルをFirebaseに直接デプロイすることができます。本作業は前回ダウンロードした「RestoReview」フォルダ下で実行します。</p>
 <aside class="warning"><p><strong>ノート: </strong>Firebase CLIをインストールするには <a href="https://nodejs.org/ja/" target="_blank">NodeJS</a> のインストールが必要です。</p>
 </aside>
 <ol type="1" start="1">
@@ -1085,8 +1089,7 @@ You&#39;re about to initialize a Firebase project in this directory:
  ◉ Functions: Configure and deploy Cloud Functions
  ◉ Hosting: Configure and deploy Firebase Hosting sites
 ❯◉ Storage: Deploy Cloud Storage security rules
- ◯ Emulators: Set up local emulators for Firebase features
-</pre>
+ ◯ Emulators: Set up local emulators for Firebase features</pre>
 <ol type="1" start="8">
 <li>次にセキュリティ・ルールを定義しFirebaseにデプロイするファイル名を指定します。デフォルトのままで「Enter」を押します。</li>
 </ol>
@@ -1150,7 +1153,7 @@ i  Writing configuration info to firebase.json...
 i  Writing project information to .firebaserc...
 
 ✔  Firebase initialization complete!</pre>
-<h2 is-upgraded>FlutterアプリからFirebaseが使えるよう設定</h2>
+<h2 is-upgraded>6. FlutterアプリからFirebaseが使えるよう設定</h2>
 <ol type="1" start="1">
 <li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインし「RestoReview」プロジェクトを選択します。</li>
 <li>アイコン「&lt;/&gt;」をクリックしてWebアプリを追加します。</li>
@@ -1171,11 +1174,11 @@ i  Writing project information to .firebaserc...
 <ol type="1" start="6">
 <li>次のページの「Firebase Hostingへのデプロイ」ではFirebaseへのログインとローカルプロジェクトとFirebaseプロジェクトとの紐付け、Firebase Hostingへのデプロイのコマンドが紹介されていますが、ログインと紐付けはすでに行っており、Hostingへのデプロイは後ほど行うので「コンソールに進む」ボタンをクリックして、FirebaseプロジェクトでのWebアプリの追加を終了します。</li>
 </ol>
-<p class="image-container"><img style="width: 431.50px" src="img/52506531a99326e5.png"></p>
+<p class="image-container"><img style="width: 390.73px" src="img/52506531a99326e5.png"></p>
 <ol type="1" start="7">
 <li>コンソールに戻るので、左メニューの「設定」から「プロジェクトの設定」を選択し、「全般」タブの「マイアプリ」＞「ウェブアプリ」を選択し、「Firebase SDK snippet」の「構成」ラジオボタンを選択します。</li>
 </ol>
-<p class="image-container"><img style="width: 531.90px" src="img/b5829b9d15edbbbe.png"></p>
+<p class="image-container"><img style="width: 438.08px" src="img/b5829b9d15edbbbe.png"></p>
 <p>画面灰色部分を先ほどダウンロードした「RestoReview」フォルダ配下の「web/index.html」ファイル内の下記箇所に上書き保存します。</p>
 <pre>// ここを上書きする
 const firebaseConfig = {
@@ -1222,8 +1225,9 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="「ログイン、メニュー選択、ログアウト」の実装" duration="0">
-        <p>「レストランレビューアプリ」の画面設計で説明した「①ログイン、メニュー選択、ログアウト」の各画面は図のようなクラスで実装されています。</p>
+      <google-codelab-step label="RestoReviewアプリの解説" duration="0">
+        <h2 is-upgraded>1.「ログイン、メニュー選択、ログアウト」の実装</h2>
+<p>「レストランレビューアプリ」の画面設計で説明した「①ログイン、メニュー選択、ログアウト」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/6ba691a0e16d3398.png"></p>
 <p>1. ログイン画面（LoginPage）の実装</p>
 <p>TODO</p>
@@ -1232,12 +1236,8 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p>TODO</p>
 <p>3. ホーム画面（HomePage）の実装</p>
 <p>TODO</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="「レストランリストとレストラン詳細、レビュー表示とレビュー追加」の実装" duration="0">
-        <p>「レストランレビューアプリ」の画面設計で説明した「②レストランリストとレストラン詳細、レビュー表示とレビュー追加」の各画面は図のようなクラスで実装されています。</p>
+<h2 is-upgraded>2.「レストランリストと詳細、レビュー表示と追加」の実装</h2>
+<p>「レストランレビューアプリ」の画面設計で説明した「②レストランリストとレストラン詳細、レビュー表示とレビュー追加」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/af07406616e31f12.png"></p>
 <p>1. レストラン画面（RestoPage）の実装</p>
 <p>TODO</p>
@@ -1247,23 +1247,15 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p>TODO</p>
 <p>4. レビュー追加画面（ReviewEdit）の実装</p>
 <p>TODO</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="「全レビューリストとレビュー表示」の実装" duration="0">
-        <p>「レストランレビューアプリ」の画面設計で説明した「③全レビューリストとレビュー表示」の各画面は図のようなクラスで実装されています。</p>
+<h2 is-upgraded>3.「全レビューリストとレビュー表示」の実装</h2>
+<p>「レストランレビューアプリ」の画面設計で説明した「③全レビューリストとレビュー表示」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/d7a97b147e8e5e87.png"></p>
 <p>1. レビュー画面（ReviewPage）の実装</p>
 <p>TODO</p>
 <p>2. レビュー詳細（ユーザ画面付）画面（UserReviewDetail）の実装</p>
 <p>TODO</p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="「アカウント表示と自分が投稿したレビューの管理」の実装" duration="0">
-        <p>「レストランレビューアプリ」の画面設計で説明した「④アカウント表示と自分が投稿したレビューの管理」の各画面は図のようなクラスで実装されています。</p>
+<h2 is-upgraded>4.「アカウント表示とレビューの管理」の実装</h2>
+<p>「レストランレビューアプリ」の画面設計で説明した「④アカウント表示と自分が投稿したレビューの管理」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/8b9610af61d9781f.png"></p>
 <p>1. アカウント画面（AccountPage）の実装</p>
 <p>TODO</p>
@@ -1288,7 +1280,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="AndroidとiOS用ビルド方法" duration="0">
-        <p>TODO XcodeインストールとAndroid SDK(コマンドのみ<a href="https://qiita.com/undrthemt/items/1861d5fe39be46a2b776" target="_blank">https://qiita.com/undrthemt/items/1861d5fe39be46a2b776</a>)をインストールしてビルドする方法</p>
+        <p>TODO Flutter WebプロジェクトにAndroidとiOS用フォルダを追加する方法（flutter create . --org [パッケージ名]）。XcodeインストールとAndroid SDK(コマンドのみ<a href="https://qiita.com/undrthemt/items/1861d5fe39be46a2b776" target="_blank">https://qiita.com/undrthemt/items/1861d5fe39be46a2b776</a>)をインストールしてビルドする方法。Firebaseにアプリを追加して必要ファイルをダウンロードして配置する方法。）</p>
 
 
       </google-codelab-step>
@@ -1302,7 +1294,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
     
       <google-codelab-step label="FlutterおよびFirebaseのセキュリティ" duration="0">
         <p>TODO 本書での構成はフロントのネイティブアプリ開発はFlutterにまかせ、バックエンドもFirebaseにまかせるので、APIやWebアプリの開発は発生せず、それらの脆弱性は考える必要がない。そのため、Flutterで構築するネイティブアプリの脆弱性回避とFirebaseの主要機能であるFirestoreとFirestorageとCloud Functionsで妥当なセキュリティルールの設定をすることに注力するだけでよい。あとは脆弱性診断など第三者によるチェックの仕方を考えることくらい。</p>
-<p>APIキーについて</p>
+<p>APIキーについて、Firebase HostingでもAPIキーファイルはJSとして提供されて誰でもダウンロードできるようになっているので、誰にもアクセスできないようにすべきものではない。大事なのはセキュリティルール。</p>
 <p>参考）Flutterアプリ開発七つの大罪：<a href="https://qiita.com/__naoya__/items/98ac66157a1578be2798" target="_blank">https://qiita.com/__naoya__/items/98ac66157a1578be2798</a></p>
 <p>参考）Flutter Security：<a href="https://flutter.dev/security" target="_blank">https://flutter.dev/security</a></p>
 <p>参考）How to make a flutter app with high security? ：<a href="https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da" target="_blank">https://medium.com/flutter-community/how-to-make-a-flutter-app-with-high-security-880ef0aa54da</a></p>
@@ -1323,7 +1315,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="まとめ" duration="0">
+      <google-codelab-step label="まとめと次ステップ" duration="0">
         <p>あああ</p>
 <p>ノンコーディングについて：</p>
 <p><a href="https://qiita.com/yugoes1021/items/debce542cdcca2901117" target="_blank">https://qiita.com/yugoes1021/items/debce542cdcca2901117</a></p>
