@@ -55,8 +55,11 @@
 <li>ユースケース、データモデル、画面設計のパターン</li>
 <li>NoSQLデータベースとCloud Firestoreの概要</li>
 <li>Firebase AuthとFirestore、Cloud Functionsの使い方</li>
-<li>Flutterを使ったマテリアルデザインのアプリの開発</li>
+<li>Flutterを使ったマテリアルデザインのアプリの開</li>
 </ul>
+<h2 is-upgraded>ライセンス</h2>
+<p>Apache License, Version 2.0</p>
+<p>Copyright 2020 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -257,6 +260,7 @@
 <h3 is-upgraded><strong>④</strong><strong>レビューをレストラン配下のサブコレクションとして追加</strong></h3>
 <p>レビュー・ドキュメントの配列であるコレクションをレストラン・ドキュメント配下に追加します。この時、レビュー・ドキュメントには書き込みを行った顧客がわかるように顧客IDと顧客名と顧客写真を追加します。また、レビュー・ドキュメントを参照するだけで書き込みを行ったレビュー対象のレストランがわかるよう、レストランID、レストラン名、レストランロゴといった項目も追加します。以上の作業の必要性については「NoSQLとFirestoreについて」を参照してください。</p>
 <iframe width="820" height="820" src="./json04.html" frameborder="1"></iframe>
+<p>Copyright 2020 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -313,7 +317,7 @@
 <p>TODO</p>
 <h3 is-upgraded><strong>② 地図</strong></h3>
 <p>TODO</p>
-<h3 is-upgraded><strong>③ チャット・グループチャット</strong></h3>
+<h3 is-upgraded><strong>③ グループチャット</strong></h3>
 <p>TODO</p>
 <h3 is-upgraded><strong>④ 決済・ポイント支払</strong></h3>
 <p>TODO</p>
@@ -324,8 +328,106 @@
 <h3 is-upgraded><strong>⑦ その他</strong></h3>
 <p>ゲームやAR、スマートスピーカーといったアプリケーションは複雑なUIからなりたっていたり、音声によるUIからなりたつため一般化は難しく、本書の対象外とします。</p>
 <h2 is-upgraded>2. メモアプリ</h2>
-<p>TODO</p>
+<p><strong>ユースケース</strong></p>
+<p>ユーザは何か思いついたときや覚えておきたい内容を記入するためにメモを使いますが、それをスマホアプリにした場合のユースケースを以下に記述します。ユーザがメモを友達にシェアするとか手書きメモをテキストにおとすといった高度な機能は持たず、ここでは基本的なメモ機能のみを考えます。</p>
+<ol type="1" start="1">
+<li>ユーザは過去に記入したメモをリスト表示できる。リストには記入日と更新日、タイトル、内容の一部が表示されます。</li>
+<li>メモのリストから一つを選ぶとメモの詳細が表示でき、店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示される。</li>
+<li>レストラン詳細画面では、星の数とコメントからなるレビューの登録ができ、登録更新時にレストランの星の数の平均が更新される。</li>
+<li>全レビューのリストが表示され、星の数で検索できる。</li>
+<li>顧客自身が登録したレビューについては編集と削除ができる</li>
+</ol>
+<p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
+<ul>
+<li>レストラン（店名、料理の種類、住所、星の数の平均）</li>
+<li>レビュー（レビューした顧客名、星の数、コメント）</li>
+<li>顧客（メールアドレス、氏名、アイコン）</li>
+</ul>
+<p>ここで具体的なサンプルデータを表形式にまとめておくとイメージしやすくなり今後の設計もしやすくなり、開発メンバーへの説明もしやすく開発やテスト等にも生かせます。</p>
+<p><strong>表1. レストラン</strong></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>ID</p>
+</td><td colspan="1" rowspan="1"><p>店名</p>
+</td><td colspan="1" rowspan="1"><p>種類</p>
+</td><td colspan="1" rowspan="1"><p>住所</p>
+</td><td colspan="1" rowspan="1"><p>星数</p>
+</td><td colspan="1" rowspan="1"><p>ロゴ</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>ガスト東岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>洋食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１−１０</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.skylark.co.jp/site_resource/gusto/images/logo.svg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>1</p>
+</td><td colspan="1" rowspan="1"><p>デニーズ東岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>洋食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市美合町 字五反田２５－１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/dennys.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>2</p>
+</td><td colspan="1" rowspan="1"><p>大戸屋ごはん処岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>和食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市井田西町１−１１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/ootoya.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>3</p>
+</td><td colspan="1" rowspan="1"><p>和食さと岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>和食</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市上里２丁目１−１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sato-res.com/assets/tile/sato.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>4</p>
+</td><td colspan="1" rowspan="1"><p>カレーハウスCoCo壱番屋岡崎上地店</p>
+</td><td colspan="1" rowspan="1"><p>カレー</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市上地３丁目５１−６</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.ichibanya.co.jp/assets/images/common/ogp.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>5</p>
+</td><td colspan="1" rowspan="1"><p>スシロー岡崎上和田店</p>
+</td><td colspan="1" rowspan="1"><p>寿司</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市天白町東池１５−１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.akindo-sushiro.co.jp/shared/images/ogp.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>6</p>
+</td><td colspan="1" rowspan="1"><p>くら寿司北岡崎店</p>
+</td><td colspan="1" rowspan="1"><p>寿司</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市錦町２−１２</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.watch.impress.co.jp/img/ipw/docs/1230/499/kura1_s.jpg</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>7</p>
+</td><td colspan="1" rowspan="1"><p>モスバーガー岡崎大西店</p>
+</td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１６−７</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>http://www.wing-net.ne.jp/image/kamiooka/store/storage/w250/mos.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>8</p>
+</td><td colspan="1" rowspan="1"><p>マクドナルド岡崎インター店</p>
+</td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大平町石丸６０−１</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/mcdonalds.png</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>9</p>
+</td><td colspan="1" rowspan="1"><p>かつや愛知岡崎インター店</p>
+</td><td colspan="1" rowspan="1"><p>とんかつ</p>
+</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大平町新寺25</p>
+</td><td colspan="1" rowspan="1"><p>0</p>
+</td><td colspan="1" rowspan="1"><p>https://www.arclandservice.co.jp/katsuya/wp-content/themes/arclandservice-group/assets/img/katsuya/common/logo.svg</p>
+</td></tr>
+</table>
+<p><strong>データモデル</strong></p>
+<p><strong>画面設計</strong></p>
 <h2 is-upgraded>3. 学生名簿</h2>
+<p>TODO</p>
 <h2 is-upgraded>4. 観光地紹介</h2>
 <p>TODO</p>
 <h2 is-upgraded>5. 会議室予約</h2>
