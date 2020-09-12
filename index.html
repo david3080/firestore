@@ -58,8 +58,8 @@
 <li>Flutterを使ったマテリアルデザインのアプリの開</li>
 </ul>
 <h2 is-upgraded>ライセンス</h2>
-<p>Apache License, Version 2.0</p>
-<p>Copyright 2020 RISA Co., LTD.</p>
+<p><a href="https://david3080.github.io/firestore/LICENSE.txt" target="_blank">Apache License, Version 2.0</a></p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -260,7 +260,7 @@
 <h3 is-upgraded><strong>④</strong><strong>レビューをレストラン配下のサブコレクションとして追加</strong></h3>
 <p>レビュー・ドキュメントの配列であるコレクションをレストラン・ドキュメント配下に追加します。この時、レビュー・ドキュメントには書き込みを行った顧客がわかるように顧客IDと顧客名と顧客写真を追加します。また、レビュー・ドキュメントを参照するだけで書き込みを行ったレビュー対象のレストランがわかるよう、レストランID、レストラン名、レストランロゴといった項目も追加します。以上の作業の必要性については「NoSQLとFirestoreについて」を参照してください。</p>
 <iframe width="820" height="820" src="./json04.html" frameborder="1"></iframe>
-<p>Copyright 2020 RISA Co., LTD.</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -305,6 +305,7 @@
 <p>アカウント画面では、自分の名前を直接編集できるように設計しました。また自分が投稿したレビューをリストし、編集と削除が可能です。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/e3610de2eb2b1056.png"></p>
 <p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しており、自分が投稿したレビューを対象に更新（Update）と削除（Delete）ができるよう設計しています。</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -462,6 +463,7 @@
 <p>TODO</p>
 <h2 is-upgraded>20. 画像認識レジ</h2>
 <p>TODO</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -613,6 +615,7 @@
 <p>機械学習機能に関するマテリアルデザイン：<a href="https://material.io/design/machine-learning/understanding-ml-patterns.html" target="_blank">https://material.io/design/machine-learning/understanding-ml-patterns.html</a></p>
 <p>音声に関するマテリアルデザイン：<a href="https://material.io/design/sound/about-sound.html" target="_blank">https://material.io/design/sound/about-sound.html</a></p>
 <p>これらはスマホにかかわらず、スマートウォッチ、スマートスピーカーやスマートイヤフォン、スマートグラスなどにもマテリアルデザインを適用していこうという取り組みのあらわれであり、次章で紹介するFlutterという開発環境も同じ目的で開発が進められています。</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -656,6 +659,7 @@
 <li>Cloud Firestore：認証のしくみはKeycloakのクライアントプラグインを使って実装することで実現できます。ドキュメント型データベースとしてmongoDBがあげられるので、ストリーム型でアプリから連携できるようgRPCで公開し、Dart言語のgRPCクライアントを開発しFlutterで利用することで実現できます。ただし、Firestoreで実現しているセキュリティルールやオフライン機能や差分のみをやりとりする機能などの高度な機能の実装は困難なので、アプリの使い勝手は悪くなると思われます。</li>
 <li>Firebase Storage：Keycloakのような認証サービスと連携してストレージサービスを開発するのは難しいので、データベースにサイズを小さくしたバイナリとして保存するようにするとよいでしょう。</li>
 </ul>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -853,6 +857,7 @@
 <li>レガシーデータベースとの連携：レガシーなデータベースが別にあり、Firestoreにデータをレプリケーションしてアプリの読み取り用に使う、といったケースです。</li>
 <li>カスタムAPIの作成：用途限定でCloud Functionsを作成するとクライアントアプリの実装がシンプルになり効率化するといったメリットがありえますが、オフライン機能が失われるといったデメリットとのトレードオフを考慮して採用を決めるとよいです。</li>
 </ol>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -913,6 +918,7 @@
 <p>4. <a href="https://www.youtube.com/watch?v=SmTCmDMi4BY" target="_blank">Async/Awaitの説明</a>: 関数で複数の非同期処理を順番に実行する場合やFutureやStreamを引数にもつ関数の実装方法を解説します。</p>
 <p>5. <a href="https://www.youtube.com/watch?v=TF-TBsgIErY" target="_blank">非同期ジェネレータの説明</a></p>
 </aside>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -954,6 +960,7 @@
 <h2 is-upgraded>7. GridViewページを追加したホーム画面</h2>
 <p>ホーム画面のボトムナビゲーションバーで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=25c545bff92528e287ccc18290b52462" target="_blank">RestoPageのGridViewページを追加したホーム画面</a></p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1086,6 +1093,7 @@ $ flutter run -d chrome</pre>
 <p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
 <p class="image-container"><img style="width: 325.22px" src="img/191dee9c0dacdadc.png"></p>
 <p>本Flutterプロジェクトは、インストール確認テスト用に作成したものなのでまるまる削除してください。</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1320,6 +1328,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <ol type="1" start="10">
 <li>「Hosting URL」として出力されたURLにアクセスするとレストランレビューアプリが表示されます。</li>
 </ol>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1362,24 +1371,28 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p>TODO</p>
 <p>3. レビュー編集（ReviewEdit）の実装</p>
 <p>TODO</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="セキュリティルールの作成とデプロイ" duration="0">
+      <google-codelab-step label="インデックスとセキュリティルールの作成とデプロイ" duration="0">
         <p>TODO</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="UnitテストとWidgetテスト" duration="0">
         <p>TODO</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="AndroidとiOS用ビルド方法" duration="0">
         <p>TODO Flutter WebプロジェクトにAndroidとiOS用フォルダを追加する方法（flutter create . --org [パッケージ名]）。XcodeインストールとAndroid SDK(コマンドのみ<a href="https://qiita.com/undrthemt/items/1861d5fe39be46a2b776" target="_blank">https://qiita.com/undrthemt/items/1861d5fe39be46a2b776</a>)をインストールしてビルドする方法。Firebaseにアプリを追加して必要ファイルをダウンロードして配置する方法。）</p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1387,6 +1400,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       <google-codelab-step label="スマホアプリのテスター配布" duration="0">
         <p>TODO Firebase App Distributionの方法を解説</p>
 <p><a href="https://firebase.google.com/docs/app-distribution/ios/distribute-console?hl=ja" target="_blank">https://firebase.google.com/docs/app-distribution/ios/distribute-console?hl=ja</a> </p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1404,6 +1418,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p><a href="https://javebratt.com/hide-firebase-api/" target="_blank">https://javebratt.com/hide-firebase-api/</a></p>
 <p>参考）多くのモバイルアプリに「バックドアシークレット」、オハイオ州立大などが発表</p>
 <p><a href="https://www.atmarkit.co.jp/ait/articles/2004/19/news014.html" target="_blank">https://www.atmarkit.co.jp/ait/articles/2004/19/news014.html</a></p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1412,6 +1427,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
         <p>TODO </p>
 <p>Firebase参考：<a href="https://www.youtube.com/watch?v=iWEgpdVSZyg" target="_blank">https://www.youtube.com/watch?v=iWEgpdVSZyg</a></p>
 <p>せっかくFirebaseに一本化したのでサービスの稼働状況をスマホアプリから見れるようにするとよいかも <a href="https://status.firebase.google.com/" target="_blank">https://status.firebase.google.com/</a></p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
@@ -1423,6 +1439,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p><a href="https://builder.honeycode.aws/auth/signup" target="_blank">https://builder.honeycode.aws/auth/signup</a></p>
 <p><a href="https://news.yahoo.co.jp/articles/f391e128b586b8162e58f4e5fb5ca52e277dcc71" target="_blank">https://news.yahoo.co.jp/articles/f391e128b586b8162e58f4e5fb5ca52e277dcc71</a></p>
 <p><a href="https://prtimes.jp/main/html/rd/p/000000004.000064504.html" target="_blank">https://prtimes.jp/main/html/rd/p/000000004.000064504.html</a></p>
+<center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
