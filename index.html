@@ -334,95 +334,35 @@
 <ol type="1" start="1">
 <li>ユーザは過去に記入したメモをリスト表示できる。リストには記入日と更新日、タイトル、内容の一部が表示されます。</li>
 <li>メモのリストから一つを選ぶとメモの詳細が表示でき、店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示される。</li>
-<li>レストラン詳細画面では、星の数とコメントからなるレビューの登録ができ、登録更新時にレストランの星の数の平均が更新される。</li>
-<li>全レビューのリストが表示され、星の数で検索できる。</li>
-<li>顧客自身が登録したレビューについては編集と削除ができる</li>
 </ol>
 <p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
 <ul>
-<li>レストラン（店名、料理の種類、住所、星の数の平均）</li>
-<li>レビュー（レビューした顧客名、星の数、コメント）</li>
-<li>顧客（メールアドレス、氏名、アイコン）</li>
+<li>（）</li>
 </ul>
 <p>ここで具体的なサンプルデータを表形式にまとめておくとイメージしやすくなり今後の設計もしやすくなり、開発メンバーへの説明もしやすく開発やテスト等にも生かせます。</p>
-<p><strong>表1. レストラン</strong></p>
+<p><strong>表1. メモ</strong></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>ID</p>
-</td><td colspan="1" rowspan="1"><p>店名</p>
-</td><td colspan="1" rowspan="1"><p>種類</p>
-</td><td colspan="1" rowspan="1"><p>住所</p>
-</td><td colspan="1" rowspan="1"><p>星数</p>
-</td><td colspan="1" rowspan="1"><p>ロゴ</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>ガスト東岡崎店</p>
-</td><td colspan="1" rowspan="1"><p>洋食</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１−１０</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://www.skylark.co.jp/site_resource/gusto/images/logo.svg</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>1</p>
-</td><td colspan="1" rowspan="1"><p>デニーズ東岡崎店</p>
-</td><td colspan="1" rowspan="1"><p>洋食</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市美合町 字五反田２５－１</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/dennys.jpg</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>2</p>
-</td><td colspan="1" rowspan="1"><p>大戸屋ごはん処岡崎店</p>
-</td><td colspan="1" rowspan="1"><p>和食</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市井田西町１−１１</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/ootoya.jpg</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>3</p>
-</td><td colspan="1" rowspan="1"><p>和食さと岡崎店</p>
-</td><td colspan="1" rowspan="1"><p>和食</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市上里２丁目１−１</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://sato-res.com/assets/tile/sato.png</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>4</p>
-</td><td colspan="1" rowspan="1"><p>カレーハウスCoCo壱番屋岡崎上地店</p>
-</td><td colspan="1" rowspan="1"><p>カレー</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市上地３丁目５１−６</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://www.ichibanya.co.jp/assets/images/common/ogp.png</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>5</p>
-</td><td colspan="1" rowspan="1"><p>スシロー岡崎上和田店</p>
-</td><td colspan="1" rowspan="1"><p>寿司</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市天白町東池１５−１</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://www.akindo-sushiro.co.jp/shared/images/ogp.png</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>6</p>
-</td><td colspan="1" rowspan="1"><p>くら寿司北岡崎店</p>
-</td><td colspan="1" rowspan="1"><p>寿司</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市錦町２−１２</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://www.watch.impress.co.jp/img/ipw/docs/1230/499/kura1_s.jpg</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>7</p>
-</td><td colspan="1" rowspan="1"><p>モスバーガー岡崎大西店</p>
-</td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１６−７</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>http://www.wing-net.ne.jp/image/kamiooka/store/storage/w250/mos.png</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>8</p>
-</td><td colspan="1" rowspan="1"><p>マクドナルド岡崎インター店</p>
-</td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大平町石丸６０−１</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://sozainavi.com/wp-content/uploads/2019/10/mcdonalds.png</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>9</p>
-</td><td colspan="1" rowspan="1"><p>かつや愛知岡崎インター店</p>
-</td><td colspan="1" rowspan="1"><p>とんかつ</p>
-</td><td colspan="1" rowspan="1"><p>愛知県岡崎市大平町新寺25</p>
-</td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://www.arclandservice.co.jp/katsuya/wp-content/themes/arclandservice-group/assets/img/katsuya/common/logo.svg</p>
 </td></tr>
 </table>
 <p><strong>データモデル</strong></p>
