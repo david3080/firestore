@@ -311,7 +311,10 @@
       </google-codelab-step>
     
       <google-codelab-step label="ユースケース、データモデル、画面設計パターン" duration="0">
-        <p>ここでは様々なユースケースの画面設計を紹介します。「1. 特徴的な機能の画面」では主に一つの画面に特徴的な機能を有しているもので、よく使う例を紹介します。2以降は、世にあるアプリのユースケースをいくつか例に挙げ、それらのデータモデルと画面設計のパターンを紹介します。これらを理解し参考にすることで、経験の少ない方でもみずからのユースケースから適切な設計を行うことが可能になるでしょう。</p>
+        <p>ここでは様々なユースケースの画面設計を紹介します。「1. 特徴的な機能の画面」では主に一つの画面に特徴的な機能を有しているもので、よく使う例を紹介します。2以降は、世にあるアプリのユースケースをいくつか例に挙げ、それらのデータモデルと画面設計のパターンを紹介します。</p>
+<p>当初はユースケースパターンという観点からアプリをまとめましたが、下記の記事にも同じようなユースケースがまとまっています。求められているアプリアイデアという観点からも正解だったようです。</p>
+<p><a href="https://medium.com/flutter-community/12-best-innovative-app-ideas-for-startups-in-2020-21-77953e615079" target="_blank">https://medium.com/flutter-community/12-best-innovative-app-ideas-for-startups-in-2020-21-77953e615079</a></p>
+<p>これらを理解し参考にすることで、経験の少ない方でもみずからのユースケースから適切な設計を行うことが可能になるでしょう。</p>
 <h2 is-upgraded>1. 特徴的な機能の画面</h2>
 <p>上で紹介したとおり世の中の主要なアプリケーション、特にビジネス用途のアプリケーションはログインしたユーザの権限で複数データを整理整頓を行うことを目的としており、1で紹介した画面遷移パターンの組み合わせで事足ります。一方、下記に挙げる機能はよく使われると共に特殊な画面を持ちますので、パターンとして覚えておくとよいでしょう。</p>
 <h3 is-upgraded><strong>① スケジュールとカレンダー</strong></h3>
@@ -613,6 +616,8 @@
 <h2 is-upgraded>2. Firebaseの選択根拠</h2>
 <p>本書で開発するレストランレビューアプリもそうですが、世の中のスマホアプリはインターネット上のサーバと連携してサービスを提供します。通常インターネット上のサーバはアプリに入力したデータを保存したり、アプリに表示するデータを提供するデータベースが主要な機能になりますが、スマホアプリからのアクセスに通常のWebアプリが採用しているODBCやJDBCのようなしくみを選択するのはセキュリティ上の理由からも推奨されません。そのため、アプリからのアクセスの際、テーブルへのCRUDのどの機能が必要かを考えてAPIを開発し、さらに認証認可のしくみを実装することが必要になります。</p>
 <p>一方、Firebaseは、アプリにログインする認証のしくみ（Firebase Auth）とアプリと安全にコネクションを繋いだままストリーム処理が可能なデータベース（Firestore）、写真などの大きめのバイナリファイルを保存するためのストレージ（Firestorage）といったサービスを提供します。またクライアント用には、Firebase Authで認証されたユーザIDと紐づけてFirestoreデータベースにデータを保存したり、FirestorageのURIをFirestoreデータベースに保存して利用する機能を、様々なプログラミング言語向けに標準的なSDKとして提供されています。そのため、一からバックエンドのサービスを開発するのに比べ、基本的な機能をほとんど開発する必要がないため、開発工数を劇的に削減することができます。</p>
+<p>※ Firebase Authにおけるブルートフォース攻撃対策については下記記事を参照してください。</p>
+<p><a href="https://medium.com/swlh/google-firebase-authentication-vulnerability-245050cb7ceb" target="_blank">https://medium.com/swlh/google-firebase-authentication-vulnerability-245050cb7ceb</a></p>
 <p>さらには、FirebaseはA/Bテストを行う機能やスマホアプリのクラッシュログを収集する機能、ユーザがどの画面のどのボタンをクリックしたかといった動線を集計する機能、スマホアプリをテストユーザに配布する機能などモバイルアプリ用に豊富な機能を安価に提供しているため、多くのモバイルアプリ開発者に採用されています。</p>
 <p>以上の理由から本書ではバックエンドの機能にFirebaseを採用することにしました。</p>
 <h2 is-upgraded>3. ベンダーロックインの排除</h2>
@@ -1351,6 +1356,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       <google-codelab-step label="UnitテストとWidgetテスト" duration="0">
         <p>TODO</p>
 <p><a href="https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0" target="_blank">https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0</a></p>
+<p><a href="https://qiita.com/yujikawa/items/fe509b160df5ab9eb74e" target="_blank">https://qiita.com/yujikawa/items/fe509b160df5ab9eb74e</a></p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
