@@ -585,6 +585,11 @@
 <p>機械学習機能に関するマテリアルデザイン：<a href="https://material.io/design/machine-learning/understanding-ml-patterns.html" target="_blank">https://material.io/design/machine-learning/understanding-ml-patterns.html</a></p>
 <p>音声に関するマテリアルデザイン：<a href="https://material.io/design/sound/about-sound.html" target="_blank">https://material.io/design/sound/about-sound.html</a></p>
 <p>これらはスマホにかかわらず、スマートウォッチ、スマートスピーカーやスマートイヤフォン、スマートグラスなどにもマテリアルデザインを適用していこうという取り組みのあらわれであり、次章で紹介するFlutterという開発環境も同じ目的で開発が進められています。</p>
+<h2 is-upgraded>6. デザインシステム</h2>
+<p>通常、アプリケーションの開発プロジェクトでは、事前にマテリアルデザインのようなデザインフレームワークからプロジェクトで活用するレイアウトや部品を選択してカラーテーマやフォントを決めて、アプリのブランドに統一感を持たせることをします。このことを「デザインシステム」と呼びます。</p>
+<p><strong>（TODO）</strong>VSCodeの新しいAdobeXDプラグインを使うとAdobeXDのデザインシステムとVSCodeでのコードスニペット連携が可能になるため、その説明をおこないます。</p>
+<p><a href="https://blogs.adobe.com/creative/october-2020-release-of-adobe-xd-get-to-final-faster-with-3d-transforms-creative-cloud-libraries-visual-studio-code-and-more/" target="_blank">https://blogs.adobe.com/creative/october-2020-release-of-adobe-xd-get-to-final-faster-with-3d-transforms-creative-cloud-libraries-visual-studio-code-and-more/</a></p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=Adobe.xd" target="_blank">https://marketplace.visualstudio.com/items?itemName=Adobe.xd</a></p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
@@ -833,7 +838,12 @@
 <li>レガシーデータベースとの連携：レガシーなデータベースが別にあり、Firestoreにデータをレプリケーションしてアプリの読み取り用に使う、といったケースです。</li>
 <li>カスタムAPIの作成：用途限定でCloud Functionsを作成するとクライアントアプリの実装がシンプルになり効率化するといったメリットがありえますが、オフライン機能が失われるといったデメリットとのトレードオフを考慮して採用を決めるとよいです。</li>
 </ol>
-<h2 is-upgraded>13. データ構造</h2>
+<h2 is-upgraded>13. NoSQLの限界</h2>
+<p>最後にいままでのオフィシャル動画とは直接関係ありませんが、実践を通して得られたNoSQLの限界について記載します。</p>
+<ol type="1" start="1">
+<li>プロジェクトと要員を紐付けたい場合にマッチング値を計算して中間テーブルに持っていて要員がいまプロジェクトに参画できるか否かの条件付きで検索するような場合</li>
+<li><strong>（TODO）</strong></li>
+</ol>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
