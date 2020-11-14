@@ -1,0 +1,125 @@
+Flutter Layout
+https://www.youtube.com/watch?v=RJEnTRBxaSg
+https://www.youtube.com/watch?v=-zJ6CnOVndE
+
+ニューモフィズム
+https://satoriku.com/2020-design-trend/
+https://github.com/Idean/Flutter-Neumorphic
+
+スマホアプリデザイン
+https://search.muz.li/inspiration/mobile-app-design-inspiration/
+
+---
+上からポップアップを表示, LINEのチャット画面の上部にメンバーのCircleAvatorをリストするような画面
+https://qiita.com/Idenon/items/25a8968f58e7a02c64ad
+
+行、列、スタック（手前奥）、Expanded（並べる）、Padding
+https://www.youtube.com/watch?v=RJEnTRBxaSg
+
+PageView, ListView, GridView, Slivers, CustomScrollView
+https://www.youtube.com/watch?v=-zJ6CnOVndE&t=12s
+
+
+1. Stack
+2. StaggeredGridView
+3. ListView/GridView
+4. 
+
+---
+サーフィン教室
+https://www.youtube.com/watch?v=TKeeJCQsa_s
+
+フィットネス
+https://github.com/may-andro/flutter_uplab_challenge_fitness_dashboard
+
+
+
+SNSプロフィール
+https://www.youtube.com/watch?v=q1NJKqtZ3DY
+
+SNS
+https://github.com/fsdevcoder/FlutterSocialAppUIKit
+
+
+オンライン授業
+https://www.uplabs.com/posts/course-app-free
+https://github.com/abuanwar072/Course-App
+https://www.youtube.com/watch?v=8abMF1Y2Xnk
+
+Google Map
+https://qiita.com/YusukeIwaki/items/a9d62459cbbc8df1dfa5
+
+チャットアプリ
+https://www.youtube.com/watch?v=S97vFJJErDU
+https://github.com/codewithguru/ChatAppUI
+
+出前
+https://www.youtube.com/watch?v=PpzOVP1ZHts
+https://www.youtube.com/watch?v=wWH66F9y63U
+
+Google Map
+https://github.com/flutter-ui-challenges/flutter_challenge_googlemaps
+
+AirBnBのクローン
+https://github.com/trey-rosius/airbnb_clone
+
+小遣い帳
+https://github.com/JideGuru/SalesApp
+
+
+ケーキ屋
+https://github.com/trey-rosius/cake_app
+https://medium.com/@treyrosiusndimofor/creating-beautiful-apps-with-flutter-7277159d4b32
+
+病院デザイン
+https://github.com/may-andro/flutter_uplab_challenge_medical_app
+
+瞑想アプリ
+https://github.com/ikws4/UplabsMeditationApp
+
+ログイン＆サインイン
+https://github.com/Nash0x7E2/Login-Screen-with-Indicator
+
+穀物購入アプリ
+https://github.com/may-andro/flutter_grains_app_ui_challenge
+
+レストランアプリ
+https://github.com/fsdevcoder/Flutter_FoodyBite
+
+
+天気
+https://github.com/kttailor/weather_ui_flutter
+https://github.com/cleandersonlobo/flutter_weather_app
+
+チャット
+https://github.com/duytq94/flutter-chat-demo/blob/master/README.md
+
+
+
+動画プラグイン
+https://youtu.be/rYPfqFUvQ0g
+https://www.youtube.com/watch?v=rYPfqFUvQ0g
+
+https://accounts.google.com/ServiceLogin?service=youtube&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26next%3Dhttps%253A%252F%252Fwww.youtube.com%2Fwatch%3Fv%3DrYPfqFUvQ0g
+
+
+https://www.youtube.com/signin
+https://www.youtube.com/logout
+
+
+https://accounts.google.com/ServiceLogin?passive=true&continue=https://www.google.com/
+https://accounts.google.com/ServiceLogin?passive=true&continue=https://www.youtube.com/watch?v=rYPfqFUvQ0g
+
+https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=ya29.a0Ae4lvC1YlRJgIxA9_NbsGdRw1w_cBsfSb_6tD33V1bcSmHi7FRU_q5KnRArJ8S8TznB8mqioVYbI33BaXKB7wn9txzlOSr-ZNV3RFv-fxAyfCemFipObqadbtKESQeujmew00xFZf6yoWIghRmMc9hymHQCRqnIyMxJL
+
+
+https://accounts.google.com/Logout
+
+
+
+
+WebViewプラグインの種類と比較
+1. webview_flutter: WebViewウィジットを使えるので画面の自由度が上がる
+2. flutter_custom_tabsやflutter_webview_plugin,url_launcher: 
+   新しい画面として表示されるので、WebViewをクローズするボタンなどを配置しずらい
+
