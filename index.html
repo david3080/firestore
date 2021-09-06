@@ -36,12 +36,12 @@
 <p>このように、あらゆる業界や組織において、あらゆる生活シーンでそれぞれの立場の要望にあった使いやすいオンラインサービスが安価に構築・提供されることが求められています。</p>
 <p>一方これらの要望を担う人材育成の観点では、子供から大人までプログラミング教育がはやっており、例えば文科省は小学校でのプログラミング授業を必須化しています。しかしシステム開発や人材育成においては下記のような課題があると感じています。</p>
 <ul>
-<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走りがちで、データ構造やロジックの設計がおろそかになり、プログラマーが開発をはじめらずプロジェクトが遅延するといった状況に陥りがちです。20年近くIT企業でアプリ開発を実施してきましたが、昔も今もこのような破綻したプロジェクトをいくつか見ています。</li>
-<li>この原因としては、システムデザインについての手法（<a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88" target="_blank">ドメイン駆動設計</a>や<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3" target="_blank">システムアーキテクチャ</a>など）やその説明が高尚で難しいという問題があります。そのため、本来必要なシステムデザインがスルーされ、スケジュールのプレッシャーもあり、とりあえず簡易な画面設計に走ることにつながるのではと感じています。</li>
-<li>昨今の<a href="https://ja.wikipedia.org/wiki/%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%AD%E5%BF%83%E8%A8%AD%E8%A8%88" target="_blank">ユーザ中心設計</a>の誤った解釈から、システムの顧客接点である画面のデザインがフォーカスされ、発注側の要件定義担当者やデザイナーを含めたプロジェクトメンバーが、本来画面設計の元になるはずの<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0" target="_blank">データモデリング</a>について理解が乏しいことに原因があるのではとも感じています。</li>
-<li>例えば、業務で扱う情報が整理できておらず各業務ステップで担当者が手動で作業をしているため、残業が減らないのでシステム化して改善したい、といった要望がありました。ここではアーキテクト不在で要件定義が進められ、プロジェクトマネージャやデザイナが画面設計に走り、プロジェクトの半年後はじめからやりなおしになりました。システム化とは業務と情報の整理整頓であり、仕事が複雑になり残業が発生するのもその整理整頓ができていないのがそもそもの原因です。そのため、まずはデータモデリングが必要であることを意識しておくべきです。</li>
+<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走りがちで、データ構造やロジックの設計がおろそかになり、プログラマーがまともに開発をはじめらずプロジェクトが遅延するといった状況に陥りがちです。このような状況は「<a href="https://shop.nikkeibp.co.jp/front/commodity/0000/P82710/" target="_blank">デスマーチ</a>」と呼ばれ、20年近くIT企業でアプリ開発をみてきましたが、昔も今もこのような破綻したプロジェクトは大量に発生しています。<br><img style="width: 181.50px" src="img/b36be4d11a46efcf.png"></li>
+<li>この原因としては、システムデザインについての手法（<a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88" target="_blank">ドメイン駆動設計</a>や<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3" target="_blank">システムアーキテクチャ</a>など）やその説明が高尚で難しいという問題があります。そのため、本来必要なシステムデザインがスルーされ、スケジュールのプレッシャーもあり、とりあえず簡易な画面設計に走ることにつながるのではと感じています。<br><img style="width: 183.50px" src="img/c00d8af9d2509c55.png"><br></li>
+<li>昨今の<a href="https://nijibox.jp/blog/humancentereddesign/" target="_blank">人間中心設計</a>の誤った解釈から、システムの顧客接点である画面のデザインがフォーカスされ、発注側の要件定義担当者やデザイナーを含めたプロジェクトメンバーが、本来画面設計の元になるはずの<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0" target="_blank">データモデリング</a>について理解が乏しいことに原因があるのではとも感じています。例えば、人間中心設計のプロセスで作成するカスタマージャーニーマップはユーザ視点の顧客体験を理解し、開発するシステムが単なる静的なインタフェースではなく動的なサービスであることを表現するにはよいのですが、アーキテクト不在の場合、顧客接点の整理をしたらすぐに画面設計にとりかかろうという雰囲気になりがちなので、意識して気をつける必要があります。</li>
+<li>例えば、過去相談を受けたシステム開発プロジェクトに、業務で扱う情報が整理できておらず各業務ステップで担当者が手動で作業をしているため、残業が減らないのでシステム化して改善したい、というものがありました。ここでもアーキテクト不在で要件定義が進められ、プロジェクトマネージャやデザイナが画面設計に走り、案の定プロジェクトの半年後はじめからやりなおしになりました。システム化とは業務と情報の整理整頓であり、仕事が複雑になり残業が発生するのもその整理整頓ができていないのがそもそもの原因です。そのため、まずはデータモデリングが必要であることを強く意識しておく必要があるでしょう。</li>
 <li>エンジニア育成という観点からは、従来のプログラミングの学習コンテンツはプログラミング言語の文法を学ぶことが目標となっており、出来上がったプログラムが端末に&#34;Hello World&#34;と表示するといった面白みにかけ作りたいものからかけ離れた学習内容になっていることが多いです。そのため学習自体に面白味がなく、初心者の時点からやる気をなくしてしまいます。</li>
-<li>最近の子供向けプログラミング授業用ソフトは使いやすく、見た目がよく、マウス操作でプログラミングの論理的思考が学べるといったすぐれた面がある一方、汎用的なアプリケーションを開発するため使えないといった欠点もあります。</li>
+<li>最近の子供向けプログラミング授業用ソフトは使いやすく、見た目がよく、マウス操作でプログラミングの論理的思考が学べるといったすぐれた面がある一方、汎用的なアプリケーションを開発するため使えないといった欠点もあります。学習指導要領上、小学校からプログラミング教育が必須化する理由は「プログラミング的思考をやしなうため」「順序立てて考え、試行錯誤し、ものごとを解決する力を身につけるため」であることはわかるのですが、教科書で決められた作り込まれたソフトを使っているので汎用性がなく学習した後のその先がないため少し残念です。<br><img style="width: 194.50px" src="img/634c2a645f768f8.png"><br></li>
 </ul>
 <p>以上のことから、エンジニアだけでなく発注側顧客企業の担当者やプロジェクトマネージャもユースケースからデータモデルに落とす考え方やデータモデルから画面設計を行うための考え方、さらにはこれらのパターンを知っていることが望まれます。</p>
 <p>そこで本書の前半部分ではデータモデリングの具体的な方法と考え方についても詳しく説明するよう心がけました。またエンジニア育成という観点では、アイデアが浮かんだらすぐに完成品までもっていけるよう効率的で汎用的なツールを選び、それらのハンズオンを掲載しています。</p>
@@ -55,7 +55,7 @@
 <li>ユースケース、データモデル、画面設計のパターン</li>
 <li>NoSQLデータベースとCloud Firestoreの概要</li>
 <li>Firebase AuthとFirestore、Cloud Functionsの使い方</li>
-<li>Flutterを使ったマテリアルデザインのアプリの開</li>
+<li>Flutterを使ったマテリアルデザインのアプリの開発</li>
 </ul>
 <h2 is-upgraded>ライセンス</h2>
 <p><a href="https://david3080.github.io/firestore/LICENSE.txt" target="_blank">Apache License, Version 2.0</a></p>
@@ -228,7 +228,7 @@
 <li>レビュードキュメントに顧客フィールドの一部をマップとして納める</li>
 </ol>
 <p>これらの関係を表現したツリー構造を下図に示します。</p>
-<p class="image-container"><img style="width: 591.38px" src="img/392308f2014e0d18.png"></p>
+<p class="image-container"><img style="width: 591.38px" src="img/1ef818d9688a0f71.png"></p>
 <h2 is-upgraded>3. サンプルデータをJSON形式で表現する</h2>
 <p>ドキュメントとコレクションの関係について方針が決まったら、1のサンプルデータをJSON形式であらわすことでより具体化します。</p>
 <aside class="warning"><p><strong>ノート: </strong>上記のサンプルデータは項目名を日本語にして表現していますが、JSON形式における項目名やプログラムで使う変数名は適切な英単語を使うことが求められます。下記の「codic」というサービスはユースケースで記述した自然言語から変数名や関数名として利用できる項目名の候補を出力してくれるので便利です。</p>
@@ -317,19 +317,23 @@
 <p>これらを理解し参考にすることで、経験の少ない方でもみずからのユースケースから適切な設計を行うことが可能になるでしょう。</p>
 <h2 is-upgraded>1. 特徴的な機能の画面</h2>
 <p>上で紹介したとおり世の中の主要なアプリケーション、特にビジネス用途のアプリケーションはログインしたユーザの権限で複数データを整理整頓を行うことを目的としており、1で紹介した画面遷移パターンの組み合わせで事足ります。一方、下記に挙げる機能はよく使われると共に特殊な画面を持ちますので、パターンとして覚えておくとよいでしょう。</p>
-<h3 is-upgraded><strong>① スケジュールとカレンダー</strong></h3>
+<h3 is-upgraded><strong>① ID&amp;パスワード・ログイン</strong></h3>
 <p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>② 地図</strong></h3>
+<h3 is-upgraded><strong>② パスワードレス・ログイン</strong></h3>
 <p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>③ グループチャット</strong></h3>
+<h3 is-upgraded><strong>③ チャット</strong></h3>
 <p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>④ 決済・ポイント支払</strong></h3>
+<h3 is-upgraded><strong>④</strong><strong>スケジュールとカレンダー</strong></h3>
 <p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑤ イラスト・写真加工</strong></h3>
+<h3 is-upgraded><strong>⑤</strong><strong> 地図</strong></h3>
 <p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑥ OCR・物体認識</strong></h3>
+<h3 is-upgraded><strong>⑥</strong><strong> 決済・ポイント支払</strong></h3>
 <p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑦ その他</strong></h3>
+<h3 is-upgraded><strong>⑦</strong><strong> イラスト・写真加工</strong></h3>
+<p><strong>（TODO）</strong></p>
+<h3 is-upgraded><strong>⑧</strong><strong> OCR・物体認識</strong></h3>
+<p><strong>（TODO）</strong></p>
+<h3 is-upgraded><strong>⑨</strong><strong> その他</strong></h3>
 <p>ゲームやAR、スマートスピーカーといったアプリケーションは複雑なUIからなりたっていたり、音声によるUIからなりたつため一般化は難しく、本書の対象外とします。</p>
 <h2 is-upgraded>2. メモアプリ</h2>
 <p><strong>ユースケース</strong></p>
@@ -369,9 +373,13 @@
 </td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
 </table>
 <p><strong>データモデル</strong></p>
-<p><strong>（TODO）</strong></p>
+<ul>
+<li><strong>（TODO）</strong></li>
+</ul>
 <p><strong>画面設計</strong></p>
-<p><strong>（TODO）</strong></p>
+<ul>
+<li><strong>（TODO）</strong></li>
+</ul>
 <h2 is-upgraded>3. 学生名簿</h2>
 <p><strong>（TODO）</strong></p>
 <h2 is-upgraded>4. 観光地紹介</h2>
@@ -413,28 +421,28 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="モバイルアプリのUIデザイン" duration="0">
-        <p>ここでは画面設計に関連して、モバイルアプリのUIデザインについて記述します。世の中のモバイルデバイスといえば、iPhoneとAndroidの2種類を考えればよいですが、各社モバイルUIデザインのガイドラインを出しており、iPhoneは<a href="https://developer.apple.com/design/human-interface-guidelines/ios" target="_blank">ヒューマン・インタフェース・ガイドライン</a>、Androidでは<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>です。各ガイドラインの紹介をする前に、スマホアプリ特有の問題からデザインの歴史を説明してから、ヒューマン・インタフェース・ガイドラインとマテリアルデザインの紹介をします。</p>
-<h2 is-upgraded>1. スマートフォンの特徴</h2>
-<p>スマートフォンには、パソコンとは異なる2つの特徴があります。</p>
+      <google-codelab-step label="スマートフォン（スマホ）アプリのUIデザイン" duration="0">
+        <p>ここでは画面設計に関連して、スマホアプリのUIデザインについて記述します。世の中のスマホといえば、iPhoneとAndroidの2種類ですが、それぞれAppleとGoogleがUIデザインのガイドラインを出しています。iPhoneは<a href="https://developer.apple.com/design/human-interface-guidelines/ios" target="_blank">ヒューマン・インタフェース・ガイドライン</a>、Androidでは<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>です。各ガイドラインの紹介をする前に、スマホアプリ特有の問題からデザインの歴史を説明してから、ヒューマン・インタフェース・ガイドラインとマテリアルデザインの紹介をします。</p>
+<h2 is-upgraded>1. スマホの特徴</h2>
+<p>スマホには、パソコンとは異なる2つの特徴があります。</p>
 <p><strong>画面が小さく操作手段が限定的</strong></p>
 <p>スマホは画面が小さくさらにマウスやキーボードがないため操作手段が限定されるため、画面レイアウトや操作方法をどのようにデザインするかでユーザ満足度が大きく変化します。</p>
 <p><strong>画面サイズがばらばら</strong></p>
-<p>AndroidとiPhoneという違いだけでなく、同種のスマホでも画面サイズがさまざまで、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
+<p>AndroidとiPhoneという違いだけでなく、同種のスマホでも画面サイズが様々で、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
 <p class="image-container"><img style="width: 531.80px" src="img/886625a7f19811a7.png"></p>
 <h2 is-upgraded>2. スマホアプリで発生しやすい問題</h2>
 <p>Google PlayやApp Storeに登録された実際のアプリの評判からまとめたスマホアプリに対するよくある悪評は主に以下の4つに集約されます。</p>
 <ol type="1" start="1">
 <li>操作途中でクラッシュしてしまう</li>
-<li>元の画面に戻れない、探している機能に行き着かない、といったナビ機能が不十分</li>
-<li>デザインが必要以上に凝っていて意味不明</li>
+<li>ナビ機能が不十分で、元の画面に戻れない、探している機能に行き着かない</li>
+<li>デザインが必要以上に凝っていたり意味不明のため使えない</li>
 <li>大量の情報がそのまま表示され、検索したりフィルタリングする機能がない</li>
 </ol>
 <p>これらの悪評のうち、1以外の2から4まではUIデザインの問題といえます。</p>
 <h2 is-upgraded>3. スマホデザインの歴史</h2>
 <p>それではスマホにおけるデザインはどのような歴史を歩んできたのでしょうか。</p>
 <p>まず、2000年前半のWebやアプリケーションのUIはそれまでのWindowsパソコンが機械的で使いづらく利用者のことを考えて作られていないという反省から、現実世界を模した装飾的なデザインからなるUIを取り入れるようになりました。この考え方によるデザインを<a href="https://ja.wikipedia.org/wiki/%E3%82%B9%E3%82%AD%E3%83%A5%E3%83%BC%E3%83%A2%E3%83%BC%E3%83%95%E3%82%A3%E3%82%BA%E3%83%A0" target="_blank">スキューモーフィズム</a>と呼びます。ただし、この装飾に凝ったデザインでは、デザイナーの主張が先行し、見た目や操作性に統一感がないといった弊害を生むことになりました。</p>
-<p>そのため、20世紀初頭に<a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%80%E3%83%8B%E3%82%BA%E3%83%A0" target="_blank">モダニズム</a>が建築や工業製品のデザインに取り入れられたように、パソコンやWebやスマホのデザインにも極力装飾を廃した<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%83%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3" target="_blank">フラットデザイン</a>が採用されることになりました。このフラットデザインを採用しているのがAppleです。AppleはiPhone 7のデザインにフラットデザインを取り入れ、ヒューマン・インタフェース・ガイドラインもそれにのっとったガイドラインを発表しています。</p>
+<p>そのため、20世紀初頭に<a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%80%E3%83%8B%E3%82%BA%E3%83%A0" target="_blank">モダニズム</a>が建築や工業製品のデザインに取り入れられたように、パソコンやWebやスマホのデザインにも極力装飾を廃した<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%83%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3" target="_blank">フラットデザイン</a>が採用されることになりました。このフラットデザインを採用しているのがAppleです。AppleはiPhone 7のデザインにフラットデザインを取り入れ、<a href="https://developer.apple.com/design/human-interface-guidelines/ios" target="_blank">ヒューマン・インタフェース・ガイドライン</a>もそれにのっとったガイドラインを発表しています。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>iPhone6のスキューモーフィズム</p>
 <p class="image-container"><img style="width: 259.50px" src="img/13bf84e545185e44.png"></p>
@@ -442,8 +450,8 @@
 <p class="image-container"><img style="width: 251.75px" src="img/bd026add4995ef9e.png"></p>
 </td></tr>
 </table>
-<p>しかし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットが挙げられます。そこで、Googleはフラットデザインとスキューモフィズムの中間をとり、さらに発展させた「マテリアルデザイン」を定義し、2014年にだれもが参照して利用できるオープンソースな形でデザインガイドラインを発表しました。</p>
-<p>本書では、ヒューマン・インタフェース・ガイドラインの概要を述べるものの、マテリアルデザインをメインに説明します。また、本書で利用している開発プラットフォームであるFlutterもマテリアルデザインを全面的に採用しており、AndroidはもとよりiPhoneでもマテリアルデザインを実装することができるツールであるため、本書においては開発全般でマテリアルデザインを採用しています。</p>
+<p>しかし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットが挙げられます。そこで、Googleはフラットデザインとスキューモフィズムの中間をとり、さらに発展させた「<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>」を定義し、2014年にだれもが参照して利用できるオープンソースな形でデザインガイドラインを発表しました。</p>
+<p>本書では、<a href="https://developer.apple.com/design/human-interface-guidelines/ios" target="_blank">ヒューマン・インタフェース・ガイドライン</a>の概要を述べるものの、<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>をメインに説明します。また、本書で利用している開発プラットフォームであるFlutterもマテリアルデザインを全面的に採用しており、AndroidはもとよりiPhoneでもマテリアルデザインを実装することができるツールであるため、本書においては開発全般でマテリアルデザインを採用しています。</p>
 <h2 is-upgraded>4. ヒューマン・インタフェース・ガイドラインとは？</h2>
 <p>ヒューマン・インタフェース・ガイドラインでは3つのデザインテーマと6つのデザイン原則とその他設計の詳細が記載されていますが、ここでは3つのデザインテーマと6つのデザイン原則を紹介します。</p>
 <h3 is-upgraded><strong>①3つのデザインテーマ</strong></h3>
@@ -457,9 +465,9 @@
 <h3 is-upgraded><strong>②6つのデザイン原則</strong></h3>
 <p>iOSアプリは、ユーザへのインパクトとリーチを最大化するため、アプリのアイデンティティを強化するため、次の原則に従うことを推奨しています。</p>
 <p><strong>1. 美的完全性</strong></p>
-<p>美的完全性は、アプリの外観と動作がその機能とどれだけうまく統合されているかを表します。たとえば、ユーザが慎重を期す作業をするアプリでは、微妙で目立たないグラフィックと標準的な操作、予測可能な動作を提示することで集中力を維持できます。一方、ゲームなどの没入型アプリでは、発見を促しながら楽しさと興奮を約束する魅力的な外観を提供できます。</p>
+<p>美的完全性は、アプリの外観と動作がその機能とどれだけうまく統合されているかを表します。たとえば、ユーザが慎重を期す作業をするアプリでは、微妙で目立たないグラフィックと標準的な操作、予測可能な動作を提示することで集中力を維持できます。一方、ゲームなどの没入型アプリでは、発見を促しながら楽しさと興奮を約束する魅力的な外観を提供するとよいでしょう。</p>
 <p><strong>2. 一貫性</strong></p>
-<p>一貫性のあるアプリは、システムが提供するインターフェース要素とよく知られたアイコン、標準のテキストスタイル、統一された用語を使用することで、使い慣れた標準的な印象を与えます。このようなアプリは、ユーザが期待する方法で機能と動作を組み込んでいます。</p>
+<p>一貫性のあるアプリはシステムが提供するインターフェース要素とよく知られたアイコン、標準のテキストスタイル、統一された用語を使用することで、使い慣れた標準的な印象を与えます。このようなアプリはユーザが期待する方法で機能と動作を組み込んでいます。</p>
 <p><strong>3. 直接的な操作</strong></p>
 <p>画面上のコンテンツを操作することで、ユーザを引き付け、理解を促進します。ユーザは、デバイスを回転させたり、ジェスチャーを使用して画面上のコンテンツに影響を与えたりすると、直接的な操作の体験をします。直接的な操作を通じて、自らの行動が即時にアプリに影響を与えることを体験するわけです。</p>
 <p><strong>4. フィードバック</strong></p>
@@ -585,11 +593,12 @@
 <p>機械学習機能に関するマテリアルデザイン：<a href="https://material.io/design/machine-learning/understanding-ml-patterns.html" target="_blank">https://material.io/design/machine-learning/understanding-ml-patterns.html</a></p>
 <p>音声に関するマテリアルデザイン：<a href="https://material.io/design/sound/about-sound.html" target="_blank">https://material.io/design/sound/about-sound.html</a></p>
 <p>これらはスマホにかかわらず、スマートウォッチ、スマートスピーカーやスマートイヤフォン、スマートグラスなどにもマテリアルデザインを適用していこうという取り組みのあらわれであり、次章で紹介するFlutterという開発環境も同じ目的で開発が進められています。</p>
+<p>2021年5月のGoogle I/OにおいてAndroid12のリリースにあわせて<a href="https://www.youtube.com/watch?v=rLKtIGY2Mgc" target="_blank">マテリアルデザインの更新</a>がなされています。ここでは、スキューモフィズム的なモノを表現する普遍的なロゴデザインを継承しつつ、高度にパーソナライズすることができ、仕事とプライベートの切り替えが用意でモダニズム的な要素を加えたデザインを目指したとのことです。具体的には、新しいテクノロジーを快適に使えること、デバイスやアプリとの境界線を無くすような慣習に挑戦すること（イコノクラスム）、入力に反応する有機的な動きなど自然界のスピリットを取り入れることを目指しています。また、壁紙の色使いにあわせてパーソナライズされたカラーパレットを適切に自動設定してくれるダイナミックカラーという機能を有しています。今後<a href="https://material.io/resources/color/" target="_blank">カラーツール</a>等にもこれらの自動化機能が付与されてくるかもしれません。</p>
+<p>このようにマテリアルデザインは、いま世界で最も適切にデザインされ、オープンで誰にでも利用可能で、いまだ活発に進化を続けている生きているデザインシステムといえます。</p>
 <h2 is-upgraded>6. デザインシステム</h2>
-<p>通常、アプリケーションの開発プロジェクトでは、事前にマテリアルデザインのようなデザインフレームワークからプロジェクトで活用するレイアウトや部品を選択してカラーテーマやフォントを決めて、アプリのブランドに統一感を持たせることをします。このことを「デザインシステム」と呼びます。</p>
-<p><strong>（TODO）</strong>VSCodeの新しいAdobeXDプラグインを使うとAdobeXDのデザインシステムとVSCodeでのコードスニペット連携が可能になるため、その説明をおこないます。</p>
-<p><a href="https://blogs.adobe.com/creative/october-2020-release-of-adobe-xd-get-to-final-faster-with-3d-transforms-creative-cloud-libraries-visual-studio-code-and-more/" target="_blank">https://blogs.adobe.com/creative/october-2020-release-of-adobe-xd-get-to-final-faster-with-3d-transforms-creative-cloud-libraries-visual-studio-code-and-more/</a></p>
-<p><a href="https://marketplace.visualstudio.com/items?itemName=Adobe.xd" target="_blank">https://marketplace.visualstudio.com/items?itemName=Adobe.xd</a></p>
+<p>通常、アプリケーションの開発プロジェクトでは、事前にマテリアルデザインのようなデザインフレームワークからプロジェクトで活用するレイアウトや部品を選択してカラーテーマやフォントを決めて、アプリのブランドに統一感を持たせることをします。このようなデザイン原則とデザインフレームワークの組み合わせを「デザインシステム」と呼びます。</p>
+<p>最近日本国内でも「<a href="https://note.minna-no-ginko.com/n/n5990880b26ae" target="_blank">みんなの銀行</a>」や「<a href="https://digital-gov.note.jp/n/n78f6a2f82e48" target="_blank">デジタル庁</a>」でもデザイン原則やシステムデザインを整備してWebサイトを作るといったアプリ開発を行うことがはじまっています。Webサイトといった単純なUIだけならデザインシステムもロゴやカラーデザインや画面テンプレート程度を決めるだけですみますが、スマホアプリのデザインシステムというとより複雑な機能を含みますので、これを一から作るのは大変な労力がかかります。</p>
+<p>そのため、本書ではマテリアルデザインをまるまるデザインシステムとして採用してスマホアプリを開発します。サービスのブランディングに関わるロゴやイラスト、カラーデザインをカスタマイズする機能もマテリアルデザインを支えるFlutterのようなツールにも開発が進められていますので、これを使わない手はないでしょう。</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
@@ -622,7 +631,7 @@
 </aside>
 <p>Flutterのよさだけを強調すると初めての方は少ない知識で何も考慮することなくアプリが開発できると勘違いするとよくないので、Flutterを正しく学ぶためのマインドセットを最後に紹介します。</p>
 <ol type="1" start="1">
-<li>Flutterのベース言語であるDart言語のコンセプトと特徴を学ぶこと<br>Flutterはモバイルアプリ開発に必要なプログラミング言語のコンセプトを持ち、Flutterと同期しながら進化しているDartという言語をベース言語に採用しています。本書では「Dart言語の基礎」でハンズオン付きで解説します。</li>
+<li>Flutterのベース言語であるDart言語のコンセプトと特徴を学ぶこと<br>Flutterはスマホアプリ開発に必要なプログラミング言語のコンセプトを持ち、Flutterと同期しながら進化しているDartという言語をベース言語に採用しています。本書では「Dart言語の基礎」でハンズオン付きで解説します。</li>
 <li>状態管理と関心の分離<br>通常アプリケーションは画面と画面遷移から成り立ちますが、その遷移中に永続化して保持したいデータがあります。そのことを状態と呼びますが、Flutterでもこの状態管理方法を選択することは悩ましい課題です。また、FlutterはUIロジックとビジネスロジックを分離する制約を言語として持ち合わせていません。そのため、開発者がBLoCパターンなどのデザインパターンを自ら採用してルール化してプログラミングする必要があります。本書では「状態管理とBLoCパターンによる関心の分離」で解説します。</li>
 <li>ネイティブコードの知識<br>Flutterがいくらクロスプラットフォーム対応であると言っても最終的にはネイティブコードとしてコンパイルされ、iPhone、Android、Webアプリ、Windows、Mac、ChromeBook、Linuxといった各プラットフォーム独自のルールとしきたりにあわせてリリースされるため、ネイティブコードの知識は不可欠です。</li>
 </ol>
@@ -641,8 +650,8 @@
 <p>一方、Firebaseについてはアプリの横展開をする際にクラウドサービスを使いたくないケースが考えられるので、なんらかの代替案を考える必要があります。Firebaseのサービスごとに代替案を以下に紹介します。</p>
 <ul>
 <li>Firebase Auth：独自に認証サーバを立ち上げたり、Keycloakのような統合認証認可サービスを立ち上げてユーザ管理をすることで代替できます。</li>
-<li>Cloud Firestore：認証のしくみはKeycloakのクライアントプラグインを使って実装することで実現できます。ドキュメント型データベースとしてmongoDBがあげられるので、ストリーム型でアプリから連携できるようgRPCで公開し、Dart言語のgRPCクライアントを開発しFlutterで利用することで実現できます。ただし、Firestoreで実現しているセキュリティルールやオフライン機能や差分のみをやりとりする機能などの高度な機能の実装は困難なので、アプリの使い勝手は悪くなると思われます。</li>
-<li>Firebase Storage：Keycloakのような認証サービスと連携してストレージサービスを開発するのは難しいので、データベースにサイズを小さくしたバイナリとして保存するようにするとよいでしょう。</li>
+<li>Cloud Firestore：OIDC認証のしくみはKeycloakのクライアントプラグインを使って実装することで実現できます。ドキュメント型データベースとしてmongoDBがあげられるので、ストリーム型でアプリから連携できるようgRPCで公開し、Dart言語のgRPCクライアントを開発しFlutterで利用することで実現できます。ただし、Firestoreで実現しているセキュリティルールやオフライン機能や差分のみをやりとりする機能などの高度な機能の実装は困難なので、アプリの使い勝手は悪くなると思われます。</li>
+<li>Firebase Storage：Keycloakのような認証サービスと連携したストレージサービスを開発するのは難しいので、データベースにサイズを小さくしたバイナリとして保存するようにするとよいでしょう。</li>
 </ul>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
@@ -658,7 +667,7 @@
 <ul>
 <li>従来型のリレーショナルデータベースではテーブルのスキーマが厳格に定義され、正規化という手法でデータの重複が発生しないようテーブル分割します。分割されたテーブルが互いに関係を持つ場合、一方のプライマリキーを他方が外部キーとして持つことで1対多の関係を構成します。例えば「レストラン」と「顧客」と「顧客によるレストランのレビュー（以下「レビュー」）」の3テーブルあるとして「レビュー」は「レストラン」と「顧客」を外部キーとして持つことで「レビュー」テーブルが「レストラン」と「顧客」の間の中間テーブルとして機能します。こうすることで、「レストラン」は「顧客」から0個以上の複数「レビュー」を受け、「顧客」は0個以上の複数「レストラン」に対して「レビュー」を行える、といった多対多の関係を表現することができるわけです。</li>
 </ul>
-<p class="image-container"><img style="width: 549.00px" src="img/ffa6d83682381ec7.png"></p>
+<p class="image-container"><img style="width: 549.00px" src="img/fe37ca7312ea92f7.png"></p>
 <ul>
 <li>一方、NoSQL型データベースには様々なタイプがあるものの、主に「スキーマレス」という特徴を持ち、テーブル定義のような厳格なスキーマをあらかじめデータベース側に定義する必要はありません。ただし、NoSQL型データベースでも上記のようなテーブル間のリレーションは重要概念で、クライアントアプリ側のデータベースアクセス部分（いわゆるCRUD操作する部分）を正しく開発するためにテーブル間の関係を設計する必要があります。しかし「スキーマレス」の特徴のため、アプリのリリース後にテーブルに新たなフィールドを追加したくなった場合はアプリの修正だけで対応が可能で、リレーショナルデータベースの時代のようにデータの移行を考慮しながらデータベースに対してスキーマ定義を更新するといった作業が必要ないといった利点があります。</li>
 <li>またNoSQL型データベースにはSQL文がありません。例えばコレクションとドキュメントのツリー構造からなるドキュメント型データベースでは、ドキュメントの階層をたどって検索を行うことで目的のドキュメントにたどりつくといったしくみでデータ操作を行います。そのため、リレーショナルデータベースでは正規化してきれいにテーブル分離する一方、同時に頻繁に検索対象となりうるフィールドをあえて親子のドキュメント間で重複して持つといった非正規化を行い、一つの検索で目的の情報にたどりつけるようにすることが、ドキュメント型データベースにおいては推奨されることがあります。例えば、レストランのレビューをリスト表示する場合で考えると、レビューにそれを行った顧客の名前フィールドをのせておくといったことです。こうすることで、レビューに登録された顧客IDから顧客ドキュメントを検索し、顧客の名前までたどるといった処理が必要なくなります。</li>
@@ -672,7 +681,7 @@
 <ul>
 <li>データベースに検索を行ってデータを取得する操作のことをクエリと呼びます。一般的なドキュメント型データベースでは、一回のクエリの検索対象となるデータの範囲は検索対象ドキュメントが所属するコレクション内のみになります。以前に説明したコレクションとドキュメントの関係を思い出してもらいたいのですが、コレクションはドキュメントを含みますが、ドキュメントに直接ドキュメントを紐づけることはできず、必ずコレクションを挟みます。例えばレストランのレビューのケースのレストランとレビューの関係は下図のようになります。</li>
 </ul>
-<p class="image-container"><img style="width: 591.38px" src="img/a9e271f6dcff33fb.png"></p>
+<p class="image-container"><img style="width: 591.38px" src="img/41f9b4af81ebcc9.png"></p>
 <ul>
 <li>ここで注目してもらいたいのが各レビュー・コレクションはそれぞれのレストラン・ドキュメントに紐づいているので、すべてのレビューを対象に例えば星4以上など星の数を指定して一括検索することができません。この理由としては、NoSQLデータベースの特徴と言えますが、上のようなツリー構造のため、ドキュメントのインデックスはドキュメントを含むコレクション単位で作成されるためです。そのため、同じレビューだからといって隣のコレクションも含めて検索しようとしてもそれは対象外となってしまうわけです。同一名のコレクションを横断的に検索することはSQLではできたことで、レビュー・テーブルは正規化により一つだけ存在し、インデックス化もまとめて行われているのがそれができる理由です。</li>
 <li>横断的な検索を可能にするため、Firestoreではコレクショングループという機能を用意しています。サブコレクション（上図のレビュー・コレクションに相当）において検索キーとして機能させたいフィールド（上図では「星の数」フィールド）を指定することでコレクション・グループ検索が可能になります。ただし、このコレクショングループに指定するフィールド数が増えれば増えるほどデータ更新時にインデックス処理がたくさん走るため更新に時間がかかってしまうこと、またFirestoreではコレクション・グループに指定できるフィールド数が200個までという制限があります。また、Firestoreデータベースツリー内に同一名のコレクションが複数あると、それら全てを含めてインデックス化してしまうことに注意が必要です。そのため、一つのFirestoreデータベースで利用するコレクション名は重複しないよう設計しましょう。コレクショングループの設定方法は<a href="https://qiita.com/96wver/items/8eb0c79647529fe5fc75" target="_blank">こちら</a>を参考にしてください。</li>
@@ -839,19 +848,28 @@
 <li>カスタムAPIの作成：用途限定でCloud Functionsを作成するとクライアントアプリの実装がシンプルになり効率化するといったメリットがありえますが、オフライン機能が失われるといったデメリットとのトレードオフを考慮して採用を決めるとよいです。</li>
 </ol>
 <h2 is-upgraded>13. NoSQLの限界</h2>
-<p>最後にいままでのオフィシャル動画とは直接関係ありませんが、実践を通して得られたNoSQLの限界について記載します。</p>
-<ol type="1" start="1">
-<li>プロジェクトと要員を紐付けたい場合にマッチング値を計算して中間テーブルに持っていて要員がいまプロジェクトに参画できるか否かの条件付きで検索するような場合</li>
-<li><strong>（TODO）</strong></li>
-</ol>
+<p>最後にいままでのオフィシャル動画とは直接関係ありませんが、Cloud Firestoreが提供するNoSQLのしくみは安全で使い勝手が良くスケーラブルでいいことづくめに見えますが、やはりリレーショナルデータベースにしか表現できないデータモデルというものがあり、NoSQLの限界というものが存在します。例えば、プロジェクトと要員を紐付けたい場合にマッチング値を計算して中間テーブルに持ち、特定のプロジェクトに適した要員をマッチング値でソートしたり、特定の要員に適したプロジェクトをマッチング値でソートしたりすることはリレーショナルデータベースでは可能ですが、NoSQLには構造上できません。NoSQLでこれを実現するには、プロジェクト・コレクションに要員マッチング値という配列項目を用意して、逆に要員コレクションにプロジェクト・マッチング値という配列項目を用意してそれらを使って検索を行う必要があります。この方式の難点は重複してデータを持つことになることとプロジェクトや要員が新規に追加される際にマッチング値を再計算してデータ更新が必要になることです。</p>
+<p>NoSQLの利用はプロトタイプ開発などすぐにアプリを開発する必要がある場合にはよいでしょうが、データモデルの機能によっては適さない場合があるので、気をつけるとよいでしょう。</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Dart言語の基礎" duration="0">
-        <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えると思います。</p>
-<aside class="warning"><p><strong>ノート: </strong>Dart言語の基礎については「<a href="https://codelabs.developers.google.com/codelabs/from-java-to-dart" target="_blank">Intro to Dart for Java Developers</a>」というCodelabを一通りみてください。また「<a href="https://dart.dev/samples" target="_blank">Language samples</a>」もみておくとよいです。Dart言語でのクラスの実装やインタフェース、関数プログラミングについて学べます。</p>
+        <p>FlutterはDartと呼ばれる新しいプログラミング言語で実装されており、Dart言語を使ってプログラミングを行います。DartはJavaScriptに似た言語で、Webアプリケーションにおいて必要な非同期処理やストリーミング処理にたけたオブジェクト指向言語です。JavaやJavaScriptなどの言語をマスターした読者であればすぐに学習して使えるでしょう。</p>
+<aside class="warning"><p><strong>ノート: </strong></p>
+<p>Dart言語の基礎については「<a href="https://codelabs.developers.google.com/codelabs/from-java-to-dart" target="_blank">Javaデベロッパー向けDartの紹介</a>」というCodelabを一通りみてみるとよいでしょう。クラス定義、継承、Factoryパターン実装、関数型プログラミングの方法を学ぶことができます。</p>
+</aside>
+<aside class="warning"><p><strong>ノート: </strong></p>
+<p>Dart言語の文法を知るには「<a href="https://dart.dev/samples" target="_blank">Language samples</a>」もみておくとよいです。変数、制御構造、関数、コメント、ライブラリのimport、クラス、継承、Mixin、abstract、async、例外などを学ぶことができます。</p>
+</aside>
+<aside class="warning"><p><strong>ノート: </strong></p>
+<p>Dart言語はバージョン2からヌル安全を取り入れ、レガシー言語から脱却したといわれています。</p>
+<p>プログラマの方ならインスタンスの中身が何もなくヌルであることから、そのクラス変数にアクセスする命令文でプログラムがクラッシュした経験を一度はされたことがあると思います。このバグはインスタンスがヌルになる可能性を見越してプログラミングする必要があるため頻繁に発生しやすく予期せぬタイミングで突然アプリがクラッシュするので非常に厄介なバグでした。</p>
+<p>そこで、近代的なプログラミング言語はヌル安全のしくみを取り入れ、コンパイル時に言語仕様としてチェックが走るしくみになっています。ヌル安全のプログラミング言語では、変数定義のときにヌルになりえるかどうかを宣言して、ヌルになりうるインスタンスはヌルチェックなしで変数呼び出しや関数呼び出しができないようにしたり、ヌルになりえない変数に値をセットする際にもヌルになりえる変数をセットできないようにしたりするといったコンパイルルールを付与しています。</p>
+<p>Dart言語におけるヌル安全についての説明は以下を参照ください。</p>
+<p>Google I/Oでの説明：<a href="https://www.youtube.com/watch?v=tP9TcrUZoIs" target="_blank">https://www.youtube.com/watch?v=tP9TcrUZoIs</a></p>
+<p>Dartにおけるヌル安全の原則：<a href="https://dart.dev/null-safety#null-safety-principles" target="_blank">https://dart.dev/null-safety#null-safety-principles</a> </p>
 </aside>
 <p>ここまでの説明から、アプリケーション開発の基本はデータモデルとアプリ画面のマッピングであることは理解してもらえたかと思います。そのため、アプリ開発においてDart言語が効果的に機能する重要なしくみとしては「1. 認証サービスやデータベースとネットワークごしに非同期でやりとりするデータをうまく処理すること」と「2. 得られたデータ（特にリスト型）を画面表示用にうまく変換すること」といえます。そのため本書では、2のリスト型のデータ変換理解のため「コレクション型」と1の非同期で流れてくるストリームの瞬間をとらえるスナップショット理解のため「非同期処理」を、Dart言語の特徴的で使える機能としてピックアップして解説します。</p>
 <aside class="warning"><p><strong>ノート:  </strong>本章ではブラウザ上でDart言語をプログラミングし、実行できるDartpadを使って説明しています。画面が小さくて見にくい場合は、iFrameエリア右上の最大化ボタンをクリックして別タブを開いて試してください。上部のプログラムを実行したい場合は右上のRUNボタンをクリックすると下部のコンソールに実行結果が表示されます。ソースコードが表示されない場合は、ブラウザをリロードしてください。</p>
@@ -955,6 +973,7 @@
       <google-codelab-step label="Flutter Webによるアプリ開発" duration="0">
         <p>前の2つの章では、Dartpadを使ってブラウザ上でプログラムを試しましたが、ここからはパソコン上のFlutterの開発環境とVSCodeエディタを使った開発を開始してもらいます。開発対象がスマホアプリなので、Android用の開発環境（Android Studio）やiPhone用の開発環境Xcodeが必要と思われがちなのですが、これらは大量のディスクスペースと実行時にハイスペックなCPUと大規模メモリを要求しますので、これを極力回避するためFlutter Webをつかって開発を行うこととします。</p>
 <p>Flutter WebというWebアプリを開発するとなるとスマホのネイティブアプリを開発する本書の目的とは違うと思われそうですが、これが真のクロスプラットフォームフレームワークであるFlutterのよいところで、Flutter Webを開発すればそのソースコードがiPhoneアプリとAndroidアプリ用にもほぼそのまま転用できるのです。いくつかスマホ用には対応していないFlutterプラグインがありますが、それらの機能はスマホアプリをコンパイルする際に追加することとして、ここではFlutter Webとしての「レストランレビューアプリ」を開発します。</p>
+<p>また、<a href="https://flutterflow.io/" target="_blank">Flutter Flow</a>というWebアプリを使うと、Firebaseとの接続をWeb上の設定で行うことができ、UI開発をGUI形式で行うことが可能です。Flutter Flowのフル機能を使うには月額数千円必要ですが、非常に協力なしくみなので使用を検討するとよいでしょう。サンプルの<a href="https://www.youtube.com/watch?v=TXsjnd_4SBo" target="_blank">FlutterMetアプリの構築動画</a>を観るとこのツールの強力さがわかるでしょう。</p>
 <h2 is-upgraded>1. 開発するアプリケーション</h2>
 <p>いままで整理してきたユースケースやデータモデルや画面設計のとおり、顧客がレストランのレビューを書き込むアプリケーションを開発します。できあがったFlutter Webアプリのイメージは下記のとおりです。この画面は裏でFirebaseにつながっており実際のWebアプリケーションとして利用できます。顧客としてユーザ登録を行いレストランを参照しレビューを書き込むことができます。</p>
 <p>下記サンプルアプリに Email: ichiro@test.com, Password: password でログインしてみてください。</p>
@@ -1092,7 +1111,7 @@ $ flutter run -d chrome</pre>
 <p class="image-container"><img style="width: 213.20px" src="img/7ec06f011a4782ef.png"></p>
 <h2 is-upgraded>2. メール/パスワード認証の有効化</h2>
 <p>Firebaseには様々な認証をサポートする機能としてFirebase Authenticationがあります。画面左メニューから「Authentication」を選択し、「Sign-in method」タブを選択します。</p>
-<p class="image-container"><img style="width: 402.80px" src="img/c23c9a8dc6acdcc7.png"></p>
+<p class="image-container"><img style="width: 402.80px" src="img/ace8f11915b054a7.png"></p>
 <p>「メール/パスワード」を有効化するため、「Authentication」画面のログインプロバイダのリストの最上部「メール/パスワード」行右端の鉛筆アイコンを選択し表示される下記ダイアログで「有効にする」を選択し、保存ボタンをクリックします。</p>
 <p class="image-container"><img style="width: 315.60px" src="img/23569565b84e855f.png"></p>
 <p>さらに「Authentication」画面の「Users」タブを選んで、「ユーザ追加」から下記の3つのメールアドレスを追加しておいてください。パスワードは任意です。これらのユーザは「RestoReview」アプリから利用します。</p>
@@ -1321,64 +1340,66 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="RestoReviewアプリの解説" duration="0">
-        <h2 is-upgraded>1.「ログイン、メニュー選択、ログアウト」の実装</h2>
+        <p>ここでは</p>
+<h2 is-upgraded>1.「ログイン、メニュー選択、ログアウト」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「①ログイン、メニュー選択、ログアウト」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/6ba691a0e16d3398.png"></p>
 <p>1. ログイン画面（LoginPage）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO）</p>
 <p>2. LandigPageの実装</p>
 <p>ログイン状態を随時チェックしてログイン画面（LoginPage）とホーム画面（HomePage）を切り替えるためにLandingPageが配置されています。</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO） </p>
 <p>3. ホーム画面（HomePage）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO） </p>
 <h2 is-upgraded>2.「レストランリストと詳細、レビュー表示と追加」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「②レストランリストとレストラン詳細、レビュー表示とレビュー追加」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/af07406616e31f12.png"></p>
 <p>1. レストラン画面（RestoPage）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>(TODO)</p>
 <p>2. レストラン詳細画面（RestoDetail）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>(TODO)</p>
 <p>3. レビュー詳細（ユーザ画面付）画面（UserReviewDetail）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>(TODO)</p>
 <p>4. レビュー追加画面（ReviewEdit）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>(TODO)</p>
 <h2 is-upgraded>3.「全レビューリストとレビュー表示」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「③全レビューリストとレビュー表示」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/d7a97b147e8e5e87.png"></p>
 <p>1. レビュー画面（ReviewPage）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO） </p>
 <p>2. レビュー詳細（ユーザ画面付）画面（UserReviewDetail）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO） </p>
 <h2 is-upgraded>4.「アカウント表示とレビューの管理」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「④アカウント表示と自分が投稿したレビューの管理」の各画面は図のようなクラスで実装されています。</p>
 <p class="image-container"><img style="width: 601.70px" src="img/8b9610af61d9781f.png"></p>
 <p>1. アカウント画面（AccountPage）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO） </p>
 <p>2. レビュー詳細（ReviewDetail）の実装</p>
-<p><strong>（TODO）</strong></p>
+<p>（TODO） </p>
 <p>3. レビュー編集（ReviewEdit）の実装</p>
-<p>v</p>
+<p>（TODO） </p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="状態管理とBLoCパターンによる関心の分離" duration="0">
-        <p><strong>（TODO）</strong> StatefulWidgetとStatelessWidgetの違い、Stateの意味、Providerパッケージ、RiverPodパッケージ、GetXパッケージ、RxDartパッケージなどを説明します。</p>
+        <p>（TODO） StatefulWidgetとStatelessWidgetの違い、Stateの意味、Providerパッケージ、RiverPodパッケージ、GetXパッケージ、RxDartパッケージなどを説明します。</p>
+<p><a href="https://www.youtube.com/watch?v=_7Mh66FFSNg&list=PLptHs0ZDJKt_T-oNj_6Q98v-tBnVf-S_o" target="_blank">#1 - Why BLoC? | BLoC - from Zero to Hero</a></p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="インデックスとセキュリティルールの作成とデプロイ" duration="0">
-        <p><strong>（TODO）</strong></p>
+        <p>（TODO）</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="UnitテストとWidgetテスト" duration="0">
-        <p><strong>（TODO）</strong></p>
+        <p>（TODO）</p>
 <p><a href="https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0" target="_blank">https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0</a></p>
 <p><a href="https://qiita.com/yujikawa/items/fe509b160df5ab9eb74e" target="_blank">https://qiita.com/yujikawa/items/fe509b160df5ab9eb74e</a></p>
 <center>Copyright 2020 RISA Co., LTD.</center>
@@ -1387,14 +1408,14 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="AndroidとiOS用ビルド方法" duration="0">
-        <p><strong>（TODO）</strong> Flutter WebプロジェクトにAndroidとiOS用フォルダを追加する方法（flutter create . --org [パッケージ名]）。XcodeインストールとAndroid SDK(コマンドのみ<a href="https://qiita.com/undrthemt/items/1861d5fe39be46a2b776" target="_blank">https://qiita.com/undrthemt/items/1861d5fe39be46a2b776</a>)をインストールしてビルドする方法。Firebaseにアプリを追加して必要ファイルをダウンロードして配置する方法。）</p>
+        <p>（TODO） Flutter WebプロジェクトにAndroidとiOS用フォルダを追加する方法（flutter create . --org [パッケージ名]）。XcodeインストールとAndroid SDK(コマンドのみ<a href="https://qiita.com/undrthemt/items/1861d5fe39be46a2b776" target="_blank">https://qiita.com/undrthemt/items/1861d5fe39be46a2b776</a>)をインストールしてビルドする方法。Firebaseにアプリを追加して必要ファイルをダウンロードして配置する方法。）</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="スマホアプリのテスター配布" duration="0">
-        <p><strong>（TODO）</strong> Firebase App Distributionの方法を解説</p>
+        <p>（TODO） Firebase App Distributionの方法を解説</p>
 <p><a href="https://firebase.google.com/docs/app-distribution/ios/distribute-console?hl=ja" target="_blank">https://firebase.google.com/docs/app-distribution/ios/distribute-console?hl=ja</a> </p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
@@ -1402,7 +1423,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="FlutterおよびFirebaseのセキュリティ" duration="0">
-        <p><strong>（TODO）</strong> 本書での構成はフロントのネイティブアプリ開発はFlutterにまかせ、バックエンドもFirebaseにまかせるので、APIやWebアプリの開発は発生せず、それらの脆弱性は考える必要がない。そのため、Flutterで構築するネイティブアプリの脆弱性回避とFirebaseの主要機能であるFirestoreとFirestorageとCloud Functionsで妥当なセキュリティルールの設定をすることに注力するだけでよい。あとは脆弱性診断など第三者によるチェックの仕方を考えることくらい。</p>
+        <p>（TODO） 本書での構成はフロントのネイティブアプリ開発はFlutterにまかせ、バックエンドもFirebaseにまかせるので、APIやWebアプリの開発は発生せず、それらの脆弱性は考える必要がない。そのため、Flutterで構築するネイティブアプリの脆弱性回避とFirebaseの主要機能であるFirestoreとFirestorageとCloud Functionsで妥当なセキュリティルールの設定をすることに注力するだけでよい。あとは脆弱性診断など第三者によるチェックの仕方を考えることくらい。</p>
 <p>APIキーについて、Firebase HostingでもAPIキーファイルはJSとして提供されて誰でもダウンロードできるようになっているので、誰にもアクセスできないようにすべきものではない。大事なのはセキュリティルール。</p>
 <p>参考）Flutterアプリ開発七つの大罪：<a href="https://qiita.com/__naoya__/items/98ac66157a1578be2798" target="_blank">https://qiita.com/__naoya__/items/98ac66157a1578be2798</a></p>
 <p>参考）Flutter Security：<a href="https://flutter.dev/security" target="_blank">https://flutter.dev/security</a></p>
@@ -1420,7 +1441,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       </google-codelab-step>
     
       <google-codelab-step label="Firebaseの運用保守" duration="0">
-        <p><strong>（TODO） </strong></p>
+        <p>（TODO） </p>
 <p>Firebase参考：<a href="https://www.youtube.com/watch?v=iWEgpdVSZyg" target="_blank">https://www.youtube.com/watch?v=iWEgpdVSZyg</a></p>
 <p>せっかくFirebaseに一本化したのでサービスの稼働状況をスマホアプリから見れるようにするとよいかも <a href="https://status.firebase.google.com/" target="_blank">https://status.firebase.google.com/</a></p>
 <center>Copyright 2020 RISA Co., LTD.</center>
@@ -1428,13 +1449,8 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="まとめと次ステップ" duration="0">
-        <p>スマートXXの開発：</p>
-<p>ノンコーディングについて：</p>
-<p><a href="https://qiita.com/yugoes1021/items/debce542cdcca2901117" target="_blank">https://qiita.com/yugoes1021/items/debce542cdcca2901117</a></p>
-<p><a href="https://builder.honeycode.aws/auth/signup" target="_blank">https://builder.honeycode.aws/auth/signup</a></p>
-<p><a href="https://news.yahoo.co.jp/articles/f391e128b586b8162e58f4e5fb5ca52e277dcc71" target="_blank">https://news.yahoo.co.jp/articles/f391e128b586b8162e58f4e5fb5ca52e277dcc71</a></p>
-<p><a href="https://prtimes.jp/main/html/rd/p/000000004.000064504.html" target="_blank">https://prtimes.jp/main/html/rd/p/000000004.000064504.html</a></p>
+      <google-codelab-step label="まとめ" duration="0">
+        <p>（TODO）</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
 
