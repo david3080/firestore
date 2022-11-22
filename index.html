@@ -9,7 +9,7 @@
   <title>スマホアプリの設計と開発</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="./codelab-elements.css">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
   <style>
     .success {
       color: #1e8e3e;
@@ -36,12 +36,12 @@
 <p>このように、あらゆる業界や組織において、あらゆる生活シーンでそれぞれの立場の要望にあった使いやすいオンラインサービスが安価に構築・提供されることが求められています。</p>
 <p>一方これらの要望を担う人材育成の観点では、子供から大人までプログラミング教育がはやっており、例えば文科省は小学校でのプログラミング授業を必須化しています。しかしシステム開発や人材育成においては下記のような課題があると感じています。</p>
 <ul>
-<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走りがちで、データ構造やロジックの設計がおろそかになり、プログラマーがまともに開発をはじめらずプロジェクトが遅延するといった状況に陥りがちです。このような状況は「<a href="https://shop.nikkeibp.co.jp/front/commodity/0000/P82710/" target="_blank">デスマーチ</a>」と呼ばれ、20年近くIT企業でアプリ開発をみてきましたが、昔も今もこのような破綻したプロジェクトは大量に発生しています。<br><img style="width: 181.50px" src="img/b36be4d11a46efcf.png"></li>
-<li>この原因としては、システムデザインについての手法（<a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88" target="_blank">ドメイン駆動設計</a>や<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3" target="_blank">システムアーキテクチャ</a>など）やその説明が高尚で難しいという問題があります。そのため、本来必要なシステムデザインがスルーされ、スケジュールのプレッシャーもあり、とりあえず簡易な画面設計に走ることにつながるのではと感じています。<br><img style="width: 183.50px" src="img/c00d8af9d2509c55.png"><br></li>
+<li>アプリ開発の要件定義や設計フェーズにおいて画面設計に走りがちで、データ構造やロジックの設計がおろそかになり、プログラマーがまともに開発をはじめらずプロジェクトが遅延するといった状況に陥りがちです。このような状況は「<a href="https://shop.nikkeibp.co.jp/front/commodity/0000/P82710/" target="_blank">デスマーチ</a>」と呼ばれ、20年近くIT企業でアプリ開発をみてきましたが、昔も今もこのような破綻したプロジェクトは大量に発生しています。<br><img style="width: 181.50px" src="img/86ab61652efc6246.png"></li>
+<li>この原因としては、システムデザインについての手法（<a href="https://ja.wikipedia.org/wiki/%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E9%A7%86%E5%8B%95%E8%A8%AD%E8%A8%88" target="_blank">ドメイン駆動設計</a>や<a href="https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%82%A2%E3%83%BC%E3%82%AD%E3%83%86%E3%82%AF%E3%83%81%E3%83%A3" target="_blank">システムアーキテクチャ</a>など）やその説明が高尚で難しいという問題があります。そのため、本来必要なシステムデザインがスルーされ、スケジュールのプレッシャーもあり、とりあえず簡易な画面設計に走ることにつながるのではと感じています。<br><img style="width: 183.50px" src="img/fd577b997dbe38e4.png"><br></li>
 <li>昨今の<a href="https://nijibox.jp/blog/humancentereddesign/" target="_blank">人間中心設計</a>の誤った解釈から、システムの顧客接点である画面のデザインがフォーカスされ、発注側の要件定義担当者やデザイナーを含めたプロジェクトメンバーが、本来画面設計の元になるはずの<a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%83%BC%E3%82%BF%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0" target="_blank">データモデリング</a>について理解が乏しいことに原因があるのではとも感じています。例えば、人間中心設計のプロセスで作成するカスタマージャーニーマップはユーザ視点の顧客体験を理解し、開発するシステムが単なる静的なインタフェースではなく動的なサービスであることを表現するにはよいのですが、アーキテクト不在の場合、顧客接点の整理をしたらすぐに画面設計にとりかかろうという雰囲気になりがちなので、意識して気をつける必要があります。</li>
 <li>例えば、過去相談を受けたシステム開発プロジェクトに、業務で扱う情報が整理できておらず各業務ステップで担当者が手動で作業をしているため、残業が減らないのでシステム化して改善したい、というものがありました。ここでもアーキテクト不在で要件定義が進められ、プロジェクトマネージャやデザイナが画面設計に走り、案の定プロジェクトの半年後はじめからやりなおしになりました。システム化とは業務と情報の整理整頓であり、仕事が複雑になり残業が発生するのもその整理整頓ができていないのがそもそもの原因です。そのため、まずはデータモデリングが必要であることを強く意識しておく必要があるでしょう。</li>
 <li>エンジニア育成という観点からは、従来のプログラミングの学習コンテンツはプログラミング言語の文法を学ぶことが目標となっており、出来上がったプログラムが端末に&#34;Hello World&#34;と表示するといった面白みにかけ作りたいものからかけ離れた学習内容になっていることが多いです。そのため学習自体に面白味がなく、初心者の時点からやる気をなくしてしまいます。</li>
-<li>最近の子供向けプログラミング授業用ソフトは使いやすく、見た目がよく、マウス操作でプログラミングの論理的思考が学べるといったすぐれた面がある一方、汎用的なアプリケーションを開発するため使えないといった欠点もあります。学習指導要領上、小学校からプログラミング教育が必須化する理由は「プログラミング的思考をやしなうため」「順序立てて考え、試行錯誤し、ものごとを解決する力を身につけるため」であることはわかるのですが、教科書で決められた作り込まれたソフトを使っているので汎用性がなく学習した後のその先がないため少し残念です。<br><img style="width: 194.50px" src="img/634c2a645f768f8.png"><br></li>
+<li>最近の子供向けプログラミング授業用ソフトは使いやすく、見た目がよく、マウス操作でプログラミングの論理的思考が学べるといったすぐれた面がある一方、汎用的なアプリケーションを開発するため使えないといった欠点もあります。学習指導要領上、小学校からプログラミング教育が必須化する理由は「プログラミング的思考をやしなうため」「順序立てて考え、試行錯誤し、ものごとを解決する力を身につけるため」であることはわかるのですが、教科書で決められた作り込まれたソフトを使っているので汎用性がなく学習した後のその先がないため少し残念です。<br><img style="width: 194.50px" src="img/95fcc68edad49f3c.png"><br></li>
 </ul>
 <p>以上のことから、エンジニアだけでなく発注側顧客企業の担当者やプロジェクトマネージャもユースケースからデータモデルに落とす考え方やデータモデルから画面設計を行うための考え方、さらにはこれらのパターンを知っていることが望まれます。</p>
 <p>そこで本書の前半部分ではデータモデリングの具体的な方法と考え方についても詳しく説明するよう心がけました。またエンジニア育成という観点では、アイデアが浮かんだらすぐに完成品までもっていけるよう効率的で汎用的なツールを選び、それらのハンズオンを掲載しています。</p>
@@ -238,11 +238,11 @@
 <aside class="warning"><p><strong>ノート: </strong>JSONエディタを使うと直感的にJSON形式のデータを作成、編集することができます。操作方法は下記の通りです。</p>
 <p>1. 表示形式を下記の通り変更できます。</p>
 <p>「Code」を選ぶとJSONの生データの形式で表示されます。</p>
-<p class="image-container"><img style="width: 396.50px" src="img/889d519c5f591478.png"></p>
+<p class="image-container"><img style="width: 396.50px" src="img/4fe969879154079a.png"></p>
 <p>「Tree」を選ぶとJSONデータを解釈したツリーが表示されます。</p>
-<p class="image-container"><img style="width: 397.50px" src="img/b329e5204edbb65f.png"></p>
-<p>「Tree」表示でヘッダ部分の左から1つめのアイコン<img style="width: 20.00px" src="img/b9c283c10a282add.png">を選ぶと閉じていたツリー全体を開けます。その右のアイコンでツリー全体を閉じます。</p>
-<p class="image-container"><img style="width: 402.29px" src="img/4a990977802676bd.png"></p>
+<p class="image-container"><img style="width: 397.50px" src="img/c14069846f96ab36.png"></p>
+<p>「Tree」表示でヘッダ部分の左から1つめのアイコン<img style="width: 20.00px" src="img/b20bca20c068dead.png">を選ぶと閉じていたツリー全体を開けます。その右のアイコンでツリー全体を閉じます。</p>
+<p class="image-container"><img style="width: 402.29px" src="img/3e0d034d1922d897.png"></p>
 <p>2. 編集する際は「Code」表示にして行います。JSON形式にエラーがあるとエディタの左部分に「✖️」が表示されるので指示に従って修正します。</p>
 </aside>
 <h3 is-upgraded><strong>①</strong><strong>レストラン・ドキュメントの作成</strong></h3>
@@ -269,41 +269,41 @@
         <p>データモデルができあがったので次のステップとして画面設計を行います。</p>
 <h2 is-upgraded>1. 画面設計の基本的な考え方</h2>
 <p>画面設計では、「画面」と「画面遷移」をデザインします。</p>
-<p class="image-container"><img style="width: 422.00px" src="img/eb6196052fed342d.png"></p>
+<p class="image-container"><img style="width: 422.00px" src="img/18f1af0a3ae4e6e6.png"></p>
 <p>「画面」はユーザが一時点で対面する一画面のことで、テキストフィールドやボタンなどのコンポーネントを組み合わせて作成されます。一方、「画面遷移」は複数の「画面」が違いに移動していく振る舞いのことを表します。「画面」はユースケースごとに様々な種類が考えられ、単純なパターン化は難しいです。一方、「画面遷移」は以下の４パターンにまとめることが可能です。</p>
 <h3 is-upgraded><strong>① メニュー遷移</strong></h3>
 <p>アプリケーションは複数の機能から成り立つので、ホーム画面にメニューやナビゲーションバーを用意して、そこからユーザがメニューを選択することで機能を切り替えます。下図は時計アプリを例に挙げて「時計」表示と「アラーム」設定、時計「設定」の3機能をボトムナビゲーションバーを使って切り替える画面遷移を表しています。</p>
-<p class="image-container"><img style="width: 533.00px" src="img/d5476a8c62ab283.png"></p>
+<p class="image-container"><img style="width: 533.00px" src="img/5166f2aba71eaaa2.png"></p>
 <p>このパターンの画面遷移では機能が切り替わるため、機能間でデータの引き継ぎが必要なケースは少なく、機能内でのデータ保存のみを考えればよいでしょう。</p>
 <h3 is-upgraded><strong>② ウィザード遷移</strong></h3>
 <p>スマートフォンは画面が小さいため、多くの入力を必要とするアンケートや申請書は下図のとおり画面を複数にわけてウィザード形式で入力を促し、最後に確認してSubmitするといった画面遷移になります。</p>
-<p class="image-container"><img style="width: 421.00px" src="img/6f62b102d1eaad18.png"></p>
+<p class="image-container"><img style="width: 421.00px" src="img/2d427358c8aa16e5.png"></p>
 <p>このパターンは途中で枝分かれすることなく一本線でゴールに向かう場合に利用し、分岐が発生する複雑な場合は次の「③状態遷移」パターンを考えるとよいでしょう。</p>
 <h3 is-upgraded><strong>③ 状態遷移</strong></h3>
 <p>状態によって表示する画面が変化する画面遷移のパターンです。下図はログイン・ログアウトの画面遷移の例で、ログインとログアウトのどちらかをあらわす状態変数の値に従って、表示される画面を切り替えるしくみになっています。</p>
-<p class="image-container"><img style="width: 333.00px" src="img/816de381550c54c5.png"></p>
+<p class="image-container"><img style="width: 333.00px" src="img/c2baff62461fcf8d.png"></p>
 <p>スマホアプリの開発では、この状態の保持という概念がとても重要です。ユーザがアプリを通して何かデータの入力や変更を行うときのデータだけでなく、ログインしているかログアウトしたか、どの画面に遷移したかなど、画面を動かすために必要な「状態」というデータもあります。この状態遷移としてよく現れる画面遷移のパターンは次の「④リストのCRUD」です。</p>
 <h3 is-upgraded><strong>④ リストと詳細のCRUD </strong></h3>
 <p>ビジネスアプリケーションの多くは、複数データを表示・追加・編集・削除しながら整理整頓するものです。そのため、データの概要をリスト表示して、そのうち一つをクリックすると詳細を表示し、編集・削除する、といった機能を持ちます。このタイプのアプリケーションの画面遷移は大概下記のようなフローになります。各画面の説明カッコ内の「Create」「Read」「Update」「Delete」はあわせてCRUD（クラッド）と呼び、データ操作の基本になります。ここでは複数データを扱っていますので、「Read」には複数データのリスト表示と一つのデータの詳細表示の二種類があるので、画面が二つ存在します。</p>
-<p class="image-container"><img style="width: 507.00px" src="img/d38dd34cf41d7b63.png"></p>
+<p class="image-container"><img style="width: 507.00px" src="img/6774685496214fc5.png"></p>
 <p>上図の時計アプリの例では、リスト表示をする対象がアラーム設定した時刻といったシンプルなデータですが、本書で開発する「レストランレビューアプリ」のようにレストランデータが複数あり、さらにそのレストランのレビューデータが複数あるといった構造を持つ場合、レストランの詳細画面の下にレビューリストを表示するといった構造を持ちます。このように、複数データを整理整頓する形式のアプリ画面はリスト画面を中心にCRUDを担う機能に画面が分かれることをパターンとして覚えておくとよいでしょう。</p>
 <h2 is-upgraded>2. 「レストランレビューアプリ」の画面設計</h2>
 <p>本書で開発する「レストランレビューアプリ」の画面設計を「①ログイン、メニュー選択、ログアウト」と「②レストランリストとレビュー表示」、「③全レビューリストとレビュー表示」、「④アカウント表示と自分が投稿したレビューの管理」の4種類にわけて説明します。</p>
 <p>①ログイン、メニュー選択、ログアウト</p>
 <p>ログイン・ログアウトとメニュー表示する画面とそれらの画面遷移を下図に示します。ここでは「アカウント画面」からのみログアウトできるよう設計していますが、どこからでもログアウトできるように設計してもよいでしょう。またログイン画面はユーザ登録画面と同一画面上で切り替えられるように設計しています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/1b5b2cc5b4e3137b.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/5319a6f6ec4495f2.png"></p>
 <p>本設計は「1. 画面設計の基本的な考え方」で述べた「③状態遷移」のログイン・ログアウトと「①メニュー遷移」のパターンを利用しています。</p>
 <p>②レストランリストとレストラン詳細、レビュー表示とレビュー追加</p>
 <p>レストランをリスト表示し、そこから一つを選択するとレストラン詳細が表示されるとともに選択したレストランに関するレビューがリストされます。さらに、そこからレビューを一つ選択するとレビューの詳細が表示されます。また、レストラン詳細画面からはレビューを追加することができますが、リストされるレビューは自分以外のものも含まれるので、編集や削除はできないよう設計しています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/93c54662485e1e09.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/b4cba8f773fb1017.png"></p>
 <p>本設計は「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しています。</p>
 <p>③全レビューリストとレビュー表示</p>
 <p>レビュー画面では、全レストランを対象に全ユーザのレビューの一覧をリストします。また、星数で検索することが可能です。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/7bc2218ac1e60de8.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/911cf48068a97b5f.png"></p>
 <p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用していますが、ここではレビューの一覧が目的で、参照（Read）のみで追加（Create）、更新（Update）、削除（Delete）の機能は有していません。</p>
 <p>④アカウント表示と自分が投稿したレビューの管理</p>
 <p>アカウント画面では、自分の名前を直接編集できるように設計しました。また自分が投稿したレビューをリストし、編集と削除が可能です。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/e3610de2eb2b1056.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/2e1f88e3a592da54.png"></p>
 <p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しており、自分が投稿したレビューを対象に更新（Update）と削除（Delete）ができるよう設計しています。</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
@@ -429,7 +429,7 @@
 <p>スマホは画面が小さくさらにマウスやキーボードがないため操作手段が限定されるため、画面レイアウトや操作方法をどのようにデザインするかでユーザ満足度が大きく変化します。</p>
 <p><strong>画面サイズがばらばら</strong></p>
 <p>AndroidとiPhoneという違いだけでなく、同種のスマホでも画面サイズが様々で、アプリのレイアウト幅や高さを固定すると画面表示が崩れて使い物にならなくなります。例えば、歴代のiPhoneを比べても下図のとおり様々な画面サイズが存在しますし、Androidは各デバイス開発会社が様々なものを出しているのでiPhone以上に画面サイズはバラバラです。</p>
-<p class="image-container"><img style="width: 531.80px" src="img/886625a7f19811a7.png"></p>
+<p class="image-container"><img style="width: 531.80px" src="img/7775aa3910ab82ed.png"></p>
 <h2 is-upgraded>2. スマホアプリで発生しやすい問題</h2>
 <p>Google PlayやApp Storeに登録された実際のアプリの評判からまとめたスマホアプリに対するよくある悪評は主に以下の4つに集約されます。</p>
 <ol type="1" start="1">
@@ -445,9 +445,9 @@
 <p>そのため、20世紀初頭に<a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%80%E3%83%8B%E3%82%BA%E3%83%A0" target="_blank">モダニズム</a>が建築や工業製品のデザインに取り入れられたように、パソコンやWebやスマホのデザインにも極力装飾を廃した<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%83%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3" target="_blank">フラットデザイン</a>が採用されることになりました。このフラットデザインを採用しているのがAppleです。AppleはiPhone 7のデザインにフラットデザインを取り入れ、<a href="https://developer.apple.com/design/human-interface-guidelines/ios" target="_blank">ヒューマン・インタフェース・ガイドライン</a>もそれにのっとったガイドラインを発表しています。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>iPhone6のスキューモーフィズム</p>
-<p class="image-container"><img style="width: 259.50px" src="img/13bf84e545185e44.png"></p>
+<p class="image-container"><img style="width: 259.50px" src="img/b92ed31bf6c84e58.png"></p>
 </td><td colspan="1" rowspan="1"><p>iPhone7のフラットデザイン</p>
-<p class="image-container"><img style="width: 251.75px" src="img/bd026add4995ef9e.png"></p>
+<p class="image-container"><img style="width: 251.75px" src="img/7c137b9e7fc11196.png"></p>
 </td></tr>
 </table>
 <p>しかし、フラットデザインはシンプルすぎて、システムの構造やしくみが理解しづらいといったデメリットが挙げられます。そこで、Googleはフラットデザインとスキューモフィズムの中間をとり、さらに発展させた「<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>」を定義し、2014年にだれもが参照して利用できるオープンソースな形でデザインガイドラインを発表しました。</p>
@@ -507,67 +507,67 @@
 <p>※「レストランレビューアプリ」で利用している部品には「◯」印をつけています。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/app-bars-top" target="_blank">アップバー</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/9f8c7a7e86f0e2ba.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/29e75c6608daddc0.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/bottom-navigation" target="_blank">ボトムナビゲーション</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/81fe954aa822d209.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/82f4bc86c88bdd72.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/buttons" target="_blank">ボタン</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/60bd27a78a2f4f83.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/b44e6581619dd0a.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/floating-action-buttons" target="_blank">ﾌﾛｰﾃｨﾝｸﾞｱｸｼｮﾝﾎﾞﾀﾝ</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/79662543c7dc120.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/aefbb067c714dd9f.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/cards" target="_blank">カード</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/33ffbff0fc0b1d40.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/561abd7781313ffb.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Chip-class.html" target="_blank">チップ</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/2e2dbbb7b1dbcb68.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/191958847e464fde.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/data-tables" target="_blank">データテーブル</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/99dfada4e9abfe21.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/d60278843d8b55a4.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/showDatePicker.html" target="_blank">デートピッカー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/67678ecdac488dc6.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/2571c0f6182ba7d1.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Dialog-class.html" target="_blank">ダイアログ</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/9662a1231d940d78.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/ec60a4c7af819311.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Divider-class.html" target="_blank">デバイダー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/c550524ab09dbc1.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/3d5e861e9cbefc16.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/lists" target="_blank">リスト</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/2ef873b21a35bb74.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/3247e6de9bcae1ed.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/PopupMenuButton-class.html" target="_blank">メニュー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/cd811abecd73e932.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/913f0d2944ee0677.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Drawer-class.html" target="_blank">ナビゲーションドローア</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/a2d750da533c49a3.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/fed62e249f2f7f57.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html" target="_blank">プログレスインジケータ</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/7d4589c2fb0ba017.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/902b6509332e3e8e.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/checkboxes" target="_blank">チェックボックス</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/9029b190e700eeda.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/33e7b359b12daf64.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/radio-buttons" target="_blank">ラジオボタン</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/fe7958d42940ca60.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/f83c308295fb5f0f.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Switch-class.html" target="_blank">スイッチ</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/5719dca14fb3795f.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/40799bd48f133d72.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/BottomSheet-class.html" target="_blank">ボトムシーツ</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/4315c2c7b9a6b5a.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/f903b87d55867cfa.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Slider-class.html" target="_blank">スライダー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/bec8763b12438b5.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/7a6f25f54d8f91b3.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/snackbars" target="_blank">スナックバー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/7e43ef72f745cc9a.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/20c36cae6f8c47d2.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/tabs" target="_blank">タブ</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/f15069b833333a5a.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/ffcc7181838bd2f2.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/develop/flutter/components/text-fields/" target="_blank">テキストフィールド</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/63339ba6218f3565.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/4177496247184d72.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/Tooltip-class.html" target="_blank">ツールチップ</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/1241e00c4dc72b3.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/923cbd00e039bd69.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://api.flutter.dev/flutter/material/showTimePicker.html" target="_blank">タイムピッカー</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/d614d4cc32dbb848.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/8ad115e252d03533.png"></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p><a href="https://material.io/design/layout/responsive-layout-grid.html" target="_blank">グリッド</a> ◯</p>
-<p class="image-container"><img style="width: 186.00px" src="img/e4be10f1987bce04.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/185c75b0f7b83f05.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/resources/icons/" target="_blank">アイコン</a> ◯</p>
-<p class="image-container"><img style="width: 166.50px" src="img/73a16a857531f948.png"></p>
+<p class="image-container"><img style="width: 166.50px" src="img/892b7672fd38c0e1.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://material.io/design/communication/imagery.html#informational-imagery" target="_blank">アバター</a> ◯</p>
-<p class="image-container"><img style="width: 168.61px" src="img/dd4063c772531861.png"></p>
+<p class="image-container"><img style="width: 168.61px" src="img/524b77f23fed32e4.png"></p>
 </td></tr>
 </table>
 <aside class="warning"><p><strong>ノート: </strong></p>
@@ -579,9 +579,9 @@
 <p>マテリアルデザインではありませんが、「レストランレビューアプリ」で使っている部品を紹介します。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p><a href="https://pub.dev/packages/smooth_star_rating" target="_blank">スターレーティング</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/5b9d9ab8f03941e1.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/d714c98ccc2f447e.png"></p>
 </td><td colspan="1" rowspan="1"><p><a href="https://www.youtube.com/watch?v=Be9UH1kXFDw" target="_blank">ヒーローアニメーション</a></p>
-<p class="image-container"><img style="width: 186.00px" src="img/bb2742d416ecb5ec.png"></p>
+<p class="image-container"><img style="width: 186.00px" src="img/4b067e4d90e4c567.png"></p>
 </td></tr>
 </table>
 <h3 is-upgraded><strong>③カラーテーマ</strong></h3>
@@ -609,7 +609,7 @@
 <h2 is-upgraded>1. Flutterの選択根拠</h2>
 <p>最近のスマホアプリ開発では「あらゆるデバイス向けにネイティブアプリを開発しメンテナンスをする」か「特定のクロスプラットフォームフレームワークを選択して一つのコードをメンテナンスする」かを選択する必要があると言われています。</p>
 <p>「あらゆるデバイス向けにネイティブアプリを開発しメンテナンスをする」を選択しているのは現在スマホアプリをリリースする企業の80%に上り、ネイティブアプリ開発により得られる操作性のよさと引き換えにiPhoneとAndroid用に2つのソースコードで開発し、両プラットフォーム用に卓越したプログラマーを雇い、コストをかけて運用しています。一方「特定のクロスプラットフォームフレームワークを選択して一つのコードをメンテナンスする」を選択する場合、開発されるアプリケーションはネイティブアプリより操作性や機能は劣るが、両方をネイティブ開発するより半分程度のコストですむことになります。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/881ab2dcbc8d7e13.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/6fbfa02ec4c9cddb.png"></p>
 <p>参考）<a href="https://medium.com/@stefan.klerkx/why-choose-flutter-for-your-company-6b2e67a4a7d9" target="_blank">Why choose Flutter for your company?</a></p>
 <p>しかし、Flutterは第三の選択肢として機能します。FlutterはDart言語でプログラミングすると完全にネイティブなiOS用コードとAndroid用コードを生成してくれます。さらにはこれをリアルタイムで行うため、開発したスマホアプリを動かしながらDart言語によるソースコードを修正し、画面を修正することができます（この機能をホットリロードといいます）。このようにFlutterを使うことで、ワンコードで同じUIのiPhoneとAndroid両方のネイティブアプリを開発することが可能になります。</p>
 <p>またFlutterを選択することで得られるビジネス上のメリットを以下に示します。</p>
@@ -980,7 +980,7 @@
 <br><iframe width="400" height="600" src="https://restoreview-f8e28.web.app" frameborder="1"></iframe>
 <aside class="warning"><p><strong>ノート: </strong>上記WebアプリのURLは <a href="https://restoreview-f8e28.web.app/" target="_blank">https://restoreview-f8e28.web.app/</a> です。</p>
 <p>スマホのブラウザから開きたい場合は、下記QRコードを読み込んで開いてください。</p>
-<p class="image-container"><img style="width: 123.00px" src="img/e30094ac90b164c3.png"></p>
+<p class="image-container"><img style="width: 123.00px" src="img/602f1aa52cc328b0.png"></p>
 </aside>
 <h2 is-upgraded>2. 開発環境の準備</h2>
 <p>本書のハンズオンではGithubからソースコードをダウンロードしてきて、Firebaseとの接続設定を行うことでこのアプリケーションをローカル環境で動かすことができるようにします。その後、ソースコードを眺めながら、実装方法について説明をしていきます。</p>
@@ -1097,7 +1097,7 @@ Your application code is in RestoReview/lib/main.dart.</pre>
 <pre>$ cd RestoReview
 $ flutter run -d chrome</pre>
 <p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
-<p class="image-container"><img style="width: 325.22px" src="img/191dee9c0dacdadc.png"></p>
+<p class="image-container"><img style="width: 325.22px" src="img/8280e9258be7333a.png"></p>
 <p>本Flutterプロジェクトは、インストール確認テスト用に作成したものなのでまるまる削除してください。</p>
 <center>Copyright 2020 RISA Co., LTD.</center>
 
@@ -1108,12 +1108,12 @@ $ flutter run -d chrome</pre>
         <p>Flutter開発の初期設定が完了したのでインフラ部分を担うFirebaseの設定を行います。また途中でGithubリポジトリから「RestoReview」プロジェクトをダウンロードして、Firebaseから利用できるよう設定を行います。</p>
 <h2 is-upgraded>1. Firebaseプロジェクトの作成</h2>
 <p><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインして「プロジェクトを追加」をクリックし、名前を「RestoReview」と命名し、「続行」ボタンをクリック、Google Analyticsの設定後、「プロジェクトを作成」ボタンをクリックしてFirebaseプロジェクトを作成します。</p>
-<p class="image-container"><img style="width: 213.20px" src="img/7ec06f011a4782ef.png"></p>
+<p class="image-container"><img style="width: 213.20px" src="img/710ec3bb608d0ae6.png"></p>
 <h2 is-upgraded>2. メール/パスワード認証の有効化</h2>
 <p>Firebaseには様々な認証をサポートする機能としてFirebase Authenticationがあります。画面左メニューから「Authentication」を選択し、「Sign-in method」タブを選択します。</p>
 <p class="image-container"><img style="width: 402.80px" src="img/c23c9a8dc6acdcc7.png"></p>
 <p>「メール/パスワード」を有効化するため、「Authentication」画面のログインプロバイダのリストの最上部「メール/パスワード」行右端の鉛筆アイコンを選択し表示される下記ダイアログで「有効にする」を選択し、保存ボタンをクリックします。</p>
-<p class="image-container"><img style="width: 315.60px" src="img/23569565b84e855f.png"></p>
+<p class="image-container"><img style="width: 315.60px" src="img/c4c94cbdbc49bfe3.png"></p>
 <p>さらに「Authentication」画面の「Users」タブを選んで、「ユーザ追加」から下記の3つのメールアドレスを追加しておいてください。パスワードは任意です。これらのユーザは「RestoReview」アプリから利用します。</p>
 <ul>
 <li>ichiro@test.com</li>
@@ -1125,21 +1125,21 @@ $ flutter run -d chrome</pre>
 <ol type="1" start="1">
 <li>Firebase consoleの画面左メニューから「Database」を選択し、「データベースの作成」ボタンをクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 304.40px" src="img/488a58b182df0f17.png"></p>
+<p class="image-container"><img style="width: 304.40px" src="img/6780a65a5a82dba9.png"></p>
 <ol type="1" start="2">
 <li>「テストモードで開始」を選択し「次へ」ボタンをクリックします（本番では必ずセキュリティルールを有効にしてください）。</li>
 </ol>
-<p class="image-container"><img style="width: 306.00px" src="img/ccbb24d72e3ab3.png"></p>
+<p class="image-container"><img style="width: 306.00px" src="img/7dac1ff6bf2dad75.png"></p>
 <ol type="1" start="3">
 <li>「Cloud Firestoreのロケーション」で東京を表す「asia-northeast2」を選択して「完了」ボタンをクリックします。ロケーションは好みの場所を選択してもかまいません。</li>
 </ol>
-<p class="image-container"><img style="width: 379.00px" src="img/cca014cd5b96b98e.png"></p>
+<p class="image-container"><img style="width: 379.00px" src="img/1d34fdba6eb50cdc.png"></p>
 <p>以上によりRestoReviewプロジェクトでCloud Firestoreが使えるようになります。</p>
 <ol type="1" start="4">
 <li>レビューはレストランのサブコレクションですが、レビュー単独で横断的に検索できるようにするために、レビューの3フィールド「id（レビューのID）」、「uid（レビュー者のユーザID）」、「star（星数）」に昇順・降順インデックスをセットして、「reviews」をコレクショングループに追加します。コレクショングループの設定は、Cloud Firestore画面でインデックス・タブを選択し、さらに単一フィールド・タブを選択し、「除外を追加」ボタンをクリックして3フィールドを順番に設定していきます。下図のとおり「コレクションID」に「reviews」、フィールドのパスに3フィールドを順番にセットし、「コレクショングループ」にチェックを入れて「Next」ボタンをクリックし、次ダイアログでインデックスに昇順と降順にチェックを入れて「保存」ボタンをクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 373.50px" src="img/ab441d29e9c42589.png"></p>
-<p class="image-container"><img style="width: 374.50px" src="img/4f7b3a1cd89d0821.png"></p>
+<p class="image-container"><img style="width: 373.50px" src="img/527eb0f3679cad87.png"></p>
+<p class="image-container"><img style="width: 374.50px" src="img/e3ef4cb9016039f3.png"></p>
 <h2 is-upgraded>4. 「RestoReview」のダウンロード</h2>
 <p>下記コマンドを実行して、GithubからFlutterプロジェクト「RestoReview」をダウンロードします。</p>
 <pre>$ git clone https://github.com/david3080/RestoReview.git
@@ -1165,11 +1165,11 @@ i  Firebase optionally collects CLI usage and error reporting information to hel
 
 ? Allow Firebase to collect CLI usage and error reporting information? Yes</pre>
 <p>ChromeブラウザがオープンしてFirebaseにログインするアカウントの選択を促してくるので、該当アカウントを選択してログインします。</p>
-<p class="image-container"><img style="width: 259.58px" src="img/24d656c6bd5e4183.png"></p>
+<p class="image-container"><img style="width: 259.58px" src="img/614f19500a75e029.png"></p>
 <p>ログインが成功するとFirebase CLIに許可を求められるので「許可」ボタンをクリックして許可すると...</p>
-<p class="image-container"><img style="width: 255.60px" src="img/b77a50c9667d67ec.png"></p>
+<p class="image-container"><img style="width: 255.60px" src="img/9b1f25f813527597.png"></p>
 <p>ログインが成功します。</p>
-<p class="image-container"><img style="width: 277.89px" src="img/6d39015ea11d142f.png"></p>
+<p class="image-container"><img style="width: 277.89px" src="img/b8a43be8f68316e2.png"></p>
 <ol type="1" start="4">
 <li>「firebase projects:list」を実行し、ログインしたユーザが所有するFirebaseプロジェクトをリストします。</li>
 </ol>
@@ -1271,27 +1271,27 @@ i  Writing project information to .firebaserc...
 <li><a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a>にログインし「RestoReview」プロジェクトを選択します。</li>
 <li>アイコン「&lt;/&gt;」をクリックしてWebアプリを追加します。</li>
 </ol>
-<p class="image-container"><img style="width: 291.50px" src="img/933d2735cf3074a5.png"></p>
+<p class="image-container"><img style="width: 291.50px" src="img/26db326f87f4a27d.png"></p>
 <ol type="1" start="3">
 <li>アプリのニックネームを「RestoReview」にして「このアプリのFirebase Hostingを設定します」にチェックを入れて「アプリを登録」をクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 291.50px" src="img/7e66fe3f4fb0728b.png"></p>
+<p class="image-container"><img style="width: 291.50px" src="img/92f3090afb4b202a.png"></p>
 <ol type="1" start="4">
 <li>次のページは、APIキーなどを含む設定ファイルの読み込み設定ですが、後ほど行いますので「次へ」ボタンをクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 396.50px" src="img/ecaced4ba2104077.png"></p>
+<p class="image-container"><img style="width: 396.50px" src="img/b130415504ed4f67.png"></p>
 <ol type="1" start="5">
 <li>次ページの「Firebase CLIのインストール」はすでに完了しているので「次へ」ボタンをクリックします。</li>
 </ol>
-<p class="image-container"><img style="width: 399.91px" src="img/a395d49aadd9e73.png"></p>
+<p class="image-container"><img style="width: 399.91px" src="img/735e5d4f841c4291.png"></p>
 <ol type="1" start="6">
 <li>次のページの「Firebase Hostingへのデプロイ」ではFirebaseへのログインとローカルプロジェクトとFirebaseプロジェクトとの紐付け、Firebase Hostingへのデプロイのコマンドが紹介されていますが、ログインと紐付けはすでに行っており、Hostingへのデプロイは後ほど行うので「コンソールに進む」ボタンをクリックして、FirebaseプロジェクトでのWebアプリの追加を終了します。</li>
 </ol>
-<p class="image-container"><img style="width: 390.73px" src="img/52506531a99326e5.png"></p>
+<p class="image-container"><img style="width: 390.73px" src="img/61b82541b26cb770.png"></p>
 <ol type="1" start="7">
 <li>コンソールに戻るので、左メニューの「設定」から「プロジェクトの設定」を選択し、「全般」タブの「マイアプリ」＞「ウェブアプリ」を選択し、「Firebase SDK snippet」の「構成」ラジオボタンを選択します。</li>
 </ol>
-<p class="image-container"><img style="width: 438.08px" src="img/b5829b9d15edbbbe.png"></p>
+<p class="image-container"><img style="width: 438.08px" src="img/4bf86b3c848ecd5c.png"></p>
 <p>画面灰色部分を先ほどダウンロードした「RestoReview」フォルダ配下の「web/index.html」ファイル内の下記箇所に上書き保存します。</p>
 <pre>// ここを上書きする
 const firebaseConfig = {
@@ -1343,7 +1343,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
         <p>ここでは</p>
 <h2 is-upgraded>1.「ログイン、メニュー選択、ログアウト」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「①ログイン、メニュー選択、ログアウト」の各画面は図のようなクラスで実装されています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/6ba691a0e16d3398.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/ae5e7d41992c4947.png"></p>
 <p>1. ログイン画面（LoginPage）の実装</p>
 <p>（TODO）</p>
 <p>2. LandigPageの実装</p>
@@ -1353,7 +1353,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p>（TODO） </p>
 <h2 is-upgraded>2.「レストランリストと詳細、レビュー表示と追加」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「②レストランリストとレストラン詳細、レビュー表示とレビュー追加」の各画面は図のようなクラスで実装されています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/af07406616e31f12.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/5772df775b4212c0.png"></p>
 <p>1. レストラン画面（RestoPage）の実装</p>
 <p>(TODO)</p>
 <p>2. レストラン詳細画面（RestoDetail）の実装</p>
@@ -1364,14 +1364,14 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p>(TODO)</p>
 <h2 is-upgraded>3.「全レビューリストとレビュー表示」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「③全レビューリストとレビュー表示」の各画面は図のようなクラスで実装されています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/d7a97b147e8e5e87.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/3dfb5989615f697c.png"></p>
 <p>1. レビュー画面（ReviewPage）の実装</p>
 <p>（TODO） </p>
 <p>2. レビュー詳細（ユーザ画面付）画面（UserReviewDetail）の実装</p>
 <p>（TODO） </p>
 <h2 is-upgraded>4.「アカウント表示とレビューの管理」の実装</h2>
 <p>「レストランレビューアプリ」の画面設計で説明した「④アカウント表示と自分が投稿したレビューの管理」の各画面は図のようなクラスで実装されています。</p>
-<p class="image-container"><img style="width: 601.70px" src="img/8b9610af61d9781f.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img/9c24379534fc5123.png"></p>
 <p>1. アカウント画面（AccountPage）の実装</p>
 <p>（TODO） </p>
 <p>2. レビュー詳細（ReviewDetail）の実装</p>
@@ -1458,10 +1458,10 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
     
   </google-codelab>
 
-  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
-  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
-  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
-  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
   <script src="//support.google.com/inapp/api.js"></script>
 
 </body>
