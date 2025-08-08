@@ -30,7 +30,7 @@
       <google-codelab-step label="はじめに" duration="0">
         <p>本書は、データモデル設計、NoSQLデータベース、Firestoreについて学び、FirebaseとFlutterを使用したレストランレビューアプリの開発を通して、スマホアプリ開発の一連の流れをハンズオンで習得することを目的としています。</p>
 <p>近年のデジタル化の加速により、安価で使いやすいオンラインサービスへの需要が高まっています。また、昨今では生成AIの進化が目覚ましく、プログラミングにおいても、AIと対話しながら素早くプロトタイプを開発する「バイブコーディング」や、要件を詳細化することでAIが設計からコーディングまでを自動生成する「仕様ドリブンコーディング」といった新たな開発手法が注目されています。これらの手法は開発効率を飛躍的に向上させる可能性を秘めていますが、一方で課題も存在します。</p>
-<p>例えば、単純な機能であればバイブコーディングは強力なツールとなりますが、アプリの仕様が少しでも複雑になると、データ構造や画面遷移の整合性が失われ、手戻りが発生するケースが少なくありません。また、仕様ドリブンコーディングにおいても、人間の直感とは異なるデータモデリングや画面設計のギャップに直面し、AIへの的確な指示出しに悩むことがあります。これは、システムデザイン手法の難しさや、人間中心設計の誤解からデータモデリングの理解が不足していることが原因だと著者は分析しています。さらに、従来のプログラミング教育が汎用的なアプリケーション開発に繋がりにくいという課題も指摘されています。</p>
+<p>例えば、単純な機能であればバイブコーディングは強力なツールとなりますが、アプリの仕様が少しでも複雑になると、データ構造や画面遷移の整合性が失われ、手戻りが発生するケースが少なくありません。また、仕様ドリブンコーディングにおいても、人間の直感とは異なるデータモデリングや画面設計のギャップに直面し、AIへの的確な指示出しに悩むことがあります。これらの課題の根底には、システムデザイン手法の難しさや、人間中心設計の誤解からデータモデリングの理解が不足しているという共通の問題があります。さらに、従来のプログラミング教育が汎用的なアプリケーション開発に繋がりにくいという課題も指摘されています。</p>
 <p>そこで本書では、生成AIを最大限に活用し、かつ手戻りを最小限に抑えながら高品質なアプリを開発するために不可欠な、データモデル設計と画面設計の基礎を徹底的に解説します。エンジニアだけでなく顧客企業の担当者やプロジェクトマネージャも、ユースケースからデータモデルに落とし込む考え方、データモデルから画面設計を行う考え方、そしてこれらのパターンを理解することが重要だと強調しています。前半部分ではデータモデリングの具体的な方法と思考法を詳しく解説し、後半では効率的で汎用的なツール（FlutterとFirebase）のハンズオンを提供しています。</p>
 <p>本書を通して、ものづくりに興味を持ち、自身でシステムを構築するマインドを育むことで、IT技術の活用が民主化され、より価値のあるオンラインサービスが世に増えることを著者は願っています。</p>
 <p>本書で学べることは以下の通りです。</p>
@@ -50,26 +50,26 @@
       </google-codelab-step>
     
       <google-codelab-step label="データモデル設計" duration="0">
-        <p>データモデルの設計はユースケースからデータモデル候補を抜き出すことからはじめます。これによってデータの大きな単位とそこに含まれるフィールドを整理できます。また、ここで抽出されたデータ単位ごとにテーブルを作り、具体的なデータサンプルを作っておくと次ステップのデータ間の関係を考察する際に役立ちます。</p>
-<p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で挙げた課題である画面設計に走りがちな理由もこの作業の難しさにあると考えられます。次ページ「ユースケース、データモデルと画面設計のパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
-<p>コレクションとドキュメントの分離方針がきまったら、サンプルデータをJSONの形式にまとめます。JSONスキーマにそった正しいJSON形式にまとめることでドキュメント型データベースで扱えるサンプルデータが作成されます。JSONとはWebアプリケーションやREST APIで扱われるプログラムが処理しやすく人も見やすいデータ形式ですが、初めてJSONを扱う人は正しいJSON形式とは何かわからないと思います。そのため本書では本文中にJSONエディタというツールを組み込んでJSONデータを表示し、JSON形式でのサンプルデータの作り方をステップバイステップで解説します。</p>
+        <p>データモデル設計は、まずユースケースからデータの候補を抽出することから始めます。これによってデータの大きな単位とそこに含まれるフィールドを整理できます。また、ここで抽出されたデータ単位ごとに具体的なデータサンプルを作っておくと、次ステップのデータ間の関係を考察する際に役立ちます。</p>
+<p>データ候補が抽出できたら、まとめたデータサンプルを参照しながらそれらの関係を整理します。本書ではドキュメント型データベースを採用するため、ドキュメントとコレクションの関係を整理します（ドキュメント型データベースについては、「NoSQLとFirestoreについて」を参考にしてください）。前ステップで行ったデータ候補の抽出は比較的簡単な作業ですが、ここで行うデータ間の関係整理は経験が必要な難しい作業です。前ページ「はじめに」で述べたように、アプリの仕様が複雑になった際に生じる手戻りや、データモデリングと画面設計のギャップといった課題も、このデータ間の関係整理の難しさに起因すると考えられます。 次ページ「ユースケース、データモデルと画面設計のパターン」では、よくあるユースケースとデータモデルと画面設計のパターンをまとめていますので、興味がある方はそちらを参照ください。</p>
+<p>コレクションとドキュメントの分離方針が決まったら、サンプルデータをJSON形式で表現します。JSONスキーマに沿った正しいJSON形式にまとめることで、ドキュメント型データベースで扱えるサンプルデータが作成されます。JSONはWebアプリケーションやREST APIで扱われる、プログラムが処理しやすく人も見やすいデータ形式ですが、初めてJSONを扱う人は正しいJSON形式とは何かわからないかもしれません。そのため本書では、本文中にJSONエディタというツールを組み込んでJSONデータを表示し、JSON形式でのサンプルデータの作り方をステップバイステップで解説します。</p>
 <h2 is-upgraded>1. ユースケースからデータの候補を抽出する</h2>
-<p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例にしたユースケース記述を以下にまとめます。アプリ名は「レストランレビューアプリ」とします。</p>
+<p>顧客がレストランに対して星の数とコメントでレビューを記入し公開するアプリを例に、ユースケース記述を以下にまとめます。アプリ名は「レストランレビューアプリ」とします。</p>
 <ol type="1" start="1">
 <li>顧客はアプリにログインできる。</li>
 <li>レストランのリストが表示される。</li>
 <li>レストランのリストから一つを選ぶとレストランの詳細が表示でき、店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示される。</li>
 <li>レストラン詳細画面では、星の数とコメントからなるレビューの登録ができ、登録更新時にレストランの星の数の平均が更新される。</li>
 <li>全レビューのリストが表示され、星の数で検索できる。</li>
-<li>顧客自身が登録したレビューについては編集と削除ができる</li>
+<li>顧客自身が登録したレビューについては編集と削除ができる。</li>
 </ol>
-<p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
+<p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると、下記のように整理できます。</p>
 <ul>
 <li>レストラン（店名、料理の種類、住所、星の数の平均）</li>
 <li>レビュー（レビューした顧客名、星の数、コメント）</li>
 <li>顧客（メールアドレス、氏名、アイコン）</li>
 </ul>
-<p>ここで具体的なサンプルデータを表形式にまとめておくとイメージしやすくなり今後の設計もしやすくなり、開発メンバーへの説明もしやすく開発やテスト等にも生かせます。</p>
+<p>ここで具体的なサンプルデータを表形式にまとめておくと、イメージがしやすくなり、今後の設計もスムーズに進みます。また、開発メンバーへの説明にも役立ち、開発やテストなどにも活用できます。</p>
 <p><strong>表1. レストラン</strong></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>ID</p>
@@ -126,14 +126,14 @@
 </td><td colspan="1" rowspan="1"><p>寿司</p>
 </td><td colspan="1" rowspan="1"><p>愛知県岡崎市錦町２−１２</p>
 </td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>https://www.watch.impress.co.jp/img/ipw/docs/1230/499/kura1_s.jpg</p>
+</td><td colspan="1" rowspan="1"><p>https://asset.watch.impress.co.jp/img/ipw/docs/1230/499/kura1_s.jpg</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>7</p>
 </td><td colspan="1" rowspan="1"><p>モスバーガー岡崎大西店</p>
 </td><td colspan="1" rowspan="1"><p>ハンバーガ</p>
 </td><td colspan="1" rowspan="1"><p>愛知県岡崎市大西１丁目１６−７</p>
 </td><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"><p>http://www.wing-net.ne.jp/image/kamiooka/store/storage/w250/mos.png</p>
+</td><td colspan="1" rowspan="1"><p>https://www.mos.co.jp/mos_ogp.png</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>8</p>
 </td><td colspan="1" rowspan="1"><p>マクドナルド岡崎インター店</p>
@@ -192,7 +192,7 @@
 <tr><td colspan="1" rowspan="1"><p>0</p>
 </td><td colspan="1" rowspan="1"><p>ichiro@test.com</p>
 </td><td colspan="1" rowspan="1"><p>鈴木一郎</p>
-</td><td colspan="1" rowspan="1"><p>https://meikyu-kai.org/wp-content/uploads/2020/01/51_Ichiro.jpg</p>
+</td><td colspan="1" rowspan="1"><p>https://meikyukai.jp/wp-content/uploads/2020/06/51_ichiro.jpg</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>1</p>
 </td><td colspan="1" rowspan="1"><p>jiro@test.com</p>
@@ -206,20 +206,16 @@
 </td></tr>
 </table>
 <h2 is-upgraded>2. データをドキュメントとコレクションのツリー構造にする</h2>
-<p>1で抽出したデータをドキュメントとコレクションの関係についての方針を整理します。</p>
+<p>1で抽出したデータをもとにドキュメントとコレクションの関係についての方針を整理します。</p>
 <ol type="1" start="1">
-<li>レストランドキュメントと顧客ドキュメントはルートレベルコレクションに納める</li>
-<li>レビュードキュメントはレストラン・ドキュメントのサブコレクションに納める</li>
-<li>レビュードキュメントに顧客フィールドの一部をマップとして納める</li>
+<li>レストランと顧客のドキュメントはルートレベルのコレクションに格納する。</li>
+<li>レビューのドキュメントはレストラン・ドキュメントのサブコレクションに格納する。</li>
+<li>レビューのドキュメントに顧客フィールドの一部（IDと顧客名）をマップとして納める</li>
 </ol>
 <p>これらの関係を表現したツリー構造を下図に示します。</p>
 <p class="image-container"><img style="width: 591.38px" src="img/d0f32c9a030c5f12.png"></p>
 <h2 is-upgraded>3. サンプルデータをJSON形式で表現する</h2>
-<p>ドキュメントとコレクションの関係について方針が決まったら、1のサンプルデータをJSON形式であらわすことでより具体化します。</p>
-<aside class="warning"><p><strong>ノート: </strong>上記のサンプルデータは項目名を日本語にして表現していますが、JSON形式における項目名やプログラムで使う変数名は適切な英単語を使うことが求められます。下記の「codic」というサービスはユースケースで記述した自然言語から変数名や関数名として利用できる項目名の候補を出力してくれるので便利です。</p>
-<p><a href="https://codic.jp/engine" target="_blank">https://codic.jp/engine</a></p>
-</aside>
-<p>また、ここではJSONエディタを使い、段階的にサンプルのJSONデータを作成します。</p>
+<p>ドキュメントとコレクションの関係について方針が決まったら、1のサンプルデータをJSON形式であらわすことでより具体化します。本書ではブラウザ上で利用できるJSONエディタを使い、段階的にサンプルのJSONデータを作成します。</p>
 <aside class="warning"><p><strong>ノート: </strong>JSONエディタを使うと直感的にJSON形式のデータを作成、編集することができます。操作方法は下記の通りです。</p>
 <p>1. 表示形式を下記の通り変更できます。</p>
 <p>「Code」を選ぶとJSONの生データの形式で表示されます。</p>
@@ -245,130 +241,200 @@
 <h3 is-upgraded><strong>④</strong><strong>レビューをレストラン配下のサブコレクションとして追加</strong></h3>
 <p>レビュー・ドキュメントの配列であるコレクションをレストラン・ドキュメント配下に追加します。この時、レビュー・ドキュメントには書き込みを行った顧客がわかるように顧客IDと顧客名と顧客写真を追加します。また、レビュー・ドキュメントを参照するだけで書き込みを行ったレビュー対象のレストランがわかるよう、レストランID、レストラン名、レストランロゴといった項目も追加します。以上の作業の必要性については「NoSQLとFirestoreについて」を参照してください。</p>
 <iframe width="820" height="820" src="./json04.html" frameborder="1"></iframe>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="画面設計" duration="0">
-        <p>データモデルができあがったので次のステップとして画面設計を行います。</p>
+        <p>データモデルの設計が完了したら、次にユーザーインターフェース（UI）の「画面」と「画面遷移」をデザインする「画面設計」に進みます。</p>
 <h2 is-upgraded>1. 画面設計の基本的な考え方</h2>
-<p>画面設計では、「画面」と「画面遷移」をデザインします。</p>
+<p>画面設計においては、大きく分けて「画面」と「画面遷移」の二つの要素をデザインします。</p>
+<ul>
+<li><strong>画面:</strong> ユーザーが特定の時点で目にする単一のインターフェースです。テキストフィールド、ボタン、画像などのコンポーネントを組み合わせて構成されます。</li>
+<li><strong>画面遷移:</strong> アプリケーション内で複数の画面がどのように移動し、連携するかという振る舞いを指します。ユーザーがアプリの機能を利用する際の操作の流れを定義します。</li>
+</ul>
 <p class="image-container"><img style="width: 422.00px" src="img/18f1af0a3ae4e6e6.png"></p>
-<p>「画面」はユーザが一時点で対面する一画面のことで、テキストフィールドやボタンなどのコンポーネントを組み合わせて作成されます。一方、「画面遷移」は複数の「画面」が違いに移動していく振る舞いのことを表します。「画面」はユースケースごとに様々な種類が考えられ、単純なパターン化は難しいです。一方、「画面遷移」は以下の４パターンにまとめることが可能です。</p>
+<p>「画面」はユースケースによって多様な種類が存在するためパターン化が難しいですが、「画面遷移」は以下の4つの主要なパターンに分類できます。これらのパターンを理解することで、効率的かつ一貫性のある画面遷移を設計できます。</p>
 <h3 is-upgraded><strong>① メニュー遷移</strong></h3>
-<p>アプリケーションは複数の機能から成り立つので、ホーム画面にメニューやナビゲーションバーを用意して、そこからユーザがメニューを選択することで機能を切り替えます。下図は時計アプリを例に挙げて「時計」表示と「アラーム」設定、時計「設定」の3機能をボトムナビゲーションバーを使って切り替える画面遷移を表しています。</p>
+<p>このパターンは、アプリケーションが複数の独立した機能を持つ場合に適しています。ホーム画面にメニューやナビゲーションバーを配置し、ユーザーがこれらを選択することで、異なる機能画面へ切り替えます。</p>
+<ul>
+<li><strong>特徴:</strong> 機能間のデータの引き継ぎは少なく、機能内でのデータ保存が主となります。</li>
+<li><strong>例:</strong> 時計アプリ（下図参照）では、ボトムナビゲーションバーを使って「時計」表示、「アラーム」設定、「設定」の3機能を切り替えます。</li>
+</ul>
 <p class="image-container"><img style="width: 533.00px" src="img/5166f2aba71eaaa2.png"></p>
-<p>このパターンの画面遷移では機能が切り替わるため、機能間でデータの引き継ぎが必要なケースは少なく、機能内でのデータ保存のみを考えればよいでしょう。</p>
 <h3 is-upgraded><strong>② ウィザード遷移</strong></h3>
-<p>スマートフォンは画面が小さいため、多くの入力を必要とするアンケートや申請書は下図のとおり画面を複数にわけてウィザード形式で入力を促し、最後に確認してSubmitするといった画面遷移になります。</p>
+<p>スマートフォンは画面が小さいため、多くの情報を入力する必要がある場合にこのパターンが有効です。アンケートや申請書のように、複数の画面に分けて入力を促し、最終的に確認画面を経てデータを送信する形式の画面遷移です。</p>
+<ul>
+<li><strong>特徴:</strong> ユーザーを直線的にゴールへ導く際に用いられます。</li>
+<li><strong>注意点:</strong> 途中で分岐が発生する複雑な入力フローには適していません。その場合は次の「③状態遷移」パターンを検討します。</li>
+</ul>
 <p class="image-container"><img style="width: 421.00px" src="img/2d427358c8aa16e5.png"></p>
-<p>このパターンは途中で枝分かれすることなく一本線でゴールに向かう場合に利用し、分岐が発生する複雑な場合は次の「③状態遷移」パターンを考えるとよいでしょう。</p>
 <h3 is-upgraded><strong>③ 状態遷移</strong></h3>
-<p>状態によって表示する画面が変化する画面遷移のパターンです。下図はログイン・ログアウトの画面遷移の例で、ログインとログアウトのどちらかをあらわす状態変数の値に従って、表示される画面を切り替えるしくみになっています。</p>
+<p>アプリケーションの内部的な「状態」に応じて表示される画面が変化するパターンです。ユーザーがログインしているか、ログアウトしているか、あるいは特定のタスクのどの段階にいるかといった状態変数の値に基づいて、適切な画面を表示します。</p>
+<ul>
+<li><strong>重要性:</strong> スマホアプリ開発において、この「状態の保持」という概念は非常に重要です。ユーザーの入力データだけでなく、アプリの挙動を制御する様々な「状態」を管理する必要があります。</li>
+<li><strong>例:</strong> ログイン・ログアウトの画面遷移（下図参照）では、ユーザーの認証状態に応じてログイン画面とホーム画面が切り替わります。</li>
+</ul>
 <p class="image-container"><img style="width: 333.00px" src="img/c2baff62461fcf8d.png"></p>
-<p>スマホアプリの開発では、この状態の保持という概念がとても重要です。ユーザがアプリを通して何かデータの入力や変更を行うときのデータだけでなく、ログインしているかログアウトしたか、どの画面に遷移したかなど、画面を動かすために必要な「状態」というデータもあります。この状態遷移としてよく現れる画面遷移のパターンは次の「④リストのCRUD」です。</p>
 <h3 is-upgraded><strong>④ リストと詳細のCRUD </strong></h3>
-<p>ビジネスアプリケーションの多くは、複数データを表示・追加・編集・削除しながら整理整頓するものです。そのため、データの概要をリスト表示して、そのうち一つをクリックすると詳細を表示し、編集・削除する、といった機能を持ちます。このタイプのアプリケーションの画面遷移は大概下記のようなフローになります。各画面の説明カッコ内の「Create」「Read」「Update」「Delete」はあわせてCRUD（クラッド）と呼び、データ操作の基本になります。ここでは複数データを扱っていますので、「Read」には複数データのリスト表示と一つのデータの詳細表示の二種類があるので、画面が二つ存在します。</p>
+<p>ビジネスアプリケーションで最も頻繁に用いられるパターンです。複数のデータを一覧表示（Read）し、その中から一つを選択して詳細を表示（Read）し、さらにその詳細を編集（Update）したり、削除（Delete）したりする機能を提供します。データの追加（Create）もこのフローに組み込まれます。</p>
+<ul>
+<li><strong>構成:</strong> 通常、「複数データ表示（リスト）」と「単一データ詳細表示/編集/削除」の2つの主要な画面で構成されます。</li>
+<li><strong>例:</strong> 本書で開発する「レストランレビューアプリ」のように、レストランのリストから詳細へ、さらにレビューのリスト表示へと展開する構造は、このパターンの典型的な応用例です。</li>
+</ul>
 <p class="image-container"><img style="width: 507.00px" src="img/6774685496214fc5.png"></p>
-<p>上図の時計アプリの例では、リスト表示をする対象がアラーム設定した時刻といったシンプルなデータですが、本書で開発する「レストランレビューアプリ」のようにレストランデータが複数あり、さらにそのレストランのレビューデータが複数あるといった構造を持つ場合、レストランの詳細画面の下にレビューリストを表示するといった構造を持ちます。このように、複数データを整理整頓する形式のアプリ画面はリスト画面を中心にCRUDを担う機能に画面が分かれることをパターンとして覚えておくとよいでしょう。</p>
 <h2 is-upgraded>2. 「レストランレビューアプリ」の画面設計</h2>
-<p>本書で開発する「レストランレビューアプリ」の画面設計を「①ログイン、メニュー選択、ログアウト」と「②レストランリストとレビュー表示」、「③全レビューリストとレビュー表示」、「④アカウント表示と自分が投稿したレビューの管理」の4種類にわけて説明します。</p>
+<p>本書で開発する「レストランレビューアプリ」の画面設計を、前述の基本的な考え方を基に、以下の4つの主要なフローにわけて説明します。これらのフローは、アプリの主要機能とユーザーの操作体験を網羅しています。</p>
 <p>①ログイン、メニュー選択、ログアウト</p>
-<p>ログイン・ログアウトとメニュー表示する画面とそれらの画面遷移を下図に示します。ここでは「アカウント画面」からのみログアウトできるよう設計していますが、どこからでもログアウトできるように設計してもよいでしょう。またログイン画面はユーザ登録画面と同一画面上で切り替えられるように設計しています。</p>
+<p>このフローは、ユーザーの認証とアプリの主要機能間のナビゲーションを管理します。</p>
+<ul>
+<li><strong>目的:</strong> ユーザー認証（ログイン/新規登録）と、アプリ内の異なる機能へのスムーズな切り替えを提供します。</li>
+<li><strong>画面構成:</strong></li>
+<li><strong>ログイン/新規登録画面:</strong> メールアドレスとパスワードによる認証、または新規アカウント登録を行います。ユーザーが迷わないように、同じ画面内で両機能を切り替えられるように設計されています。</li>
+<li><strong>ホーム画面/メニュー画面:</strong> ログイン後に表示されるアプリの主要な「玄関」です。ここから各機能画面へアクセスします。</li>
+<li><strong>アカウント画面:</strong> ユーザー自身の情報を表示し、ここから安全にログアウトする操作も可能です。</li>
+<li><strong>遷移パターン:</strong> ユーザーの認証状態に応じて画面が切り替わる「③状態遷移」と、アプリの主要機能間を移動する「①メニュー遷移」を組み合わせています。</li>
+</ul>
 <p class="image-container"><img style="width: 601.70px" src="img/5319a6f6ec4495f2.png"></p>
-<p>本設計は「1. 画面設計の基本的な考え方」で述べた「③状態遷移」のログイン・ログアウトと「①メニュー遷移」のパターンを利用しています。</p>
 <p>②レストランリストとレストラン詳細、レビュー表示とレビュー追加</p>
-<p>レストランをリスト表示し、そこから一つを選択するとレストラン詳細が表示されるとともに選択したレストランに関するレビューがリストされます。さらに、そこからレビューを一つ選択するとレビューの詳細が表示されます。また、レストラン詳細画面からはレビューを追加することができますが、リストされるレビューは自分以外のものも含まれるので、編集や削除はできないよう設計しています。</p>
+<p>このフローは、レストラン情報の閲覧と、特定のレストランへのレビュー投稿に特化しています。</p>
+<ul>
+<li><strong>目的:</strong> ユーザーがレストランを検索・閲覧し、関心のあるレストランにレビューを投稿できる機能を提供します。</li>
+<li><strong>画面構成:</strong></li>
+<li><strong>レストランリスト画面:</strong> 登録されている全レストランの一覧を表示します。ユーザーはここから特定のレストランを選択します。</li>
+<li><strong>レストラン詳細画面:</strong> 選択されたレストランの店名、料理の種類、住所、平均評価などの基本情報に加えて、そのレストランに投稿されたレビューのリストを表示します。</li>
+<li><strong>レビュー追加画面:</strong> レストラン詳細画面からアクセスし、星の数とコメントを入力して新しいレビューを登録します。レビューの登録・更新時には、レストランの平均評価が自動的に再計算・更新されます。</li>
+<li><strong>操作の制限:</strong> レストラン詳細画面に表示されるレビューは、自分以外のユーザーが投稿したものも含まれるため、この画面からはレビューの編集や削除はできません。</li>
+<li><strong>遷移パターン:</strong> データの閲覧、新規作成、更新といった「④リストと詳細のCRUD」パターンを応用しています。</li>
+</ul>
 <p class="image-container"><img style="width: 601.70px" src="img/b4cba8f773fb1017.png"></p>
-<p>本設計は「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しています。</p>
 <p>③全レビューリストとレビュー表示</p>
-<p>レビュー画面では、全レストランを対象に全ユーザのレビューの一覧をリストします。また、星数で検索することが可能です。</p>
+<p>このフローは、アプリに投稿された全てのレビューを横断的に閲覧するためのものです。</p>
+<ul>
+<li><strong>目的:</strong> 全てのユーザーが投稿したレビューを一元的に確認し、全体的な傾向や他のユーザーの評価を把握できるようにします。</li>
+<li><strong>画面構成:</strong></li>
+<li><strong>全レビューリスト画面:</strong> 全レストランに対する、全てのユーザーからのレビューを一覧表示します。</li>
+<li><strong>レビュー詳細画面:</strong> リストから選択した特定のレビューの詳細内容を表示します。</li>
+<li><strong>機能:</strong> ユーザーが特定の評価範囲のレビューを探せるよう、星の数による検索機能を提供します。</li>
+<li><strong>操作の制限:</strong> この画面の主な目的はレビューの参照（Read）であるため、レビューの新規追加（Create）、既存レビューの更新（Update）、削除（Delete）の機能は持ちません。</li>
+</ul>
 <p class="image-container"><img style="width: 601.70px" src="img/911cf48068a97b5f.png"></p>
-<p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用していますが、ここではレビューの一覧が目的で、参照（Read）のみで追加（Create）、更新（Update）、削除（Delete）の機能は有していません。</p>
 <p>④アカウント表示と自分が投稿したレビューの管理</p>
-<p>アカウント画面では、自分の名前を直接編集できるように設計しました。また自分が投稿したレビューをリストし、編集と削除が可能です。</p>
+<p>このフローは、ユーザー自身の情報管理と、自分が投稿したレビューの個別管理に焦点を当てています。</p>
+<ul>
+<li><strong>目的:</strong> ユーザーが自身のプロフィール情報を確認・編集し、過去に投稿したレビューを一覧で確認、さらにそれらを編集・削除できるようにします。</li>
+<li><strong>画面構成:</strong></li>
+<li><strong>アカウント画面:</strong> ユーザーの登録情報（氏名など）を表示します。ここで直接、自分の名前を編集できるよう設計されています。</li>
+<li><strong>自分が投稿したレビューリスト画面:</strong> ログイン中のユーザーが投稿したレビューのみを一覧で表示します。</li>
+<li><strong>レビュー編集画面:</strong> 自分のレビューリストから選択したレビューの内容（星の数、コメント）を修正できます。</li>
+<li><strong>機能:</strong> ユーザー自身のレビューに限り、編集（Update）および削除（Delete）操作が可能です。</li>
+<li><strong>遷移パターン:</strong> 自身のレビューを対象とした「④リストと詳細のCRUD」パターン（特に更新と削除）を適用しており、ユーザーに自己管理の柔軟性を提供します。</li>
+</ul>
 <p class="image-container"><img style="width: 601.70px" src="img/2e1f88e3a592da54.png"></p>
-<p>本設計も「1. 画面設計の基本的な考え方」で述べた「④リストのCRUD」のパターンを利用しており、自分が投稿したレビューを対象に更新（Update）と削除（Delete）ができるよう設計しています。</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="ユースケース、データモデル、画面設計パターン" duration="0">
-        <p>ここでは様々なユースケースの画面設計を紹介します。「1. 特徴的な機能の画面」では主に一つの画面に特徴的な機能を有しているもので、よく使う例を紹介します。2以降は、世にあるアプリのユースケースをいくつか例に挙げ、それらのデータモデルと画面設計のパターンを紹介します。</p>
-<p>当初はユースケースパターンという観点からアプリをまとめましたが、下記の記事にも同じようなユースケースがまとまっています。求められているアプリアイデアという観点からも正解だったようです。</p>
-<p><a href="https://medium.com/flutter-community/12-best-innovative-app-ideas-for-startups-in-2020-21-77953e615079" target="_blank">https://medium.com/flutter-community/12-best-innovative-app-ideas-for-startups-in-2020-21-77953e615079</a></p>
-<p>これらを理解し参考にすることで、経験の少ない方でもみずからのユースケースから適切な設計を行うことが可能になるでしょう。</p>
+        <p>様々なアプリケーション開発で活用できるユースケース、データモデル、画面設計のパターンを紹介します。特に、頻繁に利用される特徴的な機能や、一般的なアプリのユースケースを例に挙げ、その設計思想を解説します。経験の少ない開発者でも自身のユースケースから適切なアプリ設計を行えるように、既存のパターンを理解し、参考にすることを目的としています。</p>
 <h2 is-upgraded>1. 特徴的な機能の画面</h2>
-<p>上で紹介したとおり世の中の主要なアプリケーション、特にビジネス用途のアプリケーションはログインしたユーザの権限で複数データを整理整頓を行うことを目的としており、1で紹介した画面遷移パターンの組み合わせで事足ります。一方、下記に挙げる機能はよく使われると共に特殊な画面を持ちますので、パターンとして覚えておくとよいでしょう。</p>
-<h3 is-upgraded><strong>① ID&amp;パスワード・ログイン</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>② パスワードレス・ログイン</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>③ チャット</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>④</strong><strong>スケジュールとカレンダー</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑤</strong><strong> 地図</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑥</strong><strong> 決済・ポイント支払</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑦</strong><strong> イラスト・写真加工</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑧</strong><strong> OCR・物体認識</strong></h3>
-<p><strong>（TODO）</strong></p>
-<h3 is-upgraded><strong>⑨</strong><strong> その他</strong></h3>
-<p>ゲームやAR、スマートスピーカーといったアプリケーションは複雑なUIからなりたっていたり、音声によるUIからなりたつため一般化は難しく、本書の対象外とします。</p>
+<p>一般的なビジネスアプリケーションの多くは、ログインしたユーザーの権限に基づき、複数データを整理・管理することを目的としています。これらは「画面設計の基本的な考え方」で紹介した画面遷移パターンの組み合わせでほとんど対応可能です。</p>
+<p>しかし、以下の機能は特有の画面を持つことが多いため、個別のパターンとして覚えておくと有用です。</p>
+<p><strong>① ID&amp;パスワード・ログイン</strong></p>
+<p><strong>② パスワードレス・ログイン</strong></p>
+<p><strong>③ チャット</strong></p>
+<p><strong>④ スケジュールとカレンダー</strong></p>
+<p><strong>⑤ 地図</strong></p>
+<p><strong>⑥ 決済・ポイント支払</strong></p>
+<p><strong>⑦ イラスト・写真加工</strong></p>
+<p><strong>⑧ OCR・物体認識</strong></p>
+<p>一方、ゲーム、AR（拡張現実）、スマートスピーカーといったアプリケーションは、複雑なUIや音声によるUIで構成されるため、一般化が難しく、本書の対象外とします。</p>
 <h2 is-upgraded>2. メモアプリ</h2>
 <p><strong>ユースケース</strong></p>
-<p>ユーザは何か思いついたときや覚えておきたい内容を記入するためにメモを使いますが、それをスマホアプリにした場合のユースケースを以下に記述します。ユーザがメモを友達にシェアするとか手書きメモをテキストにおとすといった高度な機能は持たず、ここでは基本的なメモ機能のみを考えます。</p>
+<p>ユーザーが思いついたことや覚えておきたい内容を記録するための基本的なメモアプリのユースケースを以下に記述します。ここでは、メモの共有や手書きメモのテキスト変換といった高度な機能は含まず、基本的なメモ機能に焦点を当てます。</p>
 <ol type="1" start="1">
-<li>ユーザは過去に記入したメモをリスト表示できる。リストには記入日と更新日、タイトル、内容の一部が表示されます。</li>
-<li>メモのリストから一つを選ぶとメモの詳細が表示でき、店名、料理の種類、住所、星の数の平均のほか、そのレストランに対するレビューがリスト表示される。</li>
+<li>ユーザーは過去に記入したメモをリスト表示できる。リストには記入日、更新日、タイトル、内容の一部が表示される。</li>
+<li>メモのリストから一つを選ぶとメモの詳細が表示でき、そのメモを編集・削除できる。</li>
+<li>新しいメモを新規作成できる。</li>
 </ol>
-<p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、‥）」と表現すると下記のように整理できます。</p>
-<ul>
-<li><strong>（TODO）</strong></li>
-</ul>
-<p>ここで具体的なサンプルデータを表形式にまとめておくとイメージしやすくなり今後の設計もしやすくなり、開発メンバーへの説明もしやすく開発やテスト等にも生かせます。</p>
-<p><strong>表1. メモ</strong></p>
-<table>
-<tr><td colspan="1" rowspan="1"><p>ID</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>0</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>1</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>2</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>3</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>4</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>5</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>6</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>7</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>8</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-<tr><td colspan="1" rowspan="1"><p>9</p>
-</td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
-</table>
 <p><strong>データモデル</strong></p>
+<p>このユースケース記述から得られるデータ候補を「ドキュメント（フィールド1、フィールド2、...）」と表現すると、下記のように整理できます。</p>
 <ul>
-<li><strong>（TODO）</strong></li>
+<li><strong>メモ</strong>（タイトル、内容、作成日時、更新日時）</li>
 </ul>
 <p><strong>画面設計</strong></p>
+<p>メモアプリの画面設計は、「リストと詳細のCRUD」パターンを基本とします。</p>
 <ul>
-<li><strong>（TODO）</strong></li>
+<li><strong>メモリスト画面:</strong></li>
+<li>登録されている全てのメモを一覧表示する。</li>
+<li>各メモにはタイトル、内容の一部、作成日/更新日を表示する。</li>
+<li>新しいメモを作成するためのボタンを配置する。</li>
+<li>メモをタップすると、メモ詳細画面へ遷移する。</li>
+<li><strong>メモ詳細画面:</strong></li>
+<li>選択されたメモのタイトルと内容を詳細に表示する。</li>
+<li>メモを編集するためのボタンを配置する。</li>
+<li>メモを削除するためのボタンを配置する。</li>
+<li>リスト画面に戻るためのナビゲーションを提供する。</li>
+<li><strong>メモ編集/新規作成画面:</strong></li>
+<li>メモのタイトルと内容を入力・編集するためのテキストフィールドを配置する。</li>
+<li>保存ボタンを配置し、保存時に作成日時または更新日時を自動で記録する。</li>
+<li>キャンセルボタンを配置し、変更を破棄して前の画面に戻る。</li>
 </ul>
 <h2 is-upgraded>3. 学生名簿</h2>
-<p><strong>（TODO）</strong></p>
+<p><strong>ユースケース</strong></p>
+<p>大学の学生名簿を管理するアプリのユースケースを記述します。</p>
+<ol type="1" start="1">
+<li>管理者は学生のリストを表示できる。</li>
+<li>学生のリストから一人を選ぶと学生の詳細が表示でき、氏名、学生番号、所属学部、連絡先などの情報を閲覧できる。</li>
+<li>管理者は学生の詳細情報を編集、削除できる。</li>
+<li>管理者は新しい学生情報を追加できる。</li>
+<li>学生は自身の情報を閲覧できる（編集、削除はできない）。</li>
+</ol>
+<p><strong>データモデル</strong></p>
+<ul>
+<li>学生（学生番号、氏名、所属学部、メールアドレス、電話番号）</li>
+</ul>
+<p><strong>画面設計</strong></p>
+<p>「リストと詳細のCRUD」パターンと「状態遷移（管理者/学生）」パターンを組み合わせます。</p>
+<ul>
+<li>学生リスト画面:</li>
+<li>登録されている学生の一覧を表示する。</li>
+<li>管理者のみ、学生の追加ボタンを表示する。</li>
+<li>学生をタップすると、学生詳細画面へ遷移する。</li>
+<li>学生詳細画面:</li>
+<li>選択された学生の詳細情報を表示する。</li>
+<li>管理者のみ、編集・削除ボタンを表示する。</li>
+<li>学生編集/新規作成画面:</li>
+<li>管理者のみアクセス可能。学生情報の入力・編集フィールドを配置。</li>
+<li>保存ボタン、キャンセルボタンを配置。</li>
+</ul>
 <h2 is-upgraded>4. 観光地紹介</h2>
-<p><strong>（TODO）</strong></p>
+<p><strong>ユースケース</strong></p>
+<p>地域の観光地を紹介するアプリのユースケースを記述します。</p>
+<ol type="1" start="1">
+<li>ユーザーは観光地のリストを閲覧できる。</li>
+<li>観光地のリストから一つを選ぶと観光地の詳細が表示でき、名称、所在地、説明、写真、営業時間などの情報を閲覧できる。</li>
+<li>観光地をお気に入り登録できる。</li>
+<li>観光地をキーワードで検索できる。</li>
+</ol>
+<p><strong>データモデル</strong></p>
+<ul>
+<li>観光地（名称、所在地、説明、写真URL、営業時間、カテゴリ、平均評価）</li>
+<li>ユーザー（ユーザーID、お気に入り観光地リスト）</li>
+</ul>
+<p><strong>画面設計</strong></p>
+<p>「リストと詳細のCRUD（参照と一部更新）」パターンと「検索/フィルタリング」機能を組み合わせます。</p>
+<ul>
+<li>観光地リスト画面:</li>
+<li>登録されている観光地の一覧をカード形式などで表示する。</li>
+<li>検索バーとフィルタリングオプション（カテゴリ、評価など）を配置する。</li>
+<li>観光地をタップすると、観光地詳細画面へ遷移する。</li>
+<li>観光地詳細画面:</li>
+<li>選択された観光地の詳細情報を表示する。</li>
+<li>お気に入り登録/解除ボタンを配置する。</li>
+</ul>
 <h2 is-upgraded>5. 会議室予約</h2>
 <p><strong>（TODO）</strong></p>
 <h2 is-upgraded>6. 商品購入</h2>
@@ -401,13 +467,13 @@
 <p><strong>（TODO）</strong></p>
 <h2 is-upgraded>20. 画像認識レジ</h2>
 <p><strong>（TODO）</strong></p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="スマートフォン（スマホ）アプリのUIデザイン" duration="0">
-        <p>ここでは画面設計に関連して、スマホアプリのUIデザインについて記述します。世の中のスマホといえば、iPhoneとAndroidの2種類ですが、それぞれAppleとGoogleがUIデザインのガイドラインを出しています。iPhoneは<a href="https://developer.apple.com/design/human-interface-guidelines/ios" target="_blank">ヒューマン・インタフェース・ガイドライン</a>、Androidでは<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>です。各ガイドラインの紹介をする前に、スマホアプリ特有の問題からデザインの歴史を説明してから、ヒューマン・インタフェース・ガイドラインとマテリアルデザインの紹介をします。</p>
+        <p>ここでは画面設計に関連して、スマホアプリのUIデザインについて記述します。世の中のスマホといえば、iPhoneとAndroidの2種類ですが、それぞれAppleとGoogleがUIデザインのガイドラインを出しています。iPhoneは<a href="https://developer.apple.com/jp/design/human-interface-guidelines/" target="_blank">ヒューマン・インタフェース・ガイドライン</a>、Androidでは<a href="https://material.io/" target="_blank">マテリアル・デザイン</a>です。各ガイドラインの紹介をする前に、スマホアプリ特有の問題からデザインの歴史を説明してから、ヒューマン・インタフェース・ガイドラインとマテリアルデザインの紹介をします。</p>
 <h2 is-upgraded>1. スマホの特徴</h2>
 <p>スマホには、パソコンとは異なる2つの特徴があります。</p>
 <p><strong>画面が小さく操作手段が限定的</strong></p>
@@ -584,7 +650,7 @@
 <p>通常、アプリケーションの開発プロジェクトでは、事前にマテリアルデザインのようなデザインフレームワークからプロジェクトで活用するレイアウトや部品を選択してカラーテーマやフォントを決めて、アプリのブランドに統一感を持たせることをします。このようなデザイン原則とデザインフレームワークの組み合わせを「デザインシステム」と呼びます。</p>
 <p>最近日本国内でも「<a href="https://note.minna-no-ginko.com/n/n5990880b26ae" target="_blank">みんなの銀行</a>」や「<a href="https://digital-gov.note.jp/n/n78f6a2f82e48" target="_blank">デジタル庁</a>」でもデザイン原則やシステムデザインを整備してWebサイトを作るといったアプリ開発を行うことがはじまっています。Webサイトといった単純なUIだけならデザインシステムもロゴやカラーデザインや画面テンプレート程度を決めるだけですみますが、スマホアプリのデザインシステムというとより複雑な機能を含みますので、これを一から作るのは大変な労力がかかります。</p>
 <p>そのため、本書ではマテリアルデザインをまるまるデザインシステムとして採用してスマホアプリを開発します。サービスのブランディングに関わるロゴやイラスト、カラーデザインをカスタマイズする機能もマテリアルデザインを支えるFlutterのようなツールにも開発が進められていますので、これを使わない手はないでしょう。</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -638,7 +704,7 @@
 <li>Cloud Firestore：OIDC認証のしくみはKeycloakのクライアントプラグインを使って実装することで実現できます。ドキュメント型データベースとしてmongoDBがあげられるので、ストリーム型でアプリから連携できるようgRPCで公開し、Dart言語のgRPCクライアントを開発しFlutterで利用することで実現できます。ただし、Firestoreで実現しているセキュリティルールやオフライン機能や差分のみをやりとりする機能などの高度な機能の実装は困難なので、アプリの使い勝手は悪くなると思われます。</li>
 <li>Firebase Storage：Keycloakのような認証サービスと連携したストレージサービスを開発するのは難しいので、データベースにサイズを小さくしたバイナリとして保存するようにするとよいでしょう。</li>
 </ul>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -835,7 +901,7 @@
 <h2 is-upgraded>13. NoSQLの限界</h2>
 <p>最後にいままでのオフィシャル動画とは直接関係ありませんが、Cloud Firestoreが提供するNoSQLのしくみは安全で使い勝手が良くスケーラブルでいいことづくめに見えますが、やはりリレーショナルデータベースにしか表現できないデータモデルというものがあり、NoSQLの限界というものが存在します。例えば、プロジェクトと要員を紐付けたい場合にマッチング値を計算して中間テーブルに持ち、特定のプロジェクトに適した要員をマッチング値でソートしたり、特定の要員に適したプロジェクトをマッチング値でソートしたりすることはリレーショナルデータベースでは可能ですが、NoSQLには構造上できません。NoSQLでこれを実現するには、プロジェクト・コレクションに要員マッチング値という配列項目を用意して、逆に要員コレクションにプロジェクト・マッチング値という配列項目を用意してそれらを使って検索を行う必要があります。この方式の難点は重複してデータを持つことになることとプロジェクトや要員が新規に追加される際にマッチング値を再計算してデータ更新が必要になることです。</p>
 <p>NoSQLの利用はプロトタイプ開発などすぐにアプリを開発する必要がある場合にはよいでしょうが、データモデルの機能によっては適さない場合があるので、気をつけるとよいでしょう。</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -908,7 +974,7 @@
 <p>4. <a href="https://www.youtube.com/watch?v=SmTCmDMi4BY" target="_blank">Async/Awaitの説明</a>: 関数で複数の非同期処理を順番に実行する場合やFutureやStreamを引数にもつ関数の実装方法を解説します。</p>
 <p>5. <a href="https://www.youtube.com/watch?v=TF-TBsgIErY" target="_blank">非同期ジェネレータの説明</a></p>
 </aside>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -950,7 +1016,7 @@
 <h2 is-upgraded>7. GridViewページを追加したホーム画面</h2>
 <p>ホーム画面のボトムナビゲーションバーで切り替える画面の一つにJSON文字列から取得したレストランのリストをGridViewで表示する画面を実装します。</p>
 <p><a href="https://dartpad.dev/embed-flutter.html?id=25c545bff92528e287ccc18290b52462" target="_blank">RestoPageのGridViewページを追加したホーム画面</a></p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1084,7 +1150,7 @@ $ flutter run -d chrome</pre>
 <p>するとChromeブラウザが開き、カウンターアプリが表示されます。</p>
 <p class="image-container"><img style="width: 325.22px" src="img/8280e9258be7333a.png"></p>
 <p>本Flutterプロジェクトは、インストール確認テスト用に作成したものなのでまるまる削除してください。</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1319,7 +1385,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <ol type="1" start="10">
 <li>「Hosting URL」として出力されたURLにアクセスするとレストランレビューアプリが表示されます。</li>
 </ol>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1363,7 +1429,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p>（TODO） </p>
 <p>3. レビュー編集（ReviewEdit）の実装</p>
 <p>（TODO） </p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1371,14 +1437,14 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       <google-codelab-step label="状態管理とBLoCパターンによる関心の分離" duration="0">
         <p>（TODO） StatefulWidgetとStatelessWidgetの違い、Stateの意味、Providerパッケージ、RiverPodパッケージ、GetXパッケージ、RxDartパッケージなどを説明します。</p>
 <p><a href="https://www.youtube.com/watch?v=_7Mh66FFSNg&list=PLptHs0ZDJKt_T-oNj_6Q98v-tBnVf-S_o" target="_blank">#1 - Why BLoC? | BLoC - from Zero to Hero</a></p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="インデックスとセキュリティルールの作成とデプロイ" duration="0">
         <p>（TODO）</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1387,14 +1453,14 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
         <p>（TODO）</p>
 <p><a href="https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0" target="_blank">https://codelabs.developers.google.com/codelabs/flutter-app-testing/#0</a></p>
 <p><a href="https://qiita.com/yujikawa/items/fe509b160df5ab9eb74e" target="_blank">https://qiita.com/yujikawa/items/fe509b160df5ab9eb74e</a></p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="AndroidとiOS用ビルド方法" duration="0">
         <p>（TODO） Flutter WebプロジェクトにAndroidとiOS用フォルダを追加する方法（flutter create . --org [パッケージ名]）。XcodeインストールとAndroid SDK(コマンドのみ<a href="https://qiita.com/undrthemt/items/1861d5fe39be46a2b776" target="_blank">https://qiita.com/undrthemt/items/1861d5fe39be46a2b776</a>)をインストールしてビルドする方法。Firebaseにアプリを追加して必要ファイルをダウンロードして配置する方法。）</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1402,7 +1468,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
       <google-codelab-step label="スマホアプリのテスター配布" duration="0">
         <p>（TODO） Firebase App Distributionの方法を解説</p>
 <p><a href="https://firebase.google.com/docs/app-distribution/ios/distribute-console?hl=ja" target="_blank">https://firebase.google.com/docs/app-distribution/ios/distribute-console?hl=ja</a> </p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1420,7 +1486,7 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
 <p><a href="https://javebratt.com/hide-firebase-api/" target="_blank">https://javebratt.com/hide-firebase-api/</a></p>
 <p>参考）多くのモバイルアプリに「バックドアシークレット」、オハイオ州立大などが発表</p>
 <p><a href="https://www.atmarkit.co.jp/ait/articles/2004/19/news014.html" target="_blank">https://www.atmarkit.co.jp/ait/articles/2004/19/news014.html</a></p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
@@ -1429,14 +1495,14 @@ Hosting URL: https://restoreview-824b4.web.app</pre>
         <p>（TODO） </p>
 <p>Firebase参考：<a href="https://www.youtube.com/watch?v=iWEgpdVSZyg" target="_blank">https://www.youtube.com/watch?v=iWEgpdVSZyg</a></p>
 <p>せっかくFirebaseに一本化したのでサービスの稼働状況をスマホアプリから見れるようにするとよいかも <a href="https://status.firebase.google.com/" target="_blank">https://status.firebase.google.com/</a></p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="まとめ" duration="0">
         <p>（TODO）</p>
-<center>Copyright 2020 RISA Co., LTD.</center>
+<p>Copyright 2025 RISA Co., LTD.</p>
 
 
       </google-codelab-step>
